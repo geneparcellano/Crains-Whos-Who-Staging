@@ -70,11 +70,11 @@ Questionnaire
 var questionnaire = {
 	getStarted : function() {
 		$('button[data-function="get_started"]').on('click', function() {
-			controls.showNext();
-			$('#questionnaire .controls').show();
+			$('#intro').removeClass('selected').next('#questions').fadeIn('fast').addClass('selected');
 		});
 	}
 }
+
 var controls = {
 	navigation : function() {
 		$('button[data-function="prev"]').on('click', function() {
@@ -93,33 +93,35 @@ var controls = {
 			$('button[data-function="prev"], .next').show();
 		}
 	},
+	syncAnchors : function() {
+		var current = $('.rail section.selected').attr('id');
+		$('.controls ol li').removeClass('selected').children('a[href="#'+ current +'"]').parent('li').addClass('selected');
+	},
 	showPrev : function() {
 		var current = $('section.selected'),
 			prev = current.prev();
 
-		prev.css('margin-left','800px').show();
-		prev.animate({'margin-left' : '0'}, 'fast', function() {
-			if (prev.prev().length === 0) {
-				$('button[data-function="prev"]').fadeOut('fast');
-			} else {
-				$('button[data-function="prev"], button[data-function="next"]').fadeIn('fast');
-			}
-			current.hide().removeClass('selected').prev().addClass('selected');
-		});
+		prev.fadeIn('fast');
+		if (prev.prev().length === 0) {
+			$('button[data-function="prev"]').fadeOut('fast');
+		} else {
+			$('button[data-function="prev"], button[data-function="next"]').fadeIn('fast');
+		}
+		current.hide().removeClass('selected').prev().addClass('selected');
+		controls.syncAnchors();
 	},
 	showNext : function() {
 		var current = $('section.selected'),
 			next = current.next();
 
-		current.animate({'margin-left' : '-800px'}, 'fast', function() {
-			if (next.next().length === 0) {
-				$('button[data-function="next"]').fadeOut('fast');
-			} else {
-				$('button[data-function="prev"], button[data-function="next"]').fadeIn('fast');
-			}
-			current.hide().removeClass('selected').next().addClass('selected');
-			next.show();
-		});
+		next.fadeIn('fast');
+		if (next.next().length === 0) {
+			$('button[data-function="next"]').fadeOut('fast');
+		} else {
+			$('button[data-function="prev"], button[data-function="next"]').fadeIn('fast');
+		}
+		current.hide().removeClass('selected').next().addClass('selected');
+		controls.syncAnchors();
 	}
 }
 
@@ -128,11 +130,12 @@ var controls = {
 /*****************************************************************************
 Initialize
 *****************************************************************************/
-dropDown.show();
-dropDown.hide();
-overlay.details();
-overlay.removeOverlay();
+// dropDown.show();
+// dropDown.hide();
+// overlay.details();
+// overlay.removeOverlay();
 questionnaire.getStarted();
 controls.navigation();
 controls.toggleButtons();
+// controls.syncAnchors();
 })();
