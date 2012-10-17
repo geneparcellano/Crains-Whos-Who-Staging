@@ -175,7 +175,6 @@ Drop Down Menu
 Overlay
 *****************************************************************************/
 .overlay {
-	display: none;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -211,26 +210,35 @@ Overlay
 	text-align: center;
 	font-weight: bold;
 }
-.overlay-body {
-	position: relative;
-	padding: 10px;
-}
 
 /*****************************************************************************
 Questionnaire
 *****************************************************************************/
-#questionnaire {
-	display: block;
+#intro {
+	padding: 10px;
 }
-#questionnaire .controls {
+#intro .logo {
+	width: 206px;
+	margin: 10px auto 20px;
+}
+#questions section button[type="button"],
+#intro button[type="button"] {
+	width: 100%;
+	margin: 20px 0 10px;
+	padding: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: bold;
+}
+#questions .controls {
 	/*display: none;*/
 	position: relative;
 }
-#questionnaire .controls h1 {
+#questions .controls h1 {
 	font-weight: bold;
 	color: #FFF;
 }
-#questionnaire .controls button {
+#questions .controls button {
 	position: absolute;
 	top: 10px;
 	width: 50px;
@@ -241,10 +249,10 @@ Questionnaire
 	cursor: pointer;
 	overflow: hidden;
 }
-#questionnaire nav li {
+#questions nav li {
 	display: inline;
 }
-#questionnaire nav li a {
+#questions nav li a {
 	display: inline-block;
 	height: 10px;
 	width: 10px;
@@ -253,38 +261,23 @@ Questionnaire
 	text-indent: -9000px;
 	overflow: hidden;
 }
-#questionnaire nav li.selected a {
+#questions nav li.selected a {
 	background-color: #FFF;
 }
-#questionnaire button[data-function="prev"] {
+#questions button[data-function="prev"] {
 	left: 10px;
 	background: url(../im/icon-arrow-left.gif) no-repeat center center;
 }
-#questionnaire button[data-function="next"] {
+#questions button[data-function="next"] {
 	right: 10px;
 	background: url(../im/icon-arrow-right.gif) no-repeat center center;
 }
-#questionnaire .controls button:hover {
+#questions .controls button:hover {
 	background-color: #AAA;
 }
-#questionnaire .controls button:active {
+#questions .controls button:active {
 	background-color: #999;
 	color: #FFF;
-}
-#questionnaire .logo {
-	width: 206px;
-	margin: 10px auto 20px;
-}
-#intro {
-	padding: 10px;
-}
-#intro button[type="button"] {
-	width: 100%;
-	margin: 20px 0 10px;
-	padding: 5px;
-	border-radius: 5px;
-	cursor: pointer;
-	font-weight: bold;
 }
 #questions section {
 	display: none;
@@ -399,6 +392,10 @@ Who's Who-er
 /*****************************************************************************
 Who's Who-er Details
 *****************************************************************************/
+.overlay-body {
+	position: relative;
+	padding: 10px;
+}
 .overlay-body .photo {
 	position: absolute;
 	top: 10px;

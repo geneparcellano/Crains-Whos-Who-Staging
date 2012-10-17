@@ -48,17 +48,14 @@ var overlay = {
 		$('#whoswho li').on('click', function() {
 			var $this = $(this);
 			var content = $this.html();
-			$('body').append('<div class="overlay"><div class="overlay-bg"></div><div class="overlay-content"><div class="controls"><strong>Details</strong><button type="button" data-function="close">close</button></div><div class="overlay-body">'+content+'</div></div></div>');
+			$('.overlay').append('<div class="overlay-content selected"><div class="controls"><strong>Details</strong><button type="button" data-function="close">close</button></div><div class="overlay-body">'+content+'</div></div>');
 			$('.overlay').fadeIn('fast');
 		});
 	},
 
 	removeOverlay : function() {
-		// $('body').on('click', '.overlay-bg, button[data-function="close"]', function() {
 		$('body').on('click', '.overlay .controls button[data-function="close"]', function() {
-			$('.overlay').fadeOut('fast', function() {
-				$('.overlay').remove();
-			});
+			$('.overlay').fadeOut('fast');
 		});
 	}
 }
@@ -71,6 +68,11 @@ var questionnaire = {
 	getStarted : function() {
 		$('button[data-function="get_started"]').on('click', function() {
 			$('#intro').removeClass('selected').next('#questions').fadeIn('fast').addClass('selected');
+		});
+	},
+	done : function() {
+		$('button[data-function="done"]').on('click', function() {
+			$('#questions').removeClass('selected').hide().parents('.overlay').fadeOut('fast');
 		});
 	}
 }
@@ -132,9 +134,10 @@ Initialize
 *****************************************************************************/
 // dropDown.show();
 // dropDown.hide();
-// overlay.details();
-// overlay.removeOverlay();
+overlay.details();
+overlay.removeOverlay();
 questionnaire.getStarted();
+questionnaire.done();
 controls.navigation();
 controls.toggleButtons();
 // controls.syncAnchors();
