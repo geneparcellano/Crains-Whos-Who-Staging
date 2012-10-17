@@ -1,0 +1,9 @@
+body {
+	width: 100%;
+}
+.overlay-content {
+	position: fixed;
+	width: 300px;
+	left: 50%;
+	margin: 20px 0 0 -150px;
+}
