@@ -196,7 +196,6 @@ Overlay
 	width: 350px;
 	left: 50%;
 	margin: 20% 0 0 -150px;
-	padding: 10px;
 	background-color: #FFF;
 	box-shadow: 0 0 8px #000;
 	border-radius: 5px;
@@ -220,7 +219,7 @@ Overlay
 /*****************************************************************************
 Questionnaire
 *****************************************************************************/
-#questionnaire.overlay {
+#questionnaire {
 	display: block;
 }
 #questionnaire .controls {
@@ -276,6 +275,9 @@ Questionnaire
 	width: 206px;
 	margin: 10px auto 20px;
 }
+#intro {
+	padding: 10px;
+}
 #intro button[type="button"] {
 	width: 100%;
 	margin: 20px 0 10px;
@@ -286,6 +288,7 @@ Questionnaire
 }
 #questions section {
 	display: none;
+	padding: 10px;
 }
 #questions section.selected {
 	display: block;
