@@ -196,7 +196,7 @@ Overlay
 	left: 50%;
 	margin: 20% 0 0 -150px;
 	background-color: #FFF;
-	box-shadow: 0 0 8px #000;
+	box-shadow: 0 0 8px #111;
 	border-radius: 5px;
 	z-index: 2;
 }
