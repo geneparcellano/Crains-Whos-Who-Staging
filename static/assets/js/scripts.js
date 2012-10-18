@@ -67,12 +67,12 @@ Questionnaire
 var questionnaire = {
 	getStarted : function() {
 		$('button[data-function="get_started"]').on('click', function() {
-			$('#intro').removeClass('selected').next('#questions').fadeIn('fast').addClass('selected');
+			$('#intro').removeClass('selected').next('#survey').fadeIn('fast').addClass('selected');
 		});
 	},
 	done : function() {
 		$('button[data-function="done"]').on('click', function() {
-			$('#questions').removeClass('selected').hide().parents('.overlay').fadeOut('fast');
+			$('#survey').removeClass('selected').hide().parents('.overlay').fadeOut('fast');
 		});
 	}
 }
@@ -106,9 +106,9 @@ var controls = {
 
 		prev.fadeIn('fast');
 		if (prev.prev().length === 0) {
-			$('button[data-function="prev"]').fadeOut('fast');
+			$('button[data-function="prev"]').attr('disabled','disabled');
 		} else {
-			$('button[data-function="prev"], button[data-function="next"]').fadeIn('fast');
+			$('button[data-function="prev"], button[data-function="next"]').removeAttr('disabled');
 		}
 		current.hide().removeClass('selected').prev().addClass('selected');
 		controls.syncAnchors();
@@ -119,9 +119,9 @@ var controls = {
 
 		next.fadeIn('fast');
 		if (next.next().length === 0) {
-			$('button[data-function="next"]').fadeOut('fast');
+			$('button[data-function="next"]').attr('disabled','disabled');
 		} else {
-			$('button[data-function="prev"], button[data-function="next"]').fadeIn('fast');
+			$('button[data-function="prev"], button[data-function="next"]').removeAttr('disabled');
 		}
 		current.hide().removeClass('selected').next().addClass('selected');
 		controls.syncAnchors();

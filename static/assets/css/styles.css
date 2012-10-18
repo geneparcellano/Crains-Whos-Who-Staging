@@ -1,4 +1,22 @@
 /*****************************************************************************
+Typography
+*****************************************************************************/
+#whos-who-2012 {
+	font-size: 16px;
+}
+/*****************************************************************************
+Layout
+*****************************************************************************/
+#whoswho section > h1 {
+	padding: 5px 0 5px 10px;
+	margin: 0 -12px 10px -10px;
+	background-color: #A00;
+	color: #FFF !important;
+}
+#whoswho section {
+	padding-bottom: 20px;
+}
+/*****************************************************************************
 Drop Down Menu
 *****************************************************************************/
 .dropdown {
@@ -63,6 +81,7 @@ Drop Down Menu
 Overlay
 *****************************************************************************/
 .overlay {
+	/*display: none;*/
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -80,19 +99,18 @@ Overlay
 .overlay-content {
 	display: none;
 	position: fixed;
+	min-height: 300px;
 	width: 350px;
 	left: 50%;
 	margin: 20% 0 0 -150px;
 	background-color: #FFF;
 	box-shadow: 0 0 8px #111;
-	border-radius: 5px;
 	z-index: 2;
 }
 .overlay-content.selected {
 	display: block;
 }
 .overlay-content .controls {
-	border-radius: 5px 5px 0 0;
 	padding: 5px 0;
 	background-color: #AA0000;
 	text-align: center;
@@ -100,72 +118,115 @@ Overlay
 }
 
 /*****************************************************************************
-Questionnaire
+Survey
 *****************************************************************************/
 #intro {
 	padding: 10px;
+}
+#intro p {
+	margin-bottom: 10px;
+	line-height: 1.3em;
 }
 #intro .logo {
 	width: 206px;
 	margin: 10px auto 20px;
 }
-#questions section button[type="button"],
+#survey section button[type="button"],
 #intro button[type="button"] {
 	width: 100%;
-	margin: 20px 0 10px;
-	padding: 5px;
+	margin: 50px 0 10px;
+	padding: 10px 0 15px;
+	border: 1px solid #4D4D4D;
 	border-radius: 5px;
+	background-color: #666;
 	cursor: pointer;
+	color: #FFF;
 	font-weight: bold;
+	font-size: 16px;
 }
-#questions .controls {
-	/*display: none;*/
+#survey section button[type="button"]:hover,
+#intro button[type="button"]:hover {
+	background-color: #555355;
+}
+#survey section button[type="button"]:active,
+#intro button[type="button"]:active {
+	background-color: #414042;
+	color: #FFF;
+}
+#survey .controls {
+	height: 50px;
+	padding: 0;
 	position: relative;
 }
-#questions .controls h1 {
+#survey .controls strong {
+	background-color: transparent;
+	font-size: 1.5em;
 	font-weight: bold;
+	line-height: 50px;
 	color: #FFF;
 }
-#questions .controls button {
+#survey .controls button {
 	position: absolute;
-	top: 10px;
+	top: 0;
+	height: 50px;
 	width: 50px;
-	/*border: 1px solid #CCC;*/
-	padding: 5px;
-	border-radius: 5px;
+	border: 0;
+	padding: 10px 5px;
 	text-indent: -9000px;
 	cursor: pointer;
 	overflow: hidden;
 }
-#questions nav li {
-	display: inline;
+#survey nav {
+	position: absolute;
+	width: 250px;
+	left: -125px;
+	margin-left: 50%;
+	padding: 0;
+	bottom: -25px;
 }
-#questions nav li a {
+#survey nav li {
+	display: inline;
+	padding: 0 5px;
+}
+#survey nav li a {
 	display: inline-block;
-	height: 10px;
-	width: 10px;
+	height: 9px;
+	width: 9px;
+	border: 1px solid #666;
 	border-radius: 5px;
-	background-color: #000;
+	background-color: #FFF;
 	text-indent: -9000px;
 	overflow: hidden;
 }
-#questions nav li.selected a {
-	background-color: #FFF;
+#survey nav li a:hover {
+	background-color: #A00;
 }
-#questions button[data-function="prev"] {
-	left: 10px;
+#survey nav li.selected a {
+	background-color: #A00;
+}
+#survey button[data-function="prev"] {
+	left: 0;
 	background: url(../im/icon-arrow-left.gif) no-repeat center center;
 }
-#questions button[data-function="next"] {
-	right: 10px;
+#survey button[data-function="next"] {
+	right: 0;
 	background: url(../im/icon-arrow-right.gif) no-repeat center center;
 }
-#questions .controls button:hover {
-	background-color: #AAA;
+#survey .controls button:hover {
+	background-color: #760A04;
 }
-#questions .controls button:active {
-	background-color: #999;
+#survey .controls button:active {
+	background-color: #590100;
 	color: #FFF;
+}
+#survey .controls button[disabled="disabled"],
+#survey .controls button[disabled="disabled"]:hover,
+#survey .controls button[disabled="disabled"]:active {
+	opacity: 0.5;
+	background-color: transparent;
+}
+#questions {
+	margin-top: 40px;
 }
 #questions section {
 	display: none;
@@ -175,28 +236,36 @@ Questionnaire
 	display: block;
 }
 #questions input[type="text"] {
-	width: 95%;
-	padding: 5px;
-	margin: 20px 0 10px;
+	width: 93%;
+	border: 1px solid #666;
+	padding: 10px;
+	margin: 10px 0 20px;
 	border-radius: 5px;
+	font-size: 1em;
 }
 
 /*****************************************************************************
-Control Bar
+Who's Who Control Bar
 *****************************************************************************/
 #control-bar {
+	position: relative;
 	padding: 5px;
 	margin-bottom: 10px;
 }
 #control-bar h1 {
+	padding: 5px 0;
 	font-size: 1.5em;
+	color: #A00 !important;
 	text-align: center;
+	text-transform: uppercase;
 }
 #control-bar h1 strong {
 	font-weight: bold;
 }
 #control-bar .search {
-	float: left;
+	position: absolute;
+	top: 10px;
+	left: 0;
 }
 #control-bar .search label {
 	width: 300px;
@@ -208,19 +277,23 @@ Control Bar
 	display: none;
 }
 #control-bar .search input[type="text"] {
+	height: 23px;
 	width: 200px;
 	padding: 2px 5px;
-	border: 1px solid #999;
-	border-bottom-color: #888;
-	border-radius: 3px;
+	border: 1px solid #777;
+	border-top-color: #666;
+	border-bottom-color: #999;
 	background: url(../im/icon-search.gif) no-repeat 190px center;
+	font-size: 1em;
 	font-weight: normal;
 }
 #control-bar .search button[type="submit"] {
 	display: none;
 }
 #control-bar .user {
-	float: right;
+	position: absolute;
+	top: 10px;
+	right: 0;
 	width: 300px;
 }
 .user .profile {
@@ -232,46 +305,42 @@ Control Bar
 	background: url(../im/icon-user.gif) no-repeat;
 	text-indent: -9000px;
 }
-.user .score a {
+#control-bar .user .score a {
 	float: right;
 	width: 30px;
 	padding: 10px 5px;
-	background-color: #AA0000;
-	/*background: url(../im/icon-user.gif) no-repeat;*/
+	background-color: #A00;
 	text-align: center;
 	text-decoration: none;
-	color: #FFF;
-}
-#whoswho {
-
-}
-#whoswho h1 {
-	padding: 5px 0;
-	background-color: #AA0000;
-	color: #FFF;
-	text-align: center;
-	font-weight: bold;
+	color: #FFF !important;
 }
 
 /*****************************************************************************
-Who's Who-er
+Who's Who Grid
 *****************************************************************************/
 #whoswho li {
 	float: left;
 	margin: 5px;
 	padding: 5px;
-	border-radius: 3px;
 	cursor: pointer;
 }
 #whoswho li:hover {
-	background-color: #AA0000;
+	background-color: #A00;
 	color: #FFF;
+}
+#whoswho li:hover h2 {
+	color: #FFF !important;
 }
 #whoswho li:active {
 	background-color: #751117;
 }
 #whoswho dl {
 	display: none;
+}
+#whoswho li h2 {
+	border-bottom: none;
+	margin-top: 5px;
+	background-color: transparent;
 }
 #whoswho li h2 span {
 	display: none;
