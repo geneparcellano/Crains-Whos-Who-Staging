@@ -1,22 +1,115 @@
 /*****************************************************************************
-Typography
+Resets
 *****************************************************************************/
-#cww {
 
+/*
+Copyright (c) 2011, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 2.9.0
+*/
+/**
+ * YUI Reset
+ * @module reset
+ * @namespace
+ * @requires 
+ */
+html {
+	color: #000;
 }
-#cww h1 {
-	
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code,
+form, fieldset, legend, input, button, textarea, select, p, blockquote, th, td {
+	margin: 0;
+	padding: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+fieldset,
+img {
+	border: 0;
+}
+
+address, button, caption, cite, code, dfn, em, input,
+optgroup, option, select, strong, textarea, th, var {
+    font:inherit;
+}
+
+del, ins {
+	text-decoration: none;
+}
+
+li {
+	list-style: none;
+}
+
+caption, th {
+	text-align: left;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-size: 100%;
+	font-weight: normal;
+}
+
+q:before, q:after {
+	content: '';
+}
+
+abbr, acronym {
+	border: 0;
+	font-variant: normal;
+}
+
+sup {
+	vertical-align: baseline;
+}
+
+sub {
+	vertical-align: baseline;
+}
+
+/*because legend doesn't inherit in IE */
+legend {
+	color: #000;
 }
 
 /*****************************************************************************
-Layout
+Helpers
 *****************************************************************************/
-#cww {
-	float: left;
-	width: 935px;
-	padding: 10px;
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
 }
 
+/*****************************************************************************
+Typography
+*****************************************************************************/
+body {
+	font: 100%/1.4545em helvetica, sans-serif;
+}
+p {
+	margin-bottom: 15px;
+}
+/*****************************************************************************
+Layout
+*****************************************************************************/
+html {
+	background-color: #EFEFEF;
+}
+body {
+	width: 950px;
+	margin: 0 auto;
+	background-color: #FFF;
+	box-shadow: 0 0 10px #666;
+}
 /*****************************************************************************
 Drop Down Menu
 *****************************************************************************/
@@ -82,7 +175,6 @@ Drop Down Menu
 Overlay
 *****************************************************************************/
 .overlay {
-	display: none;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -98,14 +190,18 @@ Overlay
 	z-index: 1;
 }
 .overlay-content {
+	display: none;
 	position: fixed;
 	width: 350px;
 	left: 50%;
 	margin: 20% 0 0 -150px;
 	background-color: #FFF;
-	box-shadow: 0 0 8px #000;
+	box-shadow: 0 0 8px #111;
 	border-radius: 5px;
 	z-index: 2;
+}
+.overlay-content.selected {
+	display: block;
 }
 .overlay-content .controls {
 	border-radius: 5px 5px 0 0;
@@ -114,25 +210,35 @@ Overlay
 	text-align: center;
 	font-weight: bold;
 }
-.overlay-body {
-	position: relative;
-	padding: 10px;
-}
 
 /*****************************************************************************
 Questionnaire
 *****************************************************************************/
-#questionnaire.overlay {
-	display: block;
+#intro {
+	padding: 10px;
 }
-#questionnaire .controls {
+#intro .logo {
+	width: 206px;
+	margin: 10px auto 20px;
+}
+#questions section button[type="button"],
+#intro button[type="button"] {
+	width: 100%;
+	margin: 20px 0 10px;
+	padding: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: bold;
+}
+#questions .controls {
+	/*display: none;*/
 	position: relative;
 }
-#questionnaire .controls h1 {
+#questions .controls h1 {
 	font-weight: bold;
 	color: #FFF;
 }
-#questionnaire .controls button {
+#questions .controls button {
 	position: absolute;
 	top: 10px;
 	width: 50px;
@@ -143,10 +249,10 @@ Questionnaire
 	cursor: pointer;
 	overflow: hidden;
 }
-#questionnaire nav li {
+#questions nav li {
 	display: inline;
 }
-#questionnaire nav li a {
+#questions nav li a {
 	display: inline-block;
 	height: 10px;
 	width: 10px;
@@ -155,51 +261,36 @@ Questionnaire
 	text-indent: -9000px;
 	overflow: hidden;
 }
-#questionnaire nav li.selected a {
+#questions nav li.selected a {
 	background-color: #FFF;
 }
-#questionnaire button[data-function="prev"] {
+#questions button[data-function="prev"] {
 	left: 10px;
 	background: url(../im/icon-arrow-left.gif) no-repeat center center;
 }
-#questionnaire button[data-function="next"] {
+#questions button[data-function="next"] {
 	right: 10px;
 	background: url(../im/icon-arrow-right.gif) no-repeat center center;
 }
-#questionnaire .controls button:hover {
+#questions .controls button:hover {
 	background-color: #AAA;
 }
-#questionnaire .controls button:active {
+#questions .controls button:active {
 	background-color: #999;
 	color: #FFF;
 }
-#questionnaire .logo {
-	width: 206px;
-	margin: 10px auto 20px;
-}
-.overlay-body {
-	min-height: 300px;
-	overflow: hidden;
-}
-.overlay-body .question {
+#questions section {
 	display: none;
+	padding: 10px;
 }
-.overlay-body .selected {
+#questions section.selected {
 	display: block;
 }
-.question input[type="text"] {
+#questions input[type="text"] {
 	width: 95%;
 	padding: 5px;
 	margin: 20px 0 10px;
 	border-radius: 5px;
-}
-.question button[type="button"] {
-	width: 100%;
-	margin: 20px 0 10px;
-	padding: 5px;
-	border-radius: 5px;
-	cursor: pointer;
-	font-weight: bold;
 }
 
 /*****************************************************************************
@@ -301,6 +392,10 @@ Who's Who-er
 /*****************************************************************************
 Who's Who-er Details
 *****************************************************************************/
+.overlay-body {
+	position: relative;
+	padding: 10px;
+}
 .overlay-body .photo {
 	position: absolute;
 	top: 10px;
