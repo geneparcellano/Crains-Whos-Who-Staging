@@ -2,20 +2,58 @@
 Typography
 *****************************************************************************/
 #whos-who-2012 {
-	font-size: 16px;
+	margin-top: -5px;
+	font-size: 16px !important;
 }
 /*****************************************************************************
 Layout
 *****************************************************************************/
-#whoswho section > h1 {
-	padding: 5px 0 5px 10px;
+#whos-who section > h1 {
+	padding: 5px 0 5px 20px;
 	margin: 0 -12px 10px -10px;
 	background-color: #A00;
 	color: #FFF !important;
 }
-#whoswho section {
+#whos-who section {
 	padding-bottom: 20px;
 }
+/*****************************************************************************
+Text Fields
+*****************************************************************************/
+input[type="text"] {
+	width: 93%;
+	background-color: #FFF;
+	border: 1px solid #888;
+	padding: 10px;
+	margin: 10px 0 20px;
+	font-size: 1em;
+}
+input[type="text"]:focus {
+	background-color: #E5E5E5;
+}
+/*****************************************************************************
+Buttons
+*****************************************************************************/
+.overlay button[type="button"] {
+	width: 100%;
+	margin: 50px 0 10px;
+	padding: 10px 0 15px;
+	border: 1px solid #4D4D4D;
+	border-radius: 5px;
+	background-color: #666;
+	cursor: pointer;
+	color: #FFF;
+	font-weight: bold;
+	font-size: 16px;
+}
+.overlay button[type="button"]:hover {
+	background-color: #555355;
+}
+.overlay button[type="button"]:active {
+	background-color: #414042;
+	color: #FFF;
+}
+
 /*****************************************************************************
 Drop Down Menu
 *****************************************************************************/
@@ -99,7 +137,7 @@ Overlay
 .overlay-content {
 	display: none;
 	position: fixed;
-	min-height: 300px;
+	/*min-height: 300px;*/
 	width: 350px;
 	left: 50%;
 	margin: 20% 0 0 -150px;
@@ -111,59 +149,34 @@ Overlay
 	display: block;
 }
 .overlay-content .controls {
-	padding: 5px 0;
+	position: relative;
+	height: 50px;
 	background-color: #AA0000;
 	text-align: center;
 	font-weight: bold;
+}
+.controls strong {
+	background-color: transparent;
+	font-weight: bold;
+	font-size: 1.5em;
+	line-height: 50px;
+	color: #FFF;
 }
 
 /*****************************************************************************
 Survey
 *****************************************************************************/
 #intro {
-	padding: 10px;
+	padding: 10px 20px;
 }
 #intro p {
 	margin-bottom: 10px;
-	line-height: 1.3em;
+	font-size: 1em !important;
+	line-height: 1.4em !important;
 }
 #intro .logo {
 	width: 206px;
 	margin: 10px auto 20px;
-}
-#survey section button[type="button"],
-#intro button[type="button"] {
-	width: 100%;
-	margin: 50px 0 10px;
-	padding: 10px 0 15px;
-	border: 1px solid #4D4D4D;
-	border-radius: 5px;
-	background-color: #666;
-	cursor: pointer;
-	color: #FFF;
-	font-weight: bold;
-	font-size: 16px;
-}
-#survey section button[type="button"]:hover,
-#intro button[type="button"]:hover {
-	background-color: #555355;
-}
-#survey section button[type="button"]:active,
-#intro button[type="button"]:active {
-	background-color: #414042;
-	color: #FFF;
-}
-#survey .controls {
-	height: 50px;
-	padding: 0;
-	position: relative;
-}
-#survey .controls strong {
-	background-color: transparent;
-	font-size: 1.5em;
-	font-weight: bold;
-	line-height: 50px;
-	color: #FFF;
 }
 #survey .controls button {
 	position: absolute;
@@ -171,6 +184,8 @@ Survey
 	height: 50px;
 	width: 50px;
 	border: 0;
+	border-radius: 0;
+	margin: 0;
 	padding: 10px 5px;
 	text-indent: -9000px;
 	cursor: pointer;
@@ -230,17 +245,14 @@ Survey
 }
 #questions section {
 	display: none;
-	padding: 10px;
+	padding: 10px 20px;
 }
 #questions section.selected {
 	display: block;
 }
-#questions input[type="text"] {
-	width: 93%;
-	border: 1px solid #666;
-	padding: 10px;
+#questions select {
+	width: 100%;
 	margin: 10px 0 20px;
-	border-radius: 5px;
 	font-size: 1em;
 }
 
@@ -249,11 +261,10 @@ Who's Who Control Bar
 *****************************************************************************/
 #control-bar {
 	position: relative;
-	padding: 5px;
 	margin-bottom: 10px;
 }
 #control-bar h1 {
-	padding: 5px 0;
+	padding-top: 12px;
 	font-size: 1.5em;
 	color: #A00 !important;
 	text-align: center;
@@ -264,7 +275,7 @@ Who's Who Control Bar
 }
 #control-bar .search {
 	position: absolute;
-	top: 10px;
+	top: 0;
 	left: 0;
 }
 #control-bar .search label {
@@ -292,25 +303,35 @@ Who's Who Control Bar
 }
 #control-bar .user {
 	position: absolute;
-	top: 10px;
+	top: 0;
 	right: 0;
 	width: 300px;
 }
-.user .profile {
+#control-bar .user .profile {
 	float: right;
+	margin: 7px 10px 0 0;
 }
-.user .profile > a {
-	width: 20px;
-	margin: 10px 0 0;
-	background: url(../im/icon-user.gif) no-repeat;
+#control-bar .user .profile > a {
+	display: block;
+	height: 32px;
+	width: 32px;
+	margin: 0;
+	background: url(../im/icon-user.png) no-repeat 0 0;
 	text-indent: -9000px;
+}
+#control-bar .user .profile > a:hover {
+	background-color: #CCC;
+}
+#control-bar .user .profile > a:active {
+	background-color: #AAA;
 }
 #control-bar .user .score a {
 	float: right;
-	width: 30px;
-	padding: 10px 5px;
-	background-color: #A00;
-	text-align: center;
+	height: 47px;
+	width: 37px;
+	margin-top: -6px;
+	padding: 18px 0 0 4px;
+	background: url(../im/icon-ribbon.gif) no-repeat 0 0;
 	text-decoration: none;
 	color: #FFF !important;
 }
@@ -318,79 +339,87 @@ Who's Who Control Bar
 /*****************************************************************************
 Who's Who Grid
 *****************************************************************************/
-#whoswho li {
+#whos-who li {
 	float: left;
 	margin: 5px;
 	padding: 5px;
 	cursor: pointer;
 }
-#whoswho li:hover {
+#whos-who li:hover {
 	background-color: #A00;
 	color: #FFF;
 }
-#whoswho li:hover h2 {
+#whos-who li:hover h2 {
 	color: #FFF !important;
 }
-#whoswho li:active {
+#whos-who li:active {
 	background-color: #751117;
 }
-#whoswho dl {
+#whos-who dl {
 	display: none;
 }
-#whoswho li h2 {
+#whos-who li h2 {
 	border-bottom: none;
 	margin-top: 5px;
 	background-color: transparent;
 }
-#whoswho li h2 span {
+#whos-who li h2 span {
 	display: none;
 }
 
 /*****************************************************************************
-Who's Who-er Details
+Who's Who Details
 *****************************************************************************/
-.overlay-body {
+#whos-who-details .controls {
+	border-bottom: 1px solid #BBB;
+	background-color: #EFEFEF;
+	box-shadow: 0 0 3px #AAA;
+}
+#whos-who-details .controls button[data-function="close"] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 50px;
+	width: 50px;
+	border: 0;
+	border-radius: 0;
+	margin: 0;
+	padding: 0;
+	background: url(../im/icon-close.png) no-repeat center center;
+	text-indent: -9000px;
+	cursor: pointer;
+	overflow: hidden;
+}
+#whos-who-details .controls button[data-function="close"]:hover {
+	background-color: #CCC;
+}
+#whos-who-details .controls button[data-function="close"]:active {
+	background-color: #AAA;
+}
+#whos-who-details .overlay-body {
 	position: relative;
 	padding: 10px;
 }
-.overlay-body .photo {
-	position: absolute;
+#whos-who-details .photo {
+	/*position: absolute;
 	top: 10px;
-	right: 10px;
+	right: 10px;*/
 }
-.overlay-body h2 {
+#whos-who-details h2 {
 	border-bottom: 1px solid #CCC;
 	padding: 10px 0 5px;
 	margin-bottom: 10px;
 	font-size: 1.5em;
 	font-weight: bold;
 }
-.overlay-body dt {
+#whos-who-details dt {
 	color: #666;
 }
-.overlay-body dd {
-	margin-bottom: 10px;
+#whos-who-details dd {
+	margin: 5px 0 15px;
 	font-weight: bold;
 }
-.overlay strong {
-	color: #FFF;
+#whos-who-details strong {
+	color: #000;
 	font-weight: bold;
-}
-button[data-function="close"] {
-	position: absolute;
-	top: 3px;
-	right: 5px;
-	width: 25px;
-	border: 0;
-	padding: 0;
-	background: url(../im/icon-close.gif) no-repeat center center;
-	text-indent: -9000px;
-	cursor: pointer;
-	overflow: hidden;
-}
-button[data-function="close"]:hover {
-	background-color: #751117;
-}
-button[data-function="close"]:active {
-	background-color: #AA0000;
 }

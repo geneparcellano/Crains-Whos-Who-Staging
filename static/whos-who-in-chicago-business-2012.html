@@ -363,17 +363,17 @@ if(s_code)document.write(s_code);
 <style type="text/css">
 #bd { background: none; }
 </style>
-<div id="whos-who-2012" style="width:935px; padding:10px; float:left">
+<div id="whos-who-2012" style="width:935px; padding:0 10px 10px; float:left">
 
 	<header id="control-bar" class="clearfix">
 		<div class="user">
 			<div class="score"><span>Your Score:</span> <a href="#score">417</a></div>
-			<div class="profile dropdown">
+			<div class="profile">
 				<a href="#">User</a>
-				<ul>
+<!-- 				<ul>
 					<li><a href="#">View Profile</a></li>
 					<li><a href="#">Log Out</a></li>
-				</ul>
+				</ul> -->
 			</div>
 		</div>
 		<form class="search">
@@ -382,7 +382,7 @@ if(s_code)document.write(s_code);
 		</form>
 		<h1><strong>Who&rsquo;s Who</strong> 2012</h1>
 	</header>
-	<div id="whoswho">
+	<div id="whos-who">
 		<section class="connections">
 			<h1>Your Connections</h1>
 			<ul class="clearfix">
@@ -825,27 +825,35 @@ if(s_code)document.write(s_code);
 		</div>
 		<div id="survey" class="overlay-content rail">
 			<header class="controls">
-				<strong>Survey Question 1</strong>
+				<strong>Question 1</strong>
 				<button type="button" data-function="prev">Previous</button>
 				<button type="button" data-function="next">Next</button>
 				<nav>
 					<ol>
-						<li class="selected"><a href="#question-1">1</a></li>
-						<li><a href="#question-2">2</a></li>
-						<li><a href="#question-3">3</a></li>
-						<li><a href="#question-4">4</a></li>
-						<li><a href="#question-5">5</a></li>
-						<li><a href="#question-6">6</a></li>
-						<li><a href="#question-7">7</a></li>
-						<li><a href="#question-8">8</a></li>
-						<li><a href="#question-9">9</a></li>
-						<li><a href="#question-10">10</a></li>
+						<li class="selected"><a href="#question-1">Question 1</a></li>
+						<li><a href="#question-2">Question 2</a></li>
+						<li><a href="#question-3">Question 3</a></li>
+						<li><a href="#question-4">Question 4</a></li>
+						<li><a href="#question-5">Question 5</a></li>
+						<li><a href="#question-6">Question 6</a></li>
+						<li><a href="#question-7">Question 7</a></li>
+						<li><a href="#question-8">Question 8</a></li>
+						<li><a href="#question-9">Question 9</a></li>
+						<li><a href="#question-10">Question 10</a></li>
 					</ol>
 				</nav>
 			</header>
 			<div id="questions">
 				<section id="question-1" class="selected">
-					<label>Prefix <input type="text" /></label>
+					<label>
+						Prefix 
+						<select name="prefix">
+							<option value="mr">Mr.</option>
+							<option value="ms">Ms.</option>
+							<option value="mrs">Mrs.</option>
+							<option value="dr">Dr.</option>
+						</select>
+					</label>
 					<label>First Name <input type="text" /></label>
 					<label>Last Name <input type="text" /></label>
 					<label>Suffix <input type="text" /></label>

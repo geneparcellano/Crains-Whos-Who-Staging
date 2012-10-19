@@ -45,10 +45,10 @@ Overlay
 *****************************************************************************/
 var overlay = {
 	details : function() {
-		$('#whoswho li').on('click', function() {
+		$('#whos-who li').on('click', function() {
 			var $this = $(this);
 			var content = $this.html();
-			$('.overlay').append('<div class="overlay-content selected"><div class="controls"><strong>Details</strong><button type="button" data-function="close">close</button></div><div class="overlay-body">'+content+'</div></div>');
+			$('.overlay').append('<div id="whos-who-details" class="overlay-content selected"><div class="controls"><strong>Details</strong><button type="button" data-function="close">close</button></div><div class="overlay-body">'+content+'</div></div>');
 			$('.overlay').fadeIn('fast');
 		});
 	},
@@ -76,14 +76,18 @@ var questionnaire = {
 		});
 	}
 }
-
-var controls = {
-	navigation : function() {
+var current;
+var navigation = {
+	getCurrent : function() {
+		return current = $('section.selected');
+	},
+	nextPrev : function() {
 		$('button[data-function="prev"]').on('click', function() {
-			controls.showPrev();
+			navigation.showPrev();
+			navigation.updateTitle();
 		});
 		$('button[data-function="next"]').on('click', function() {
-			controls.showNext();
+			navigation.showNext();
 		});
 		$('.controls')
 	},
@@ -97,12 +101,10 @@ var controls = {
 		}
 	},
 	syncAnchors : function() {
-		var current = $('.rail section.selected').attr('id');
-		$('.controls ol li').removeClass('selected').children('a[href="#'+ current +'"]').parent('li').addClass('selected');
+		$('.controls ol li').removeClass('selected').children('a[href="#'+ navigation.getCurrent().attr('id') +'"]').parent('li').addClass('selected');
 	},
 	showPrev : function() {
-		var current = $('section.selected'),
-			prev = current.prev();
+		var prev = navigation.getCurrent().prev();
 
 		prev.fadeIn('fast');
 		if (prev.prev().length === 0) {
@@ -110,12 +112,11 @@ var controls = {
 		} else {
 			$('button[data-function="prev"], button[data-function="next"]').removeAttr('disabled');
 		}
-		current.hide().removeClass('selected').prev().addClass('selected');
-		controls.syncAnchors();
+		navigation.getCurrent().hide().removeClass('selected').prev().addClass('selected');
+		navigation.syncAnchors();
 	},
 	showNext : function() {
-		var current = $('section.selected'),
-			next = current.next();
+		var next = navigation.getCurrent().next();
 
 		next.fadeIn('fast');
 		if (next.next().length === 0) {
@@ -123,8 +124,11 @@ var controls = {
 		} else {
 			$('button[data-function="prev"], button[data-function="next"]').removeAttr('disabled');
 		}
-		current.hide().removeClass('selected').next().addClass('selected');
-		controls.syncAnchors();
+		navigation.getCurrent().hide().removeClass('selected').next().addClass('selected');
+		navigation.syncAnchors();
+	},
+	updateTitle : function() {
+		console.log(current);
 	}
 }
 
@@ -139,7 +143,8 @@ overlay.details();
 overlay.removeOverlay();
 questionnaire.getStarted();
 questionnaire.done();
-controls.navigation();
-controls.toggleButtons();
+navigation.getCurrent();
+navigation.nextPrev();
+navigation.toggleButtons();
 // controls.syncAnchors();
 })();
