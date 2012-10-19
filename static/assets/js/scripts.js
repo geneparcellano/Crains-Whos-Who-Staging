@@ -84,12 +84,18 @@ var navigation = {
 	nextPrev : function() {
 		$('button[data-function="prev"]').on('click', function() {
 			navigation.showPrev();
-			navigation.updateTitle();
 		});
 		$('button[data-function="next"]').on('click', function() {
 			navigation.showNext();
 		});
-		$('.controls')
+	},
+	dots : function() {
+		$('.controls ol').on('click', 'a', function() {
+			var $this = $(this),
+				id = $this.attr('href');
+			navigation.getCurrent().hide().removeClass('selected').siblings(id).fadeIn('fast').addClass('selected');
+			navigation.syncHeader();
+		});
 	},
 	toggleButtons : function() {
 		if ($('.rail section.selected:first-of-type')) {
@@ -100,8 +106,11 @@ var navigation = {
 			$('button[data-function="prev"], .next').show();
 		}
 	},
-	syncAnchors : function() {
-		$('.controls ol li').removeClass('selected').children('a[href="#'+ navigation.getCurrent().attr('id') +'"]').parent('li').addClass('selected');
+	syncHeader : function() {
+		var selected = 'a[href="#'+ navigation.getCurrent().attr('id') +'"]',
+			newTitle = $('a[href="#'+ navigation.getCurrent().attr('id') +'"]').text();
+		$('.controls ol li').removeClass('selected').children(selected).parent('li').addClass('selected');
+		$('#survey .controls strong').text(newTitle);
 	},
 	showPrev : function() {
 		var prev = navigation.getCurrent().prev();
@@ -113,7 +122,7 @@ var navigation = {
 			$('button[data-function="prev"], button[data-function="next"]').removeAttr('disabled');
 		}
 		navigation.getCurrent().hide().removeClass('selected').prev().addClass('selected');
-		navigation.syncAnchors();
+		navigation.syncHeader();
 	},
 	showNext : function() {
 		var next = navigation.getCurrent().next();
@@ -125,10 +134,7 @@ var navigation = {
 			$('button[data-function="prev"], button[data-function="next"]').removeAttr('disabled');
 		}
 		navigation.getCurrent().hide().removeClass('selected').next().addClass('selected');
-		navigation.syncAnchors();
-	},
-	updateTitle : function() {
-		console.log(current);
+		navigation.syncHeader();
 	}
 }
 
@@ -145,6 +151,7 @@ questionnaire.getStarted();
 questionnaire.done();
 navigation.getCurrent();
 navigation.nextPrev();
+navigation.dots();
 navigation.toggleButtons();
 // controls.syncAnchors();
 })();
