@@ -2,6 +2,69 @@
 	'use strict';
 
 /*****************************************************************************
+Get JSON
+*****************************************************************************/
+var data = $.getJSON("assets/js/whoswho.json");
+
+var obj,
+	allProfAssociations = [],
+	allIndustry = [],
+	allUndergraduate = [],
+	allGraduate = [],
+	allHometown = [],
+	allState = [];
+
+$(document).ajaxComplete(function() {
+	obj = $.parseJSON(data.responseText);
+
+	$.each(obj.whoswho, function(i, whoswho) {
+		if ($.inArray(whoswho.profAssociations, allProfAssociations) === -1) {
+			allProfAssociations.push(whoswho.profAssociations);
+		}
+		if ($.inArray(whoswho.industry, allIndustry) === -1) {
+			allIndustry.push(whoswho.industry);
+		}
+		if ($.inArray(whoswho.undergraduate, allUndergraduate) === -1) {
+			allUndergraduate.push(whoswho.undergraduate);
+		}
+		if ($.inArray(whoswho.graduate, allGraduate) === -1) {
+			allGraduate.push(whoswho.graduate);
+		}
+		if ($.inArray(whoswho.hometown, allHometown) === -1) {
+			allHometown.push(whoswho.hometown);
+		}
+		if ($.inArray(whoswho.state, allState) === -1) {
+			allState.push(whoswho.state);
+		}
+	});
+
+	$( "#survey-prof-assoc" ).autocomplete({
+		appendTo: '#questions',
+		source: allProfAssociations
+	});
+	$( "#survey-industry" ).autocomplete({
+		appendTo: '#questions',
+		source: allIndustry
+	});
+	$( "#survey-undergraduate" ).autocomplete({
+		appendTo: '#questions',
+		source: allUndergraduate
+	});
+	$( "#survey-graduate" ).autocomplete({
+		appendTo: '#questions',
+		source: allGraduate
+	});
+	$( "#survey-hometown" ).autocomplete({
+		appendTo: '#questions',
+		source: allHometown
+	});
+	$( "#survey-state" ).autocomplete({
+		appendTo: '#questions',
+		source: allState
+	});
+});
+
+/*****************************************************************************
 Drop Down Menu
 *****************************************************************************/
 var dropDown = {
@@ -71,28 +134,39 @@ var questionnaire = {
 		});
 	},
 	addEntry : function() {
-		$('#questions').on('click', 'button[data-function="add"]', function() {
+		$('#questions .multi').on('click', 'button[data-function="add"]', function() {
 			applyEntry($(this));
 		});
-		$('#questions').on('keydown', 'input[type="text"].multi', function() {
+		$('#questions .multi').on('keydown', 'input[type="text"]', function() {
 			if ( event.which == 13 ) {
-				// console.log();
-				applyEntry($(this).parent().children('button[data-function="add"]'));
+				applyEntry($(this));
 			}
 		});
 
 		function applyEntry($this) {
-			var entry = $this.prev('label').children('input[type="text"].multi'),
+			var container = $this.parents('section'),
+				entry = container.find('input[type="text"]'),
 				newEntry = $(document.createElement('li')),
 				buttonRemove = $(document.createElement('button')).attr('type','button').attr('data-function','remove').text('remove');
 
-			if ($this.parent().find('.entries').length === 0) {
-				$(document.createElement('ul')).appendTo($this.parent()).addClass('entries');
+			if (entry.val()) {			
+				if (container.find('.entries').length === 0) {
+					$(document.createElement('ul')).appendTo(container).addClass('entries');
+				} else {
+					//do nothing
+				}
+				$(newEntry).prependTo(container.find('.entries')).text(entry.val()).append(buttonRemove);
+				container.children('.notification').remove();
+				entry.val('');
 			} else {
-				//do nothing
+				var notification = $(document.createElement('div')).addClass('notification');
+				if (container.find('.notification').length === 0) {
+					container.children('.multi').after(notification.text('Please enter a value'));
+				} else {
+					//do nothing
+				}
 			}
-			$(newEntry).prependTo($this.siblings('.entries')).text(entry.val()).append(buttonRemove);
-			entry.val('');
+
 		}
 	},
 	removeEntry : function() {
