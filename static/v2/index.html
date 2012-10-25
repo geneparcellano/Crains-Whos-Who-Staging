@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>JSON Test</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+	<div id="whos-who">
+		<section class="clearfix">
+			<ul id="whos-who-details">
+			</ul>
+		</section>
+	</div>
+
+
+	<div class="overlay">
+		<div class="overlay-bg"></div>
+		<div id="intro" class="overlay-content selected">
+			<div class="logo"><img src="assets/im/logo-new.png" height="90" width="206" alt="logo" /></div>
+			<p>Who&rsquo;s Who is a list of the most influential people in Chicago.</p>
+			<p>Fill out the survey to see who of these heavy hitters you&rsquo;re connected to.</p>
+			<button type="button" data-function="get_started">Get Started</button>
+		</div>
+		<div id="survey" class="overlay-content rail">
+			<header class="controls">
+				<strong>Question 1</strong>
+				<button type="button" data-function="prev">Previous</button>
+				<button type="button" data-function="next">Next</button>
+				<nav>
+					<ol>
+						<li class="selected"><a href="#question-1">Question 1</a></li>
+						<li><a href="#question-2">Question 2</a></li>
+						<li><a href="#question-3">Question 3</a></li>
+						<li><a href="#question-4">Question 4</a></li>
+						<li><a href="#question-5">Question 5</a></li>
+						<li><a href="#question-6">Question 6</a></li>
+						<li><a href="#question-7">Question 7</a></li>
+						<li><a href="#question-8">Question 8</a></li>
+						<li><a href="#question-9">Question 9</a></li>
+						<li><a href="#question-10">Question 10</a></li>
+					</ol>
+				</nav>
+			</header>
+			<div id="questions">
+				<section id="question-1" class="selected">
+					<label>
+						Prefix 
+						<select name="prefix">
+							<option value="mr">Mr.</option>
+							<option value="ms">Ms.</option>
+							<option value="mrs">Mrs.</option>
+							<option value="dr">Dr.</option>
+						</select>
+					</label>
+					<label>First Name <input type="text" /></label>
+					<label>Last Name <input type="text" /></label>
+					<label>Suffix <input type="text" /></label>
+				</section>
+				<section id="question-2">
+					<label>Primary Company <input type="text" /></label>
+				</section>
+				<section id="question-3">
+					<label>Secondary Company <input type="text" /></label>
+				</section>
+				<section id="question-4">
+					<label>Professional Associations <input type="text" /></label>
+				</section>
+				<section id="question-5">
+					<label>Civic Affiliations <input type="text" /></label>
+				</section>
+				<section id="question-6">
+					<label>Industry <input type="text" /></label>
+				</section>
+				<section id="question-7">
+					<label>Undergraduate College <input type="text" /></label>
+				</section>
+				<section id="question-8">
+					<label>Graduate College <input type="text" /></label>
+				</section>
+				<section id="question-9">
+					<label>Degree <input type="text" /></label>
+				</section>
+				<section id="question-10">
+					<label>Hometown <input type="text" /></label>
+					<label>State <input type="text" /></label>
+					<button type="button" data-function="done">Done</button>
+				</section>
+			</div>
+		</div>
+	</div>
+
+	<script src="assets/js/jquery-1.8.2.min.js"></script>
+	<script src="assets/js/test.js"></script>
+	<script src="assets/js/scripts.js"></script>
+</body>
+</html>
