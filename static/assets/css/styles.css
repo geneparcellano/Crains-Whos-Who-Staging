@@ -187,7 +187,7 @@ Survey
 	border-radius: 0;
 	margin: 0;
 	padding: 10px 5px;
-	text-indent: -9000px;
+	text-indent: -9999px;
 	cursor: pointer;
 	overflow: hidden;
 }
@@ -210,7 +210,7 @@ Survey
 	border: 1px solid #666;
 	border-radius: 5px;
 	background-color: #FFF;
-	text-indent: -9000px;
+	text-indent: -9999px;
 	overflow: hidden;
 }
 #survey nav li a:hover {
@@ -255,6 +255,41 @@ Survey
 	margin: 10px 0 20px;
 	font-size: 1em;
 }
+#questions .multi {
+	width: 220px;
+}
+#questions button[data-function="add"] {
+	display: inline;
+	width: auto;
+	margin: 0;
+	padding: 10px;
+}
+#questions .entries {
+	border-top: 1px solid #CCC;
+	padding-bottom: 10px;
+}
+#questions .entries li {
+	min-height: 20px;
+	padding: 5px 0;
+	border-bottom: 1px solid #DDD;
+}
+#questions button[data-function="remove"] {
+	float: right;
+	height: 30px;
+	width: 30px;
+	margin: -5px 0 0;
+	padding: 0;
+	border: none;
+	border-radius: 0;
+	background: url(../im/icon-close.png) no-repeat center center transparent;
+	text-indent: -9999px;
+}
+#questions button[data-function="remove"]:hover {
+	background-color: #CCC;
+}
+#questions button[data-function="remove"]:active {
+	background-color: #AAA;
+}
 
 /*****************************************************************************
 Who's Who Control Bar
@@ -280,7 +315,7 @@ Who's Who Control Bar
 }
 #control-bar .search label {
 	width: 300px;
-	text-indent: -9000px;
+	text-indent: -9999px;
 	overflow: hidden;
 }
 #control-bar .score span,
@@ -317,7 +352,7 @@ Who's Who Control Bar
 	width: 32px;
 	margin: 0;
 	background: url(../im/icon-user.png) no-repeat 0 0;
-	text-indent: -9000px;
+	text-indent: -9999px;
 }
 #control-bar .user .profile > a:hover {
 	background-color: #CCC;
@@ -386,7 +421,7 @@ Who's Who Details
 	margin: 0;
 	padding: 0;
 	background: url(../im/icon-close.png) no-repeat center center;
-	text-indent: -9000px;
+	text-indent: -9999px;
 	cursor: pointer;
 	overflow: hidden;
 }

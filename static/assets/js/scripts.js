@@ -70,12 +70,53 @@ var questionnaire = {
 			$('#intro').removeClass('selected').next('#survey').fadeIn('fast').addClass('selected');
 		});
 	},
+	addEntry : function() {
+		$('#questions').on('click', 'button[data-function="add"]', function() {
+			applyEntry($(this));
+		});
+		$('#questions').on('keydown', 'input[type="text"].multi', function() {
+			if ( event.which == 13 ) {
+				// console.log();
+				applyEntry($(this).parent().children('button[data-function="add"]'));
+			}
+		});
+
+		function applyEntry($this) {
+			var entry = $this.prev('label').children('input[type="text"].multi'),
+				newEntry = $(document.createElement('li')),
+				buttonRemove = $(document.createElement('button')).attr('type','button').attr('data-function','remove').text('remove');
+
+			if ($this.parent().find('.entries').length === 0) {
+				$(document.createElement('ul')).appendTo($this.parent()).addClass('entries');
+			} else {
+				//do nothing
+			}
+			$(newEntry).prependTo($this.siblings('.entries')).text(entry.val()).append(buttonRemove);
+			entry.val('');
+		}
+	},
+	removeEntry : function() {
+		$('#questions').on('click','button[data-function="remove"]',function() {
+			var $this = $(this),
+				entries = $this.parents('.entries');
+			$(this).parent('li').remove();
+			if (entries.children().length === 0) {
+				entries.remove();
+			} else {
+				//do nothing
+			}
+		})
+	},
 	done : function() {
 		$('button[data-function="done"]').on('click', function() {
 			$('#survey').removeClass('selected').hide().parents('.overlay').fadeOut('fast');
 		});
 	}
 }
+
+/*****************************************************************************
+Questionnaire Navigation
+*****************************************************************************/
 var current;
 var navigation = {
 	getCurrent : function() {
@@ -90,11 +131,12 @@ var navigation = {
 		});
 	},
 	dots : function() {
-		$('.controls ol').on('click', 'a', function() {
+		$('.controls ol').on('click', 'a', function(event) {
 			var $this = $(this),
 				id = $this.attr('href');
 			navigation.getCurrent().hide().removeClass('selected').siblings(id).fadeIn('fast').addClass('selected');
 			navigation.syncHeader();
+			event.preventDefault();
 		});
 	},
 	toggleButtons : function() {
@@ -147,8 +189,12 @@ Initialize
 // dropDown.hide();
 overlay.details();
 overlay.removeOverlay();
+
 questionnaire.getStarted();
+questionnaire.addEntry();
+questionnaire.removeEntry();
 questionnaire.done();
+
 navigation.getCurrent();
 navigation.nextPrev();
 navigation.dots();
