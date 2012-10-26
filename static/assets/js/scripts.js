@@ -17,6 +17,14 @@ var obj,
 $(document).ajaxComplete(function() {
 	obj = $.parseJSON(data.responseText);
 
+	function pushData(data, arrayName) {
+		if ($.inArray(data, arrayName) === -1) {
+			arrayName.push(data);
+		} else {
+			//do nothing
+		}
+	}
+
 	$.each(obj.whoswho, function(i, whoswho) {
 		// console.log(i);
 		if (whoswho.profAssociations[0].length > 1) {
@@ -25,7 +33,7 @@ $(document).ajaxComplete(function() {
 				if ($.inArray(profAssociations, allProfAssociations) === -1) {
 					allProfAssociations.push(profAssociations);
 				} else {
-					console.log('duplicate found');
+					// console.log('duplicate found');
 				}
 			});
 			// console.log(whoswho.profAssociations[i]);
@@ -33,29 +41,34 @@ $(document).ajaxComplete(function() {
 			if ($.inArray(whoswho.profAssociations, allProfAssociations) === -1) {
 				allProfAssociations.push(whoswho.profAssociations);
 			} else {
-				console.log('duplicate found');
+				// console.log('duplicate found');
 			}
 		}
 		// if ($.inArray(whoswho.profAssociations, allProfAssociations) === -1) {
 		// 	allProfAssociations.push(obj.whoswho[0].profAssociations[i]);
 		// }
-		if ($.inArray(whoswho.industry, allIndustry) === -1) {
-			allIndustry.push(whoswho.industry);
-		}
-		if ($.inArray(whoswho.undergraduate, allUndergraduate) === -1) {
-			allUndergraduate.push(whoswho.undergraduate);
-		}
-		if ($.inArray(whoswho.graduate, allGraduate) === -1) {
-			allGraduate.push(whoswho.graduate);
-		}
-		if ($.inArray(whoswho.hometown, allHometown) === -1) {
-			allHometown.push(whoswho.hometown);
-		}
-		if ($.inArray(whoswho.state, allState) === -1) {
-			allState.push(whoswho.state);
-		}
+		// if ($.inArray(whoswho.industry, allIndustry) === -1) {
+		// 	allIndustry.push(whoswho.industry);
+		// }
+		// if ($.inArray(whoswho.undergraduate, allUndergraduate) === -1) {
+		// 	allUndergraduate.push(whoswho.undergraduate);
+		// }
+		// if ($.inArray(whoswho.graduate, allGraduate) === -1) {
+		// 	allGraduate.push(whoswho.graduate);
+		// }
+		// if ($.inArray(whoswho.hometown, allHometown) === -1) {
+		// 	allHometown.push(whoswho.hometown);
+		// }
+		// if ($.inArray(whoswho.state, allState) === -1) {
+		// 	allState.push(whoswho.state);
+		// }
+		pushData(whoswho.industry, allIndustry);
+		pushData(whoswho.undergraduate, allUndergraduate);
+		pushData(whoswho.graduate, allGraduate);
+		pushData(whoswho.hometown, allHometown);
+		pushData(whoswho.state, allState);
 	});
-	console.log(allProfAssociations);
+	// console.log(allProfAssociations);
 
 	$( "#survey-prof-assoc" ).autocomplete({
 		appendTo: '#questions',
