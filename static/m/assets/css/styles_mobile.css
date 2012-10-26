@@ -8,6 +8,10 @@ body,
 	left: 50%;
 	margin: 20px 0 0 -150px;
 }
+.overlay-content section {
+	max-height: 260px;
+	overflow: auto;
+}
 #intro {
 	width: 280px;
 	padding: 10px;
