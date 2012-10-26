@@ -12,6 +12,7 @@ var obj,
 	allIndustry = [],
 	allUndergraduate = [],
 	allGraduate = [],
+	allDegree = [],
 	allHometown = [],
 	allState = [];
 
@@ -20,7 +21,7 @@ $(document).ajaxComplete(function() {
 
 	// scrape all values and push into specified array
 	function pushData(data, id, arrayName) {
-		if (data[0].length > 1 ) {
+		if (data[0] !== undefined && data[0].length > 1) {
 			$.each(data, function(i, id) {
 				if ($.inArray(id, arrayName) === -1) {
 					arrayName.push(id);
@@ -39,13 +40,14 @@ $(document).ajaxComplete(function() {
 
 	// push data into array
 	$.each(obj.whoswho, function(i, whoswho) {
-		var profAssociations, civicAffiliations, industry, undergraduate, graduate, hometown, state;
+		var profAssociations, civicAffiliations, industry, undergraduate, graduate, degree, hometown, state;
 
 		pushData(whoswho.profAssociations, profAssociations, allProfAssociations);
 		pushData(whoswho.civicAffiliations, civicAffiliations, allCivicAffiliations);
 		pushData(whoswho.industry, industry, allIndustry);
 		pushData(whoswho.undergraduate, undergraduate, allUndergraduate);
 		pushData(whoswho.graduate, graduate, allGraduate);
+		pushData(whoswho.degree, degree, allDegree);
 		pushData(whoswho.hometown, hometown, allHometown);
 		pushData(whoswho.state, state, allState);
 	});
@@ -66,6 +68,10 @@ $(document).ajaxComplete(function() {
 	$( "#survey-undergraduate" ).autocomplete({
 		appendTo: '#questions',
 		source: allUndergraduate
+	});
+	$( "#survey-degree" ).autocomplete({
+		appendTo: '#questions',
+		source: allDegree
 	});
 	$( "#survey-graduate" ).autocomplete({
 		appendTo: '#questions',

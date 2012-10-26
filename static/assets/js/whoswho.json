@@ -12,6 +12,7 @@
 	"industry": "Architecture",
 	"undergraduate": "University of Illinois, Urbana-Champaign",
 	"graduate": "University of Illinios, Urbana-Champaign",
+	"degree" : "Other",
 	"hometown": "Chicago",
 	"state": "Illinois",
 	"url": "http://www.r-barc.com/people/bio/?name=CAROL+ROSS+BARNEY%2c+FAIA"
@@ -28,6 +29,7 @@
 	"industry": "Architecture",
 	"undergraduate": "Iowa State University",
 	"graduate": "N/A",
+	"degree" : "",
 	"hometown": "Davenport",
 	"state": "Iowa",
 	"url": "http://www.gpchicago.com/users/folder.asp?FolderID=58"
@@ -44,6 +46,7 @@
 	"industry": "Architecture",
 	"undergraduate": "University of Illinois at Urbana-Champaign",
 	"graduate": "University of Illinois at Urbana-Champaign",
+	"degree" : "Other",
 	"hometown": "Chicago",
 	"state": "Illinois",
 	"url": "http://www.linkedin.com/pub/donald-hackl-faia/26/483/b25"
@@ -60,6 +63,7 @@
 	"industry": "Architecture",
 	"undergraduate": "Technische Hochschule, Munich",
 	"graduate": "N/A",
+	"degree" : "",
 	"hometown": "Nuernberg, Germany",
 	"state": "Bavaria",
 	"url": "N/A"
@@ -76,6 +80,7 @@
 	"industry": "Architecture",
 	"undergraduate": "University of Colorado",
 	"graduate": "University of Colorado",
+	"degree" : "MBA",
 	"hometown": "Castle Rock ",
 	"state": "Colorado",
 	"url": "N/A"
@@ -92,6 +97,7 @@
 	"industry": "Architecture",
 	"undergraduate": "Illinois Institute of Technology",
 	"graduate": "N/A",
+	"degree" : "",
 	"hometown": "Cincinnati",
 	"state": "OH",
 	"url": "http://www.ksarch.com/studio/profiles/krueck.pdf"
@@ -108,6 +114,7 @@
 	"industry": "Architecture",
 	"undergraduate": "Illinois Institute of Technology, College of Architecture",
 	"graduate": "Technische Hochschule Munich",
+	"degree" : "Other",
 	"hometown": "Berlin",
 	"state": "Germany",
 	"url": "http://dirklohan.com/dirk/index.html"
@@ -124,6 +131,7 @@
 	"industry": "Architecture",
 	"undergraduate": "Vassar",
 	"graduate": "Harvard",
+	"degree" : "Other",
 	"hometown": "Chicago",
 	"state": "Illinois",
 	"url": "N/A"
@@ -140,6 +148,7 @@
 	"industry": "Architecture",
 	"undergraduate": "University of Michigan ",
 	"graduate": "Harvard University",
+	"degree" : "Other",
 	"hometown": "Grand Rapids ",
 	"state": "Michigan ",
 	"url": "N/A"
@@ -156,6 +165,7 @@
 	"industry": "Architecture",
 	"undergraduate": "University of Kentucky",
 	"graduate": "N/A",
+	"degree" : "",
 	"hometown": "Louisville",
 	"state": "Kentucky",
 	"url": "N/A"
@@ -172,6 +182,7 @@
 	"industry": "Health Care",
 	"undergraduate": "St. Louis University",
 	"graduate": "Xavier University",
+	"degree" : "Other",
 	"hometown": "Cincinnati",
 	"state": "Ohio",
 	"url": "N/A"
@@ -188,6 +199,7 @@
 	"industry": "Health Care",
 	"undergraduate": "University of Houston",
 	"graduate": "University of Miami",
+	"degree" : "Other",
 	"hometown": "N/A",
 	"state": "N/A",
 	"url": "http://www.abbott.com/global/url/content/en_US/70.45:45/general_content/General_Content_00106.htm"
@@ -204,6 +216,7 @@
 	"industry": "Health Care",
 	"undergraduate": "University of Michigan",
 	"graduate": "University of Michigan",
+	"degree" : "MD",
 	"hometown": "Detroit",
 	"state": "Michigan",
 	"url": "http://www.rush.edu/rumc/page-1134773765850.html"
@@ -220,6 +233,7 @@
 	"industry": "Health Care",
 	"undergraduate": "Indiana University",
 	"graduate": "St. Francis College",
+	"degree" : "MBA",
 	"hometown": "N/A",
 	"state": "N/A",
 	"url": "http://www.nmh.org/nm/about-us-leadership"
@@ -236,6 +250,7 @@
 	"industry": "Health Care",
 	"undergraduate": "Southern Illinois University, Edwardsville",
 	"graduate": "Southern Illinois University, Edwardsville",
+	"degree" : "Other",
 	"hometown": "N/A",
 	"state": "N/A",
 	"url": "http://www.linkedin.com/pub/karen-kelly/43/431/192"
@@ -252,6 +267,7 @@
 	"industry": "Health Care",
 	"undergraduate": "Western Illinois University ",
 	"graduate": "University of Illinois at Chicago",
+	"degree" : "Other",
 	"hometown": "Wheeling",
 	"state": "Illinois",
 	"url": "http://www.luriechildrens.org/en-us/about-us/Pages/our-ceo.aspx"
@@ -268,6 +284,7 @@
 	"industry": "Health Care",
 	"undergraduate": "Purdue University",
 	"graduate": "N/A",
+	"degree" : "",
 	"hometown": "Libertyville",
 	"state": "Illinois",
 	"url": "http://phx.corporate-ir.net/phoenix.zhtml?c=119334&p=irol-govBio&ID=104009"
@@ -284,6 +301,7 @@
 	"industry": "Health Care",
 	"undergraduate": "Cornell University",
 	"graduate": "Cornell University",
+	"degree" : "MBA",
 	"hometown": "Winnetka ",
 	"state": "Illinois",
 	"url": "N/A"
@@ -300,6 +318,7 @@
 	"industry": "Health Care",
 	"undergraduate": "Ohio State University",
 	"graduate": "Ohio State University",
+	"degree" : "MBA",
 	"hometown": "Buffalo",
 	"state": "New York",
 	"url": "http://www.northshore.org/about-us/organization-profile/organization-leaders/"
@@ -316,6 +335,7 @@
 	"industry": "Health Care",
 	"undergraduate": "Northern Illinois University",
 	"graduate": "Loyola University",
+	"degree" : "MBA",
 	"hometown": "Chicago",
 	"state": "Illinois",
 	"url": "http://news.uchicago.edu/article/2011/01/25/sharon-o-keefe-become-president-university-chicago-medical-center"
@@ -332,6 +352,7 @@
 	"industry": "Health Care",
 	"undergraduate": "Loyola University Chicago",
 	"graduate": "Loyola University Chicago",
+	"degree" : "Other",
 	"hometown": "N/A",
 	"state": "N/A",
 	"url": "http://www.baxter.com/about_baxter/corporate_governance/company_leadership/parkinson2.html"
@@ -348,6 +369,7 @@
 	"industry": "Health Care",
 	"undergraduate": "Ferris State University",
 	"graduate": "N/A",
+	"degree" : "",
 	"hometown": "Saginaw",
 	"state": "Michigan",
 	"url": "N/A"
@@ -364,6 +386,7 @@
 	"industry": "Health Care",
 	"undergraduate": "Southern Illinois University",
 	"graduate": "Roosevelt University",
+	"degree" : "Other",
 	"hometown": "Carlyle",
 	"state": "Illinois",
 	"url": "http://www.qlksearch.com/about-us/"
@@ -380,6 +403,7 @@
 	"industry": "Utilities",
 	"undergraduate": "University of Michigan",
 	"graduate": "University of Michigan",
+	"degree" : "Other",
 	"hometown": "Detroit",
 	"state": "Michigan",
 	"url": "http://www.integrysgroup.com/news/executive_photos.aspx"
@@ -396,6 +420,7 @@
 	"industry": "Utilities",
 	"undergraduate": "Northwestern University",
 	"graduate": "University of Illinois",
+	"degree" : "JD",
 	"hometown": "New York City",
 	"state": "New York",
 	"url": "N/A"
