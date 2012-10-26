@@ -18,9 +18,27 @@ $(document).ajaxComplete(function() {
 	obj = $.parseJSON(data.responseText);
 
 	$.each(obj.whoswho, function(i, whoswho) {
-		if ($.inArray(whoswho.profAssociations, allProfAssociations) === -1) {
-			allProfAssociations.push(whoswho.profAssociations);
+		// console.log(i);
+		if (whoswho.profAssociations[0].length > 1) {
+			$.each(whoswho.profAssociations, function(i, profAssociations) {
+				// console.log(profAssociations);
+				if ($.inArray(profAssociations, allProfAssociations) === -1) {
+					allProfAssociations.push(profAssociations);
+				} else {
+					console.log('duplicate found');
+				}
+			});
+			// console.log(whoswho.profAssociations[i]);
+		} else {
+			if ($.inArray(whoswho.profAssociations, allProfAssociations) === -1) {
+				allProfAssociations.push(whoswho.profAssociations);
+			} else {
+				console.log('duplicate found');
+			}
 		}
+		// if ($.inArray(whoswho.profAssociations, allProfAssociations) === -1) {
+		// 	allProfAssociations.push(obj.whoswho[0].profAssociations[i]);
+		// }
 		if ($.inArray(whoswho.industry, allIndustry) === -1) {
 			allIndustry.push(whoswho.industry);
 		}
@@ -37,6 +55,7 @@ $(document).ajaxComplete(function() {
 			allState.push(whoswho.state);
 		}
 	});
+	console.log(allProfAssociations);
 
 	$( "#survey-prof-assoc" ).autocomplete({
 		appendTo: '#questions',

@@ -7,7 +7,7 @@
 	"primaryCo": "Ross Barney Architects Inc., Chicago (Design principal)",
 	"secondaryCo": "N/A",
 	"age": 63,
-	"profAssociations": "American Institute of Architects; Chicago Network; Economic Club; Lambda Alpha International; Chicago Women in Architecture",
+	"profAssociations": ["American Institute of Architects", "Chicago Network", "Economic Club", "Lambda Alpha International", "Chicago Women in Architecture"],
 	"civicAffiliations": "Illinois Institute of Technology Architectural Board of Overseers",
 	"industry": "Architecture",
 	"undergraduate": "University of Illinois, Urbana-Champaign",
@@ -29,7 +29,7 @@
 	"undergraduate": "University of Illinois at Urbana-Champaign",
 	"graduate": "University of Illinois at Urbana-Champaign",
 	"hometown": "Monmouth",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.perkinswill.com/people/raymond-clark.html"
 }, {
 	"first": "Daniel",
@@ -45,7 +45,7 @@
 	"undergraduate": "U of Illinois, Urbana",
 	"graduate": "Harvard University",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "N/A"
 }, {
 	"first": "Michael",
@@ -109,7 +109,7 @@
 	"undergraduate": "University of Illinois at Urbana-Champaign",
 	"graduate": "University of Illinois at Urbana-Champaign",
 	"hometown": "Chicago",
-	"state": "Il",
+	"state": "Illinois",
 	"url": "http://www.linkedin.com/pub/donald-hackl-faia/26/483/b25"
 }, {
 	"first": "Helmut",
@@ -237,7 +237,7 @@
 	"undergraduate": "IIT",
 	"graduate": "N/A",
 	"hometown": "Riverside",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.linkedin.com/pub/mark-p-sexton/a/743/505"
 }, {
 	"first": "Adrian",
@@ -429,7 +429,7 @@
 	"undergraduate": "Augustana",
 	"graduate": "Northwestern",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "N/A"
 }, {
 	"first": "Mitchell",
@@ -445,7 +445,7 @@
 	"undergraduate": "University of Illinois at Urbana-Champaign",
 	"graduate": "University of Chicago",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://phx.corporate-ir.net/phoenix.zhtml?c=117839&p=irol-govBio&ID=68904"
 }, {
 	"first": "Mark",
@@ -493,7 +493,7 @@
 	"undergraduate": "Olivet Nazarene University",
 	"graduate": "Olivet Nazarene University",
 	"hometown": "Kankakee",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.linkedin.com/pub/joseph-gregoire/6/208/321"
 }, {
 	"first": "Jill",
@@ -653,7 +653,7 @@
 	"undergraduate": "Georgetown University",
 	"graduate": "N/A",
 	"hometown": "Kenilworth",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "N/A"
 }, {
 	"first": "Rita",
@@ -685,7 +685,7 @@
 	"undergraduate": "Illinois College",
 	"graduate": "N/A",
 	"hometown": "Jacksonville",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "N/A"
 }, {
 	"first": "Tom",
@@ -877,7 +877,7 @@
 	"undergraduate": "N/A",
 	"graduate": "N/A",
 	"hometown": "Burbank",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.linkedin.com/pub/beth-doria/2b/a84/574"
 }, {
 	"first": "S.",
@@ -893,7 +893,7 @@
 	"undergraduate": "Clark University",
 	"graduate": "N/A",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "N/A"
 }, {
 	"first": "Omar",
@@ -1005,7 +1005,7 @@
 	"undergraduate": "University of Texas at El Paso",
 	"graduate": "Chicago-Kent College of Law",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.chicagolabor.org/about/bios"
 }, {
 	"first": "Hedy",
@@ -1069,7 +1069,7 @@
 	"undergraduate": "Southern Illinois University",
 	"graduate": "Western Illinois University (Honorary)",
 	"hometown": "Atwood",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://ilchamber.org/about/executive-team/"
 }, {
 	"first": "Kevin",
@@ -1085,7 +1085,7 @@
 	"undergraduate": "Boston College",
 	"graduate": "University of Chicago ",
 	"hometown": "Wilmette",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.linkedin.com/pub/kevin-willer/0/58b/218"
 }, {
 	"first": "Donna",
@@ -1149,7 +1149,7 @@
 	"undergraduate": "N/A",
 	"graduate": "N/A",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "N/A"
 }, {
 	"first": "Andrew",
@@ -1197,7 +1197,7 @@
 	"undergraduate": "Harvard College",
 	"graduate": "N/A",
 	"hometown": "Winnetka",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.linkedin.com/pub/john-challenger/0/255/a90"
 }, {
 	"first": "Kevin",
@@ -1245,7 +1245,7 @@
 	"undergraduate": "Notre Dame",
 	"graduate": "University of Chicago",
 	"hometown": "N/A",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.jdrurypartners.com/Our_Team/James_J._Drury_III"
 }, {
 	"first": "Doug",
@@ -1261,7 +1261,7 @@
 	"undergraduate": "University of Illinois at Urbana-Champaign",
 	"graduate": "Northwestern University",
 	"hometown": "Rolling Meadows",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "N/A"
 }, {
 	"first": "Sue",
@@ -1357,7 +1357,7 @@
 	"undergraduate": "Grinnell College",
 	"graduate": "University of Pittsburgh",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "N/A"
 }, {
 	"first": "Cary",
@@ -1565,7 +1565,7 @@
 	"undergraduate": "University of Detroit",
 	"graduate": "University of Missouri - Columbia",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.linkedin.com/pub/michael-faron/12/576/337"
 }, {
 	"first": "Melvin",
@@ -1597,7 +1597,7 @@
 	"undergraduate": "IIT",
 	"graduate": "Roosevelt University",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.linkedin.com/pub/jeff-karp/11/52/24a"
 }, {
 	"first": "John",
@@ -1773,7 +1773,7 @@
 	"undergraduate": "Brandeis University",
 	"graduate": "N/A",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://thechicagonetwork.org/associations/12770/files/Bio/HefnerC.bio.pdf "
 }, {
 	"first": "Leslie",
@@ -1789,7 +1789,7 @@
 	"undergraduate": "Indiana University",
 	"graduate": "Lincoln College (Honorary)",
 	"hometown": "Hinsdale",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "N/A"
 }, {
 	"first": "Mark",
@@ -2109,7 +2109,7 @@
 	"undergraduate": "DePaul University",
 	"graduate": "N/A",
 	"hometown": "Deerfield",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.linkedin.com/profile/view?id=59989465&authType=name&authToken=1JnL&trk=mp_view_prf_l"
 }, {
 	"first": "Gary",
@@ -2125,7 +2125,7 @@
 	"undergraduate": "Yale",
 	"graduate": "Harvard",
 	"hometown": "Park Ridge",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.chicagohs.org/aboutus/from-the-president"
 }, {
 	"first": "Welz",
@@ -2221,7 +2221,7 @@
 	"undergraduate": "Princeton",
 	"graduate": "Harvard University",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://fieldmuseum.org/users/john-w-mccarter-jr"
 }, {
 	"first": "David",
@@ -2317,7 +2317,7 @@
 	"undergraduate": "Notre Dame",
 	"graduate": "North Central College (honorary)",
 	"hometown": "Chicago ",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.goodmantheatre.org/About/People-at-Goodman/Executive-Director/"
 }, {
 	"first": "Sophia ",
@@ -2333,7 +2333,7 @@
 	"undergraduate": "Wellesley College- B.A. in art history and economics",
 	"graduate": "Sophia holds an M.B.A. in finance and accounting from Northwestern University, and an M.A. in art history from the University of Chicago. ",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.chicagobotanic.org/info/senior_staff/siskel.php"
 }, {
 	"first": "David",
@@ -2845,7 +2845,7 @@
 	"undergraduate": "Northwestern University",
 	"graduate": "Northwestern University (MAT and PhD)",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.csu.edu/president/presidentbio.htm"
 }, {
 	"first": "Ray",
@@ -2941,7 +2941,7 @@
 	"undergraduate": "Michigan State",
 	"graduate": "N/A",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "N/A"
 }, {
 	"first": "Buddy",
@@ -3021,7 +3021,7 @@
 	"undergraduate": "N/A",
 	"graduate": "N/A",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "N/A"
 }, {
 	"first": "Theodore",
@@ -3389,7 +3389,7 @@
 	"undergraduate": "Yale University",
 	"graduate": "New York University",
 	"hometown": "Wilmette",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.linkedin.com/pub/susan-crown/27/83b/11b"
 }, {
 	"first": "Deborah",
@@ -3821,7 +3821,7 @@
 	"undergraduate": "Indiana University",
 	"graduate": "Chicago-Kent School of Law",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "N/A"
 }, {
 	"first": "Harry",
@@ -4077,7 +4077,7 @@
 	"undergraduate": "N/A",
 	"graduate": "N/A",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.mesirowfinancial.com/company/people/corporate/price_r.jsp"
 }, {
 	"first": "J.B.",
@@ -4525,7 +4525,7 @@
 	"undergraduate": "American University",
 	"graduate": "N/A",
 	"hometown": "Chicago",
-	"state": "Il",
+	"state": "Illinois",
 	"url": "N/A"
 }, {
 	"first": "Kevin",
@@ -4541,7 +4541,7 @@
 	"undergraduate": "N/A",
 	"graduate": "N/A",
 	"hometown": "Springfield",
-	"state": "illinois",
+	"state": "Illinois",
 	"url": "http://www.bokagrp.com/KevinBoehm.html"
 }, {
 	"first": "Kevin",
@@ -4573,7 +4573,7 @@
 	"undergraduate": "Univ. of Pennslyvania",
 	"graduate": "Northwestern University",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.linkedin.com/pub/steve-don/12/840/a53"
 }, {
 	"first": "Sue",
@@ -4766,7 +4766,7 @@
 ,
 	"graduate": "N/A",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.leye.com/about-us/partners/bios/richard-melman"
 }, {
 	"first": "Theodore",
@@ -4878,7 +4878,7 @@
 	"undergraduate": "University of Southern California",
 	"graduate": "Lake Forest Graduate School of Management",
 	"hometown": "Barrington",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.linkedin.com/pub/jeffrey-sanfilippo/31/a6a/73"
 }, {
 	"first": "Marc",
@@ -4894,7 +4894,7 @@
 	"undergraduate": "University of Denver",
 	"graduate": "Northwestern University",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.linkedin.com/profile/view?id=13251546&authType=NAME_SEARCH&authToken=IuQE&locale=en_US&srchid=eefa460a-e8ed-498f-95b8-5e13397817eb-0&srchindex=1&srchtotal=14&goback=.fps_PBCK_*1_Marc_Schulman_*1_*1_*1_*1_*2_*1_Y_*1_*1_*1_false_1_R_*1_*51_*1_*51_true_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2&pvs=ps&trk=pp_profile_name_link"
 }, {
 	"first": "Matthew",
@@ -4926,7 +4926,7 @@
 	"undergraduate": "Baylor University",
 	"graduate": "N/A",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.linkedin.com/pub/randy-skoda/19/b33/62"
 }, {
 	"first": "Phil",
@@ -5102,7 +5102,7 @@
 	"undergraduate": "University of Illinois",
 	"graduate": "N/A",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://cookcountyassessor.com/aboutjoeberrios.aspx"
 }, {
 	"first": "Edward",
@@ -5166,7 +5166,7 @@
 	"undergraduate": "Harvard University",
 	"graduate": "N/A",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www2.ed.gov/news/staff/bios/duncan.html"
 }, {
 	"first": "Richard",
@@ -5310,7 +5310,7 @@
 	"undergraduate": "Cornell University",
 	"graduate": "Georgetown University ",
 	"hometown": "Champaign",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.kirk.senate.gov/?p=about_senator"
 }, {
 	"first": "Steven",
@@ -5502,7 +5502,7 @@
 	"undergraduate": "Simpson College",
 	"graduate": "Case Western Reserve University",
 	"hometown": "Lombard",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.cookcountyclerk.com/aboutus/meetyourclerk/Pages/default.aspx"
 }, {
 	"first": "Maria",
@@ -6398,7 +6398,7 @@
 	"undergraduate": "University of Pennsylvania",
 	"graduate": "Loyola University of Chicago",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://bellowslaw.com/laurel_bellows.shtml"
 }, {
 	"first": "Myles",
@@ -6958,7 +6958,7 @@
 	"undergraduate": "Stanford University",
 	"graduate": "Harvard",
 	"hometown": "Highland Park",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "N/A"
 }, {
 	"first": "Philip",
@@ -7502,7 +7502,7 @@
 	"undergraduate": "Illinois State",
 	"graduate": "Loyola University of Chicago; University of Illinois, Champaign-Urbana",
 	"hometown": "Park Forest",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.conlonps.com/who_we_are/staff/conlon.htm"
 }, {
 	"first": "Jim",
@@ -8286,7 +8286,7 @@
 	"undergraduate": "The University of Ottawa, Canada",
 	"graduate": "Tulane University; The Pontifical Urban University",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.archchicago.org/Cardinal/Biography.aspx"
 }, {
 	"first": "Sandra",
@@ -8478,7 +8478,7 @@
 	"undergraduate": "University of Illinois",
 	"graduate": "Northwestern University",
 	"hometown": "Chicago",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "N/A"
 }, {
 	"first": "Aurie",
@@ -8846,7 +8846,7 @@
 	"undergraduate": "Tufts University",
 	"graduate": "University of Chicago",
 	"hometown": "Highland Park",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.linkedin.com/pub/bruce-cohen/10/bb1/757"
 }, {
 	"first": "Chris",
@@ -10142,7 +10142,7 @@
 	"undergraduate": "University of Iowa",
 	"graduate": "Northwestern University",
 	"hometown": "Park Ridge",
-	"state": "IL",
+	"state": "Illinois",
 	"url": "http://www.dsclogistics.com/company_leaders_drake.php"
 }, {
 	"first": "James",
