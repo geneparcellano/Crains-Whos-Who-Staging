@@ -8,6 +8,7 @@ var data = $.getJSON("assets/js/whoswho.json");
 
 var obj,
 	allProfAssociations = [],
+	allCivicAffiliations = [],
 	allIndustry = [],
 	allUndergraduate = [],
 	allGraduate = [],
@@ -17,62 +18,46 @@ var obj,
 $(document).ajaxComplete(function() {
 	obj = $.parseJSON(data.responseText);
 
-	function pushData(data, arrayName) {
-		if ($.inArray(data, arrayName) === -1) {
-			arrayName.push(data);
+	// scrape all values and push into specified array
+	function pushData(data, id, arrayName) {
+		if (data[0].length > 1 ) {
+			$.each(data, function(i, id) {
+				if ($.inArray(id, arrayName) === -1) {
+					arrayName.push(id);
+				} else {
+					//do nothing
+				}
+			});
 		} else {
-			//do nothing
+			if ($.inArray(data, arrayName) === -1) {
+				arrayName.push(data);
+			} else {
+				//do nothing
+			}
 		}
 	}
 
+	// push data into array
 	$.each(obj.whoswho, function(i, whoswho) {
-		// console.log(i);
-		if (whoswho.profAssociations[0].length > 1) {
-			$.each(whoswho.profAssociations, function(i, profAssociations) {
-				// console.log(profAssociations);
-				if ($.inArray(profAssociations, allProfAssociations) === -1) {
-					allProfAssociations.push(profAssociations);
-				} else {
-					// console.log('duplicate found');
-				}
-			});
-			// console.log(whoswho.profAssociations[i]);
-		} else {
-			if ($.inArray(whoswho.profAssociations, allProfAssociations) === -1) {
-				allProfAssociations.push(whoswho.profAssociations);
-			} else {
-				// console.log('duplicate found');
-			}
-		}
-		// if ($.inArray(whoswho.profAssociations, allProfAssociations) === -1) {
-		// 	allProfAssociations.push(obj.whoswho[0].profAssociations[i]);
-		// }
-		// if ($.inArray(whoswho.industry, allIndustry) === -1) {
-		// 	allIndustry.push(whoswho.industry);
-		// }
-		// if ($.inArray(whoswho.undergraduate, allUndergraduate) === -1) {
-		// 	allUndergraduate.push(whoswho.undergraduate);
-		// }
-		// if ($.inArray(whoswho.graduate, allGraduate) === -1) {
-		// 	allGraduate.push(whoswho.graduate);
-		// }
-		// if ($.inArray(whoswho.hometown, allHometown) === -1) {
-		// 	allHometown.push(whoswho.hometown);
-		// }
-		// if ($.inArray(whoswho.state, allState) === -1) {
-		// 	allState.push(whoswho.state);
-		// }
-		pushData(whoswho.industry, allIndustry);
-		pushData(whoswho.undergraduate, allUndergraduate);
-		pushData(whoswho.graduate, allGraduate);
-		pushData(whoswho.hometown, allHometown);
-		pushData(whoswho.state, allState);
-	});
-	// console.log(allProfAssociations);
+		var profAssociations, civicAffiliations, industry, undergraduate, graduate, hometown, state;
 
+		pushData(whoswho.profAssociations, profAssociations, allProfAssociations);
+		pushData(whoswho.civicAffiliations, civicAffiliations, allCivicAffiliations);
+		pushData(whoswho.industry, industry, allIndustry);
+		pushData(whoswho.undergraduate, undergraduate, allUndergraduate);
+		pushData(whoswho.graduate, graduate, allGraduate);
+		pushData(whoswho.hometown, hometown, allHometown);
+		pushData(whoswho.state, state, allState);
+	});
+
+	// apply array into auto-complete
 	$( "#survey-prof-assoc" ).autocomplete({
 		appendTo: '#questions',
 		source: allProfAssociations
+	});
+	$( "#survey-civic-affil" ).autocomplete({
+		appendTo: '#questions',
+		source: allCivicAffiliations
 	});
 	$( "#survey-industry" ).autocomplete({
 		appendTo: '#questions',
