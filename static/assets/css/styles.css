@@ -83,6 +83,10 @@ Buttons
 	left: 0;
 	background: url(../im/icon-pencil.png) no-repeat center center;
 }
+.overlay .controls button[data-function="save"] {
+	left: 0;
+	background: url(../im/icon-disk.png) no-repeat center center;
+}
 
 /*****************************************************************************
 Drop Down Menu
@@ -211,7 +215,7 @@ Overlay - Survey
 	margin: 10px auto 20px;
 }
 #survey .controls {
-	background-color: #AA0000;
+	background-color: #A00;
 }
 #survey .controls strong {
 	color: #FFF;
@@ -486,6 +490,52 @@ Overlay - Who's Who Details
 	color: #000;
 	font-weight: bold;
 }
+/*****************************************************************************
+Overlay - User Profile
+*****************************************************************************/
+#user-profile .score {
+	margin-top: 10px;
+	text-align: center;
+}
+#user-profile .score strong {
+	display: block;
+	color: #A00;
+	font-size: 6em;
+	line-height: 1em;
+	font-weight: bold;
+}
+#user-profile h2 {
+	border-bottom: none;
+	padding: 10px;
+	color: #A00 !important;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+#user-profile ul {
+	border-top: 1px solid #CCC;
+}
+#user-profile li {
+	padding: 10px;
+	border-bottom: 1px solid #CCC;
+	font-weight: bold;
+	line-height: 1em;
+	background: url(../im/icon-arrow-right.png) no-repeat right center;
+	cursor: pointer;
+}
+#user-profile li:hover {
+	background: url(../im/icon-arrow-right-active.png) no-repeat right center #A00;
+	color: #FFF;
+}
+#user-profile li:active {
+	background-color: #760A04;
+}
+#user-profile li span {
+	display: block;
+	color: #666;
+	font-size: 0.75em;
+	font-weight: normal;
+}
+
 /*****************************************************************************
 Overlay - User Profile Edit
 *****************************************************************************/
