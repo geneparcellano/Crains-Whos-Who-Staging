@@ -4,10 +4,14 @@ Typography
 #whos-who-2012 {
 	margin-top: -5px;
 	font-size: 16px !important;
+	line-height: 1.4545em;
 }
 /*****************************************************************************
 Layout
 *****************************************************************************/
+body.no-scroll {
+	overflow: hidden;
+}
 #whos-who section > h1 {
 	padding: 5px 0 5px 20px;
 	margin: 0 -12px 10px -10px;
@@ -52,6 +56,32 @@ Buttons
 .overlay button[type="button"]:active {
 	background-color: #414042;
 	color: #FFF;
+}
+.overlay .controls button[type="button"] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 50px;
+	width: 50px;
+	border: 0;
+	border-radius: 0;
+	margin: 0;
+	padding: 0;
+	text-indent: -9999px;
+	cursor: pointer;
+}
+.overlay .controls button[type="button"]:hover {
+	background-color: #CCC;
+}
+.overlay .controls button[type="button"]:active {
+	background-color: #AAA;
+}
+.overlay .controls button[data-function="close"] {
+	background: url(../im/icon-close.png) no-repeat center center;
+}
+.overlay .controls button[data-function="edit"] {
+	left: 0;
+	background: url(../im/icon-pencil.png) no-repeat center center;
 }
 
 /*****************************************************************************
@@ -120,52 +150,53 @@ Overlay
 *****************************************************************************/
 .overlay {
 	/*display: none;*/
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.overlay-bg {
 	position: absolute;
 	top: 0;
 	left: 0;
 	height: 100%;
 	width: 100%;
-}
-.overlay-bg {
-	position: fixed;
-	height: 100%;
-	width: 100%;
 	background-color: #000;
 	opacity: 0.8;
-	z-index: 1;
 }
-.overlay-content {
+.overlay-main {
+	position: relative;
+	height: 100%;
+	overflow: auto;
+}
+.overlay-item {
 	display: none;
-	position: fixed;
-	/*min-height: 300px;*/
 	width: 350px;
-	left: 50%;
-	margin: 20% 0 0 -150px;
-	padding-bottom: 10px;
+	margin: 10% auto;
 	background-color: #FFF;
-	box-shadow: 0 0 8px #111;
-	z-index: 2;
 }
-.overlay-content.selected {
+.overlay-item.selected {
 	display: block;
 }
-.overlay-content .controls {
+.overlay .controls {
 	position: relative;
 	height: 50px;
-	background-color: #AA0000;
+	border-bottom: 1px solid #BBB;
+	background-color: #EFEFEF;
+	box-shadow: 0 0 3px #AAA;
 	text-align: center;
 	font-weight: bold;
 }
-.controls strong {
+.overlay .controls strong {
 	background-color: transparent;
 	font-weight: bold;
 	font-size: 1.5em;
 	line-height: 50px;
-	color: #FFF;
 }
 
 /*****************************************************************************
-Survey
+Overlay - Survey
 *****************************************************************************/
 #intro {
 	padding: 10px 20px;
@@ -178,6 +209,12 @@ Survey
 #intro .logo {
 	width: 206px;
 	margin: 10px auto 20px;
+}
+#survey .controls {
+	background-color: #AA0000;
+}
+#survey .controls strong {
+	color: #FFF;
 }
 #survey .controls button {
 	position: absolute;
@@ -282,23 +319,7 @@ Survey
 	line-height: 1.25em;
 }
 #questions button[data-function="remove"] {
-	position: absolute;
-	top: 50%;
-	right: 0;
-	height: 30px;
-	width: 30px;
-	margin: -15px 0 0;
-	padding: 0;
-	border: none;
-	border-radius: 0;
 	background: url(../im/icon-close.png) no-repeat center center transparent;
-	text-indent: -9999px;
-}
-#questions button[data-function="remove"]:hover {
-	background-color: #CCC;
-}
-#questions button[data-function="remove"]:active {
-	background-color: #AAA;
 }
 .ui-autocomplete {
 	position: absolute;
@@ -405,6 +426,10 @@ Who's Who Control Bar
 /*****************************************************************************
 Who's Who Grid
 *****************************************************************************/
+#connections,
+#all-whos-who {
+	display: none;
+}
 #whos-who li {
 	float: left;
 	margin: 5px;
@@ -434,42 +459,14 @@ Who's Who Grid
 }
 
 /*****************************************************************************
-Who's Who Details
+Overlay - Who's Who Details
 *****************************************************************************/
-#whos-who-details .controls {
-	border-bottom: 1px solid #BBB;
-	background-color: #EFEFEF;
-	box-shadow: 0 0 3px #AAA;
+#whos-who-details {
+	margin-top: 3%;
 }
-#whos-who-details .controls button[data-function="close"] {
-	position: absolute;
-	top: 0;
-	right: 0;
-	height: 50px;
-	width: 50px;
-	border: 0;
-	border-radius: 0;
-	margin: 0;
-	padding: 0;
-	background: url(../im/icon-close.png) no-repeat center center;
-	text-indent: -9999px;
-	cursor: pointer;
-	overflow: hidden;
-}
-#whos-who-details .controls button[data-function="close"]:hover {
-	background-color: #CCC;
-}
-#whos-who-details .controls button[data-function="close"]:active {
-	background-color: #AAA;
-}
-#whos-who-details .overlay-body {
+#whos-who-details .content {
 	position: relative;
 	padding: 10px;
-}
-#whos-who-details .photo {
-	/*position: absolute;
-	top: 10px;
-	right: 10px;*/
 }
 #whos-who-details h2 {
 	border-bottom: 1px solid #CCC;
@@ -482,10 +479,53 @@ Who's Who Details
 	color: #666;
 }
 #whos-who-details dd {
-	margin: 5px 0 15px;
+	margin: 0 0 15px;
 	font-weight: bold;
 }
 #whos-who-details strong {
 	color: #000;
 	font-weight: bold;
+}
+/*****************************************************************************
+Overlay - User Profile Edit
+*****************************************************************************/
+#user-profile-edit {
+	margin-top: 3%;
+}
+#user-profile-edit .content {
+	padding: 20px 10px;
+}
+#user-profile-edit .content li {
+	margin-bottom: 15px;
+}
+#user-profile-edit .content strong {
+	display: block;
+}
+#user-profile-edit input[type="text"] {
+	margin: 0;
+}
+#user-profile-edit .name label,
+#user-profile-edit .hometown label {
+	float: left;
+	width: 130px;
+	margin-right: 10px;
+}
+#user-profile-edit .name input[type="text"],
+#user-profile-edit .hometown input[type="text"] {
+	width: 108px;
+}
+#user-profile-edit .name .name-suffix,
+#user-profile-edit .name .hometown-state {
+	width: 40px;
+}
+#user-profile-edit .name-suffix input[type="text"],
+#user-profile-edit .hometown-state input[type="text"] {
+	display: block;
+	width: 18px;
+}
+#user-profile-edit .linkedin-connect button {
+	display: block;
+	width: 165px;
+	padding: 5px;
+	margin: 0;
 }

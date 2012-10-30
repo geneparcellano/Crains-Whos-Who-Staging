@@ -12,7 +12,6 @@ var obj,
 	allIndustry = [],
 	allUndergraduate = [],
 	allGraduate = [],
-	allDegree = [],
 	allHometown = [],
 	allState = [];
 
@@ -42,12 +41,24 @@ $(document).ajaxComplete(function() {
 	$.each(obj.whoswho, function(i, whoswho) {
 		var profAssociations, civicAffiliations, industry, undergraduate, graduate, degree, hometown, state;
 
+		var person = '<li><div class="photo"><img src="assets/im/icon-unknown.gif" height="100" width="83" alt="id" /></div>'+
+					'<h2>'+ whoswho.first + ' <span>' + whoswho.middle + ' ' + whoswho.last +'</span></h2>'+
+					'<dl><dt>Primary Company</dt><dd>'+ whoswho.primaryCo +'</dd>'+
+					'<dt>Secondary Company</dt><dd>'+ whoswho.secondaryCo +'</dd>'+
+					'<dt>Professional Associations</dt><dd>'+ whoswho.profAssociations +'</dd>'+
+					'<dt>Civic Affiliations</dt><dd>'+ whoswho.civicAffilliations +'</dd>'+
+					'<dt>Industry</dt><dd>'+ whoswho.industry +'</dd>'+
+					'<dt>Undergraduate College</dt><dd>'+ whoswho.undergraduate +'</dd>'+
+					'<dt>Graduate College</dt><dd>'+ whoswho.graduate +'</dd>'+
+					'<dt>Home Town</dt><dd>'+ whoswho.hometown +' '+ whoswho.state +'</dd>'+
+					'<dt>Biography</dt><dd><a href="'+ whoswho.url +'" target="_blank">Click here</a></dd></dl></li>';
+		$('#all-whos-who ul').append(person);
+
 		pushData(whoswho.profAssociations, profAssociations, allProfAssociations);
 		pushData(whoswho.civicAffiliations, civicAffiliations, allCivicAffiliations);
 		pushData(whoswho.industry, industry, allIndustry);
 		pushData(whoswho.undergraduate, undergraduate, allUndergraduate);
 		pushData(whoswho.graduate, graduate, allGraduate);
-		pushData(whoswho.degree, degree, allDegree);
 		pushData(whoswho.hometown, hometown, allHometown);
 		pushData(whoswho.state, state, allState);
 	});
@@ -69,10 +80,6 @@ $(document).ajaxComplete(function() {
 		appendTo: '#questions',
 		source: allUndergraduate
 	});
-	$( "#survey-degree" ).autocomplete({
-		appendTo: '#questions',
-		source: allDegree
-	});
 	$( "#survey-graduate" ).autocomplete({
 		appendTo: '#questions',
 		source: allGraduate
@@ -85,6 +92,13 @@ $(document).ajaxComplete(function() {
 		appendTo: '#questions',
 		source: allState
 	});
+});
+
+/*****************************************************************************
+Transition Grid In
+*****************************************************************************/
+$('#all-whos-who').ajaxComplete(function() {
+	$(this).fadeIn(1000).slideDown(900);
 });
 
 /*****************************************************************************
@@ -131,17 +145,24 @@ Overlay
 *****************************************************************************/
 var overlay = {
 	details : function() {
-		$('#whos-who li').on('click', function() {
-			var $this = $(this);
-			var content = $this.html();
-			$('.overlay').append('<div id="whos-who-details" class="overlay-content selected"><div class="controls"><strong>Details</strong><button type="button" data-function="close">close</button></div><div class="overlay-body">'+content+'</div></div>');
-			$('.overlay').fadeIn('fast');
+		$('#whos-who').on('click', 'li', function() {
+			var $this = $(this),
+				content = $this.html(),
+				details = '<div id="whos-who-details" class="overlay-item selected">'
+						+ '<div class="controls"><strong>Details</strong><button type="button" data-function="close">close</button></div>'
+						+ '<div class="content">'+content+'</div>'
+						+ '</div>';
+			$('.overlay-main').append(details);
+			$('.overlay').fadeIn('fast')
+				.parents('body').addClass('no-scroll');
 		});
 	},
 
 	removeOverlay : function() {
 		$('body').on('click', '.overlay .controls button[data-function="close"]', function() {
-			$('.overlay').fadeOut('fast');
+			$('#whos-who-details').remove();
+			$('.overlay').hide()
+				.parents('body').removeClass('no-scroll');
 		});
 	}
 }
@@ -206,7 +227,8 @@ var questionnaire = {
 	},
 	done : function() {
 		$('button[data-function="done"]').on('click', function() {
-			$('#survey').removeClass('selected').hide().parents('.overlay').fadeOut('fast');
+			$('#survey').removeClass('selected').hide().parents('.overlay').fadeOut('fast')
+				.parents('body').removeClass('no-scroll');
 		});
 	}
 }
@@ -294,7 +316,7 @@ questionnaire.done();
 
 navigation.getCurrent();
 navigation.nextPrev();
-navigation.dots();
+// navigation.dots();
 navigation.toggleButtons();
 // controls.syncAnchors();
 })();

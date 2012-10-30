@@ -31,13 +31,13 @@
 	</div></td></tr></table></center>
 	</div>
 </head>
-<body>
+<body class="no-scroll">
 <div id="doc">
 <header>
 	<nav id="admin-nav">
-	            <span class="left date-today">
-					Thursday, October 18th, 2012
-				</span>
+		<span class="left date-today">
+			Thursday, October 18th, 2012
+		</span>
 	<a name="top"></a>
 	<div class="left">
 	<a href="http://www.chicagobusiness.com/section/issue">This Week&rsquo;s Crain&rsquo;s</a>
@@ -204,7 +204,7 @@
 		<h1><strong>Who&rsquo;s Who</strong> 2012</h1>
 	</header>
 	<div id="whos-who">
-		<section class="connections">
+		<section id="connections">
 			<h1>Your Connections</h1>
 			<ul class="clearfix">
 				<li>
@@ -545,175 +545,121 @@
 				</li>
 			</ul>
 		</section>
-		<section class="missed">
-			<h1>Missed Connections</h1>
+		<section id="all-whos-who">
+			<h1>Who&rsquo;s Who 2012</h1>
 			<ul class="clearfix">
-				<li>
-					<div class="photo"><img src="assets/im/media/Bernardin_Thomas_2012.jpg" height="100" width="83" alt="id" /></div>
-					<h2>Thomas <span>Bernardin</span></h2>
-					<dl>
-						<dt>Primary Company</dt>
-						<dd>ACME Co.</dd>
-						<dt>Name</dt>
-						<dd>Secondary Company</dd>
-						<dt>ACME2 Co.</dt>
-						<dd>Professional Associations</dd>
-						<dt>Industry</dt>
-						<dd>Finance</dd>
-					</dl>
-				</li>
-				<li>
-					<div class="photo"><img src="assets/im/media/Cohen_Bruno_2012.jpg" height="100" width="83" alt="id" /></div>
-					<h2>Bruno <span>Cohen</span></h2>
-					<dl>
-						<dt>Primary Company</dt>
-						<dd>ACME Co.</dd>
-						<dt>Name</dt>
-						<dd>Secondary Company</dd>
-						<dt>ACME2 Co.</dt>
-						<dd>Professional Associations</dd>
-						<dt>Industry</dt>
-						<dd>Finance</dd>
-					</dl>
-				</li>
-				<li>
-					<div class="photo"><img src="assets/im/media/Conlon_Kevin_J.jpg" height="100" width="83" alt="id" /></div>
-					<h2>Kevin <span>Conlon</span></h2>
-					<dl>
-						<dt>Primary Company</dt>
-						<dd>ACME Co.</dd>
-						<dt>Name</dt>
-						<dd>Secondary Company</dd>
-						<dt>ACME2 Co.</dt>
-						<dd>Professional Associations</dd>
-						<dt>Industry</dt>
-						<dd>Finance</dd>
-					</dl>
-				</li>
-				<li>
-					<div class="photo"><img src="assets/im/media/Corno_Jim.jpg" height="100" width="83" alt="id" /></div>
-					<h2>Jim <span>Corno</span></h2>
-					<dl>
-						<dt>Primary Company</dt>
-						<dd>ACME Co.</dd>
-						<dt>Name</dt>
-						<dd>Secondary Company</dd>
-						<dt>ACME2 Co.</dt>
-						<dd>Professional Associations</dd>
-						<dt>Industry</dt>
-						<dd>Finance</dd>
-					</dl>
-				</li>
-				<li>
-					<div class="photo"><img src="assets/im/media/Slack_Gary_L.jpg" height="100" width="83" alt="id" /></div>
-					<h2>Gary <span>Slack</span></h2>
-					<dl>
-						<dt>Primary Company</dt>
-						<dd>ACME Co.</dd>
-						<dt>Name</dt>
-						<dd>Secondary Company</dd>
-						<dt>ACME2 Co.</dt>
-						<dd>Professional Associations</dd>
-						<dt>Industry</dt>
-						<dd>Finance</dd>
-					</dl>
-				</li>
-				<li>
-					<div class="photo"><img src="assets/im/media/Desmond_Laura_2012.jpg" height="100" width="83" alt="id" /></div>
-					<h2>Laura <span>Desmond</span></h2>
-					<dl>
-						<dt>Primary Company</dt>
-						<dd>ACME Co.</dd>
-						<dt>Name</dt>
-						<dd>Secondary Company</dd>
-						<dt>ACME2 Co.</dt>
-						<dd>Professional Associations</dd>
-						<dt>Industry</dt>
-						<dd>Finance</dd>
-					</dl>
-				</li>
+
 			</ul>
 		</section>
 	</div>
 
 	<div class="overlay">
 		<div class="overlay-bg"></div>
-		<div id="intro" class="overlay-content selected">
-			<div class="logo"><img src="assets/im/logo-new.png" height="90" width="206" alt="logo" /></div>
-			<p>Who&rsquo;s Who is a list of the most influential people in Chicago.</p>
-			<p>Fill out the survey to see who of these heavy hitters you&rsquo;re connected to.</p>
-			<button type="button" data-function="get_started">Get Started</button>
-		</div>
-		<div id="survey" class="overlay-content rail">
-			<header class="controls">
-				<strong>Question 1</strong>
-				<button type="button" data-function="prev">Previous</button>
-				<button type="button" data-function="next">Next</button>
-				<nav>
-					<ol>
-						<li class="selected"><a href="#question-1">Question 1</a></li>
-						<li><a href="#question-2">Question 2</a></li>
-						<li><a href="#question-3">Question 3</a></li>
-						<li><a href="#question-4">Question 4</a></li>
-						<li><a href="#question-5">Question 5</a></li>
-						<li><a href="#question-6">Question 6</a></li>
-						<li><a href="#question-7">Question 7</a></li>
-						<li><a href="#question-8">Question 8</a></li>
-						<li><a href="#question-9">Question 9</a></li>
-						<li><a href="#question-10">Question 10</a></li>
-					</ol>
-				</nav>
-			</header>
-			<div id="questions">
-				<section id="question-1" class="selected">
-					<label>
-						Prefix 
-						<select name="prefix">
-							<option value="mr">Mr.</option>
-							<option value="ms">Ms.</option>
-							<option value="mrs">Mrs.</option>
-							<option value="dr">Dr.</option>
-						</select>
-					</label>
-					<label>First Name <input type="text" maxlength="128" /></label>
-					<label>Last Name <input type="text" maxlength="128" /></label>
-					<label>Suffix <input type="text" maxlength="128" /></label>
-				</section>
-				<section id="question-2">
-					<label>Primary Company <input type="text" maxlength="128" /></label>
-				</section>
-				<section id="question-3">
-					<label>Secondary Company <input type="text" maxlength="128" /></label>
-				</section>
-				<section id="question-4">
-					<div class="multi">
-						<label>Professional Associations <input id="survey-prof-assoc" type="text" maxlength="128" /></label>
-						<button type="button" data-function="add">Add</button>
-					</div>
-				</section>
-				<section id="question-5">
-					<div class="multi">
-						<label>Civic Affiliations <input id="survey-civic-affil" type="text" maxlength="128" /></label>
-						<button type="button" data-function="add">Add</button>
-					</div>
-				</section>
-				<section id="question-6">
-					<label>Industry <input id="survey-industry" type="text" maxlength="128" /></label>
-				</section>
-				<section id="question-7">
-					<label>Undergraduate College <input id="survey-undergraduate" type="text" maxlength="128" /></label>
-				</section>
-				<section id="question-8">
-					<label>Graduate College <input id="survey-graduate" type="text" maxlength="128" /></label>
-				</section>
-				<section id="question-9">
-					<label>Degree <input id="survey-degree" type="text" maxlength="128" /></label>
-				</section>
-				<section id="question-10">
-					<label>Hometown <input id="survey-hometown" type="text" maxlength="128" /></label>
-					<label>State <input id="survey-state" type="text" maxlength="128" /></label>
-					<button type="button" data-function="done">Done</button>
-				</section>
+		<div class="overlay-main">
+			<div id="intro" class="overlay-item">
+				<div class="logo"><img src="assets/im/logo-new.png" height="90" width="206" alt="logo" /></div>
+				<p>Who&rsquo;s Who is a list of the most influential people in Chicago.</p>
+				<p>Fill out the survey to see who of these heavy hitters you&rsquo;re connected to.</p>
+				<button type="button" data-function="get_started">Get Started</button>
+			</div>
+			<div id="survey" class="overlay-item rail">
+				<header class="controls">
+					<strong>Question 1</strong>
+					<button type="button" data-function="prev">Previous</button>
+					<button type="button" data-function="next">Next</button>
+					<nav>
+						<ol>
+							<li class="selected"><a href="#question-1">Question 1</a></li>
+							<li><a href="#question-2">Question 2</a></li>
+							<li><a href="#question-3">Question 3</a></li>
+							<li><a href="#question-4">Question 4</a></li>
+							<li><a href="#question-5">Question 5</a></li>
+							<li><a href="#question-6">Question 6</a></li>
+							<li><a href="#question-7">Question 7</a></li>
+							<li><a href="#question-8">Question 8</a></li>
+						</ol>
+					</nav>
+				</header>
+				<div id="questions" class="content">
+					<section id="question-1" class="selected">
+						<label>
+							Prefix 
+							<select name="prefix">
+								<option value="mr">Mr.</option>
+								<option value="ms">Ms.</option>
+								<option value="mrs">Mrs.</option>
+								<option value="dr">Dr.</option>
+							</select>
+						</label>
+						<label>First Name <input type="text" maxlength="128" /></label>
+						<label>Last Name <input type="text" maxlength="128" /></label>
+						<label>Suffix <input type="text" maxlength="128" /></label>
+					</section>
+					<section id="question-2">
+						<label>Where do you work? <input type="text" maxlength="128" /></label>
+					</section>
+					<section id="question-5">
+						<label>
+							Industry
+							<select name="prefix">
+								<option value="architecture">Architecture</option>
+								<option value="healthcare">Health Care</option>
+								<option value="utilities">Utilities</option>
+							</select>
+						</label>
+					</section>
+					<section id="question-6">
+						<label>Undergraduate College <input id="survey-undergraduate" type="text" maxlength="128" /></label>
+					</section>
+					<section id="question-7">
+						<label>Graduate College <input id="survey-graduate" type="text" maxlength="128" /></label>
+					</section>
+					<section id="question-8">
+						<label>Hometown <input id="survey-hometown" type="text" maxlength="128" /></label>
+						<label>State <input id="survey-state" type="text" maxlength="128" /></label>
+						<button type="button" data-function="done">Done</button>
+					</section>
+					<section id="question-3">
+						<div class="multi">
+							<label>Professional Associations <input id="survey-prof-assoc" type="text" maxlength="128" /></label>
+							<button type="button" data-function="add">Add</button>
+						</div>
+					</section>
+					<section id="question-4">
+						<div class="multi">
+							<label>Civic Affiliations <input id="survey-civic-affil" type="text" maxlength="128" /></label>
+							<button type="button" data-function="add">Add</button>
+						</div>
+					</section>
+				</div>
+			</div>
+			<div id="user-profile-edit" class="overlay-item">
+				<div class="controls">
+					<strong>Edit Profile</strong>
+					<button type="button" data-function="close">Close</button>
+					<button type="button" data-function="edit">Edit</button>
+				</div>
+				<div class="content">
+					<ul class="clearfix">
+						<li class="name clearfix">
+							<label class="name-first">First Name <input type="text" /></label>
+							<label class="name-last">Last Name <input type="text" /></label>
+							<label class="name-suffix">Suffix <input type="text" /></label>
+						</li>
+						<li><label>Primary Company <input type="text" /></label></li>
+						<li><label>Secondary Company <input type="text" /></label></li>
+						<li><label>Professional Associations <input type="text" /></label></li>
+						<li><label>Civic Affiliations <input type="text" /></label></li>
+						<li><label>Industry <input type="text" /></label></li>
+						<li><label>Undergraduate College <input type="text" /></label></li>
+						<li><label>Graduate College <input type="text" /></label></li>
+						<li class="hometown clearfix">
+							<label class="hometown-town">Town <input type="text" /></label>
+							<label class="hometown-state">State <input type="text" /></label>
+						</li>
+						<li class="linkedin-connect">LinkedIn Account <button type="button">Connect</button></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
