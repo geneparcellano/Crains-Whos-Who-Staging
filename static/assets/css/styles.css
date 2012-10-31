@@ -294,6 +294,7 @@ Overlay
 	width: 350px;
 	margin: 10% auto;
 	background-color: #FFF;
+	box-shadow: 3px 3px 5px #222;
 }
 .overlay-item.selected {
 	display: block;
@@ -534,6 +535,27 @@ Overlay - Your Score
 	line-height: 1.4545em;
 	margin-bottom: 30px;
 }
+/*****************************************************************************
+Overlay - Share Your Score
+*****************************************************************************/
+#share-your-score li a {
+	display: block;
+	padding: 15px;
+	border-bottom: 1px solid #CCC;
+	font-weight: bold;
+	line-height: 1em;
+	cursor: pointer;
+	color: #000 !important;
+	text-decoration: none;
+}
+#share-your-score li a:hover {
+	background-color: #A00;
+	color: #FFF !important;
+}
+#share-your-score li a:active {
+	background-color: #760A04;
+}
+
 /*****************************************************************************
 Overlay - User Profile
 *****************************************************************************/
