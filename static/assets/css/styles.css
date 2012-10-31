@@ -150,6 +150,121 @@ Drop Down Menu
 }
 
 /*****************************************************************************
+Who's Who Control Bar
+*****************************************************************************/
+#control-bar {
+	position: relative;
+	margin-bottom: 10px;
+}
+#control-bar h1 {
+	padding-top: 12px;
+	font-size: 1.5em;
+	color: #A00 !important;
+	text-align: center;
+	text-transform: uppercase;
+}
+#control-bar h1 strong {
+	font-weight: bold;
+}
+#control-bar .search {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+#control-bar .search label {
+	width: 300px;
+	text-indent: -9999px;
+	overflow: hidden;
+}
+#control-bar .score span,
+#control-bar .search label span {
+	display: none;
+}
+#control-bar .search input[type="text"] {
+	height: 23px;
+	width: 200px;
+	padding: 2px 5px;
+	border: 1px solid #777;
+	border-top-color: #666;
+	border-bottom-color: #999;
+	background: url(../im/icon-search.gif) no-repeat 190px center;
+	font-size: 1em;
+	font-weight: normal;
+}
+#control-bar .search button[type="submit"] {
+	display: none;
+}
+#control-bar .user {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 300px;
+}
+#control-bar .user .profile {
+	float: right;
+	margin: 7px 10px 0 0;
+}
+#control-bar .user .profile > a {
+	display: block;
+	height: 32px;
+	width: 32px;
+	margin: 0;
+	background: url(../im/icon-user.png) no-repeat 0 0;
+	text-indent: -9999px;
+}
+#control-bar .user .profile > a:hover {
+	background-color: #CCC;
+}
+#control-bar .user .profile > a:active {
+	background-color: #AAA;
+}
+#control-bar .user .score a {
+	float: right;
+	height: 47px;
+	width: 37px;
+	margin-top: -6px;
+	padding: 18px 0 0 4px;
+	background: url(../im/icon-ribbon.gif) no-repeat 0 0;
+	text-decoration: none;
+	color: #FFF !important;
+}
+
+/*****************************************************************************
+Who's Who Grid
+*****************************************************************************/
+#connections,
+#all-whos-who {
+	display: none;
+}
+#whos-who li {
+	float: left;
+	margin: 5px;
+	padding: 5px;
+	cursor: pointer;
+}
+#whos-who li:hover {
+	background-color: #A00;
+	color: #FFF;
+}
+#whos-who li:hover h2 {
+	color: #FFF !important;
+}
+#whos-who li:active {
+	background-color: #751117;
+}
+#whos-who dl {
+	display: none;
+}
+#whos-who li h2 {
+	border-bottom: none;
+	margin-top: 5px;
+	background-color: transparent;
+}
+#whos-who li h2 span {
+	display: none;
+}
+
+/*****************************************************************************
 Overlay
 *****************************************************************************/
 .overlay {
@@ -200,7 +315,7 @@ Overlay
 }
 
 /*****************************************************************************
-Overlay - Survey
+Overlay - Intro
 *****************************************************************************/
 #intro {
 	padding: 10px 20px;
@@ -214,6 +329,10 @@ Overlay - Survey
 	width: 206px;
 	margin: 10px auto 20px;
 }
+
+/*****************************************************************************
+Overlay - Survey
+*****************************************************************************/
 #survey .controls {
 	background-color: #A00;
 }
@@ -348,147 +467,72 @@ Overlay - Survey
 }
 
 /*****************************************************************************
-Who's Who Control Bar
+Overlay - Your Score
 *****************************************************************************/
-#control-bar {
-	position: relative;
-	margin-bottom: 10px;
-}
-#control-bar h1 {
-	padding-top: 12px;
-	font-size: 1.5em;
-	color: #A00 !important;
-	text-align: center;
-	text-transform: uppercase;
-}
-#control-bar h1 strong {
-	font-weight: bold;
-}
-#control-bar .search {
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-#control-bar .search label {
-	width: 300px;
-	text-indent: -9999px;
-	overflow: hidden;
-}
-#control-bar .score span,
-#control-bar .search label span {
-	display: none;
-}
-#control-bar .search input[type="text"] {
-	height: 23px;
-	width: 200px;
-	padding: 2px 5px;
-	border: 1px solid #777;
-	border-top-color: #666;
-	border-bottom-color: #999;
-	background: url(../im/icon-search.gif) no-repeat 190px center;
-	font-size: 1em;
-	font-weight: normal;
-}
-#control-bar .search button[type="submit"] {
-	display: none;
-}
-#control-bar .user {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 300px;
-}
-#control-bar .user .profile {
-	float: right;
-	margin: 7px 10px 0 0;
-}
-#control-bar .user .profile > a {
-	display: block;
-	height: 32px;
-	width: 32px;
-	margin: 0;
-	background: url(../im/icon-user.png) no-repeat 0 0;
-	text-indent: -9999px;
-}
-#control-bar .user .profile > a:hover {
-	background-color: #CCC;
-}
-#control-bar .user .profile > a:active {
-	background-color: #AAA;
-}
-#control-bar .user .score a {
-	float: right;
-	height: 47px;
-	width: 37px;
-	margin-top: -6px;
-	padding: 18px 0 0 4px;
-	background: url(../im/icon-ribbon.gif) no-repeat 0 0;
-	text-decoration: none;
-	color: #FFF !important;
-}
-
-/*****************************************************************************
-Who's Who Grid
-*****************************************************************************/
-#connections,
-#all-whos-who {
-	display: none;
-}
-#whos-who li {
-	float: left;
-	margin: 5px;
-	padding: 5px;
-	cursor: pointer;
-}
-#whos-who li:hover {
+#your-score .controls {
 	background-color: #A00;
+}
+#your-score .controls strong {
 	color: #FFF;
 }
-#whos-who li:hover h2 {
-	color: #FFF !important;
+#your-score .controls button[data-function="close"] {
+	background: url(../im/icon-close-active.png) no-repeat center center ;
 }
-#whos-who li:active {
-	background-color: #751117;
+#your-score .controls button[data-function="close"]:hover {
+	background-color: #760A04;
 }
-#whos-who dl {
-	display: none;
+#your-score .controls button[data-function="close"]:active {
+	background-color: #590100;
 }
-#whos-who li h2 {
-	border-bottom: none;
-	margin-top: 5px;
-	background-color: transparent;
+#your-score .content {
+	padding: 10px 20px;
 }
-#whos-who li h2 span {
-	display: none;
+#your-score .score {
+	margin-top: 10px;
+	text-align: center;
 }
-
-/*****************************************************************************
-Overlay - Who's Who Details
-*****************************************************************************/
-#whos-who-details {
-	margin-top: 3%;
-}
-#whos-who-details .content {
+#your-score .score-bar {
 	position: relative;
-	padding: 10px;
+	height: 16px;
+	margin: 10px 0 30px;
+	background-color: #DDD;
+	border: 1px solid #999;
+	border-radius: 8px;
 }
-#whos-who-details h2 {
-	border-bottom: 1px solid #CCC;
-	padding: 10px 0 5px;
-	margin-bottom: 10px;
-	font-size: 1.5em;
+#your-score .score-bar-actual {
+	position: absolute;
+	height: 16px;
+	width: 30%;
+	border-radius: 8px;
+	top: 0;
+	left: 0;
+	background-color: #A00;
+	text-indent: -9999px;
+}
+#your-score .score-bar-min,
+#your-score .score-bar-max {
+	position: absolute;
+	top: 20px;
+}
+#your-score .score-bar-min {
+	left: 0;
+}
+#your-score .score-bar-max {
+	right: 0;
+}
+#your-score .score strong {
+	display: block;
+	color: #A00;
+	font-size: 6em;
+	line-height: 1em;
 	font-weight: bold;
 }
-#whos-who-details dt {
-	color: #666;
+#your-score .content button {
+	margin-top: 0;
 }
-#whos-who-details dd {
-	margin: 0 0 15px;
-	font-weight: bold;
-}
-#whos-who-details strong {
-	color: #000;
-	font-weight: bold;
+#your-score p {
+	line-height: 1.4545em;
+	margin-bottom: 30px;
 }
 /*****************************************************************************
 Overlay - User Profile
@@ -578,4 +622,33 @@ Overlay - User Profile Edit
 	width: 165px;
 	padding: 5px;
 	margin: 0;
+}
+
+/*****************************************************************************
+Overlay - Who's Who Details
+*****************************************************************************/
+#whos-who-details {
+	margin-top: 3%;
+}
+#whos-who-details .content {
+	position: relative;
+	padding: 10px;
+}
+#whos-who-details h2 {
+	border-bottom: 1px solid #CCC;
+	padding: 10px 0 5px;
+	margin-bottom: 10px;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+#whos-who-details dt {
+	color: #666;
+}
+#whos-who-details dd {
+	margin: 0 0 15px;
+	font-weight: bold;
+}
+#whos-who-details strong {
+	color: #000;
+	font-weight: bold;
 }
