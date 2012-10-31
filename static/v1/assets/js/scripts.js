@@ -6,13 +6,16 @@ Get JSON
 *****************************************************************************/
 var data = $.getJSON("assets/js/whoswho.json"),
 	obj,
+	allFirst = [],
+	allLast = [],
 	allProfAssociations = [],
 	allCivicAffiliations = [],
 	allIndustry = [],
 	allUndergraduate = [],
 	allGraduate = [],
 	allHometown = [],
-	allState = [];
+	allState = [],
+	allData = [];
 
 $(document).ajaxComplete(function() {
 	obj = $.parseJSON(data.responseText);
@@ -38,7 +41,16 @@ $(document).ajaxComplete(function() {
 
 
 	$.each(obj.whoswho, function(i, whoswho) {
-		var profAssociations, civicAffiliations, industry, undergraduate, graduate, degree, hometown, state,
+		var first,
+			last,
+			profAssociations,
+			civicAffiliations,
+			industry,
+			undergraduate,
+			graduate,
+			degree,
+			hometown,
+			state,
 			person = '<li><div class="photo"><img src="assets/im/icon-unknown.gif" height="100" width="83" alt="id" /></div>'+
 					'<h2>'+ whoswho.first + ' <span>' + whoswho.middle + ' ' + whoswho.last +'</span></h2>'+
 					'<dl><dt>Primary Company</dt><dd>'+ whoswho.primaryCo +'</dd>'+
@@ -55,6 +67,8 @@ $(document).ajaxComplete(function() {
 		$('#all-whos-who ul').append(person);
 
 		// push data into array
+		pushData(whoswho.first, first, allFirst);
+		pushData(whoswho.last, last, allLast);
 		pushData(whoswho.profAssociations, profAssociations, allProfAssociations);
 		pushData(whoswho.civicAffiliations, civicAffiliations, allCivicAffiliations);
 		pushData(whoswho.industry, industry, allIndustry);
@@ -93,6 +107,21 @@ $(document).ajaxComplete(function() {
 		appendTo: '#questions',
 		source: allState
 	});
+
+	var allData = allProfAssociations.concat(
+		allFirst,
+		allLast,
+		allCivicAffiliations,
+		allIndustry,
+		allUndergraduate,
+		allGraduate,
+		allHometown,
+		allState);
+
+	console.log(allData);
+	$( "#whos-who-search" ).autocomplete({
+		source: allData
+	});
 });
 
 /*****************************************************************************
@@ -112,7 +141,7 @@ var overlayWrap = $('.overlay'),
 			var $this = $(this),
 				content = $this.html(),
 				details = '<div id="overlay-whos-who-details" class="overlay-item selected">'
-						+ '<div class="controls"><strong>Details</strong><button type="button" data-function="close">close</button></div>'
+						+ '<div class="controls"><strong>Details</strong><button type="button" data-function="remove">close</button></div>'
 						+ '<div class="content">'+content+'</div>'
 						+ '</div>';
 			$('.overlay-main').append(details);
@@ -120,7 +149,7 @@ var overlayWrap = $('.overlay'),
 		});
 	},
 	hideItem : function() {
-		overlayWrap.on('click', 'button[data-function="close"], #overlay-whos-who-details button[data-function="close"]', function() {
+		overlayWrap.on('click', 'button[data-function="close"], .controls button[data-function="remove"]', function() {
 			var hideOverlay = overlayWrap.fadeOut('fast').parents('body').removeClass('no-scroll'),
 				dataFunc = $(this).attr('data-function');
 
@@ -153,7 +182,7 @@ var overlayWrap = $('.overlay'),
 /*****************************************************************************
 Launch Intro
 *****************************************************************************/
-overlay.launchItem('overlay-intro');
+// overlay.launchItem('overlay-intro');
 
 /*****************************************************************************
 Questionnaire
@@ -281,45 +310,39 @@ var current,
 var search = {
 	getValue : function() {
 		$('.search').on('keydown', 'input[type="text"]', function() {
-			var searchValue = $('.search input').val().toLowerCase(),
-				info;
+			var searchValue = $('.search input').val().toLowerCase();
 
 			if ( event.which == 13 ) {
-				// applyEntry($(this));
 				console.log(searchValue);
+				search.getResults(searchValue);
 			}
-			//Load icons
-			// loadIcons(searchValue);
 		});
 	},
-	getResults : function() {
-		function loadIcons(searchValue) {
-			var info;
+	getResults : function(searchValue) {
+		var info;
 
-			// Populate search results
-			function showResults() {
-				var deferred = $.Deferred();
+		// Populate search results
+		function showResults() {
+			var deferred = $.Deferred();
 
-				$.each(obj.icons, function(i, icons) {
-					if (icons.name.toLowerCase().indexOf(searchValue) !== -1) {
-						var info = '<ul><li class="thumb"><img src="' + icons.location + '" alt="'+ icons.name +'" /></li><li>Name <strong>'+ icons.name +'</strong></li><li>File Size <strong>'+ icons.size +'</strong></li><li>Height <strong>'+ icons.height +'</strong></li><li>Width <strong>'+ icons.width +'</strong></li><li>Location <input type="text" value="'+ icons.location +'" readonly="readonly" /></li><li>Last Modified <strong>'+ icons.modified +'</strong></li></ul>';
-						$('#result').hide().append(info).fadeIn();
-						deferred.resolve();
-					}
-				});
-
-				return deferred.promise();
-			}
-			showResults().done(function() {
-				// Count icons
-				countIcons($('#result').children('ul').length);
+			$.each(obj.whoswho, function(i, whoswho) {
+				// console.log(obj);
+				if (obj.whoswho[0].toLowerCase().indexOf(searchValue) !== -1) {
+					console.log(i);
+					// var info = '<ul><li class="thumb"><img src="' + icons.location + '" alt="'+ icons.name +'" /></li><li>Name <strong>'+ icons.name +'</strong></li><li>File Size <strong>'+ icons.size +'</strong></li><li>Height <strong>'+ icons.height +'</strong></li><li>Width <strong>'+ icons.width +'</strong></li><li>Location <input type="text" value="'+ icons.location +'" readonly="readonly" /></li><li>Last Modified <strong>'+ icons.modified +'</strong></li></ul>';
+					// $('#result').hide().append(info).fadeIn();
+					deferred.resolve();
+				}
 			});
 
+			return deferred.promise();
 		}
+		showResults().done(function() {
+			// Count icons
+			// countIcons($('#result').children('ul').length);
+		});
 	}
 }
-
-
 
 /*****************************************************************************
 Initialize

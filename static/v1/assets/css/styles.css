@@ -76,7 +76,8 @@ Buttons
 .overlay .controls button[type="button"]:active {
 	background-color: #AAA;
 }
-.overlay .controls button[data-function="close"] {
+.overlay .controls button[data-function="close"],
+.overlay .controls button[data-function="remove"] {
 	background: url(../im/icon-close.png) no-repeat center center;
 }
 .overlay .controls button[data-function$="edit"] {
@@ -121,8 +122,8 @@ Who's Who Control Bar
 }
 #control-bar .search input[type="text"] {
 	height: 23px;
-	width: 200px;
-	padding: 2px 5px;
+	width: 180px;
+	padding: 2px 25px 2px 5px;
 	border: 1px solid #777;
 	border-top-color: #666;
 	border-bottom-color: #999;
@@ -396,6 +397,7 @@ Overlay - Survey
 	padding: 5px;
 	background-color: #FFF;
 	overflow: auto;
+	font-family: Helvetica, Arial, sans-serif !important;
 }
 .ui-autocomplete li a {
 	display: block;
@@ -403,7 +405,7 @@ Overlay - Survey
 	line-height: 1.25em;
 }
 .ui-autocomplete li a:hover,
-.ui-autocomplete li a:focus {
+.ui-autocomplete li a.ui-state-hover {
 	background-color: #CCC;
 }
 .ui-autocomplete li a:active {
