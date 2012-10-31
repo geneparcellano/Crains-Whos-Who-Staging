@@ -4,9 +4,8 @@
 /*****************************************************************************
 Get JSON
 *****************************************************************************/
-var data = $.getJSON("assets/js/whoswho.json");
-
-var obj,
+var data = $.getJSON("assets/js/whoswho.json"),
+	obj,
 	allProfAssociations = [],
 	allCivicAffiliations = [],
 	allIndustry = [],
@@ -37,23 +36,25 @@ $(document).ajaxComplete(function() {
 		}
 	}
 
-	// push data into array
-	$.each(obj.whoswho, function(i, whoswho) {
-		var profAssociations, civicAffiliations, industry, undergraduate, graduate, degree, hometown, state;
 
-		var person = '<li><div class="photo"><img src="assets/im/icon-unknown.gif" height="100" width="83" alt="id" /></div>'+
+	$.each(obj.whoswho, function(i, whoswho) {
+		var profAssociations, civicAffiliations, industry, undergraduate, graduate, degree, hometown, state,
+			person = '<li><div class="photo"><img src="assets/im/icon-unknown.gif" height="100" width="83" alt="id" /></div>'+
 					'<h2>'+ whoswho.first + ' <span>' + whoswho.middle + ' ' + whoswho.last +'</span></h2>'+
 					'<dl><dt>Primary Company</dt><dd>'+ whoswho.primaryCo +'</dd>'+
 					'<dt>Secondary Company</dt><dd>'+ whoswho.secondaryCo +'</dd>'+
-					'<dt>Professional Associations</dt><dd>'+ whoswho.profAssociations +'</dd>'+
-					'<dt>Civic Affiliations</dt><dd>'+ whoswho.civicAffilliations +'</dd>'+
 					'<dt>Industry</dt><dd>'+ whoswho.industry +'</dd>'+
 					'<dt>Undergraduate College</dt><dd>'+ whoswho.undergraduate +'</dd>'+
 					'<dt>Graduate College</dt><dd>'+ whoswho.graduate +'</dd>'+
-					'<dt>Home Town</dt><dd>'+ whoswho.hometown +' '+ whoswho.state +'</dd>'+
+					'<dt>Home Town</dt><dd>'+ whoswho.hometown +', '+ whoswho.state +'</dd>'+
+					'<dt>Professional Associations</dt><dd>'+ whoswho.profAssociations +'</dd>'+
+					'<dt>Civic Affiliations</dt><dd>'+ whoswho.civicAffiliations +'</dd>'+
 					'<dt>Biography</dt><dd><a href="'+ whoswho.url +'" target="_blank">Click here</a></dd></dl></li>';
+
+		// populate Who's Who Details
 		$('#all-whos-who ul').append(person);
 
+		// push data into array
 		pushData(whoswho.profAssociations, profAssociations, allProfAssociations);
 		pushData(whoswho.civicAffiliations, civicAffiliations, allCivicAffiliations);
 		pushData(whoswho.industry, industry, allIndustry);
@@ -102,91 +103,63 @@ $('#all-whos-who').ajaxComplete(function() {
 });
 
 /*****************************************************************************
-Drop Down Menu
-*****************************************************************************/
-var dropDown = {
-	show : function() {
-		$('.dropdown > a').on('click', function(event) {
-			event.preventDefault();
-
-			var next = $(this).next();
-			if (next.css('display') === 'none') {
-				// hide all other menu except 'this'
-				$('.dropdown > ul').fadeOut('fast');
-				next.fadeIn('fast');
-			}
-			else {
-				next.fadeOut('fast');
-			}
-			event.stopPropagation();
-		});
-	},
-	hide : function() {
-		$('.dropdown > ul a').on('click', function(event) {
-			event.preventDefault();
-			var $this = $(this),
-				firstValue = $this.attr('href').slice(0,1);
-
-			if (firstValue !== '#') {
-				window.open($this.attr('href'), '_self');
-			}
-
-			$('.dropdown > a + *').fadeOut('fast');
-		});
-
-		$(document).on('click', function() {
-			$('.dropdown > a + *').fadeOut('fast');
-		});
-	}
-}
-
-/*****************************************************************************
 Overlay
 *****************************************************************************/
-var overlay = {
+var overlayWrap = $('.overlay'),
+	overlay = {
 	details : function() {
 		$('#whos-who').on('click', 'li', function() {
 			var $this = $(this),
 				content = $this.html(),
-				details = '<div id="whos-who-details" class="overlay-item selected">'
+				details = '<div id="overlay-whos-who-details" class="overlay-item selected">'
 						+ '<div class="controls"><strong>Details</strong><button type="button" data-function="close">close</button></div>'
 						+ '<div class="content">'+content+'</div>'
 						+ '</div>';
 			$('.overlay-main').append(details);
-			$('.overlay').fadeIn('fast')
-				.parents('body').addClass('no-scroll');
+			overlay.launchItem('overlay-whos-who-details');
 		});
 	},
+	hideItem : function() {
+		overlayWrap.on('click', 'button[data-function="close"], #overlay-whos-who-details button[data-function="close"]', function() {
+			var hideOverlay = overlayWrap.fadeOut('fast').parents('body').removeClass('no-scroll'),
+				dataFunc = $(this).attr('data-function');
 
-	removeOverlay : function() {
-		$('body').on('click', '.overlay .controls button[data-function="close"]', function() {
-			$('#whos-who-details').remove();
-			$('.overlay').hide()
-				.parents('body').removeClass('no-scroll');
+			if (dataFunc === 'remove') {
+				$('#overlay-whos-who-details').remove();
+				hideOverlay;
+			} else {
+				hideOverlay;
+			}
 		});
+	},
+	getName : function() {
+		$('body').on('click', '[data-function^="overlay"]', function(e) {
+			overlay.launchItem($(this).attr('data-function'));
+			e.preventDefault();
+		});
+	},
+	launchItem : function(itemName) {
+		if (overlayWrap.not(':visible')) {
+			overlayWrap.fadeIn('fast').parents('body').addClass('no-scroll');
+		} else {
+			// do nothing
+		}
+
+		$('#' + itemName).siblings().removeClass('selected');
+		overlayWrap.find('#' + itemName).addClass('selected');
 	}
 }
 
+/*****************************************************************************
+Launch Intro
+*****************************************************************************/
+overlay.launchItem('overlay-intro');
 
 /*****************************************************************************
 Questionnaire
 *****************************************************************************/
 var questionnaire = {
-	getStarted : function() {
-		$('button[data-function="get_started"]').on('click', function() {
-			$('#intro').removeClass('selected').next('#survey').fadeIn('fast').addClass('selected');
-		});
-	},
 	addEntry : function() {
-		$('#questions .multi').on('click', 'button[data-function="add"]', function() {
-			applyEntry($(this));
-		});
-		$('#questions .multi').on('keydown', 'input[type="text"]', function() {
-			if ( event.which == 13 ) {
-				applyEntry($(this));
-			}
-		});
-
 		function applyEntry($this) {
 			var container = $this.parents('section'),
 				entry = container.find('input[type="text"]'),
@@ -210,8 +183,17 @@ var questionnaire = {
 					//do nothing
 				}
 			}
-
 		}
+
+		$('#questions .multi').on('click', 'button[data-function="add"]', function() {
+			applyEntry($(this));
+		});
+
+		$('#questions .multi').on('keydown', 'input[type="text"]', function() {
+			if ( event.which == 13 ) {
+				applyEntry($(this));
+			}
+		});
 	},
 	removeEntry : function() {
 		$('#questions').on('click','button[data-function="remove"]',function() {
@@ -224,20 +206,14 @@ var questionnaire = {
 				//do nothing
 			}
 		})
-	},
-	done : function() {
-		$('button[data-function="done"]').on('click', function() {
-			$('#survey').removeClass('selected').hide().parents('.overlay').fadeOut('fast')
-				.parents('body').removeClass('no-scroll');
-		});
 	}
 }
 
 /*****************************************************************************
 Questionnaire Navigation
 *****************************************************************************/
-var current;
-var navigation = {
+var current,
+	navigation = {
 	getCurrent : function() {
 		return current = $('section.selected');
 	},
@@ -271,17 +247,12 @@ var navigation = {
 		var selected = 'a[href="#'+ navigation.getCurrent().attr('id') +'"]',
 			newTitle = $('a[href="#'+ navigation.getCurrent().attr('id') +'"]').text();
 		$('.controls ol li').removeClass('selected').children(selected).parent('li').addClass('selected');
-		$('#survey .controls strong').text(newTitle);
+		$('#overlay-survey .controls strong').text(newTitle);
 	},
 	showPrev : function() {
 		var prev = navigation.getCurrent().prev();
 
 		prev.fadeIn('fast');
-		if (prev.prev().length === 0) {
-			$('button[data-function="prev"]').attr('disabled','disabled');
-		} else {
-			$('button[data-function="prev"], button[data-function="next"]').removeAttr('disabled');
-		}
 		navigation.getCurrent().hide().removeClass('selected').prev().addClass('selected');
 		navigation.syncHeader();
 	},
@@ -289,13 +260,62 @@ var navigation = {
 		var next = navigation.getCurrent().next();
 
 		next.fadeIn('fast');
+		navigation.getCurrent().hide().removeClass('selected').next().addClass('selected');
+		navigation.syncHeader();
+	},
+	disableButton : function() {
+		if (prev.prev().length === 0) {
+			$('button[data-function="prev"]').attr('disabled','disabled');
+		} else {
+			$('button[data-function="prev"]').removeAttr('disabled');
+		}
+
 		if (next.next().length === 0) {
 			$('button[data-function="next"]').attr('disabled','disabled');
 		} else {
-			$('button[data-function="prev"], button[data-function="next"]').removeAttr('disabled');
+			$('button[data-function="next"]').removeAttr('disabled');
 		}
-		navigation.getCurrent().hide().removeClass('selected').next().addClass('selected');
-		navigation.syncHeader();
+	}
+}
+
+var search = {
+	getValue : function() {
+		$('.search').on('keydown', 'input[type="text"]', function() {
+			var searchValue = $('.search input').val().toLowerCase(),
+				info;
+
+			if ( event.which == 13 ) {
+				// applyEntry($(this));
+				console.log(searchValue);
+			}
+			//Load icons
+			// loadIcons(searchValue);
+		});
+	},
+	getResults : function() {
+		function loadIcons(searchValue) {
+			var info;
+
+			// Populate search results
+			function showResults() {
+				var deferred = $.Deferred();
+
+				$.each(obj.icons, function(i, icons) {
+					if (icons.name.toLowerCase().indexOf(searchValue) !== -1) {
+						var info = '<ul><li class="thumb"><img src="' + icons.location + '" alt="'+ icons.name +'" /></li><li>Name <strong>'+ icons.name +'</strong></li><li>File Size <strong>'+ icons.size +'</strong></li><li>Height <strong>'+ icons.height +'</strong></li><li>Width <strong>'+ icons.width +'</strong></li><li>Location <input type="text" value="'+ icons.location +'" readonly="readonly" /></li><li>Last Modified <strong>'+ icons.modified +'</strong></li></ul>';
+						$('#result').hide().append(info).fadeIn();
+						deferred.resolve();
+					}
+				});
+
+				return deferred.promise();
+			}
+			showResults().done(function() {
+				// Count icons
+				countIcons($('#result').children('ul').length);
+			});
+
+		}
 	}
 }
 
@@ -304,19 +324,17 @@ var navigation = {
 /*****************************************************************************
 Initialize
 *****************************************************************************/
-// dropDown.show();
-// dropDown.hide();
 overlay.details();
-overlay.removeOverlay();
+overlay.getName();
+overlay.hideItem();
 
-questionnaire.getStarted();
 questionnaire.addEntry();
 questionnaire.removeEntry();
-questionnaire.done();
 
 navigation.getCurrent();
 navigation.nextPrev();
-// navigation.dots();
 navigation.toggleButtons();
 // controls.syncAnchors();
+
+search.getValue();
 })();

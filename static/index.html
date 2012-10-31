@@ -31,7 +31,7 @@
 	</div></td></tr></table></center>
 	</div>
 </head>
-<body class="no-scroll">
+<body>
 <div id="doc">
 <header>
 	<nav id="admin-nav">
@@ -188,19 +188,15 @@
 
 	<header id="control-bar" class="clearfix">
 		<div class="user">
-			<div class="score"><span>Your Score:</span> <a href="#score">417</a></div>
+			<div class="score"><span>Your Score:</span> <a href="#overlay-your-score" data-function="overlay-your-score">417</a></div>
 			<div class="profile">
-				<a href="#">User</a>
-<!-- 				<ul>
-					<li><a href="#">View Profile</a></li>
-					<li><a href="#">Log Out</a></li>
-				</ul> -->
+				<button type="button" data-function="overlay-user-profile"></button>
 			</div>
 		</div>
-		<form class="search">
+		<div class="search">
 			<label><span>Search</span> <input type="text" placeholder="Search" /></label>
-			<button type="submit" data-function="search">Search</button>
-		</form>
+			<button type="button" data-function="search">Search</button>
+		</div>
 		<h1><strong>Who&rsquo;s Who</strong> 2012</h1>
 	</header>
 	<div id="whos-who">
@@ -556,16 +552,16 @@
 	<div class="overlay">
 		<div class="overlay-bg"></div>
 		<div class="overlay-main">
-			<div id="intro" class="overlay-item">
+			<div id="overlay-intro" class="overlay-item">
 				<div class="logo"><img src="assets/im/logo-new.png" height="90" width="206" alt="logo" /></div>
 				<p>Who&rsquo;s Who is a list of the most influential people in Chicago.</p>
 				<p>Fill out the survey to see who of these heavy hitters you&rsquo;re connected to.</p>
-				<button type="button" data-function="get_started">Get Started</button>
+				<button type="button" data-function="overlay-survey">Get Started</button>
 			</div>
-			<div id="survey" class="overlay-item rail">
+			<div id="overlay-survey" class="overlay-item rail">
 				<header class="controls">
 					<strong>Question 1</strong>
-					<button type="button" data-function="prev">Previous</button>
+					<button type="button" data-function="prev">Prev</button>
 					<button type="button" data-function="next">Next</button>
 					<nav>
 						<ol>
@@ -598,7 +594,7 @@
 					<section id="question-2">
 						<label>Where do you work? <input type="text" maxlength="128" /></label>
 					</section>
-					<section id="question-5">
+					<section id="question-3">
 						<label>
 							Industry
 							<select name="prefix">
@@ -608,32 +604,32 @@
 							</select>
 						</label>
 					</section>
-					<section id="question-6">
+					<section id="question-4">
 						<label>Undergraduate College <input id="survey-undergraduate" type="text" maxlength="128" /></label>
 					</section>
-					<section id="question-7">
+					<section id="question-5">
 						<label>Graduate College <input id="survey-graduate" type="text" maxlength="128" /></label>
 					</section>
-					<section id="question-8">
+					<section id="question-6">
 						<label>Hometown <input id="survey-hometown" type="text" maxlength="128" /></label>
 						<label>State <input id="survey-state" type="text" maxlength="128" /></label>
-						<button type="button" data-function="done">Done</button>
 					</section>
-					<section id="question-3">
+					<section id="question-7">
 						<div class="multi">
 							<label>Professional Associations <input id="survey-prof-assoc" type="text" maxlength="128" /></label>
 							<button type="button" data-function="add">Add</button>
 						</div>
 					</section>
-					<section id="question-4">
+					<section id="question-8">
 						<div class="multi">
 							<label>Civic Affiliations <input id="survey-civic-affil" type="text" maxlength="128" /></label>
 							<button type="button" data-function="add">Add</button>
 						</div>
+						<button type="button" data-function="close">Done</button>
 					</section>
 				</div>
 			</div>
-			<div id="your-score" class="overlay-item">
+			<div id="overlay-your-score" class="overlay-item">
 				<div class="controls">
 					<strong>Your Score</strong>
 					<button type="button" data-function="close">Close</button>
@@ -649,10 +645,10 @@
 					</ul>
 					<p>You rank in the top 30%! Check out the Top 50s you are connected to.</p>
 					<button type="button">Share Your Score</button>
-					<button type="button">View Your Connection</button>
+					<button type="button" data-function="close">View Your Connection</button>
 				</div>
 			</div>
-			<div id="share-your-score" class="overlay-item selected">
+			<div id="overlay-share-your-score" class="overlay-item">
 				<div class="controls">
 					<strong>Share Your Score</strong>
 					<button type="button" data-function="close">Close</button>
@@ -666,11 +662,11 @@
 					</ul>
 				</div>
 			</div>
-			<div id="user-profile" class="overlay-item">
+			<div id="overlay-user-profile" class="overlay-item">
 				<div class="controls">
 					<strong>Your Profile</strong>
 					<button type="button" data-function="close">Close</button>
-					<button type="button" data-function="edit">Edit</button>
+					<button type="button" data-function="overlay-user-profile-edit">Edit</button>
 				</div>
 				<div class="content">
 					<div class="score">
@@ -713,7 +709,7 @@
 					</ul>
 				</div>
 			</div>
-			<div id="user-profile-edit" class="overlay-item">
+			<div id="overlay-user-profile-edit" class="overlay-item">
 				<div class="controls">
 					<strong>Edit Profile</strong>
 					<button type="button" data-function="close">Close</button>

@@ -1,318 +1,118 @@
 /*****************************************************************************
-Resets
-*****************************************************************************/
-
-/*
-Copyright (c) 2011, Yahoo! Inc. All rights reserved.
-Code licensed under the BSD License:
-http://developer.yahoo.com/yui/license.html
-version: 2.9.0
-*/
-/**
- * YUI Reset
- * @module reset
- * @namespace
- * @requires 
- */
-html {
-	color: #000;
-}
-
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code,
-form, fieldset, legend, input, button, textarea, select, p, blockquote, th, td {
-	margin: 0;
-	padding: 0;
-}
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-fieldset,
-img {
-	border: 0;
-}
-
-address, button, caption, cite, code, dfn, em, input,
-optgroup, option, select, strong, textarea, th, var {
-    font:inherit;
-}
-
-del, ins {
-	text-decoration: none;
-}
-
-li {
-	list-style: none;
-}
-
-caption, th {
-	text-align: left;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	font-size: 100%;
-	font-weight: normal;
-}
-
-q:before, q:after {
-	content: '';
-}
-
-abbr, acronym {
-	border: 0;
-	font-variant: normal;
-}
-
-sup {
-	vertical-align: baseline;
-}
-
-sub {
-	vertical-align: baseline;
-}
-
-/*because legend doesn't inherit in IE */
-legend {
-	color: #000;
-}
-
-/*****************************************************************************
-Helpers
-*****************************************************************************/
-.clearfix:after {
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden;
-}
-
-/*****************************************************************************
 Typography
 *****************************************************************************/
-body {
-	font: 100%/1.4545em helvetica, sans-serif;
-}
-p {
-	margin-bottom: 15px;
+#whos-who-2012 {
+	margin-top: -5px;
+	font-size: 16px !important;
+	line-height: 1.4545em;
 }
 /*****************************************************************************
 Layout
 *****************************************************************************/
-html {
-	background-color: #EFEFEF;
+body.no-scroll {
+	overflow: hidden;
 }
-body {
-	width: 950px;
-	margin: 0 auto;
+#whos-who section > h1 {
+	padding: 5px 0 5px 20px;
+	margin: 0 -12px 10px -10px;
+	background-color: #A00;
+	color: #FFF !important;
+}
+#whos-who section {
+	padding-bottom: 20px;
+}
+/*****************************************************************************
+Text Fields
+*****************************************************************************/
+input[type="text"] {
+	width: 93%;
 	background-color: #FFF;
-	box-shadow: 0 0 10px #666;
+	border: 1px solid #888;
+	padding: 10px;
+	margin: 10px 0;
+	font-size: 1em;
+}
+input[type="text"]:focus {
+	background-color: #E5E5E5;
 }
 /*****************************************************************************
-Drop Down Menu
+Buttons
 *****************************************************************************/
-.dropdown {
-	position: relative;
-	float: left;
-	height: 23px;
-	border-bottom-color: #999;
+.overlay button[type="button"] {
+	width: 100%;
+	margin: 50px 0 10px;
+	padding: 10px 0 15px;
+	border: 1px solid #4D4D4D;
 	border-radius: 5px;
-	z-index: 1;
+	background-color: #666;
+	cursor: pointer;
+	color: #FFF;
+	font-weight: bold;
+	font-size: 16px;
 }
-.dropdown > a {
-	display: block;
-	height: 17px;
-	padding: 3px 20px 3px 10px;
-	border-radius: 5px;
-	color: inherit;
+.overlay button[type="button"]:hover {
+	background-color: #555355;
 }
-.dropdown > a:hover {
-	background-color: #BBB;
-	text-decoration: none;
-}
-.dropdown > a:active {
-	background-color: #999;
+.overlay button[type="button"]:active {
+	background-color: #414042;
 	color: #FFF;
 }
-.dropdown ul {
-	display: none;
-	position: absolute;
-	top: 25px;
-	left: -1px;
-	max-height: 250px;
-	overflow: auto;
-	padding: 5px;
-	background: #EEE;
-	border: 1px solid #BBB;
-	border-bottom-color: #999;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	box-shadow: 0 0 5px #888;
-}
-.dropdown li {
-	border-bottom: 1px solid #CCC;
-}
-.dropdown li:last-child {
-	border-bottom: none;
-}
-.dropdown li a {
-	color: inherit;
-	display: block;
-	padding: 5px 4px;
-}
-.dropdown li a:hover {
-	background-color: #BBB;
-	text-decoration: none;
-}
-.dropdown li a:active {
-	background-color: #999;
-	color: #FFF;
-}
-
-/*****************************************************************************
-Overlay
-*****************************************************************************/
-.overlay {
+.overlay .controls button[type="button"] {
 	position: absolute;
 	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-}
-.overlay-bg {
-	position: fixed;
-	height: 100%;
-	width: 100%;
-	background-color: #000;
-	opacity: 0.8;
-	z-index: 1;
-}
-.overlay-content {
-	display: none;
-	position: fixed;
-	width: 350px;
-	left: 50%;
-	margin: 20% 0 0 -150px;
-	background-color: #FFF;
-	box-shadow: 0 0 8px #111;
-	border-radius: 5px;
-	z-index: 2;
-}
-.overlay-content.selected {
-	display: block;
-}
-.overlay-content .controls {
-	border-radius: 5px 5px 0 0;
-	padding: 5px 0;
-	background-color: #AA0000;
-	text-align: center;
-	font-weight: bold;
-}
-
-/*****************************************************************************
-Questionnaire
-*****************************************************************************/
-#intro {
-	padding: 10px;
-}
-#intro .logo {
-	width: 206px;
-	margin: 10px auto 20px;
-}
-#questions section button[type="button"],
-#intro button[type="button"] {
-	width: 100%;
-	margin: 20px 0 10px;
-	padding: 5px;
-	border-radius: 5px;
-	cursor: pointer;
-	font-weight: bold;
-}
-#questions .controls {
-	/*display: none;*/
-	position: relative;
-}
-#questions .controls h1 {
-	font-weight: bold;
-	color: #FFF;
-}
-#questions .controls button {
-	position: absolute;
-	top: 10px;
+	right: 0;
+	height: 50px;
 	width: 50px;
-	/*border: 1px solid #CCC;*/
-	padding: 5px;
-	border-radius: 5px;
-	text-indent: -9000px;
+	border: 0;
+	border-radius: 0;
+	margin: 0;
+	padding: 0;
+	text-indent: -9999px;
 	cursor: pointer;
-	overflow: hidden;
 }
-#questions nav li {
-	display: inline;
+.overlay .controls button[type="button"]:hover {
+	background-color: #CCC;
 }
-#questions nav li a {
-	display: inline-block;
-	height: 10px;
-	width: 10px;
-	border-radius: 5px;
-	background-color: #000;
-	text-indent: -9000px;
-	overflow: hidden;
-}
-#questions nav li.selected a {
-	background-color: #FFF;
-}
-#questions button[data-function="prev"] {
-	left: 10px;
-	background: url(../im/icon-arrow-left.gif) no-repeat center center;
-}
-#questions button[data-function="next"] {
-	right: 10px;
-	background: url(../im/icon-arrow-right.gif) no-repeat center center;
-}
-#questions .controls button:hover {
+.overlay .controls button[type="button"]:active {
 	background-color: #AAA;
 }
-#questions .controls button:active {
-	background-color: #999;
-	color: #FFF;
+.overlay .controls button[data-function="close"] {
+	background: url(../im/icon-close.png) no-repeat center center;
 }
-#questions section {
-	display: none;
-	padding: 10px;
+.overlay .controls button[data-function$="edit"] {
+	left: 0;
+	background: url(../im/icon-pencil.png) no-repeat center center;
 }
-#questions section.selected {
-	display: block;
-}
-#questions input[type="text"] {
-	width: 95%;
-	padding: 5px;
-	margin: 20px 0 10px;
-	border-radius: 5px;
+.overlay .controls button[data-function="save"] {
+	left: 0;
+	background: url(../im/icon-disk.png) no-repeat center center;
 }
 
 /*****************************************************************************
-Control Bar
+Who's Who Control Bar
 *****************************************************************************/
 #control-bar {
-	padding: 5px;
+	position: relative;
 	margin-bottom: 10px;
 }
 #control-bar h1 {
+	padding-top: 12px;
 	font-size: 1.5em;
+	color: #A00 !important;
 	text-align: center;
+	text-transform: uppercase;
 }
 #control-bar h1 strong {
 	font-weight: bold;
 }
 #control-bar .search {
-	float: left;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 #control-bar .search label {
 	width: 300px;
-	text-indent: -9000px;
+	text-indent: -9999px;
 	overflow: hidden;
 }
 #control-bar .score span,
@@ -320,120 +120,510 @@ Control Bar
 	display: none;
 }
 #control-bar .search input[type="text"] {
+	height: 23px;
 	width: 200px;
 	padding: 2px 5px;
-	border: 1px solid #999;
-	border-bottom-color: #888;
-	border-radius: 3px;
+	border: 1px solid #777;
+	border-top-color: #666;
+	border-bottom-color: #999;
 	background: url(../im/icon-search.gif) no-repeat 190px center;
+	font-size: 1em;
 	font-weight: normal;
 }
-#control-bar .search button[type="submit"] {
+#control-bar .search button {
 	display: none;
 }
 #control-bar .user {
-	float: right;
+	position: absolute;
+	top: 0;
+	right: 0;
 	width: 300px;
 }
-.user .profile {
+#control-bar .user .profile {
 	float: right;
+	margin: 7px 10px 0 0;
 }
-.user .profile > a {
-	width: 20px;
-	margin: 10px 0 0;
-	background: url(../im/icon-user.gif) no-repeat;
-	text-indent: -9000px;
+#control-bar .user .profile button {
+	display: block;
+	height: 32px;
+	width: 32px;
+	border: none;
+	margin: 0;
+	background: url(../im/icon-user.png) no-repeat 0 0;
+	text-indent: -9999px;
+	cursor: pointer;
 }
-.user .score a {
+#control-bar .user .profile button:hover {
+	background-color: #CCC;
+}
+#control-bar .user .profile button:active {
+	background-color: #AAA;
+}
+#control-bar .user .score a {
 	float: right;
-	width: 30px;
-	padding: 10px 5px;
-	background-color: #AA0000;
-	/*background: url(../im/icon-user.gif) no-repeat;*/
-	text-align: center;
+	height: 47px;
+	width: 37px;
+	margin-top: -6px;
+	padding: 18px 0 0 4px;
+	background: url(../im/icon-ribbon.gif) no-repeat 0 0;
 	text-decoration: none;
-	color: #FFF;
-}
-#whoswho {
-
-}
-#whoswho h1 {
-	padding: 5px 0;
-	background-color: #AA0000;
-	color: #FFF;
-	text-align: center;
-	font-weight: bold;
+	color: #FFF !important;
 }
 
 /*****************************************************************************
-Who's Who-er
+Who's Who Grid
 *****************************************************************************/
-#whoswho li {
+#connections,
+#all-whos-who {
+	display: none;
+}
+#whos-who li {
 	float: left;
 	margin: 5px;
 	padding: 5px;
-	border-radius: 3px;
 	cursor: pointer;
 }
-#whoswho li:hover {
-	background-color: #AA0000;
+#whos-who li:hover {
+	background-color: #A00;
 	color: #FFF;
 }
-#whoswho li:active {
+#whos-who li:hover h2 {
+	color: #FFF !important;
+}
+#whos-who li:active {
 	background-color: #751117;
 }
-#whoswho dl {
+#whos-who dl {
 	display: none;
 }
-#whoswho li h2 span {
+#whos-who li h2 {
+	border-bottom: none;
+	margin-top: 5px;
+	background-color: transparent;
+}
+#whos-who li h2 span {
 	display: none;
 }
 
 /*****************************************************************************
-Who's Who-er Details
+Overlay
 *****************************************************************************/
-.overlay-body {
+.overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.overlay-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: #000;
+	opacity: 0.8;
+}
+.overlay-main {
+	position: relative;
+	height: 100%;
+	overflow: auto;
+}
+.overlay-item {
+	display: none;
+	width: 350px;
+	margin: 10% auto;
+	background-color: #FFF;
+	box-shadow: 3px 3px 5px #222;
+}
+.overlay-item.selected {
+	display: block;
+}
+.overlay .controls {
+	position: relative;
+	height: 50px;
+	border-bottom: 1px solid #BBB;
+	background-color: #EFEFEF;
+	box-shadow: 0 0 3px #AAA;
+	text-align: center;
+	font-weight: bold;
+}
+.overlay .controls strong {
+	background-color: transparent;
+	font-weight: bold;
+	font-size: 1.5em;
+	line-height: 50px;
+}
+
+/*****************************************************************************
+Overlay - Intro
+*****************************************************************************/
+#overlay-intro {
+	padding: 10px 20px;
+}
+#overlay-intro p {
+	margin-bottom: 10px;
+	font-size: 1em !important;
+	line-height: 1.4em !important;
+}
+#overlay-intro .logo {
+	width: 206px;
+	margin: 10px auto 20px;
+}
+
+/*****************************************************************************
+Overlay - Survey
+*****************************************************************************/
+#overlay-survey .controls {
+	background-color: #A00;
+}
+#overlay-survey .controls strong {
+	color: #FFF;
+}
+#overlay-survey .controls button {
+	position: absolute;
+	top: 0;
+	height: 50px;
+	width: 50px;
+	border: 0;
+	border-radius: 0;
+	margin: 0;
+	padding: 10px 5px;
+	text-indent: -9999px;
+	cursor: pointer;
+	overflow: hidden;
+}
+#overlay-survey nav {
+	position: absolute;
+	width: 252px;
+	left: -126px;
+	margin-left: 50%;
+	padding: 0;
+	bottom: -25px;
+}
+#overlay-survey nav li {
+	display: inline;
+	padding: 0 5px;
+}
+#overlay-survey nav li a {
+	display: inline-block;
+	height: 9px;
+	width: 9px;
+	border: 1px solid #666;
+	border-radius: 5px;
+	background-color: #FFF;
+	text-indent: -9999px;
+	overflow: hidden;
+}
+#overlay-survey nav li a:hover {
+	background-color: #A00;
+}
+#overlay-survey nav li.selected a {
+	background-color: #A00;
+}
+#overlay-survey button[data-function="prev"] {
+	left: 0;
+	text-indent: 0;
+	background-color: transparent;
+}
+#overlay-survey button[data-function="next"] {
+	right: 0;
+	text-indent: 0;
+	background-color: transparent;
+}
+#overlay-survey .controls button:hover {
+	background-color: #760A04;
+}
+#overlay-survey .controls button:active {
+	background-color: #590100;
+	color: #FFF;
+}
+#overlay-survey .controls button[disabled="disabled"],
+#overlay-survey .controls button[disabled="disabled"]:hover,
+#overlay-survey .controls button[disabled="disabled"]:active {
+	opacity: 0.5;
+	background-color: transparent;
+}
+#questions {
+	margin-top: 40px;
+}
+#questions section {
+	display: none;
+	padding: 10px 20px;
+}
+#questions section.selected {
+	display: block;
+}
+#questions select {
+	width: 100%;
+	margin: 10px 0 20px;
+	font-size: 1em;
+}
+#questions .multi input[type="text"] {
+	width: 220px;
+}
+#questions button[data-function="add"] {
+	display: inline;
+	width: auto;
+	margin: 0;
+	padding: 10px;
+}
+#questions .notification {
+	margin-bottom: 10px;
+	color: #F00;
+	font-size: 0.75em;
+}
+#questions .entries {
+	border-top: 1px solid #CCC;
+	margin-top: 10px;
+}
+#questions .entries li {
+	position: relative;
+	min-height: 20px;
+	padding: 5px 30px 5px 0;
+	border-bottom: 1px solid #DDD;
+	line-height: 1.25em;
+}
+#questions button[data-function="remove"] {
+	background: url(../im/icon-close.png) no-repeat center center transparent;
+}
+.ui-autocomplete {
+	position: absolute;
+	max-height: 250px;
+	width: 250px;
+	border: 1px solid #DDD;
+	padding: 5px;
+	background-color: #FFF;
+	overflow: auto;
+}
+.ui-autocomplete li a {
+	display: block;
+	padding: 5px;
+	line-height: 1.25em;
+}
+.ui-autocomplete li a:hover,
+.ui-autocomplete li a:focus {
+	background-color: #CCC;
+}
+.ui-autocomplete li a:active {
+	background-color: #AAA;
+}
+
+/*****************************************************************************
+Overlay - Your Score
+*****************************************************************************/
+#overlay-your-score .controls {
+	background-color: #A00;
+}
+#overlay-your-score .controls strong {
+	color: #FFF;
+}
+#overlay-your-score .controls button[data-function="close"] {
+	background: url(../im/icon-close-active.png) no-repeat center center ;
+}
+#overlay-your-score .controls button[data-function="close"]:hover {
+	background-color: #760A04;
+}
+#overlay-your-score .controls button[data-function="close"]:active {
+	background-color: #590100;
+}
+#overlay-your-score .content {
+	padding: 10px 20px;
+}
+#overlay-your-score .score {
+	margin-top: 10px;
+	text-align: center;
+}
+#overlay-your-score .score-bar {
+	position: relative;
+	height: 16px;
+	margin: 10px 0 30px;
+	background-color: #DDD;
+	border: 1px solid #999;
+	border-radius: 8px;
+}
+#overlay-your-score .score-bar-actual {
+	position: absolute;
+	height: 16px;
+	width: 30%;
+	border-radius: 8px;
+	top: 0;
+	left: 0;
+	background-color: #A00;
+	text-indent: -9999px;
+}
+#overlay-your-score .score-bar-min,
+#overlay-your-score .score-bar-max {
+	position: absolute;
+	top: 20px;
+}
+#overlay-your-score .score-bar-min {
+	left: 0;
+}
+#overlay-your-score .score-bar-max {
+	right: 0;
+}
+#overlay-your-score .score strong {
+	display: block;
+	color: #A00;
+	font-size: 6em;
+	line-height: 1em;
+	font-weight: bold;
+}
+#overlay-your-score .content button {
+	margin-top: 0;
+}
+#overlay-your-score p {
+	line-height: 1.4545em;
+	margin-bottom: 30px;
+}
+/*****************************************************************************
+Overlay - Share Your Score
+*****************************************************************************/
+#overlay-share-your-score li a {
+	display: block;
+	padding: 15px;
+	border-bottom: 1px solid #CCC;
+	font-weight: bold;
+	line-height: 1em;
+	cursor: pointer;
+	color: #000 !important;
+	text-decoration: none;
+}
+#overlay-share-your-score li a:hover {
+	background-color: #A00;
+	color: #FFF !important;
+}
+#overlay-share-your-score li a:active {
+	background-color: #760A04;
+}
+
+/*****************************************************************************
+Overlay - User Profile
+*****************************************************************************/
+#overlay-user-profile .score {
+	margin-top: 10px;
+	text-align: center;
+}
+#overlay-user-profile .score strong {
+	display: block;
+	color: #A00;
+	font-size: 6em;
+	line-height: 1em;
+	font-weight: bold;
+}
+#overlay-user-profile h2 {
+	border-bottom: none;
+	padding: 10px;
+	color: #A00 !important;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+#overlay-user-profile ul {
+	border-top: 1px solid #CCC;
+}
+#overlay-user-profile li {
+	padding: 10px;
+	border-bottom: 1px solid #CCC;
+	font-weight: bold;
+	line-height: 1em;
+	background: url(../im/icon-arrow-right.png) no-repeat right center;
+	cursor: pointer;
+}
+#overlay-user-profile li:hover {
+	background: url(../im/icon-arrow-right-active.png) no-repeat right center #A00;
+	color: #FFF;
+}
+#overlay-user-profile li:active {
+	background-color: #760A04;
+}
+#overlay-user-profile li span {
+	display: block;
+	color: #666;
+	font-size: 0.75em;
+	font-weight: normal;
+}
+
+/*****************************************************************************
+Overlay - User Profile Edit
+*****************************************************************************/
+#overlay-user-profile-edit {
+	margin-top: 3%;
+}
+#overlay-user-profile-edit .content {
+	padding: 20px 10px;
+}
+#overlay-user-profile-edit .content li {
+	margin-bottom: 15px;
+}
+#overlay-user-profile-edit .content strong {
+	display: block;
+}
+#overlay-user-profile-edit input[type="text"] {
+	margin: 0;
+}
+#overlay-user-profile-edit .name label,
+#overlay-user-profile-edit .hometown label {
+	float: left;
+	width: 130px;
+	margin-right: 10px;
+}
+#overlay-user-profile-edit .name input[type="text"],
+#overlay-user-profile-edit .hometown input[type="text"] {
+	width: 108px;
+}
+#overlay-user-profile-edit .name .name-suffix,
+#overlay-user-profile-edit .name .hometown-state {
+	width: 40px;
+}
+#overlay-user-profile-edit .name-suffix input[type="text"],
+#overlay-user-profile-edit .hometown-state input[type="text"] {
+	display: block;
+	width: 18px;
+}
+#overlay-user-profile-edit .linkedin-connect button {
+	display: block;
+	width: 165px;
+	padding: 5px;
+	margin: 0;
+}
+
+/*****************************************************************************
+Overlay - Who's Who Details
+*****************************************************************************/
+#overlay-whos-who-details {
+	margin-top: 3%;
+}
+#overlay-whos-who-details .content {
 	position: relative;
 	padding: 10px;
 }
-.overlay-body .photo {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-}
-.overlay-body h2 {
+#overlay-whos-who-details h2 {
 	border-bottom: 1px solid #CCC;
 	padding: 10px 0 5px;
 	margin-bottom: 10px;
 	font-size: 1.5em;
 	font-weight: bold;
+	color: #A00 !important;
 }
-.overlay-body dt {
+#overlay-whos-who-details dt {
 	color: #666;
+	font-size: 0.75em;
+	line-height: 1.3333em;
 }
-.overlay-body dd {
-	margin-bottom: 10px;
+#overlay-whos-who-details dd {
+	margin: 0 0 15px;
 	font-weight: bold;
 }
-.overlay strong {
-	color: #FFF;
+#overlay-whos-who-details strong {
+	color: #000;
 	font-weight: bold;
 }
-button[data-function="close"] {
-	position: absolute;
-	top: 3px;
-	right: 5px;
-	width: 25px;
-	border: 0;
-	padding: 0;
-	background: url(../im/icon-close.gif) no-repeat center center;
-	text-indent: -9000px;
-	cursor: pointer;
-	overflow: hidden;
+#overlay-whos-who-details dd a {
+	color: #A00 !important;
+	text-decoration: none;
 }
-button[data-function="close"]:hover {
-	background-color: #751117;
-}
-button[data-function="close"]:active {
-	background-color: #AA0000;
+#overlay-whos-who-details dd a:hover {
+	text-decoration: underline;
 }
