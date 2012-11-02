@@ -20,7 +20,9 @@ var data = $.getJSON("assets/js/whoswho.json"),
 $(document).ajaxComplete(function() {
 	obj = $.parseJSON(data.responseText);
 
-	// scrape all values and push into specified array
+	/*****************************************************************************
+	scrape all values and push into specified array
+	*****************************************************************************/
 	function pushData(data, id, arrayName) {
 		if (data[0] !== undefined && data[0].length > 1) {
 			$.each(data, function(i, id) {
@@ -66,7 +68,9 @@ $(document).ajaxComplete(function() {
 		// populate Who's Who Details
 		$('#all-whos-who ul').append(person);
 
-		// push data into array
+		/*****************************************************************************
+		push data into array
+		*****************************************************************************/
 		pushData(whoswho.first, first, allFirst);
 		pushData(whoswho.last, last, allLast);
 		pushData(whoswho.profAssociations, profAssociations, allProfAssociations);
@@ -77,7 +81,9 @@ $(document).ajaxComplete(function() {
 		pushData(whoswho.state, state, allState);
 	});
 
-	// build industry list
+	/*****************************************************************************
+	Build industry list (<select>)
+	*****************************************************************************/
 	$.each(obj.industries, function(i, industries) {
 		var html = '<option value="'+industries+'">'+industries+'</option>';
 		$('.industry-list').append(html);
@@ -88,34 +94,64 @@ $(document).ajaxComplete(function() {
 		allCompanies.push(companies);
 	});
 
-	// apply array into auto-complete
+	/*****************************************************************************
+	Apply array into auto-complete
+	*****************************************************************************/
 	$( ".autocomplete-prof-assoc" ).autocomplete({
 		appendTo: '.overlay-main',
 		source: allProfAssociations
+	}).keyup(function (e) {
+		if(e.which === 13) {
+			$(".ui-autocomplete").hide();
+		}
 	});
 	$( ".autocomplete-civic-affil" ).autocomplete({
 		appendTo: '.overlay-main',
 		source: allCivicAffiliations
+	}).keyup(function (e) {
+		if(e.which === 13) {
+			$(".ui-autocomplete").hide();
+		}
 	});
 	$( ".autocomplete-undergraduate" ).autocomplete({
 		appendTo: '.overlay-main',
 		source: allUndergraduate
+	}).keyup(function (e) {
+		if(e.which === 13) {
+			$(".ui-autocomplete").hide();
+		}
 	});
 	$( ".autocomplete-graduate" ).autocomplete({
 		appendTo: '.overlay-main',
 		source: allGraduate
+	}).keyup(function (e) {
+		if(e.which === 13) {
+			$(".ui-autocomplete").hide();
+		}
 	});
 	$( ".autocomplete-hometown" ).autocomplete({
 		appendTo: '.overlay-main',
 		source: allHometown
+	}).keyup(function (e) {
+		if(e.which === 13) {
+			$(".ui-autocomplete").hide();
+		}
 	});
 	$( ".autocomplete-state" ).autocomplete({
 		appendTo: '.overlay-main',
 		source: allState
+	}).keyup(function (e) {
+		if(e.which === 13) {
+			$(".ui-autocomplete").hide();
+		}
 	});
 	$( ".autocomplete-company" ).autocomplete({
 		appendTo: '.overlay-main',
 		source: allCompanies
+	}).keyup(function (e) {
+		if(e.which === 13) {
+			$(".ui-autocomplete").hide();
+		}
 	});
 
 	var allData = allProfAssociations.concat(
@@ -129,6 +165,10 @@ $(document).ajaxComplete(function() {
 
 	$( "#whos-who-search" ).autocomplete({
 		source: allData
+	}).keyup(function (e) {
+		if(e.which === 13) {
+			$(".ui-autocomplete").hide();
+		}
 	});
 });
 
@@ -239,6 +279,18 @@ var questionnaire = {
 				//do nothing
 			}
 		})
+	},
+	nextQuestion : function() {
+		$('#questions').on('keydown', 'input[type="text"], select', function() {
+			$(this).parent('label').next().length;
+			if ( event.which === 13 ) {
+				if ( $(this).parent('label').next().length === 0 ) {
+					// console.log('it works!');
+					// $('#questions button[data-function="next"]').focus();
+					navigation.showNext();
+				}
+			}
+		});
 	}
 }
 
@@ -259,7 +311,7 @@ var current,
 			} else {
 				navigation.showPrev();
 			}
-			// navigation.disableButton();
+			navigation.disableButton();
 		});
 	},
 	dots : function() {
@@ -268,7 +320,7 @@ var current,
 				id = $this.attr('href');
 			navigation.getCurrent().hide().removeClass('selected').siblings(id).fadeIn('fast').addClass('selected');
 			navigation.syncHeader();
-			event.preventDefault();
+			event.preventDefault();0
 		});
 	},
 	syncHeader : function() {
@@ -278,27 +330,23 @@ var current,
 		$('#overlay-survey .controls strong').text(newTitle);
 	},
 	showPrev : function() {
-		var prev = navigation.getCurrent().prev();
-
-		prev.fadeIn('fast');
+		navigation.getCurrent().prev().fadeIn('fast');
 		navigation.getCurrent().hide().removeClass('selected').prev().addClass('selected');
 		navigation.syncHeader();
 	},
 	showNext : function() {
-		var next = navigation.getCurrent().next();
-
-		next.fadeIn('fast');
+		navigation.getCurrent().next().fadeIn('fast');
 		navigation.getCurrent().hide().removeClass('selected').next().addClass('selected');
 		navigation.syncHeader();
 	},
 	disableButton : function() {
-		if (prev.prev().length === 0) {
+		if (navigation.getCurrent().prev().length === 0) {
 			$('button[data-function="prev"]').attr('disabled','disabled');
 		} else {
 			$('button[data-function="prev"]').removeAttr('disabled');
 		}
 
-		if (next.next().length === 0) {
+		if (navigation.getCurrent().next().length === 0) {
 			$('button[data-function="next"]').attr('disabled','disabled');
 		} else {
 			$('button[data-function="next"]').removeAttr('disabled');
@@ -352,7 +400,6 @@ var search = {
 
 
 		    	if (value[0] !== undefined && value[0].length > 1) {
-		    		// console.log(value.length);
 		    		$.each(value, function(i, value) {
 		    			test(value);
 		    		});
@@ -374,11 +421,11 @@ overlay.hideItem();
 
 questionnaire.addEntry();
 questionnaire.removeEntry();
+questionnaire.nextQuestion();
 
 navigation.getCurrent();
 navigation.nextPrev();
-// navigation.toggleButtons();
-// controls.syncAnchors();
+navigation.disableButton();
 
 search.getValue();
 })();
