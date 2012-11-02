@@ -241,7 +241,7 @@ var questionnaire = {
 
 			if (entry.val()) {			
 				if (container.find('.entries').length === 0) {
-					$(document.createElement('ul')).appendTo(container).addClass('entries');
+					$(document.createElement('ul')).appendTo(container).addClass('entries').insertAfter(container.children('.multi'));
 				} else {
 					//do nothing
 				}
@@ -307,7 +307,7 @@ var current,
 		$('button[data-function="prev"],button[data-function="next"]').on('click', function() {
 			var direction = $(this).attr('data-function');
 
-			if (direction==='next') {
+			if (direction === 'next') {
 				navigation.showNext();
 			} else {
 				navigation.showPrev();
