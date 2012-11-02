@@ -80,7 +80,7 @@ $(document).ajaxComplete(function() {
 	// build industry list
 	$.each(obj.industries, function(i, industries) {
 		var html = '<option value="'+industries+'">'+industries+'</option>';
-		$('#survey-industry').append(html);
+		$('.industry-list').append(html);
 	});
 
 	// build companies list
@@ -89,32 +89,32 @@ $(document).ajaxComplete(function() {
 	});
 
 	// apply array into auto-complete
-	$( "#survey-prof-assoc" ).autocomplete({
-		appendTo: '#questions',
+	$( ".autocomplete-prof-assoc" ).autocomplete({
+		appendTo: '.overlay-main',
 		source: allProfAssociations
 	});
-	$( "#survey-civic-affil" ).autocomplete({
-		appendTo: '#questions',
+	$( ".autocomplete-civic-affil" ).autocomplete({
+		appendTo: '.overlay-main',
 		source: allCivicAffiliations
 	});
-	$( "#survey-undergraduate" ).autocomplete({
-		appendTo: '#questions',
+	$( ".autocomplete-undergraduate" ).autocomplete({
+		appendTo: '.overlay-main',
 		source: allUndergraduate
 	});
-	$( "#survey-graduate" ).autocomplete({
-		appendTo: '#questions',
+	$( ".autocomplete-graduate" ).autocomplete({
+		appendTo: '.overlay-main',
 		source: allGraduate
 	});
-	$( "#survey-hometown" ).autocomplete({
-		appendTo: '#questions',
+	$( ".autocomplete-hometown" ).autocomplete({
+		appendTo: '.overlay-main',
 		source: allHometown
 	});
-	$( "#survey-state" ).autocomplete({
-		appendTo: '#questions',
+	$( ".autocomplete-state" ).autocomplete({
+		appendTo: '.overlay-main',
 		source: allState
 	});
-	$( "#survey-company" ).autocomplete({
-		appendTo: '#questions',
+	$( ".autocomplete-company" ).autocomplete({
+		appendTo: '.overlay-main',
 		source: allCompanies
 	});
 

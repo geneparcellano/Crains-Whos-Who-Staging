@@ -387,15 +387,34 @@ Overlay - Survey
 	line-height: 1.25em;
 }
 #questions button[data-function="remove"] {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	height: 30px;
+	width: 30px;
+	margin: -15px 0 0;
+	padding: 0;
+	border: none;
+	border-radius: 0;
 	background: url(../im/icon-close.png) no-repeat center center transparent;
+	text-indent: -9999px;
+}
+#questions button[data-function="remove"]:hover {
+	background-color: #CCC;
+}
+#questions button[data-function="remove"]:active {
+	background-color: #AAA;
 }
 .ui-autocomplete {
 	position: absolute;
 	max-height: 250px;
 	width: 250px;
 	border: 1px solid #DDD;
+	border-bottom-color: #AAA;
+	border-right-color: #AAA;
 	padding: 5px;
 	background-color: #FFF;
+	box-shadow: 3px 3px 5px #333;
 	overflow: auto;
 	font: 0.75em/1.5em Helvetica, Arial, sans-serif !important;
 }
@@ -411,6 +430,7 @@ Overlay - Survey
 .ui-autocomplete li a:active {
 	background-color: #AAA;
 }
+.ui-menu .ui-menu-item { margin: 0; padding: 0; zoom: 1; width: 100%; }
 
 /*****************************************************************************
 Overlay - Your Score
@@ -570,6 +590,11 @@ Overlay - User Profile Edit
 	float: left;
 	width: 130px;
 	margin-right: 10px;
+}
+#overlay-user-profile-edit select {
+	width: 100%;
+	margin: 10px 0 20px;
+	font-size: 1em;
 }
 #overlay-user-profile-edit .name input[type="text"],
 #overlay-user-profile-edit .hometown input[type="text"] {
