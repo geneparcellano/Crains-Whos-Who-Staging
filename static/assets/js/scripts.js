@@ -281,7 +281,7 @@ var questionnaire = {
 		})
 	},
 	nextQuestion : function() {
-		$('#questions').on('keydown', 'input[type="text"]', function() {
+		$('#questions').on('keydown', 'input[type="text"], select', function() {
 			$(this).parent('label').next().length;
 			if ( event.which === 13 ) {
 				if ( $(this).parent('label').next().length === 0 ) {
