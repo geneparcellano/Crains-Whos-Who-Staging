@@ -288,6 +288,7 @@ var questionnaire = {
 					// console.log('it works!');
 					// $('#questions button[data-function="next"]').focus();
 					navigation.showNext();
+					navigation.disableButton();
 				}
 			}
 		});
