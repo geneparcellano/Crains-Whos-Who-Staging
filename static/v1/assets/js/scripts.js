@@ -251,11 +251,15 @@ var current,
 		return current = $('section.selected');
 	},
 	nextPrev : function() {
-		$('button[data-function="prev"]').on('click', function() {
-			navigation.showPrev();
-		});
-		$('button[data-function="next"]').on('click', function() {
-			navigation.showNext();
+		$('button[data-function="prev"],button[data-function="next"]').on('click', function() {
+			var direction = $(this).attr('data-function');
+
+			if (direction==='next') {
+				navigation.showNext();
+			} else {
+				navigation.showPrev();
+			}
+			// navigation.disableButton();
 		});
 	},
 	dots : function() {
@@ -266,15 +270,6 @@ var current,
 			navigation.syncHeader();
 			event.preventDefault();
 		});
-	},
-	toggleButtons : function() {
-		if ($('.rail section.selected:first-of-type')) {
-			$('button[data-function="next"]').show();
-		} else if ($('.rail section.selected:last-of-type')) {
-			$('button[data-function="prev"]').show();
-		} else {
-			$('button[data-function="prev"], .next').show();
-		}
 	},
 	syncHeader : function() {
 		var selected = 'a[href="#'+ navigation.getCurrent().attr('id') +'"]',
@@ -372,7 +367,7 @@ var search = {
 /*****************************************************************************
 Initialize
 *****************************************************************************/
-// overlay.launchItem('overlay-intro'); // launch intro
+overlay.launchItem('overlay-intro'); // launch intro
 overlay.details();
 overlay.getName();
 overlay.hideItem();
@@ -382,7 +377,7 @@ questionnaire.removeEntry();
 
 navigation.getCurrent();
 navigation.nextPrev();
-navigation.toggleButtons();
+// navigation.toggleButtons();
 // controls.syncAnchors();
 
 search.getValue();
