@@ -397,7 +397,7 @@ Overlay - Survey
 	padding: 5px;
 	background-color: #FFF;
 	overflow: auto;
-	font-family: Helvetica, Arial, sans-serif !important;
+	font: 0.75em/1.5em Helvetica, Arial, sans-serif !important;
 }
 .ui-autocomplete li a {
 	display: block;
