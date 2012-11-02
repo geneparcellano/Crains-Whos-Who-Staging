@@ -51,7 +51,7 @@ $(document).ajaxComplete(function() {
 			degree,
 			hometown,
 			state,
-			person = '<li><div class="photo"><img src="assets/im/icon-unknown.gif" height="100" width="83" alt="id" /></div>'+
+			person = '<li><div class="photo"><img src="assets/im/media/' + whoswho.img + '" height="100" width="83" alt="id" /></div>'+
 					'<h2><span>'+ whoswho.first + ' ' + whoswho.middle + ' </span>' + whoswho.last +'</h2>'+
 					'<dl><dt>Primary Company</dt><dd>'+ whoswho.primaryCo +'</dd>'+
 					'<dt>Secondary Company</dt><dd>'+ whoswho.secondaryCo +'</dd>'+
@@ -317,6 +317,7 @@ var search = {
 			var searchValue = $('.search input').val().toLowerCase();
 
 			if ( event.which === 13 ) {
+				$(".ui-autocomplete").hide();
 				search.getResults(searchValue);
 			}
 		});
@@ -332,7 +333,7 @@ var search = {
 					if ($.type(value) ==='string' && value.toLowerCase().indexOf(searchValue) !== -1) {
 						if ($.inArray(i, results) === -1) {
 							results.push(i);
-							var person = '<li><div class="photo"><img src="assets/im/icon-unknown.gif" height="100" width="83" alt="id" /></div>'+
+							var person = '<li><div class="photo"><img src="assets/im/media/' + wwdetails.img + '" height="100" width="83" alt="id" /></div>'+
 									'<h2><span>'+ wwdetails.first + ' ' + wwdetails.middle + ' </span>' + wwdetails.last +'</h2>'+
 									'<dl><dt>Primary Company</dt><dd>'+ wwdetails.primaryCo +'</dd>'+
 									'<dt>Secondary Company</dt><dd>'+ wwdetails.secondaryCo +'</dd>'+
