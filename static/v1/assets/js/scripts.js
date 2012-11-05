@@ -112,60 +112,33 @@ function initiateAutoComplete() {
 	$( ".autocomplete-prof-assoc" ).autocomplete({
 		appendTo: '.overlay-main',
 		source: allProfAssociations
-	}).keyup(function (e) {
-		if(e.which === 13) {
-			$(".ui-autocomplete").hide();
-		}
 	});
 	$( ".autocomplete-civic-affil" ).autocomplete({
 		appendTo: '.overlay-main',
 		source: allCivicAffiliations
-	}).keyup(function (e) {
-		if(e.which === 13) {
-			$(".ui-autocomplete").hide();
-		}
 	});
 	$( ".autocomplete-undergraduate" ).autocomplete({
 		appendTo: '.overlay-main',
 		source: allUndergraduate
-	}).keyup(function (e) {
-		if(e.which === 13) {
-			$(".ui-autocomplete").hide();
-		}
 	});
 	$( ".autocomplete-graduate" ).autocomplete({
 		appendTo: '.overlay-main',
 		source: allGraduate
-	}).keyup(function (e) {
-		if(e.which === 13) {
-			$(".ui-autocomplete").hide();
-		}
 	});
 	$( ".autocomplete-hometown" ).autocomplete({
 		appendTo: '.overlay-main',
 		source: allHometown
-	}).keyup(function (e) {
-		if(e.which === 13) {
-			$(".ui-autocomplete").hide();
-		}
 	});
 	$( ".autocomplete-state" ).autocomplete({
 		appendTo: '.overlay-main',
 		source: allState
-	}).keyup(function (e) {
-		if(e.which === 13) {
-			$(".ui-autocomplete").hide();
-		}
 	});
 	$( ".autocomplete-company" ).autocomplete({
 		appendTo: '.overlay-main',
 		source: allCompanies
-	}).keyup(function (e) {
-		if(e.which === 13) {
-			$(".ui-autocomplete").hide();
-		}
 	});
 
+	// concat data into one array
 	var allData = allProfAssociations.concat(
 			allFirst,
 			allLast,
@@ -178,7 +151,10 @@ function initiateAutoComplete() {
 
 	$( "#whos-who-search" ).autocomplete({
 		source: allData
-	}).keyup(function (e) {
+	});
+
+	// hide autocomplete when user enters custom term
+	$('#whos-who-2012').on('keyup', 'input[type="text"]', function (e) {
 		if(e.which === 13) {
 			$(".ui-autocomplete").hide();
 		}
@@ -382,6 +358,9 @@ var current,
 	}
 }
 
+/*****************************************************************************
+Search
+*****************************************************************************/
 var search = {
 	getValue : function() {
 		$('.search').on('keydown', 'input[type="text"]', function() {
@@ -466,9 +445,10 @@ var search = {
 	}
 }
 
+/*****************************************************************************
+Animate Grid
+*****************************************************************************/
 function animatePerson(id) {
-	// $(id + ' li:hidden').show('drop', {direction : 'down', easing : 'easeOutBack'}, 300);
-
 	if ($(id + ' li:hidden').length > 0) {
 		$(id + ' li:hidden').first().show('drop', {direction : 'right', easing : 'linear'}, 150, function() {
 			animatePerson(id);
@@ -487,7 +467,7 @@ $(document).ajaxComplete(function() {
 	compilePersonInfo();
 });
 
-overlay.launchItem('overlay-intro'); // launch intro
+// overlay.launchItem('overlay-intro'); // launch intro
 overlay.details();
 overlay.getName();
 overlay.hideItem();
