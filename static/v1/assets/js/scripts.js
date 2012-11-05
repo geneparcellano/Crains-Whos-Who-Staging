@@ -394,45 +394,61 @@ var search = {
 	getResults : function(searchValue) {
 		var results = [];
 
-		$('#all-whos-who ul').html('');
-		$.each(obj.whoswho, function(i, wwdetails) {
-		    $.each(wwdetails, function(property, value) {
+		if (searchValue) {
+			$('#filtered ul').html('')
+				.parent('#filtered').show()
+				.siblings('h1').show();
+			$.each(obj.whoswho, function(i, wwdetails) {
+				$.each(wwdetails, function(property, value) {
 
-				function test(value) {
-					if ($.type(value) ==='string' && value.toLowerCase().indexOf(searchValue) !== -1) {
-						if ($.inArray(i, results) === -1) {
-							results.push(i);
-							var person = '<li><div class="photo"><img src="assets/im/media/' + wwdetails.img + '" height="100" width="83" alt="id" /></div>'+
-									'<h2><span>'+ wwdetails.first + ' ' + wwdetails.middle + ' </span>' + wwdetails.last +'</h2>'+
-									'<dl><dt>Primary Company</dt><dd>'+ wwdetails.primaryCo +'</dd>'+
-									'<dt>Secondary Company</dt><dd>'+ wwdetails.secondaryCo +'</dd>'+
-									'<dt>Industry</dt><dd>'+ wwdetails.industry +'</dd>'+
-									'<dt>Undergraduate College</dt><dd>'+ wwdetails.undergraduate +'</dd>'+
-									'<dt>Graduate College</dt><dd>'+ wwdetails.graduate +'</dd>'+
-									'<dt>Home Town</dt><dd>'+ wwdetails.hometown +', '+ wwdetails.state +'</dd>'+
-									'<dt>Professional Associations</dt><dd>'+ wwdetails.profAssociations +'</dd>'+
-									'<dt>Civic Affiliations</dt><dd>'+ wwdetails.civicAffiliations +'</dd>'+
-									'<dt>Biography</dt><dd><a href="'+ wwdetails.url +'" target="_blank">Click here</a></dd></dl></li>';
+					function test(value) {
+						if ($.type(value) ==='string' && value.toLowerCase().indexOf(searchValue) !== -1) {
+							if ($.inArray(i, results) === -1) {
+								results.push(i);
+								var person = '<li><div class="photo"><img src="assets/im/media/' + wwdetails.img + '" height="100" width="83" alt="id" /></div>'+
+										'<h2><span>'+ wwdetails.first + ' ' + wwdetails.middle + ' </span>' + wwdetails.last +'</h2>'+
+										'<dl><dt>Primary Company</dt><dd>'+ wwdetails.primaryCo +'</dd>'+
+										'<dt>Secondary Company</dt><dd>'+ wwdetails.secondaryCo +'</dd>'+
+										'<dt>Industry</dt><dd>'+ wwdetails.industry +'</dd>'+
+										'<dt>Undergraduate College</dt><dd>'+ wwdetails.undergraduate +'</dd>'+
+										'<dt>Graduate College</dt><dd>'+ wwdetails.graduate +'</dd>'+
+										'<dt>Home Town</dt><dd>'+ wwdetails.hometown +', '+ wwdetails.state +'</dd>'+
+										'<dt>Professional Associations</dt><dd>'+ wwdetails.profAssociations +'</dd>'+
+										'<dt>Civic Affiliations</dt><dd>'+ wwdetails.civicAffiliations +'</dd>'+
+										'<dt>Biography</dt><dd><a href="'+ wwdetails.url +'" target="_blank">Click here</a></dd></dl></li>';
 
-							// populate Who's Who Details
-							$('#all-whos-who ul').append(person);
+								// populate Who's Who Details
+								$('#filtered h1 strong').text(searchValue);
+								$('#filtered ul').append(person);
+							} else {
+								//do nothing
+							}
 						} else {
-							//do nothing
+							// console.log(searchValue + "-" + value);
 						}
-					} else {
-						// console.log(searchValue + "-" + value);
 					}
-				}
 
 
-		    	if (value[0] !== undefined && value[0].length > 1) {
-		    		$.each(value, function(i, value) {
-		    			test(value);
-		    		});
-		    	} else {
-			    	test(value);
-		    	}
+					if (value[0] !== undefined && value[0].length > 1) {
+						$.each(value, function(i, value) {
+							test(value);
+						});
+					} else {
+						test(value);
+					}
+				});
 			});
+			animatePerson();
+		} else {
+			$('#filtered h1').hide().parent('#filtered').slideUp('fast');
+		}
+	}
+}
+
+function animatePerson() {
+	if ($('#filtered li:hidden').length > 0) {
+		$('#filtered li:hidden').first().show('drop', {direction : 'down'}, 'fast', function() {
+			animatePerson();
 		});
 	}
 }
