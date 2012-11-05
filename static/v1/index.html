@@ -251,50 +251,50 @@
 					<section id="question-1" class="selected">
 						<label>
 							Prefix 
-							<select name="prefix">
+							<select id="survey-prefix" name="prefix">
 								<option value="mr">Mr.</option>
 								<option value="ms">Ms.</option>
 								<option value="mrs">Mrs.</option>
 								<option value="dr">Dr.</option>
 							</select>
 						</label>
-						<label>First Name <input type="text" maxlength="128" /></label>
-						<label>Last Name <input type="text" maxlength="128" /></label>
-						<label>Suffix <input type="text" maxlength="128" /></label>
+						<label>First Name <input id="survey-first" type="text" maxlength="128" /></label>
+						<label>Last Name <input id="survey-last" type="text" maxlength="128" /></label>
+						<label>Suffix <input id="survey-suffix" type="text" maxlength="128" /></label>
 					</section>
 					<section id="question-2">
-						<label>Where do you work? <input class="autocomplete-company" type="text" maxlength="128" /></label>
+						<label>Where do you work? <input id="survey-company" class="autocomplete-company" type="text" maxlength="128" /></label>
 					</section>
 					<section id="question-3">
 						<label>
 							Industry
-							<select class="industry-list" name="prefix">
+							<select id="survey-industry" class="industry-list" name="prefix">
 								<option selected="selected">Choose...</option>
 							</select>
 						</label>
 					</section>
 					<section id="question-4">
-						<label>Undergraduate College <input class="autocomplete-undergraduate" type="text" maxlength="128" /></label>
+						<label>Undergraduate College <input id="survey-undergrad" class="autocomplete-undergraduate" type="text" maxlength="128" /></label>
 					</section>
 					<section id="question-5">
-						<label>Graduate College <input class="autocomplete-graduate" type="text" maxlength="128" /></label>
+						<label>Graduate College <input id="survey-grad" class="autocomplete-graduate" type="text" maxlength="128" /></label>
 					</section>
 					<section id="question-6">
-						<label>Hometown <input class="autocomplete-hometown" type="text" maxlength="128" /></label>
-						<label>State <input class="autocomplete-state" type="text" maxlength="128" /></label>
+						<label>Hometown <input id="survey-hometown" class="autocomplete-hometown" type="text" maxlength="128" /></label>
+						<label>State <input id="survey-state" class="autocomplete-state" type="text" maxlength="128" /></label>
 					</section>
 					<section id="question-7">
-						<div class="multi">
+						<div id="survey-prof-assoc" class="multi">
 							<label>Professional Associations <input class="autocomplete-prof-assoc" type="text" maxlength="128" placeholder="The Commercial Club" /></label>
 							<button type="button" data-function="add">Add</button>
 						</div>
 					</section>
 					<section id="question-8">
-						<div class="multi">
+						<div id="survey-civic-affil" class="multi">
 							<label>Civic Affiliations <input class="autocomplete-civic-affil" type="text" maxlength="128" placeholder="Manufacturer&rsquo;s association of America" /></label>
 							<button type="button" data-function="add">Add</button>
 						</div>
-						<button type="button" data-function="close">Done</button>
+						<button id="survey-done" type="button" data-function="close">Done</button>
 					</section>
 				</div>
 			</div>
@@ -343,32 +343,40 @@
 					</div>
 					<h2 class="user-name">John Smith</h2>
 					<ul>
-						<li>
+						<li id="profile-company" data-function="close">
 							Company
+							<strong>Abbott Laboratories</strong>
 							<span>23 Connections</span>
 						</li>
-						<li>
+						<li id="profile-prof-assoc" data-function="close">
 							Professional Associations
+							<strong>Illinois Hospital Association</strong>
 							<span>23 Connections</span>
 						</li>
-						<li>
+						<li id="profile-civic-affil" data-function="close">
 							Civic Affiliations
+							<strong>Commercial Club</strong>
 							<span>23 Connections</span>
 						</li>
-						<li>
+						<li id="profile-industry" data-function="close">
 							Industry
+							<strong>Architecture</strong>
 							<span>23 Connections</span>
 						</li>
-						<li>
+						<li id="profile-undergrad" data-function="close">
 							Undergraduate College
+							<strong>Iowa State University</strong>
 							<span>23 Connections</span>
 						</li>
-						<li>
+						<li id="profile-grad" data-function="close">
 							Graduate College
+							<strong>Harvard University
+								<strong>Chicago</strong></strong>
 							<span>23 Connections</span>
 						</li>
-						<li>
+						<li id="profile-hometown" data-function="close">
 							Hometown
+							<strong>Chicago</strong>
 							<span>23 Connections</span>
 						</li>
 					</ul>

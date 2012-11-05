@@ -60,6 +60,7 @@ function compilePersonInfo() {
 Auto Complete
 *****************************************************************************/
 function initiateAutoComplete() {
+
 	/*****************************************************************************
 	scrape all values and push into specified array
 	*****************************************************************************/
@@ -201,7 +202,7 @@ var overlayWrap = $('.overlay'),
 		});
 	},
 	hideItem : function() {
-		overlayWrap.on('click', 'button[data-function="close"], .controls button[data-function="remove"]', function() {
+		overlayWrap.on('click', '[data-function="close"], .controls button[data-function="remove"]', function() {
 			var hideOverlay = overlayWrap.fadeOut('fast').parents('body').removeClass('no-scroll'),
 				dataFunc = $(this).attr('data-function');
 
@@ -364,18 +365,18 @@ Search
 var search = {
 	getValue : function() {
 		$('.search').on('keydown', 'input[type="text"]', function() {
-			var searchValue = $('.search input').val().toLowerCase();
+			var searchTerm = $('.search input').val().toLowerCase();
 
 			if ( event.which === 13 ) {
 				$(".ui-autocomplete").hide();
-				search.getResults(searchValue);
+				search.getResults(searchTerm);
 			}
 		});
 	},
-	getResults : function(searchValue) {
+	getResults : function(searchTerm) {
 		var results = [];
 
-		if (searchValue) {
+		if (searchTerm) {
 			$('#filtered ul').html('')
 				.parent('#filtered').show()
 				.siblings('h1').show();
@@ -402,7 +403,7 @@ var search = {
 					formatData(wwdetails.civicAffiliations, civicAffiliations, formattedCivicAffiliations);
 
 					function searchNextLvl(value) {
-						if ($.type(value) ==='string' && value.toLowerCase().indexOf(searchValue) !== -1) {
+						if ($.type(value) ==='string' && value.toLowerCase().indexOf(searchTerm) !== -1) {
 							if ($.inArray(i, results) === -1) {
 								results.push(i);
 								var person = '<li><div class="photo"><img src="assets/im/media/' + wwdetails.img + '" height="100" width="83" alt="id" /></div>'+
@@ -418,13 +419,13 @@ var search = {
 										'<dt>Biography</dt><dd><a href="'+ wwdetails.url +'" target="_blank">Click here</a></dd></dl></li>';
 
 								// populate Who's Who Details
-								$('#filtered h1 strong').text(searchValue);
+								$('#filtered h1 strong').text(searchTerm);
 								$('#filtered ul').append(person);
 							} else {
 								//do nothing
 							}
 						} else {
-							// console.log(searchValue + "-" + value);
+							// console.log(searchTerm + "-" + value);
 						}
 					}
 
@@ -457,6 +458,60 @@ function animatePerson(id) {
 }
 
 /*****************************************************************************
+User Profile
+*****************************************************************************/
+var user = {
+	getInfo : function() {
+		$('#survey-done').on('click', function() {
+			var survey = $('#questions'),
+				surveyPrefix = survey.find('#survey-prefix').val(),
+				surveyFirst = survey.find('#survey-first').val(),
+				surveyLast = survey.find('#survey-last').val(),
+				surveySuffix = survey.find('#survey-suffix').val(),
+				surveyCompany  = survey.find('#survey-company').val(),
+				surveyIndustry = survey.find('#survey-industry').val(),
+				surveyUndergrad = survey.find('#survey-undergrad').val(),
+				surveyGrad = survey.find('#survey-grad').val(),
+				surveyHometown = survey.find('#survey-hometown').val(),
+				surveyState = survey.find('#survey-state').val(),
+				surveyProfAssoc = survey.find('#survey-prof-assoc').val(),
+				surveyCivicAffil = survey.find('#survey-civic-affil').val();
+
+			user.updateProfile(
+				surveyPrefix,
+				surveyFirst,
+				surveyLast,
+				surveySuffix,
+				surveyCompany,
+				surveyIndustry,
+				surveyUndergrad,
+				surveyGrad,
+				surveyHometown,
+				surveyState
+				// surveyProfAssoc,
+				// surveyCivicAffil
+			);
+		});
+	},
+	getFilter : function() {
+		$('#overlay-user-profile').on('click','li', function() {
+			var searchTerm = $(this).children('strong').text().toLowerCase();
+			console.log(searchTerm);
+			search.getResults(searchTerm);
+		});
+	},
+	updateProfile : function(surveyPrefix, surveyFirst, surveyLast, surveySuffix, surveyCompany, surveyIndustry, surveyUndergrad, surveyGrad, surveyHometown, surveyState, surveyProfAssoc, surveyCivicAffil) {
+		console.log('worked!');
+		var profile = $('#overlay-user-profile'),
+			editProfile = $('#overlay-user-profile-edit');
+
+		profile.find('#profile-company').children('strong').text(surveyCompany);
+		profile.find('#profile-prof-assoc').children('strong').text(surveyProfAssoc);
+		profile.find('#profile-civic-affil').children('strong').text(surveyCivicAffil);
+	}
+}
+
+/*****************************************************************************
 Initialize
 *****************************************************************************/
 $(document).ajaxComplete(function() {
@@ -467,7 +522,7 @@ $(document).ajaxComplete(function() {
 	compilePersonInfo();
 });
 
-// overlay.launchItem('overlay-intro'); // launch intro
+overlay.launchItem('overlay-intro'); // launch intro
 overlay.details();
 overlay.getName();
 overlay.hideItem();
@@ -481,4 +536,7 @@ navigation.nextPrev();
 navigation.disableButton();
 
 search.getValue();
+
+user.getInfo();
+user.getFilter();
 })();

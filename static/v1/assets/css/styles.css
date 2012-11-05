@@ -197,9 +197,6 @@ Who's Who Grid
 #whos-who li:active {
 	background-color: #751117;
 }
-#filtered li {
-	display: none;
-}
 #whos-who dl {
 	display: none;
 }
@@ -210,6 +207,9 @@ Who's Who Grid
 }
 #whos-who li h2 span {
 	display: none;
+}
+#filtered h1 strong {
+	text-transform: capitalize;
 }
 
 /*****************************************************************************
@@ -564,6 +564,9 @@ Overlay - User Profile
 }
 #overlay-user-profile li:active {
 	background-color: #760A04;
+}
+#overlay-user-profile li strong {
+	display: none;
 }
 #overlay-user-profile li span {
 	display: block;
