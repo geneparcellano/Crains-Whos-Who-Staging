@@ -181,6 +181,7 @@ Who's Who Grid
 	position: relative;
 }
 #whos-who li {
+	display: none;
 	float: left;
 	margin: 5px;
 	padding: 5px;

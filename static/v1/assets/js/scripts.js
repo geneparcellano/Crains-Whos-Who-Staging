@@ -19,10 +19,10 @@ var data = $.getJSON("assets/js/whoswho.json"),
 
 function compilePersonInfo() {
 	$.each(obj.whoswho, function(i, whoswho) {
-		var formattedprofAssociations = [],
-			formattedCivicAffiliations = [],
-			profAssociations,
-			civicAffiliations;
+		var	profAssociations,
+			civicAffiliations,
+			formattedProfAssociations = [],
+			formattedCivicAffiliations = [];
 
 		function formatData(array, id, newArray) {
 			if (array[0] !== undefined && array[0].length > 1) {
@@ -33,7 +33,8 @@ function compilePersonInfo() {
 				// do nothing
 			}
 		}
-		formatData(whoswho.profAssociations, profAssociations, formattedprofAssociations);
+
+		formatData(whoswho.profAssociations, profAssociations, formattedProfAssociations);
 		formatData(whoswho.civicAffiliations, civicAffiliations, formattedCivicAffiliations);
 
 		var person =
@@ -45,13 +46,14 @@ function compilePersonInfo() {
 				'<dt>Undergraduate College</dt><dd>'+ whoswho.undergraduate +'</dd>'+
 				'<dt>Graduate College</dt><dd>'+ whoswho.graduate +'</dd>'+
 				'<dt>Home Town</dt><dd>'+ whoswho.hometown +', '+ whoswho.state +'</dd>'+
-				'<dt>Professional Associations</dt><dd>'+ formattedprofAssociations +'</dd>'+
+				'<dt>Professional Associations</dt><dd>'+ formattedProfAssociations +'</dd>'+
 				'<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffiliations +'</dd>'+
 				'<dt>Biography</dt><dd><a href="'+ whoswho.url +'" target="_blank">Click here</a></dd></dl></li>';
 
 		// populate Who's Who Details
 		$('#all-whos-who ul').append(person);
 	});
+	animatePerson('#all-whos-who');
 }
 
 /*****************************************************************************
@@ -398,10 +400,29 @@ var search = {
 			$('#filtered ul').html('')
 				.parent('#filtered').show()
 				.siblings('h1').show();
+
 			$.each(obj.whoswho, function(i, wwdetails) {
 				$.each(wwdetails, function(property, value) {
 
-					function test(value) {
+					var	profAssociations,
+						civicAffiliations,
+						formattedProfAssociations = [],
+						formattedCivicAffiliations = [];
+
+					function formatData(array, id, newArray) {
+						if (array[0] !== undefined && array[0].length > 1) {
+							$.each(array, function(i, id) {
+								newArray.push(' ' + id);
+							});
+						} else {
+							// do nothing
+						}
+					}
+
+					formatData(wwdetails.profAssociations, profAssociations, formattedProfAssociations);
+					formatData(wwdetails.civicAffiliations, civicAffiliations, formattedCivicAffiliations);
+
+					function searchNextLvl(value) {
 						if ($.type(value) ==='string' && value.toLowerCase().indexOf(searchValue) !== -1) {
 							if ($.inArray(i, results) === -1) {
 								results.push(i);
@@ -413,8 +434,8 @@ var search = {
 										'<dt>Undergraduate College</dt><dd>'+ wwdetails.undergraduate +'</dd>'+
 										'<dt>Graduate College</dt><dd>'+ wwdetails.graduate +'</dd>'+
 										'<dt>Home Town</dt><dd>'+ wwdetails.hometown +', '+ wwdetails.state +'</dd>'+
-										'<dt>Professional Associations</dt><dd>'+ wwdetails.profAssociations +'</dd>'+
-										'<dt>Civic Affiliations</dt><dd>'+ wwdetails.civicAffiliations +'</dd>'+
+										'<dt>Professional Associations</dt><dd>'+ formattedProfAssociations +'</dd>'+
+										'<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffiliations +'</dd>'+
 										'<dt>Biography</dt><dd><a href="'+ wwdetails.url +'" target="_blank">Click here</a></dd></dl></li>';
 
 								// populate Who's Who Details
@@ -431,24 +452,26 @@ var search = {
 
 					if (value[0] !== undefined && value[0].length > 1) {
 						$.each(value, function(i, value) {
-							test(value);
+							searchNextLvl(value);
 						});
 					} else {
-						test(value);
+						searchNextLvl(value);
 					}
 				});
 			});
-			animatePerson();
+			animatePerson('#filtered');
 		} else {
 			$('#filtered h1').hide().parent('#filtered').slideUp('fast');
 		}
 	}
 }
 
-function animatePerson() {
-	if ($('#filtered li:hidden').length > 0) {
-		$('#filtered li:hidden').first().show('drop', {direction : 'down'}, 'fast', function() {
-			animatePerson();
+function animatePerson(id) {
+	// $(id + ' li:hidden').show('drop', {direction : 'down', easing : 'easeOutBack'}, 300);
+
+	if ($(id + ' li:hidden').length > 0) {
+		$(id + ' li:hidden').first().show('drop', {direction : 'right', easing : 'linear'}, 150, function() {
+			animatePerson(id);
 		});
 	}
 }
@@ -464,7 +487,7 @@ $(document).ajaxComplete(function() {
 	compilePersonInfo();
 });
 
-// overlay.launchItem('overlay-intro'); // launch intro
+overlay.launchItem('overlay-intro'); // launch intro
 overlay.details();
 overlay.getName();
 overlay.hideItem();
