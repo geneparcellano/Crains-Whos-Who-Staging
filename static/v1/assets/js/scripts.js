@@ -17,32 +17,72 @@ var data = $.getJSON("assets/js/whoswho.json"),
 	allState = [],
 	allData = [];
 
-$(document).ajaxComplete(function() {
-	obj = $.parseJSON(data.responseText);
+function compilePersonInfo() {
+	$.each(obj.whoswho, function(i, whoswho) {
+		var formattedprofAssociations = [],
+			formattedCivicAffiliations = [],
+			profAssociations,
+			civicAffiliations;
 
+		function formatData(array, id, newArray) {
+			if (array[0] !== undefined && array[0].length > 1) {
+				$.each(array, function(i, id) {
+					newArray.push(' ' + id);
+				});
+			} else {
+				// do nothing
+			}
+		}
+		formatData(whoswho.profAssociations, profAssociations, formattedprofAssociations);
+		formatData(whoswho.civicAffiliations, civicAffiliations, formattedCivicAffiliations);
+
+		var person =
+				'<li><div class="photo"><img src="assets/im/media/' + whoswho.img + '" height="100" width="83" alt="id" /></div>'+
+				'<h2><span>'+ whoswho.first + ' ' + whoswho.middle + ' </span>' + whoswho.last +'</h2>'+
+				'<dl><dt>Primary Company</dt><dd>'+ whoswho.primaryCo +'</dd>'+
+				'<dt>Secondary Company</dt><dd>'+ whoswho.secondaryCo +'</dd>'+
+				'<dt>Industry</dt><dd>'+ whoswho.industry +'</dd>'+
+				'<dt>Undergraduate College</dt><dd>'+ whoswho.undergraduate +'</dd>'+
+				'<dt>Graduate College</dt><dd>'+ whoswho.graduate +'</dd>'+
+				'<dt>Home Town</dt><dd>'+ whoswho.hometown +', '+ whoswho.state +'</dd>'+
+				'<dt>Professional Associations</dt><dd>'+ formattedprofAssociations +'</dd>'+
+				'<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffiliations +'</dd>'+
+				'<dt>Biography</dt><dd><a href="'+ whoswho.url +'" target="_blank">Click here</a></dd></dl></li>';
+
+		// populate Who's Who Details
+		$('#all-whos-who ul').append(person);
+	});
+}
+
+/*****************************************************************************
+Auto Complete
+*****************************************************************************/
+function initiateAutoComplete() {
 	/*****************************************************************************
 	scrape all values and push into specified array
 	*****************************************************************************/
-	function pushData(data, id, arrayName) {
-		if (data[0] !== undefined && data[0].length > 1) {
-			$.each(data, function(i, id) {
+	function pushData(array, id, newArray) {
+		if (array[0] !== undefined && array[0].length > 1) {
+			$.each(array, function(i, id) {
 				// check if value already exists
-				if ($.inArray(id, arrayName) === -1) {
-					arrayName.push(id);
+				if ($.inArray(id, newArray) === -1) {
+					newArray.push(id);
 				} else {
 					//do nothing
 				}
 			});
 		} else {
-			if ($.inArray(data, arrayName) === -1) {
-				arrayName.push(data);
+			if ($.inArray(array, newArray) === -1) {
+				newArray.push(array);
 			} else {
 				//do nothing
 			}
 		}
 	}
 
-
+	/*****************************************************************************
+	push data into array // pushData(array, id, newArray)
+	*****************************************************************************/
 	$.each(obj.whoswho, function(i, whoswho) {
 		var first,
 			last,
@@ -52,25 +92,8 @@ $(document).ajaxComplete(function() {
 			graduate,
 			degree,
 			hometown,
-			state,
-			person = '<li><div class="photo"><img src="assets/im/media/' + whoswho.img + '" height="100" width="83" alt="id" /></div>'+
-					'<h2><span>'+ whoswho.first + ' ' + whoswho.middle + ' </span>' + whoswho.last +'</h2>'+
-					'<dl><dt>Primary Company</dt><dd>'+ whoswho.primaryCo +'</dd>'+
-					'<dt>Secondary Company</dt><dd>'+ whoswho.secondaryCo +'</dd>'+
-					'<dt>Industry</dt><dd>'+ whoswho.industry +'</dd>'+
-					'<dt>Undergraduate College</dt><dd>'+ whoswho.undergraduate +'</dd>'+
-					'<dt>Graduate College</dt><dd>'+ whoswho.graduate +'</dd>'+
-					'<dt>Home Town</dt><dd>'+ whoswho.hometown +', '+ whoswho.state +'</dd>'+
-					'<dt>Professional Associations</dt><dd>'+ whoswho.profAssociations +'</dd>'+
-					'<dt>Civic Affiliations</dt><dd>'+ whoswho.civicAffiliations +'</dd>'+
-					'<dt>Biography</dt><dd><a href="'+ whoswho.url +'" target="_blank">Click here</a></dd></dl></li>';
+			state;
 
-		// populate Who's Who Details
-		$('#all-whos-who ul').append(person);
-
-		/*****************************************************************************
-		push data into array
-		*****************************************************************************/
 		pushData(whoswho.first, first, allFirst);
 		pushData(whoswho.last, last, allLast);
 		pushData(whoswho.profAssociations, profAssociations, allProfAssociations);
@@ -82,20 +105,7 @@ $(document).ajaxComplete(function() {
 	});
 
 	/*****************************************************************************
-	Build industry list (<select>)
-	*****************************************************************************/
-	$.each(obj.industries, function(i, industries) {
-		var html = '<option value="'+industries+'">'+industries+'</option>';
-		$('.industry-list').append(html);
-	});
-
-	// build companies list
-	$.each(obj.companies, function(i, companies) {
-		allCompanies.push(companies);
-	});
-
-	/*****************************************************************************
-	Apply array into auto-complete
+	Apply updated array into auto-complete fields
 	*****************************************************************************/
 	$( ".autocomplete-prof-assoc" ).autocomplete({
 		appendTo: '.overlay-main',
@@ -155,13 +165,14 @@ $(document).ajaxComplete(function() {
 	});
 
 	var allData = allProfAssociations.concat(
-		allFirst,
-		allLast,
-		allCivicAffiliations,
-		allUndergraduate,
-		allGraduate,
-		allHometown,
-		allState);
+			allFirst,
+			allLast,
+			allCivicAffiliations,
+			allUndergraduate,
+			allGraduate,
+			allHometown,
+			allState
+		);
 
 	$( "#whos-who-search" ).autocomplete({
 		source: allData
@@ -170,8 +181,22 @@ $(document).ajaxComplete(function() {
 			$(".ui-autocomplete").hide();
 		}
 	});
-});
+}
 
+/*****************************************************************************
+Build industry list (<select>)
+*****************************************************************************/
+function buildSelectOption() {
+	$.each(obj.industries, function(i, industries) {
+		var html = '<option value="'+industries+'">'+industries+'</option>';
+		$('.industry-list').append(html);
+	});
+
+	// build companies list
+	$.each(obj.companies, function(i, companies) {
+		allCompanies.push(companies);
+	});	
+}
 
 /*****************************************************************************
 Transition Grid In
@@ -373,7 +398,7 @@ var search = {
 		$.each(obj.whoswho, function(i, wwdetails) {
 		    $.each(wwdetails, function(property, value) {
 
-		    	function test(value) {		    		
+				function test(value) {
 					if ($.type(value) ==='string' && value.toLowerCase().indexOf(searchValue) !== -1) {
 						if ($.inArray(i, results) === -1) {
 							results.push(i);
@@ -397,7 +422,7 @@ var search = {
 					} else {
 						// console.log(searchValue + "-" + value);
 					}
-		    	}
+				}
 
 
 		    	if (value[0] !== undefined && value[0].length > 1) {
@@ -415,7 +440,15 @@ var search = {
 /*****************************************************************************
 Initialize
 *****************************************************************************/
-overlay.launchItem('overlay-intro'); // launch intro
+$(document).ajaxComplete(function() {
+	obj = $.parseJSON(data.responseText);
+
+	buildSelectOption();
+	initiateAutoComplete();
+	compilePersonInfo();
+});
+
+// overlay.launchItem('overlay-intro'); // launch intro
 overlay.details();
 overlay.getName();
 overlay.hideItem();
