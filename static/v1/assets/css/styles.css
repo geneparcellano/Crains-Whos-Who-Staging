@@ -194,6 +194,9 @@ Who's Who Grid
 	padding: 5px;
 	cursor: pointer;
 }
+#all-whos-who li {
+	display: block;
+}
 #whos-who li:hover {
 	background-color: #A00;
 	color: #FFF;

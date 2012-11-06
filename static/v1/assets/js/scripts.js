@@ -9,20 +9,20 @@ var data = $.getJSON("assets/js/whoswho.json"),
 	allFirst = [],
 	allLast = [],
 	allCompanies = [],
-	allProfAssociations = [],
-	allCivicAffiliations = [],
-	allUndergraduate = [],
-	allGraduate = [],
-	allHometown = [],
+	allProfAssoc = [],
+	allCivicAffil = [],
+	allUndergrad = [],
+	allGrad = [],
+	allCity = [],
 	allState = [],
 	allData = [];
 
 function compilePersonInfo() {
 	$.each(obj.whoswho, function(i, whoswho) {
-		var	profAssociations,
-			civicAffiliations,
-			formattedProfAssociations = [],
-			formattedCivicAffiliations = [];
+		var	profAssoc,
+			civicAffil,
+			formattedProfAssoc = [],
+			formattedCivicAffil = [];
 
 		function formatData(array, id, newArray) {
 			if (array[0] !== undefined && array[0].length > 1) {
@@ -34,8 +34,8 @@ function compilePersonInfo() {
 			}
 		}
 
-		formatData(whoswho.profAssociations, profAssociations, formattedProfAssociations);
-		formatData(whoswho.civicAffiliations, civicAffiliations, formattedCivicAffiliations);
+		formatData(whoswho.profAssoc, profAssoc, formattedProfAssoc);
+		formatData(whoswho.civicAffil, civicAffil, formattedCivicAffil);
 
 		var person =
 				'<li><div class="photo"><img src="assets/im/media/' + whoswho.img + '" height="100" width="83" alt="id" /></div>'+
@@ -45,15 +45,16 @@ function compilePersonInfo() {
 				'<dt>Industry</dt><dd>'+ whoswho.industry +'</dd>'+
 				'<dt>Undergraduate College</dt><dd>'+ whoswho.undergraduate +'</dd>'+
 				'<dt>Graduate College</dt><dd>'+ whoswho.graduate +'</dd>'+
-				'<dt>Home Town</dt><dd>'+ whoswho.hometown +', '+ whoswho.state +'</dd>'+
-				'<dt>Professional Associations</dt><dd>'+ formattedProfAssociations +'</dd>'+
-				'<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffiliations +'</dd>'+
+				'<dt>Home Town</dt><dd>'+ whoswho.city +', '+ whoswho.state +'</dd>'+
+				'<dt>Professional Associations</dt><dd>'+ formattedProfAssoc +'</dd>'+
+				'<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffil +'</dd>'+
 				'<dt>Biography</dt><dd><a href="'+ whoswho.url +'" target="_blank">Click here</a></dd></dl></li>';
 
 		// populate Who's Who Details
 		$('#all-whos-who ul').append(person);
 	});
-	animatePerson('#all-whos-who');
+	// animateFadePerson('#all-whos-who');
+	$('#all-whos-who').fadeIn(1300);
 }
 
 /*****************************************************************************
@@ -89,22 +90,22 @@ function initiateAutoComplete() {
 	$.each(obj.whoswho, function(i, whoswho) {
 		var first,
 			last,
-			profAssociations,
-			civicAffiliations,
+			profAssoc,
+			civicAffil,
 			undergraduate,
 			graduate,
 			degree,
-			hometown,
+			city,
 			state;
 
 		pushData(whoswho.first, first, allFirst);
 		pushData(whoswho.last, last, allLast);
-		pushData(whoswho.profAssociations, profAssociations, allProfAssociations);
-		pushData(whoswho.civicAffiliations, civicAffiliations, allCivicAffiliations);
-		pushData(whoswho.undergraduate, undergraduate, allUndergraduate);
-		pushData(whoswho.graduate, graduate, allGraduate);
-		pushData(whoswho.hometown, hometown, allHometown);
-		pushData(whoswho.state, state, allState);
+		pushData(whoswho.profAssoc, profAssoc, allProfAssoc);
+		pushData(whoswho.civicAffil, civicAffil, allCivicAffil);
+		// pushData(whoswho.undergraduate, undergraduate, allUndergrad);
+		// pushData(whoswho.graduate, graduate, allGrad);
+		// pushData(whoswho.city, city, allCity);
+		// pushData(whoswho.state, state, allState);
 	});
 
 	/*****************************************************************************
@@ -112,23 +113,23 @@ function initiateAutoComplete() {
 	*****************************************************************************/
 	$( ".autocomplete-prof-assoc" ).autocomplete({
 		appendTo: '.overlay-main',
-		source: allProfAssociations
+		source: allProfAssoc
 	});
 	$( ".autocomplete-civic-affil" ).autocomplete({
 		appendTo: '.overlay-main',
-		source: allCivicAffiliations
+		source: allCivicAffil
 	});
 	$( ".autocomplete-undergraduate" ).autocomplete({
 		appendTo: '.overlay-main',
-		source: allUndergraduate
+		source: allUndergrad
 	});
 	$( ".autocomplete-graduate" ).autocomplete({
 		appendTo: '.overlay-main',
-		source: allGraduate
+		source: allGrad
 	});
 	$( ".autocomplete-hometown" ).autocomplete({
 		appendTo: '.overlay-main',
-		source: allHometown
+		source: allCity
 	});
 	$( ".autocomplete-state" ).autocomplete({
 		appendTo: '.overlay-main',
@@ -140,13 +141,13 @@ function initiateAutoComplete() {
 	});
 
 	// concat data into one array
-	var allData = allProfAssociations.concat(
+	var allData = allProfAssoc.concat(
 			allFirst,
 			allLast,
-			allCivicAffiliations,
-			allUndergraduate,
-			allGraduate,
-			allHometown,
+			allCivicAffil,
+			allUndergrad,
+			allGrad,
+			allCity,
 			allState
 		);
 
@@ -164,7 +165,7 @@ function initiateAutoComplete() {
 
 /*****************************************************************************
 Build industry list (<select>)
-*****************************************************************************/
+****************************************************************************/
 function buildSelectOption() {
 	$.each(obj.industries, function(i, industries) {
 		var html = '<option value="'+industries+'">'+industries+'</option>';
@@ -385,14 +386,16 @@ var search = {
 			$('#filtered ul').html('')
 				.parent('#filtered').show();
 
+			// Search through all values
 			$.each(obj.whoswho, function(i, wwdetails) {
 				$.each(wwdetails, function(property, value) {
 
-					var	profAssociations,
-						civicAffiliations,
-						formattedProfAssociations = [],
-						formattedCivicAffiliations = [];
+					var	profAssoc,
+						civicAffil,
+						formattedProfAssoc = [],
+						formattedCivicAffil = [];
 
+					// Add space after comma's to fields with multiple entries.
 					function formatData(array, id, newArray) {
 						if (array[0] !== undefined && array[0].length > 1) {
 							$.each(array, function(i, id) {
@@ -403,9 +406,10 @@ var search = {
 						}
 					}
 
-					formatData(wwdetails.profAssociations, profAssociations, formattedProfAssociations);
-					formatData(wwdetails.civicAffiliations, civicAffiliations, formattedCivicAffiliations);
+					formatData(wwdetails.profAssoc, profAssoc, formattedProfAssoc);
+					formatData(wwdetails.civicAffil, civicAffil, formattedCivicAffil);
 
+					// Search properties with multiple values
 					function searchNextLvl(value) {
 						if ($.type(value) ==='string' && value.toLowerCase().indexOf(searchTerm) !== -1) {
 							if ($.inArray(i, results) === -1) {
@@ -417,23 +421,23 @@ var search = {
 										'<dt>Industry</dt><dd>'+ wwdetails.industry +'</dd>'+
 										'<dt>Undergraduate College</dt><dd>'+ wwdetails.undergraduate +'</dd>'+
 										'<dt>Graduate College</dt><dd>'+ wwdetails.graduate +'</dd>'+
-										'<dt>Home Town</dt><dd>'+ wwdetails.hometown +', '+ wwdetails.state +'</dd>'+
-										'<dt>Professional Associations</dt><dd>'+ formattedProfAssociations +'</dd>'+
-										'<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffiliations +'</dd>'+
+										'<dt>Home Town</dt><dd>'+ wwdetails.city +', '+ wwdetails.state +'</dd>'+
+										'<dt>Professional Associations</dt><dd>'+ formattedProfAssoc +'</dd>'+
+										'<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffil +'</dd>'+
 										'<dt>Biography</dt><dd><a href="'+ wwdetails.url +'" target="_blank">Click here</a></dd></dl></li>';
 
 								// populate Who's Who Details
-								$('#filtered h1 strong').text(searchTerm);
+								$('#filtered h1 strong').text(searchTerm + ' ' + i);
 								$('#filtered ul').append(person);
 							} else {
 								//do nothing
 							}
 						} else {
-							//do nothing
+							$('#filtered h1 strong').text(searchTerm);
 						}
 					}
 
-
+					// Initiate 2nd level search
 					if (value[0] !== undefined && value[0].length > 1) {
 						$.each(value, function(i, value) {
 							searchNextLvl(value);
@@ -443,7 +447,7 @@ var search = {
 					}
 				});
 			});
-			animatePerson('#filtered');
+			animateDropPerson('#filtered');
 		} else {
 			$('#filtered h1').hide().parent('#filtered').slideUp('fast').children('h1').show();
 		}
@@ -453,10 +457,18 @@ var search = {
 /*****************************************************************************
 Animate Grid
 *****************************************************************************/
-function animatePerson(id) {
+function animateDropPerson(id) {
 	if ($(id + ' li:hidden').length > 0) {
 		$(id + ' li:hidden').first().show('drop', {direction : 'right', easing : 'linear'}, 100, function() {
-			animatePerson(id);
+			animateDropPerson(id);
+		});
+	}
+}
+
+function animateFadePerson(id) {
+	if ($(id + ' li:hidden').length > 0) {
+		$(id + ' li:hidden').first().fadeIn(function() {
+			animateFadePerson(id);
 		});
 	}
 }
@@ -476,7 +488,7 @@ var user = {
 				surveyIndustry = survey.find('#survey-industry').val(),
 				surveyUndergrad = survey.find('#survey-undergrad').val(),
 				surveyGrad = survey.find('#survey-grad').val(),
-				surveyHometown = survey.find('#survey-hometown').val(),
+				surveyCity = survey.find('#survey-hometown').val(),
 				surveyState = survey.find('#survey-state').val(),
 				surveyProfAssoc = survey.find('#survey-prof-assoc').val(),
 				surveyCivicAffil = survey.find('#survey-civic-affil').val();
@@ -496,7 +508,7 @@ var user = {
 				surveyIndustry,
 				surveyUndergrad,
 				surveyGrad,
-				surveyHometown,
+				surveyCity,
 				surveyState
 				// surveyProfAssoc,
 				// surveyCivicAffil
@@ -509,7 +521,7 @@ var user = {
 			search.getResults(searchTerm);
 		});
 	},
-	updateProfile : function(surveyPrefix, surveyFirst, surveyLast, surveySuffix, surveyCompany, surveyIndustry, surveyUndergrad, surveyGrad, surveyHometown, surveyState, surveyProfAssoc, surveyCivicAffil) {
+	updateProfile : function(surveyPrefix, surveyFirst, surveyLast, surveySuffix, surveyCompany, surveyIndustry, surveyUndergrad, surveyGrad, surveyCity, surveyState, surveyProfAssoc, surveyCivicAffil) {
 		var profile = $('#overlay-user-profile'),
 			editProfile = $('#overlay-user-profile-edit');
 
@@ -528,7 +540,7 @@ var user = {
 		editProfile.find('#profile-edit-civic-affil').val(surveyCivicAffil);
 		editProfile.find('#profile-edit-undergrad').val(surveyUndergrad);
 		editProfile.find('#profile-edit-grad').val(surveyGrad);
-		editProfile.find('#profile-edit-town').val(surveyHometown);
+		editProfile.find('#profile-edit-town').val(surveyCity);
 		editProfile.find('#profile-edit-state').val(surveyState);
 	}
 }
