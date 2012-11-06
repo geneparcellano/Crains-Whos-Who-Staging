@@ -3,7 +3,7 @@ Typography
 *****************************************************************************/
 #whos-who-2012 {
 	margin-top: -5px;
-	font-size: 16px !important;
+	font-size: 14px !important;
 	line-height: 1.4545em;
 }
 /*****************************************************************************
@@ -206,6 +206,11 @@ Who's Who Grid
 }
 #whos-who li:active {
 	background-color: #751117;
+}
+#whos-who li .photo {
+	height: 100px;
+	width: 83px;
+	background: url(../im/media/icon-unknown.gif) no-repeat 0 0;
 }
 #whos-who dl {
 	display: none;
@@ -644,6 +649,11 @@ Overlay - Who's Who Details
 	position: relative;
 	padding: 10px;
 }
+#overlay-whos-who-details .photo {
+	height: 100px;
+	width: 83px;
+	background: url(../im/media/icon-unknown.gif) no-repeat 0 0;
+}
 #overlay-whos-who-details h2 {
 	border-bottom: 1px solid #CCC;
 	padding: 10px 0 5px;
@@ -658,7 +668,7 @@ Overlay - Who's Who Details
 	line-height: 1.3333em;
 }
 #overlay-whos-who-details dd {
-	margin: 0 0 15px;
+	margin: 0 0 10px;
 	font-weight: bold;
 }
 #overlay-whos-who-details strong {

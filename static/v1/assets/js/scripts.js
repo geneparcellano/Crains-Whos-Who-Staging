@@ -1,5 +1,5 @@
 (function() {
-	'use strict';
+	//'use strict';
 
 /*****************************************************************************
 Get JSON
@@ -43,12 +43,12 @@ function compilePersonInfo() {
 				'<dl><dt>Primary Company</dt><dd>'+ whoswho.primaryCo +'</dd>'+
 				'<dt>Secondary Company</dt><dd>'+ whoswho.secondaryCo +'</dd>'+
 				'<dt>Industry</dt><dd>'+ whoswho.industry +'</dd>'+
-				'<dt>Undergraduate College</dt><dd>'+ whoswho.undergraduate +'</dd>'+
-				'<dt>Graduate College</dt><dd>'+ whoswho.graduate +'</dd>'+
+				'<dt>Undergraduate College</dt><dd>'+ whoswho.undergrad +'</dd>'+
+				'<dt>Graduate College</dt><dd>'+ whoswho.grad +'</dd>'+
 				'<dt>Home Town</dt><dd>'+ whoswho.city +', '+ whoswho.state +'</dd>'+
 				'<dt>Professional Associations</dt><dd>'+ formattedProfAssoc +'</dd>'+
 				'<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffil +'</dd>'+
-				'<dt>Biography</dt><dd><a href="'+ whoswho.url +'" target="_blank">Click here</a></dd></dl></li>';
+				'<dt>Biography</dt><dd><a href="'+ whoswho.bio +'" target="_blank">Click here</a></dd></dl></li>';
 
 		// populate Who's Who Details
 		$('#all-whos-who ul').append(person);
@@ -85,7 +85,7 @@ function initiateAutoComplete() {
 	}
 
 	/*****************************************************************************
-	push data into array // pushData(array, id, newArray)
+	Push data into array, for Autocomplete feature // pushData(array, id, newArray)
 	*****************************************************************************/
 	$.each(obj.whoswho, function(i, whoswho) {
 		var first,
@@ -98,10 +98,10 @@ function initiateAutoComplete() {
 			city,
 			state;
 
-		pushData(whoswho.first, first, allFirst);
-		pushData(whoswho.last, last, allLast);
-		pushData(whoswho.profAssoc, profAssoc, allProfAssoc);
-		pushData(whoswho.civicAffil, civicAffil, allCivicAffil);
+		// pushData(whoswho.first, first, allFirst);
+		// pushData(whoswho.last, last, allLast);
+		// pushData(whoswho.profAssoc, profAssoc, allProfAssoc);
+		// pushData(whoswho.civicAffil, civicAffil, allCivicAffil);
 		// pushData(whoswho.undergraduate, undergraduate, allUndergrad);
 		// pushData(whoswho.graduate, graduate, allGrad);
 		// pushData(whoswho.city, city, allCity);
@@ -390,64 +390,72 @@ var search = {
 			$.each(obj.whoswho, function(i, wwdetails) {
 				$.each(wwdetails, function(property, value) {
 
-					var	profAssoc,
-						civicAffil,
-						formattedProfAssoc = [],
-						formattedCivicAffil = [];
+					switch (property) {
+					case "first":
+					case "last":
+					case "primaryCo":
+						var	profAssoc,
+							civicAffil,
+							formattedProfAssoc = [],
+							formattedCivicAffil = [];
 
-					// Add space after comma's to fields with multiple entries.
-					function formatData(array, id, newArray) {
-						if (array[0] !== undefined && array[0].length > 1) {
-							$.each(array, function(i, id) {
-								newArray.push(' ' + id);
+						// Add space after comma's to fields with multiple entries.
+						function formatData(array, id, newArray) {
+							if (array[0] !== undefined && array[0].length > 1) {
+								$.each(array, function(i, id) {
+									newArray.push(' ' + id);
+								});
+							} else {
+								// do nothing
+							}
+						}
+
+						formatData(wwdetails.profAssoc, profAssoc, formattedProfAssoc);
+						formatData(wwdetails.civicAffil, civicAffil, formattedCivicAffil);
+
+						// Search properties with multiple values
+						function searchNextLvl(value) {
+							if ($.type(value) ==='string' && value.toLowerCase().indexOf(searchTerm) !== -1) {
+								if ($.inArray(i, results) === -1) {
+									results.push(i);
+									var person = '<li><div class="photo"><img src="assets/im/media/' + wwdetails.img + '" height="100" width="83" alt="id" /></div>'+
+											'<h2><span>'+ wwdetails.first + ' ' + wwdetails.middle + ' </span>' + wwdetails.last +'</h2>'+
+											'<dl><dt>Primary Company</dt><dd>'+ wwdetails.primaryCo +'</dd>'+
+											'<dt>Secondary Company</dt><dd>'+ wwdetails.secondaryCo +'</dd>'+
+											'<dt>Industry</dt><dd>'+ wwdetails.industry +'</dd>'+
+											'<dt>Undergraduate College</dt><dd>'+ wwdetails.undergrad +'</dd>'+
+											'<dt>Graduate College</dt><dd>'+ wwdetails.grad +'</dd>'+
+											'<dt>Home Town</dt><dd>'+ wwdetails.city +', '+ wwdetails.state +'</dd>'+
+											'<dt>Professional Associations</dt><dd>'+ formattedProfAssoc +'</dd>'+
+											'<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffil +'</dd>'+
+											'<dt>Biography</dt><dd><a href="'+ wwdetails.bio +'" target="_blank">Click here</a></dd></dl></li>';
+
+									// populate Who's Who Details
+									$('#filtered h1 strong').text(searchTerm + ' ' + i);
+									$(person).appendTo('#filtered ul');
+								} else {
+									//do nothing
+									// console.log("Already there")
+								}
+							} else {
+								$('#filtered h1 strong').text(searchTerm);
+							}
+						}
+
+						// Initiate 2nd level search
+						if (value[0] !== undefined && value[0].length > 1) {
+							$.each(value, function(i, value) {
+								searchNextLvl(value);
 							});
 						} else {
-							// do nothing
-						}
-					}
-
-					formatData(wwdetails.profAssoc, profAssoc, formattedProfAssoc);
-					formatData(wwdetails.civicAffil, civicAffil, formattedCivicAffil);
-
-					// Search properties with multiple values
-					function searchNextLvl(value) {
-						if ($.type(value) ==='string' && value.toLowerCase().indexOf(searchTerm) !== -1) {
-							if ($.inArray(i, results) === -1) {
-								results.push(i);
-								var person = '<li><div class="photo"><img src="assets/im/media/' + wwdetails.img + '" height="100" width="83" alt="id" /></div>'+
-										'<h2><span>'+ wwdetails.first + ' ' + wwdetails.middle + ' </span>' + wwdetails.last +'</h2>'+
-										'<dl><dt>Primary Company</dt><dd>'+ wwdetails.primaryCo +'</dd>'+
-										'<dt>Secondary Company</dt><dd>'+ wwdetails.secondaryCo +'</dd>'+
-										'<dt>Industry</dt><dd>'+ wwdetails.industry +'</dd>'+
-										'<dt>Undergraduate College</dt><dd>'+ wwdetails.undergraduate +'</dd>'+
-										'<dt>Graduate College</dt><dd>'+ wwdetails.graduate +'</dd>'+
-										'<dt>Home Town</dt><dd>'+ wwdetails.city +', '+ wwdetails.state +'</dd>'+
-										'<dt>Professional Associations</dt><dd>'+ formattedProfAssoc +'</dd>'+
-										'<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffil +'</dd>'+
-										'<dt>Biography</dt><dd><a href="'+ wwdetails.url +'" target="_blank">Click here</a></dd></dl></li>';
-
-								// populate Who's Who Details
-								$('#filtered h1 strong').text(searchTerm + ' ' + i);
-								$('#filtered ul').append(person);
-							} else {
-								//do nothing
-							}
-						} else {
-							$('#filtered h1 strong').text(searchTerm);
-						}
-					}
-
-					// Initiate 2nd level search
-					if (value[0] !== undefined && value[0].length > 1) {
-						$.each(value, function(i, value) {
 							searchNextLvl(value);
-						});
-					} else {
-						searchNextLvl(value);
+						}
+					default:
+						// Do nothing
 					}
 				});
 			});
-			animateDropPerson('#filtered');
+			// animateDropPerson('#filtered');
 		} else {
 			$('#filtered h1').hide().parent('#filtered').slideUp('fast').children('h1').show();
 		}
