@@ -84,7 +84,7 @@ Buttons
 	left: 0;
 	background: url(../im/icon-pencil.png) no-repeat center center;
 }
-.overlay .controls button[data-function="save"] {
+.overlay .controls .save {
 	left: 0;
 	background: url(../im/icon-disk.png) no-repeat center center;
 }
@@ -127,12 +127,19 @@ Who's Who Control Bar
 	border: 1px solid #777;
 	border-top-color: #666;
 	border-bottom-color: #999;
-	background: url(../im/icon-search.gif) no-repeat 190px center;
 	font-size: 1em;
 	font-weight: normal;
 }
-#control-bar .search button {
-	display: none;
+#control-bar .search button[data-function="search"] {
+	position: relative;
+	height: 16px;
+	width: 16px;
+	margin: -5px 0 0 -25px;
+	border: 0;
+	padding: 0;
+	background: url(../im/icon-search.gif) no-repeat 0 0;
+	text-indent: -9999px;
+	cursor: pointer;
 }
 #control-bar .user {
 	position: absolute;

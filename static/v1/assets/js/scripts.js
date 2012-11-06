@@ -364,7 +364,8 @@ Search
 *****************************************************************************/
 var search = {
 	getValue : function() {
-		$('.search').on('keydown', 'input[type="text"]', function() {
+		var searchBar = $('.search');
+		searchBar.on('keydown', 'input[type="text"]', function() {
 			var searchTerm = $('.search input').val().toLowerCase();
 
 			if ( event.which === 13 ) {
@@ -372,14 +373,17 @@ var search = {
 				search.getResults(searchTerm);
 			}
 		});
+		searchBar.on('click', 'button[data-function="search"]', function() {
+			var searchTerm = $('.search input').val().toLowerCase();
+			search.getResults(searchTerm);
+		});
 	},
 	getResults : function(searchTerm) {
 		var results = [];
 
 		if (searchTerm) {
 			$('#filtered ul').html('')
-				.parent('#filtered').show()
-				.siblings('h1').show();
+				.parent('#filtered').show();
 
 			$.each(obj.whoswho, function(i, wwdetails) {
 				$.each(wwdetails, function(property, value) {
@@ -425,7 +429,7 @@ var search = {
 								//do nothing
 							}
 						} else {
-							// console.log(searchTerm + "-" + value);
+							//do nothing
 						}
 					}
 
@@ -441,7 +445,7 @@ var search = {
 			});
 			animatePerson('#filtered');
 		} else {
-			$('#filtered h1').hide().parent('#filtered').slideUp('fast');
+			$('#filtered h1').hide().parent('#filtered').slideUp('fast').children('h1').show();
 		}
 	}
 }
@@ -451,7 +455,7 @@ Animate Grid
 *****************************************************************************/
 function animatePerson(id) {
 	if ($(id + ' li:hidden').length > 0) {
-		$(id + ' li:hidden').first().show('drop', {direction : 'right', easing : 'linear'}, 150, function() {
+		$(id + ' li:hidden').first().show('drop', {direction : 'right', easing : 'linear'}, 100, function() {
 			animatePerson(id);
 		});
 	}
@@ -477,6 +481,12 @@ var user = {
 				surveyProfAssoc = survey.find('#survey-prof-assoc').val(),
 				surveyCivicAffil = survey.find('#survey-civic-affil').val();
 
+			localStorage.setItem('userPrefix', surveyPrefix);
+			localStorage.setItem('userName', surveyFirst);
+			localStorage.setItem('userLast', surveyLast);
+			localStorage.setItem('userSuffix', surveySuffix);
+			localStorage.setItem('userIndustry', surveyIndustry);
+
 			user.updateProfile(
 				surveyPrefix,
 				surveyFirst,
@@ -496,18 +506,30 @@ var user = {
 	getFilter : function() {
 		$('#overlay-user-profile').on('click','li', function() {
 			var searchTerm = $(this).children('strong').text().toLowerCase();
-			console.log(searchTerm);
 			search.getResults(searchTerm);
 		});
 	},
 	updateProfile : function(surveyPrefix, surveyFirst, surveyLast, surveySuffix, surveyCompany, surveyIndustry, surveyUndergrad, surveyGrad, surveyHometown, surveyState, surveyProfAssoc, surveyCivicAffil) {
-		console.log('worked!');
 		var profile = $('#overlay-user-profile'),
 			editProfile = $('#overlay-user-profile-edit');
 
+		// User Profile
+		profile.find('#profile-name').text(surveyFirst + ' ' + surveyLast);
 		profile.find('#profile-company').children('strong').text(surveyCompany);
 		profile.find('#profile-prof-assoc').children('strong').text(surveyProfAssoc);
 		profile.find('#profile-civic-affil').children('strong').text(surveyCivicAffil);
+
+		// User Profile Edit
+		editProfile.find('#profile-edit-first').val(surveyFirst);
+		editProfile.find('#profile-edit-last').val(surveyLast);
+		editProfile.find('#profile-edit-suffix').val(surveySuffix);
+		editProfile.find('#profile-edit-company').val(surveyCompany);
+		editProfile.find('#profile-edit-prof-assoc').val(surveyProfAssoc);
+		editProfile.find('#profile-edit-civic-affil').val(surveyCivicAffil);
+		editProfile.find('#profile-edit-undergrad').val(surveyUndergrad);
+		editProfile.find('#profile-edit-grad').val(surveyGrad);
+		editProfile.find('#profile-edit-town').val(surveyHometown);
+		editProfile.find('#profile-edit-state').val(surveyState);
 	}
 }
 
@@ -522,7 +544,7 @@ $(document).ajaxComplete(function() {
 	compilePersonInfo();
 });
 
-overlay.launchItem('overlay-intro'); // launch intro
+// overlay.launchItem('overlay-intro'); // launch intro
 overlay.details();
 overlay.getName();
 overlay.hideItem();

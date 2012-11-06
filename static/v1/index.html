@@ -341,7 +341,7 @@
 					<div class="score">
 						Your connection score is: <strong>417</strong>
 					</div>
-					<h2 class="user-name">John Smith</h2>
+					<h2 id="profile-name" class="user-name">John Smith</h2>
 					<ul>
 						<li id="profile-company" data-function="close">
 							Company
@@ -386,31 +386,31 @@
 				<div class="controls">
 					<strong>Edit Profile</strong>
 					<button type="button" data-function="close">Close</button>
-					<button type="button" data-function="save">Save</button>
+					<button type="button" class="save" data-function="overlay-user-profile">Save</button>
 				</div>
 				<div class="content">
 					<ul class="clearfix">
 						<li class="name clearfix">
-							<label class="name-first">First Name <input type="text" /></label>
-							<label class="name-last">Last Name <input type="text" /></label>
-							<label class="name-suffix">Suffix <input type="text" /></label>
+							<label class="name-first">First Name <input id="profile-edit-first" type="text" /></label>
+							<label class="name-last">Last Name <input id="profile-edit-last" type="text" /></label>
+							<label class="name-suffix">Suffix <input id="profile-edit-suffix" type="text" /></label>
 						</li>
-						<li><label>Where Do You Work? <input class="autocomplete-company" type="text" /></label></li>
-						<li><label>Professional Associations <input class="autocomplete-prof-assoc" type="text" /></label></li>
-						<li><label>Civic Affiliations <input class="autocomplete-civic-affil" type="text" /></label></li>
+						<li><label>Where Do You Work? <input id="profile-edit-company" class="autocomplete-company" type="text" /></label></li>
+						<li><label>Professional Associations <input id="profile-edit-prof-assoc" class="autocomplete-prof-assoc" type="text" /></label></li>
+						<li><label>Civic Affiliations <input id="profile-edit-civic-affil" class="autocomplete-civic-affil" type="text" /></label></li>
 						<li>
 							<label>
 								Industry
-								<select class="industry-list" name="prefix">
+								<select id="profile-edit-industry" class="industry-list" name="prefix">
 									<option selected="selected">Choose...</option>
 								</select>
 							</label>
 						</li>
-						<li><label>Undergraduate College <input class="autocomplete-undergraduate" type="text" /></label></li>
-						<li><label>Graduate College <input class="autocomplete-graduate" type="text" /></label></li>
+						<li><label>Undergraduate College <input  id="profile-edit-undergrad" class="autocomplete-undergraduate" type="text" /></label></li>
+						<li><label>Graduate College <input id="profile-edit-grad" class="autocomplete-graduate" type="text" /></label></li>
 						<li class="hometown clearfix">
-							<label class="hometown-town">Town <input class="autocomplete-hometown" type="text" /></label>
-							<label class="hometown-state">State <input class="autocomplete-state" type="text" /></label>
+							<label class="hometown-town">Town <input id="profile-edit-town" class="autocomplete-hometown" type="text" /></label>
+							<label class="hometown-state">State <input id="profile-edit-state" class="autocomplete-state" type="text" /></label>
 						</li>
 						<li class="linkedin-connect">LinkedIn Account <button type="button">Connect</button></li>
 					</ul>
