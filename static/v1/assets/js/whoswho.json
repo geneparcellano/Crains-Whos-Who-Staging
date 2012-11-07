@@ -88,7 +88,7 @@
 			"money": "",
 			"office": "",
 			"primaryCo": "Epstein, Chicago",
-			"primaryTitle": "Executive managing director ",
+			"primaryTitle": "Executive managing director",
 			"secondaryCo": "",
 			"secondaryTitle": "",
 			"age": 63,
@@ -122,7 +122,7 @@
 			"industry": "Architecture",
 			"bio": "http://www.studiogang.net/people/jeannegang",
 			"undergrad": "University of Illinois at Urbana-Champaign",
-			"grad": "Harvard University ",
+			"grad": "Harvard University",
 			"city": "Belvidere",
 			"state": "IL"
 		}, {
@@ -223,7 +223,7 @@
 			"bio": "",
 			"undergrad": "University of Colorado",
 			"grad": "University of Colorado",
-			"city": "Castle Rock ",
+			"city": "Castle Rock",
 			"state": "CO"
 		}, {
 			"first": "Ronald",
@@ -321,9 +321,9 @@
 			"civicAffil": ["Art Institute"],
 			"industry": "Architecture",
 			"bio": "",
-			"undergrad": "University of Michigan ",
+			"undergrad": "University of Michigan",
 			"grad": "Harvard University",
-			"city": "Grand Rapids ",
+			"city": "Grand Rapids",
 			"state": "MI"
 		}, {
 			"first": "Scott",
@@ -402,7 +402,7 @@
 			"state": "IL"
 		}, {
 			"first": "John",
-			"middle": "M. ",
+			"middle": "M.",
 			"last": "Syvertsen",
 			"suffix": "",
 			"full": "John M. Syvertsen",
@@ -447,7 +447,7 @@
 			"industry": "Architecture",
 			"bio": "",
 			"undergrad": "Yale",
-			"grad": "Yale ",
+			"grad": "Yale",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -646,13 +646,13 @@
 			"civicAffil": ["Chicago Council on Global Affairs", "Civic Committee of the Commercial Club", "Illinois Council on Economic Education", "Metropolis Strategies", "Rush University Medical Center"],
 			"industry": "Banking",
 			"bio": "http://www.chicagofed.org/webpages/people/evans_charles.cfm",
-			"undergrad": "University of Virginia ",
-			"grad": "Carnegie-Mellon University ",
+			"undergrad": "University of Virginia",
+			"grad": "Carnegie-Mellon University",
 			"city": "",
 			"state": "SC"
 		}, {
 			"first": "William",
-			"middle": "M. ",
+			"middle": "M.",
 			"last": "Farrow",
 			"suffix": "III",
 			"full": "William M. Farrow III",
@@ -826,7 +826,7 @@
 			"city": "Baraboo",
 			"state": "WI"
 		}, {
-			"first": "Tim ",
+			"first": "Tim",
 			"middle": "",
 			"last": "Maloney",
 			"suffix": "",
@@ -872,12 +872,12 @@
 			"industry": "Banking",
 			"bio": "http://www.theprivatebank.com/about-us/leadership/larry-richman",
 			"undergrad": "Bradley University",
-			"grad": "Indiana University ",
+			"grad": "Indiana University",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
 			"first": "Robert",
-			"middle": "A. ",
+			"middle": "A.",
 			"last": "Sullivan",
 			"suffix": "",
 			"full": "Robert A. Sullivan",
@@ -1488,7 +1488,7 @@
 			"money": "",
 			"office": "",
 			"primaryCo": "American Medical Association, Chicago",
-			"primaryTitle": "Executive vice president, CEO ",
+			"primaryTitle": "Executive vice president, CEO",
 			"secondaryCo": "",
 			"secondaryTitle": "",
 			"age": 61,
@@ -1496,7 +1496,7 @@
 			"civicAffil": ["Commercial Club", "Chicago Club"],
 			"industry": "Business Organizations",
 			"bio": "http://www.ama-assn.org/resources/doc/about-ama/bio-madara.pdf",
-			"undergrad": "Juniata College ",
+			"undergrad": "Juniata College",
 			"grad": "Hahnemann Medical College",
 			"city": "Altoona",
 			"state": "PA"
@@ -1621,7 +1621,7 @@
 			"civicAffil": ["Chicago Gateway Green", "Harold Washington College", "Chicago Sister Cities International"],
 			"industry": "Business Organizations",
 			"bio": "http://www.chicagolandchamber.org/wdk_cc/membership/jerry_roper.jsp",
-			"undergrad": "N/A",
+			"undergrad": "",
 			"grad": "",
 			"city": "Pittsburgh",
 			"state": "PA"
@@ -1697,7 +1697,7 @@
 			"industry": "Business Organizations",
 			"bio": "http://www.linkedin.com/pub/kevin-willer/0/58b/218",
 			"undergrad": "Boston College",
-			"grad": "University of Chicago ",
+			"grad": "University of Chicago",
 			"city": "Wilmette",
 			"state": "IL"
 		}, {
@@ -1848,7 +1848,7 @@
 			"bio": "http://www.telematltd.com/lindawalkerbynoe.html",
 			"undergrad": "Northeastern University",
 			"grad": "Harvard",
-			"city": "Washington ",
+			"city": "Washington",
 			"state": "DC"
 		}, {
 			"first": "John",
@@ -2013,7 +2013,7 @@
 			"money": "",
 			"office": "",
 			"primaryCo": "Navigant Consulting Inc., Chicago",
-			"primaryTitle": "Director, CEO ",
+			"primaryTitle": "Director, CEO",
 			"secondaryCo": "",
 			"secondaryTitle": "",
 			"age": 49,
@@ -2146,7 +2146,7 @@
 			"civicAffil": ["Art Institute", "School of the Art Institute", "WTTW-TV/Channel 11", "Millennium Park"],
 			"industry": "Business Services",
 			"bio": "http://tpctax.com/our-people/managing-directors/cary-d-mcmillan-cpa/",
-			"undergrad": "University of Illinois at Urbana-Champaign ",
+			"undergrad": "University of Illinois at Urbana-Champaign",
 			"grad": "",
 			"city": "Urbana",
 			"state": "IL"
@@ -2423,7 +2423,7 @@
 			"bio": "",
 			"undergrad": "Rutgers University",
 			"grad": "",
-			"city": "Cherry Hill, NJ",
+			"city": "Cherry Hill",
 			"state": "NJ"
 		}, {
 			"first": "Michael",
@@ -2476,7 +2476,7 @@
 			"city": "Chicago",
 			"state": "IL"
 		}, {
-			"first": "Jeff ",
+			"first": "Jeff",
 			"middle": "",
 			"last": "Karp",
 			"suffix": "",
@@ -2672,7 +2672,7 @@
 			"industry": "Construction Services",
 			"bio": "",
 			"undergrad": "Northwestern University",
-			"grad": "University of Chicago ",
+			"grad": "University of Chicago",
 			"city": "Elm Grove",
 			"state": "WI"
 		}, {
@@ -2770,7 +2770,7 @@
 			"profAssoc": ["Economic Club", "ExecutivesÍ Club", "Committee of 200"],
 			"civicAffil": ["Black Ensemble Theater", "Chicago Council on Global Affairs", "Rush University Medical Center", "American Civil Liberties Union"],
 			"industry": "Consumer Services",
-			"bio": "http://thechicagonetwork.org/associations/12770/files/Bio/HefnerC.bio.pdf ",
+			"bio": "http://thechicagonetwork.org/associations/12770/files/Bio/HefnerC.bio.pdf",
 			"undergrad": "Brandeis University",
 			"grad": "",
 			"city": "Chicago",
@@ -3176,7 +3176,7 @@
 			"city": "Kalamazoo",
 			"state": "MI"
 		}, {
-			"first": "Anthony ",
+			"first": "Anthony",
 			"middle": "",
 			"last": "Freud",
 			"suffix": "",
@@ -3196,7 +3196,7 @@
 			"civicAffil": "",
 			"industry": "Cultural Institution",
 			"bio": "http://www.lyricopera.org/about/anthony-freud.aspx",
-			"undergrad": "University of London KingÍs College ",
+			"undergrad": "University of London KingÍs College",
 			"grad": "",
 			"city": "London",
 			"state": "UK"
@@ -3447,8 +3447,8 @@
 			"industry": "Cultural Institution",
 			"bio": "http://www.steppenwolf.org/ensemble/members/details.aspx?id=9",
 			"undergrad": "",
-			"grad": "Northwestern University ",
-			"city": "Detroit ",
+			"grad": "Northwestern University",
+			"city": "Detroit",
 			"state": "MI"
 		}, {
 			"first": "John",
@@ -3595,7 +3595,7 @@
 			"profAssoc": ["League of America Orchestras", "Cultural Advisory Council for the City of Chicago", "Solti Foundation", "Arts Alliance Illinois", "Chicago Network"],
 			"civicAffil": ["Commercial Club", "Grant Park Conservancy", "University of Chicago", "After School Matters"],
 			"industry": "Cultural Institution",
-			"bio": "http://cso.org/president ",
+			"bio": "http://cso.org/president",
 			"undergrad": "Stanford University",
 			"grad": "University of Southern California",
 			"city": "",
@@ -3623,10 +3623,10 @@
 			"bio": "http://www.goodmantheatre.org/About/People-at-Goodman/Executive-Director/",
 			"undergrad": "Notre Dame",
 			"grad": "North Central College (honorary)",
-			"city": "Chicago ",
+			"city": "Chicago",
 			"state": "IL"
 		}, {
-			"first": "Sophia ",
+			"first": "Sophia",
 			"middle": "S.",
 			"last": "Siskel",
 			"suffix": "",
@@ -3647,7 +3647,7 @@
 			"industry": "Cultural Institution",
 			"bio": "http://www.chicagobotanic.org/info/senior_staff/siskel.php",
 			"undergrad": "Wellesley College- B.A. in art history and economics",
-			"grad": "Sophia holds an M.B.A. in finance and accounting from Northwestern University, and an M.A. in art history from the University of Chicago. ",
+			"grad": "Sophia holds an M.B.A. in finance and accounting from Northwestern University, and an M.A. in art history from the University of Chicago.",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -3763,7 +3763,7 @@
 			"money": "",
 			"office": "",
 			"primaryCo": "University of Illinois at Chicago, Chicago",
-			"primaryTitle": "Chancellor ",
+			"primaryTitle": "Chancellor",
 			"secondaryCo": "",
 			"secondaryTitle": "",
 			"age": 64,
@@ -3838,16 +3838,16 @@
 			"money": "",
 			"office": "",
 			"primaryCo": "Kellogg School of Management, Northwestern University, Evanston",
-			"primaryTitle": "Dean ",
+			"primaryTitle": "Dean",
 			"secondaryCo": "",
 			"secondaryTitle": "",
 			"age": 51,
 			"profAssoc": ["Abbott Laboratories", "Hong Kong University of Science and Technology Business School", "Indian School of Business", "Economic Club", "Chicago Network"],
 			"civicAffil": ["Commercial Club", "Aspen Institute", "Chicago Innovation Awards"],
 			"industry": "Education",
-			"bio": "http://www.kellogg.northwestern.edu/Dean_Blount/biography.htm ",
+			"bio": "http://www.kellogg.northwestern.edu/Dean_Blount/biography.htm",
 			"undergrad": "Princeton University",
-			"grad": "Northwestern University ",
+			"grad": "Northwestern University",
 			"city": "Madison",
 			"state": "NJ"
 		}, {
@@ -3877,7 +3877,7 @@
 			"state": "Haiti"
 		}, {
 			"first": "Donna",
-			"middle": "M. ",
+			"middle": "M.",
 			"last": "Carroll",
 			"suffix": "",
 			"full": "Donna M. Carroll",
@@ -3938,7 +3938,7 @@
 			"money": "",
 			"office": "",
 			"primaryCo": "DePaul University, Chicago",
-			"primaryTitle": "Professional director, graduate program in public relations and advertising ",
+			"primaryTitle": "Professional director, graduate program in public relations and advertising",
 			"secondaryCo": "Culp & Co., Chicago",
 			"secondaryTitle": "Principal",
 			"age": 64,
@@ -3997,7 +3997,7 @@
 			"industry": "Education",
 			"bio": "http://luc.edu/president/biography.shtml",
 			"undergrad": "Saint Louis University",
-			"grad": "New York University (MA); Weston School of Theology (MDiv); Jesuit School of Theology-Berkeley (STM); Graduate Theological Union University of California, Berkeley (PhD) ",
+			"grad": "New York University (MA); Weston School of Theology (MDiv); Jesuit School of Theology-Berkeley (STM); Graduate Theological Union University of California, Berkeley (PhD)",
 			"city": "St. Louis",
 			"state": "MO"
 		}, {
@@ -4113,7 +4113,7 @@
 			"money": "",
 			"office": "",
 			"primaryCo": "University of Chicago Booth School of Business, Chicago",
-			"primaryTitle": "Professor ",
+			"primaryTitle": "Professor",
 			"secondaryCo": "",
 			"secondaryTitle": "",
 			"age": 52,
@@ -4348,7 +4348,7 @@
 			"bio": "http://www.linkedin.com/in/johnpopoli",
 			"undergrad": "Providence College",
 			"grad": "William Paterson College and Farleigh Dickenson University",
-			"city": "Monroe Township ",
+			"city": "Monroe Township",
 			"state": "NJ"
 		}, {
 			"first": "Ellen",
@@ -4420,7 +4420,7 @@
 			"profAssoc": ["Mayor's Council of Technology Advisors", "Mayor's Cultural Advisory Council", "Illinois Innovation Council", "Rally Marketing Group", "High Tower Advisors LLC;"],
 			"civicAffil": ["Paws Chicago", "Bernard Zell Anshe Emet Endowment Committee"],
 			"industry": "Education",
-			"bio": "http://www.tullman.com/resume.asp ",
+			"bio": "http://www.tullman.com/resume.asp",
 			"undergrad": "Northwestern University",
 			"grad": "Northwestern University",
 			"city": "St. Louis",
@@ -4688,7 +4688,7 @@
 			"money": "",
 			"office": "",
 			"primaryCo": "Chicago Blackhawks, Chicago",
-			"primaryTitle": "President, CEO ",
+			"primaryTitle": "President, CEO",
 			"secondaryCo": "",
 			"secondaryTitle": "",
 			"age": 59,
@@ -4776,7 +4776,7 @@
 			"city": "Brooklyn",
 			"state": "NY"
 		}, {
-			"first": "Laura ",
+			"first": "Laura",
 			"middle": "",
 			"last": "Ricketts",
 			"suffix": "",
@@ -5051,7 +5051,7 @@
 			"city": "Chicago",
 			"state": "IL"
 		}, {
-			"first": "Philip ",
+			"first": "Philip",
 			"middle": "A.",
 			"last": "Canfield",
 			"suffix": "",
@@ -5102,7 +5102,7 @@
 			"state": "AZ"
 		}, {
 			"first": "Patrick",
-			"middle": "J. ",
+			"middle": "J.",
 			"last": "Canning",
 			"suffix": "",
 			"full": "Patrick J. Canning",
@@ -5646,7 +5646,7 @@
 			"civicAffil": ["Commercial Club", "University of Chicago Medical Center", "University of Chicago", "Goodman Theatre", "Cancer Research Foundation"],
 			"industry": "Financial Services",
 			"bio": "http://www.frontenac.com/ManagingDirectors.aspx?id=2&selection=3",
-			"undergrad": "Princeton University ",
+			"undergrad": "Princeton University",
 			"grad": "University of Pennsylvania",
 			"city": "Peoria",
 			"state": "IL"
@@ -5748,8 +5748,8 @@
 			"bio": "http://www.tjbc.com/staff/lori-healey?format=bio",
 			"undergrad": "Kansas State University",
 			"grad": "Kansas State University",
-			"city": "N/A",
-			"state": "N/A"
+			"city": "",
+			"state": ""
 		}, {
 			"first": "Emily Heisley",
 			"middle": "",
@@ -6020,7 +6020,7 @@
 			"profAssoc": ["Trunk Club", "Kapow Events", "Tap.Me", "SimpleRelevance"],
 			"civicAffil": ["Springboard Foundation"],
 			"industry": "Financial Services",
-			"bio": "http://www.linkedin.com/in/stuartlarkins ",
+			"bio": "http://www.linkedin.com/in/stuartlarkins",
 			"undergrad": "Southern Methodist University",
 			"grad": "",
 			"city": "Washington, D.C.",
@@ -6101,7 +6101,7 @@
 			"city": "Munster",
 			"state": "IN"
 		}, {
-			"first": "Matthew ",
+			"first": "Matthew",
 			"middle": "",
 			"last": "McCall",
 			"suffix": "",
@@ -6263,7 +6263,7 @@
 			"money": "",
 			"office": "",
 			"primaryCo": "Discover Financial Services, Riverwoods",
-			"primaryTitle": "Chairman, CEO ",
+			"primaryTitle": "Chairman, CEO",
 			"secondaryCo": "",
 			"secondaryTitle": "",
 			"age": 50,
@@ -6321,7 +6321,7 @@
 			"civicAffil": ["Field Museum", "Brain Research Foundation"],
 			"industry": "Financial Services",
 			"bio": "http://www.maximus.com/node/410",
-			"undergrad": "Williams College ",
+			"undergrad": "Williams College",
 			"grad": "University of Chicago",
 			"city": "Rutland",
 			"state": "VT"
@@ -6352,7 +6352,7 @@
 			"state": "IL"
 		}, {
 			"first": "Richard",
-			"middle": "S. ",
+			"middle": "S.",
 			"last": "Price",
 			"suffix": "",
 			"full": "Richard S. Price",
@@ -6673,7 +6673,7 @@
 			"bio": "www.GoodDerivatives.com",
 			"undergrad": "City College of New York, Brooklyn College",
 			"grad": "University of Minnesota",
-			"city": "New York ",
+			"city": "New York",
 			"state": "NY"
 		}, {
 			"first": "Joseph",
@@ -6851,7 +6851,7 @@
 			"city": "Chicago",
 			"state": "IL"
 		}, {
-			"first": "Stephen ",
+			"first": "Stephen",
 			"middle": "C.",
 			"last": "Van Arsdell",
 			"suffix": "",
@@ -7038,7 +7038,7 @@
 			"money": "",
 			"office": "",
 			"primaryCo": "Hillshire Brands Co., Downers Grove",
-			"primaryTitle": "Chairman ",
+			"primaryTitle": "Chairman",
 			"secondaryCo": "",
 			"secondaryTitle": "",
 			"age": 60,
@@ -7263,7 +7263,7 @@
 			"money": "",
 			"office": "",
 			"primaryCo": "Potbelly Sandwich Works LLC, Chicago",
-			"primaryTitle": "Chairman ",
+			"primaryTitle": "Chairman",
 			"secondaryCo": "",
 			"secondaryTitle": "",
 			"age": 48,
@@ -7363,7 +7363,7 @@
 			"money": "",
 			"office": "",
 			"primaryCo": "US Foods, Rosemont",
-			"primaryTitle": "Chairman ",
+			"primaryTitle": "Chairman",
 			"secondaryCo": "Clayton Dubilier & Rice LLC",
 			"secondaryTitle": "Partner",
 			"age": 66,
@@ -7401,7 +7401,7 @@
 			"city": "Chicago",
 			"state": "IL"
 		}, {
-			"first": "Tom ",
+			"first": "Tom",
 			"middle": "",
 			"last": "Long",
 			"suffix": "",
@@ -7496,7 +7496,7 @@
 			"civicAffil": "",
 			"industry": "Food",
 			"bio": "http://www.wrigley.com/global/about-us/leadership.aspx",
-			"undergrad": "Leicester University ",
+			"undergrad": "Leicester University",
 			"grad": "",
 			"city": "",
 			"state": "United Kingdom"
@@ -8276,7 +8276,7 @@
 			"city": "Shiraz",
 			"state": "Iran"
 		}, {
-			"first": "Mark ",
+			"first": "Mark",
 			"middle": "S.",
 			"last": "Kirk",
 			"suffix": "",
@@ -8297,7 +8297,7 @@
 			"industry": "Government",
 			"bio": "http://www.kirk.senate.gov/?p=about_senator",
 			"undergrad": "Cornell University",
-			"grad": "Georgetown University ",
+			"grad": "Georgetown University",
 			"city": "Champaign",
 			"state": "IL"
 		}, {
@@ -8326,7 +8326,7 @@
 			"city": "Highland Park",
 			"state": "IL"
 		}, {
-			"first": "Ray ",
+			"first": "Ray",
 			"middle": "",
 			"last": "LaHood",
 			"suffix": "",
@@ -8572,7 +8572,7 @@
 			"industry": "Government",
 			"bio": "http://www.fnal.gov/directorate/profiles/pier_oddone.html",
 			"undergrad": "MIT",
-			"grad": "Princeton ",
+			"grad": "Princeton",
 			"city": "Arequipa",
 			"state": "Peru, South America"
 		}, {
@@ -8621,7 +8621,7 @@
 			"civicAffil": ["Chicago International Film Festival"],
 			"industry": "Government",
 			"bio": "http://www.cookcountytreasurer.com/aboutus.aspx?ntopicid=73",
-			"undergrad": "West Liberty College ",
+			"undergrad": "West Liberty College",
 			"grad": "West Virginia University (MA); Loyola University of Chicago (PhD); IIT (JD)",
 			"city": "Wheeling",
 			"state": "West VA"
@@ -8651,7 +8651,7 @@
 			"city": " Chicago",
 			"state": "IL"
 		}, {
-			"first": "Toni ",
+			"first": "Toni",
 			"middle": "",
 			"last": "Preckwinkle",
 			"suffix": "",
@@ -8722,7 +8722,7 @@
 			"industry": "Government",
 			"bio": "",
 			"undergrad": "Illinois College",
-			"grad": "University of Chicago ",
+			"grad": "University of Chicago",
 			"city": "Springfield",
 			"state": "IL"
 		}, {
@@ -8920,7 +8920,7 @@
 			"profAssoc": ["CFA Society of Chicago"],
 			"civicAffil": "",
 			"industry": "Government",
-			"bio": "http://www.linkedin.com/pub/david-vaught/8/4bb/9b5 ",
+			"bio": "http://www.linkedin.com/pub/david-vaught/8/4bb/9b5",
 			"undergrad": "United States Military Academy at West Point, NY",
 			"grad": "Southern Illinois University",
 			"city": "Burnt Prairie",
@@ -9013,7 +9013,7 @@
 			"money": "",
 			"office": "",
 			"primaryCo": "Presence Health, Chicago",
-			"primaryTitle": "President, CEO ",
+			"primaryTitle": "President, CEO",
 			"secondaryCo": "",
 			"secondaryTitle": "",
 			"age": 66,
@@ -9221,7 +9221,7 @@
 			"civicAffil": ["Commercial Club", "City Club", "Chicago Club"],
 			"industry": "Health Care",
 			"bio": "http://www.luriechildrens.org/en-us/about-us/Pages/our-ceo.aspx",
-			"undergrad": "Western Illinois University ",
+			"undergrad": "Western Illinois University",
 			"grad": "University of Illinois at Chicago",
 			"city": "Wheeling",
 			"state": "IL"
@@ -9273,7 +9273,7 @@
 			"bio": "",
 			"undergrad": "Cornell University",
 			"grad": "Cornell University",
-			"city": "Winnetka ",
+			"city": "Winnetka",
 			"state": "IL"
 		}, {
 			"first": "Mark",
@@ -9727,8 +9727,8 @@
 			"state": "IL"
 		}, {
 			"first": "Patricia",
-			"middle": "Hemingway",
-			"last": "Hall",
+			"middle": "",
+			"last": "Hemingway Hall",
 			"suffix": "",
 			"full": "Patricia Hemingway Hall",
 			"img": "Hemingway_Hall_Patricia_2012.jpg",
@@ -9797,7 +9797,7 @@
 			"industry": "Insurance",
 			"bio": "http://www.cna.com/portal/site/cna/menuitem.8a947ca1d2d625c3b892ba97556631a0/?vgnextoid=11712fc233007010VgnVCM1000005566130aRCRD&vgnextfmt=detail",
 			"undergrad": "Adelphi University",
-			"grad": "Widener University ",
+			"grad": "Widener University",
 			"city": "Garden City",
 			"state": "NY"
 		}, {
@@ -10197,7 +10197,7 @@
 			"industry": "Law",
 			"bio": "http://www.kattenlaw.com/richard-daley/",
 			"undergrad": "DePaul University",
-			"grad": "DePaul University ",
+			"grad": "DePaul University",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -10296,8 +10296,8 @@
 			"civicAffil": ["Ann & Robert H. Lurie Children's Hospital", "John G. Shedd Aquarium", "United Way Crusade of Mercy", "Chicago Club", "Epilepsy Foundation of Greater Chicago"],
 			"industry": "Law",
 			"bio": "http://www.mayerbrown.com/people/tyrone-c-fahner",
-			"undergrad": "University of Michigan ",
-			"grad": "Wayne State University Law School, Northwestern University ",
+			"undergrad": "University of Michigan",
+			"grad": "Wayne State University Law School, Northwestern University",
 			"city": "Detroit",
 			"state": "MI"
 		}, {
@@ -10321,7 +10321,7 @@
 			"civicAffil": ["University of Notre Dame Law School"],
 			"industry": "Law",
 			"bio": "http://www.winston.com/index.cfm?contentID=24&itemID=11037",
-			"undergrad": "University of Notre Dame ",
+			"undergrad": "University of Notre Dame",
 			"grad": "University of Notre Dame",
 			"city": "Joliet",
 			"state": "IL"
@@ -10346,7 +10346,7 @@
 			"civicAffil": ["Commercial Club", "Metropolitan Planning Council", "Advance Illinois"],
 			"industry": "Law",
 			"bio": "http://www.franczek.com/attorneys-23.html",
-			"undergrad": "University of Notre Dame ",
+			"undergrad": "University of Notre Dame",
 			"grad": "University of Chicago",
 			"city": "Harvey",
 			"state": "IL"
@@ -11202,7 +11202,7 @@
 			"state": "Ontario"
 		}, {
 			"first": "James",
-			"middle": "W. ",
+			"middle": "W.",
 			"last": "Farrell",
 			"suffix": "",
 			"full": "W. James Farrell",
@@ -11496,7 +11496,7 @@
 			"civicAffil": ["Chicago Council on Global Affairs"],
 			"industry": "Manufacturing",
 			"bio": "http://www.arcelormittal.com/corp/who-we-are/leadership/group-management-board",
-			"undergrad": "Georgetown University ",
+			"undergrad": "Georgetown University",
 			"grad": "American University",
 			"city": "Chicago",
 			"state": "IL"
@@ -11746,7 +11746,7 @@
 			"civicAffil": ["March of Dimes", "White Sox Charities", "Chicago Bulls Charities", "Chicago Blackhawks Charities", "Chicago Cubs Charities", "Special Olympics Illinois"],
 			"industry": "Media/Marketing",
 			"bio": "",
-			"undergrad": "N/A",
+			"undergrad": "",
 			"grad": "",
 			"city": "St. Louis",
 			"state": "MO"
@@ -11973,10 +11973,10 @@
 			"bio": "http://www.hubbardradio.com/corporate/pages/drewmhorowitz.php",
 			"undergrad": "Temple University",
 			"grad": "",
-			"city": "Allentown ",
+			"city": "Allentown",
 			"state": "PA"
 		}, {
-			"first": "Susan ",
+			"first": "Susan",
 			"middle": "",
 			"last": "Howe",
 			"suffix": "",
@@ -12098,7 +12098,7 @@
 			"bio": "http://jtpr.com/bio/rick-jasculca",
 			"undergrad": "DePaul University",
 			"grad": "",
-			"city": "Chicago ",
+			"city": "Chicago",
 			"state": "IL"
 		}, {
 			"first": "Daniel",
@@ -12246,7 +12246,7 @@
 			"civicAffil": ["Marquette University College of Business", "Mercy Home for Boys and Girls"],
 			"industry": "Media/Marketing",
 			"bio": "http://www.suntimesmediaholdings.com/about.html",
-			"undergrad": "Marquette University ",
+			"undergrad": "Marquette University",
 			"grad": "DePaul University",
 			"city": "Flint",
 			"state": "MI"
@@ -12673,7 +12673,7 @@
 			"bio": "http://jtpr.com/bio/jim-terman",
 			"undergrad": "University of Denver",
 			"grad": "IIT Chicago - Kent College of Law",
-			"city": "Chicago ",
+			"city": "Chicago",
 			"state": "IL"
 		}, {
 			"first": "Lawrence",
@@ -12727,7 +12727,7 @@
 			"state": "IL"
 		}, {
 			"first": "Rodney",
-			"middle": "A. ",
+			"middle": "A.",
 			"last": "Zimmerman",
 			"suffix": "",
 			"full": "Rodney A. Zimmerman",
@@ -13376,7 +13376,7 @@
 			"city": "Solapur",
 			"state": "Maharashtra, India"
 		}, {
-			"first": "Modesto ",
+			"first": "Modesto",
 			"middle": "",
 			"last": "Valle",
 			"suffix": "",
@@ -13747,7 +13747,7 @@
 			"industry": "Real Estate",
 			"bio": "http://www.magellandevelopment.com/chicago-real-estate/our-team/joel-carlins",
 			"undergrad": "University of Illinois",
-			"grad": "DePaul University ",
+			"grad": "DePaul University",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -14045,7 +14045,7 @@
 			"profAssoc": ["Industry Real Estate Financing Advisory Council", "American Hotel and Lodging Educational Institute", "National Association of Real Estate Investment Trusts", "James A. Graaskamp Center for Real Estate at the University of Wisconsin"],
 			"civicAffil": ["Ann & Robert H. Lurie Children's Hospital", "Churchill Centre", "UNICEF", "American Jewish Committee", "Choose Chicago"],
 			"industry": "Real Estate",
-			"bio": "http://www.strategichotels.com/laurence_geller.php ",
+			"bio": "http://www.strategichotels.com/laurence_geller.php",
 			"undergrad": "Ealing Technical College, London",
 			"grad": "",
 			"city": "London, UK",
@@ -14938,7 +14938,7 @@
 			"money": "",
 			"office": "",
 			"primaryCo": "HSA Commercial Real Estate, Chicago",
-			"primaryTitle": "Vice chairman, CEO ",
+			"primaryTitle": "Vice chairman, CEO",
 			"secondaryCo": "",
 			"secondaryTitle": "",
 			"age": 56,
@@ -15252,7 +15252,7 @@
 			"state": "IL"
 		}, {
 			"first": "Chuck",
-			"middle": "S. ",
+			"middle": "S.",
 			"last": "Rubin",
 			"suffix": "",
 			"full": "Chuck S. Rubin",
@@ -15620,7 +15620,7 @@
 			"profAssoc": ["LiquidPlanner Inc.", "Mayor's Council of Technology Advisors"],
 			"civicAffil": ["City of Chicago Technology Advisory Council"],
 			"industry": "Technology",
-			"bio": "http://phx.corporate-ir.net/phoenix.zhtml?c=212312&p=irol-govBio&ID=167816 ",
+			"bio": "http://phx.corporate-ir.net/phoenix.zhtml?c=212312&p=irol-govBio&ID=167816",
 			"undergrad": "Cambridge University, U.K.",
 			"grad": "INSEAD The Business School for the World",
 			"city": "Manchester, England",
@@ -15677,7 +15677,7 @@
 			"state": "MI"
 		}, {
 			"first": "Ross",
-			"middle": "W. ",
+			"middle": "W.",
 			"last": "Manire",
 			"suffix": "",
 			"full": "Ross W. Manire",
@@ -16023,7 +16023,7 @@
 			"bio": "http://www.aa.com/i18n/amrcorp/corporateInformation/bios/tedeschi.jsp",
 			"undergrad": "East Surry College",
 			"grad": "",
-			"city": "n/a",
+			"city": "",
 			"state": "Italy"
 		}, {
 			"first": "Douglas",
@@ -16051,7 +16051,7 @@
 			"city": "Walnut Creek, CA",
 			"state": "CA"
 		}, {
-			"first": "Thomas ",
+			"first": "Thomas",
 			"middle": "F.",
 			"last": "Wells",
 			"suffix": "",
@@ -16327,7 +16327,7 @@
 		"Centrum Partners LLC, Chicago",
 		"CF Industries Holdings Inc., Deerfield",
 		"CGN Blackwell, Chicago",
-		"Chairman, investment banking, Americas<br> Vice-chairman ",
+		"Chairman, investment banking, Americas<br> Vice-chairman",
 		"Challenger Gray & Christmas Inc., Chicago",
 		"Charlie TrotterÕs, Chicago",
 		"Charter One / RBS Citizens N.A., Chicago",

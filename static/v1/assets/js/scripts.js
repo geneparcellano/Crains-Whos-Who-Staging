@@ -34,33 +34,98 @@ function compilePersonInfo() {
 			}
 		}
 
-		formatData(whoswho.profAssoc, profAssoc, formattedProfAssoc);
-		formatData(whoswho.civicAffil, civicAffil, formattedCivicAffil);
-
+		// Power 50
 		if (whoswho.pwr50) {
 			htmlPwr50 = '<div class="pwr50">Power 50</div>';
 		} else {
 			htmlPwr50 = '';
 		}
 
+		// Primary Company
+		if (whoswho.primaryCo) {
+			htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>'+ whoswho.primaryCo +'</dd>';
+		} else {
+			htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>--</dd>'
+		}
+
+		// Secondary Company
 		if (whoswho.secondaryCo) {
 			htmlSecondaryCo = '<dt>Secondary Company</dt><dd>'+ whoswho.secondaryCo +'</dd>';
 		} else {
-			htmlSecondaryCo = '';
+			htmlSecondaryCo = '<dt>Secondary Company</dt><dd>--</dd>';
+		}
+
+		// Hometown
+		if (whoswho.city && whoswho.state) {
+			htmlHometown = '<dt>Home Town</dt><dd>'+ whoswho.city +', '+ whoswho.state +'</dd>';
+		} else if (whoswho.city) {
+			htmlHometown = '<dt>Home Town</dt><dd>'+ whoswho.city +'</dd>';
+		} else if (whoswho.state) {
+			htmlHometown = '<dt>Home Town</dt><dd>'+ whoswho.state +'</dd>';
+		} else {
+			htmlHometown = '<dt>Home Town</dt><dd>--</dd>';
+		}
+
+		if (whoswho.industry) {
+			htmlIndustry = '<dt>Industry</dt><dd>'+ whoswho.industry +'</dd>';
+		} else {
+			htmlIndustry = '<dt>Industry</dt><dd>--</dd>';
+		}
+
+		// Undergraduate College
+		if (whoswho.undergrad) {
+			htmlUndergrad = '<dt>Undergraduate College</dt><dd>'+ whoswho.undergrad +'</dd>';
+		} else {
+			htmlUndergrad = '<dt>Undergraduate College</dt><dd>--</dd>';
+		}
+
+		// Graduate College
+		if (whoswho.grad) {
+			htmlGrad = '<dt>Graduate College</dt><dd>'+ whoswho.grad +'</dd>';
+		} else {
+			htmlGrad = '<dt>Graduate College</dt><dd>--</dd>';
+		}
+
+		// Professional Association
+		if (whoswho.profAssoc) {
+			formatData(whoswho.profAssoc, profAssoc, formattedProfAssoc);
+			htmlProfAssoc = '<dt>Professional Associations</dt><dd>'+ formattedProfAssoc +'</dd>';
+		} else {
+			htmlProfAssoc = '<dt>Professional Associations</dt><dd>--</dd>';
+		}
+
+		// Civic Affiliation
+		if (whoswho.civicAffil) {
+			formatData(whoswho.civicAffil, civicAffil, formattedCivicAffil);
+			htmlCivicAffil = '<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffil +'</dd>';
+		} else {
+			htmlCivicAffil = '<dt>Civic Affiliations</dt><dd>--</dd>';
+		}
+
+		// Biography Link
+		if (whoswho.bio) {
+			htmlBio = '<dt>Biography</dt><dd><a href="'+ whoswho.bio +'" target="_blank">Click here</a></dd></dl>';
+		} else {
+			htmlBio = '<dt>Biography</dt><dd>--</dd></dl>';
 		}
 
 		var htmlImage = '<div class="photo"><img src="assets/im/media/' + whoswho.img + '" height="100" width="83" alt="" /></div>',
 			htmlName = '<h2><span>'+ whoswho.first + ' ' + whoswho.middle + ' </span>' + whoswho.last +'</h2>',
-			htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>'+ whoswho.primaryCo +'</dd>',
 			person =
-				'<li>'+ htmlImage + htmlPwr50 + htmlName + htmlPrimaryCo + htmlSecondaryCo +
-				'<dt>Industry</dt><dd>'+ whoswho.industry +'</dd>'+
-				'<dt>Undergraduate College</dt><dd>'+ whoswho.undergrad +'</dd>'+
-				'<dt>Graduate College</dt><dd>'+ whoswho.grad +'</dd>'+
-				'<dt>Home Town</dt><dd>'+ whoswho.city +', '+ whoswho.state +'</dd>'+
-				'<dt>Professional Associations</dt><dd>'+ formattedProfAssoc +'</dd>'+
-				'<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffil +'</dd>'+
-				'<dt>Biography</dt><dd><a href="'+ whoswho.bio +'" target="_blank">Click here</a></dd></dl></li>';
+				'<li>'+
+					htmlImage +
+					htmlPwr50 +
+					htmlName +
+					htmlPrimaryCo +
+					htmlSecondaryCo +
+					htmlIndustry +
+					htmlUndergrad +
+					htmlGrad +
+					htmlHometown +
+					htmlProfAssoc +
+					htmlCivicAffil+
+					htmlBio +
+				'</li>';
 
 		// populate Who's Who Details
 		$('#all-whos-who ul').append(person);
@@ -110,9 +175,9 @@ function initiateAutoComplete() {
 			city,
 			state;
 
-		// pushData(whoswho.first, first, allFirst);
-		// pushData(whoswho.last, last, allLast);
-		// pushData(whoswho.profAssoc, profAssoc, allProfAssoc);
+		pushData(whoswho.first, first, allFirst);
+		pushData(whoswho.last, last, allLast);
+		pushData(whoswho.profAssoc, profAssoc, allProfAssoc);
 		// pushData(whoswho.civicAffil, civicAffil, allCivicAffil);
 		// pushData(whoswho.undergraduate, undergraduate, allUndergrad);
 		// pushData(whoswho.graduate, graduate, allGrad);
@@ -120,7 +185,7 @@ function initiateAutoComplete() {
 		// pushData(whoswho.state, state, allState);
 
 		// build companies list
-		pushData(obj.companies, companies, allCompanies);
+		// pushData(obj.companies, companies, allCompanies);
 		// $.each(obj.companies, function(i, companies) {
 		// 	allCompanies.push(companies);
 		// });	
@@ -413,8 +478,9 @@ var search = {
 			$(container + ' ul').html('').parent(container).show();
 
 			// Search through all values
-			$.each(obj.whoswho, function(i, wwdetails) {
-				$.each(wwdetails, function(property, value) {
+			$.each(obj.whoswho, function(i, wwwdetails) {
+				$.each(wwwdetails, function(property, value) {
+
 					switch (property) {
 					case "first":
 					case "last":
@@ -422,9 +488,10 @@ var search = {
 					case "industry" :
 					case "profAssoc":
 					case "civicAffil":
+					case "undergrad":
+					case "grad":
 						var	profAssoc,
 							civicAffil,
-							count = 0,
 							formattedProfAssoc = [],
 							formattedCivicAffil = [];
 
@@ -432,17 +499,110 @@ var search = {
 						function showMatches(value) {						
 							if ($.type(value) ==='string' && value.toLowerCase().indexOf(searchTerm) !== -1 && $.inArray(i, results) === -1) {
 								results.push(i);
-								var person = '<li><div class="photo"><img src="assets/im/media/' + wwdetails.img + '" height="100" width="83" alt="" /></div>'+
-									'<h2><span>'+ wwdetails.first + ' ' + wwdetails.middle + ' </span>' + wwdetails.last +'</h2>'+
-									'<dl><dt>Primary Company</dt><dd>'+ wwdetails.primaryCo +'</dd>'+
-									'<dt>Secondary Company</dt><dd>'+ wwdetails.secondaryCo +'</dd>'+
-									'<dt>Industry</dt><dd>'+ wwdetails.industry +'</dd>'+
-									'<dt>Undergraduate College</dt><dd>'+ wwdetails.undergrad +'</dd>'+
-									'<dt>Graduate College</dt><dd>'+ wwdetails.grad +'</dd>'+
-									'<dt>Home Town</dt><dd>'+ wwdetails.city +', '+ wwdetails.state +'</dd>'+
-									'<dt>Professional Associations</dt><dd>'+ formattedProfAssoc +'</dd>'+
-									'<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffil +'</dd>'+
-									'<dt>Biography</dt><dd><a href="'+ wwdetails.bio +'" target="_blank">Click here</a></dd></dl></li>';
+
+
+								function formatData(array, id, newArray) {
+									if (array[0] !== undefined && array[0].length > 1) {
+										$.each(array, function(i, id) {
+											newArray.push(' ' + id);
+										});
+									} else {
+										// do nothing
+									}
+								}
+
+								// Power 50
+								if (wwwdetails.pwr50) {
+									htmlPwr50 = '<div class="pwr50">Power 50</div>';
+								} else {
+									htmlPwr50 = '';
+								}
+
+								// Primary Company
+								if (wwwdetails.primaryCo) {
+									htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>'+ wwwdetails.primaryCo +'</dd>';
+								} else {
+									htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>--</dd>'
+								}
+
+								// Secondary Company
+								if (wwwdetails.secondaryCo) {
+									htmlSecondaryCo = '<dt>Secondary Company</dt><dd>'+ wwwdetails.secondaryCo +'</dd>';
+								} else {
+									htmlSecondaryCo = '<dt>Secondary Company</dt><dd>--</dd>';
+								}
+
+								// Hometown
+								if (wwwdetails.city && wwwdetails.state) {
+									htmlHometown = '<dt>Home Town</dt><dd>'+ wwwdetails.city +', '+ wwwdetails.state +'</dd>';
+								} else if (wwwdetails.city) {
+									htmlHometown = '<dt>Home Town</dt><dd>'+ wwwdetails.city +'</dd>';
+								} else if (wwwdetails.state) {
+									htmlHometown = '<dt>Home Town</dt><dd>'+ wwwdetails.state +'</dd>';
+								} else {
+									htmlHometown = '<dt>Home Town</dt><dd>--</dd>';
+								}
+
+								if (wwwdetails.industry) {
+									htmlIndustry = '<dt>Industry</dt><dd>'+ wwwdetails.industry +'</dd>';
+								} else {
+									htmlIndustry = '<dt>Industry</dt><dd>--</dd>';
+								}
+
+								// Undergraduate College
+								if (wwwdetails.undergrad) {
+									htmlUndergrad = '<dt>Undergraduate College</dt><dd>'+ wwwdetails.undergrad +'</dd>';
+								} else {
+									htmlUndergrad = '<dt>Undergraduate College</dt><dd>--</dd>';
+								}
+
+								// Graduate College
+								if (wwwdetails.grad) {
+									htmlGrad = '<dt>Graduate College</dt><dd>'+ wwwdetails.grad +'</dd>';
+								} else {
+									htmlGrad = '<dt>Graduate College</dt><dd>--</dd>';
+								}
+
+								// Professional Association
+								if (wwwdetails.profAssoc) {
+									formatData(wwwdetails.profAssoc, profAssoc, formattedProfAssoc);
+									htmlProfAssoc = '<dt>Professional Associations</dt><dd>'+ formattedProfAssoc +'</dd>';
+								} else {
+									htmlProfAssoc = '<dt>Professional Associations</dt><dd>--</dd>';
+								}
+
+								// Civic Affiliation
+								if (wwwdetails.civicAffil) {
+									formatData(wwwdetails.civicAffil, civicAffil, formattedCivicAffil);
+									htmlCivicAffil = '<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffil +'</dd>';
+								} else {
+									htmlCivicAffil = '<dt>Civic Affiliations</dt><dd>--</dd>';
+								}
+
+								// Biography Link
+								if (wwwdetails.bio) {
+									htmlBio = '<dt>Biography</dt><dd><a href="'+ wwwdetails.bio +'" target="_blank">Click here</a></dd></dl>';
+								} else {
+									htmlBio = '<dt>Biography</dt><dd>--</dd></dl>';
+								}
+								
+								var htmlImage = '<div class="photo"><img src="assets/im/media/' + wwwdetails.img + '" height="100" width="83" alt="" /></div>',
+									htmlName = '<h2><span>'+ wwwdetails.first + ' ' + wwwdetails.middle + ' </span>' + wwwdetails.last +'</h2>',
+									person =
+										'<li>'+
+											htmlImage +
+											htmlPwr50 +
+											htmlName +
+											htmlPrimaryCo +
+											htmlSecondaryCo +
+											htmlIndustry +
+											htmlUndergrad +
+											htmlGrad +
+											htmlHometown +
+											htmlProfAssoc +
+											htmlCivicAffil+
+											htmlBio +
+										'</li>';
 
 								// populate Who's Who Details
 								$(container + ' h1 strong').text(searchTerm + ' (Results: ' + results.length + ')');
