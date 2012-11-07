@@ -38,15 +38,22 @@ function compilePersonInfo() {
 		formatData(whoswho.civicAffil, civicAffil, formattedCivicAffil);
 
 		if (whoswho.pwr50) {
-			// console.log('yes');
+			htmlPwr50 = '<div class="pwr50">Power 50</div>';
+		} else {
+			htmlPwr50 = '';
+		}
+
+		if (whoswho.secondaryCo) {
+			htmlSecondaryCo = '<dt>Secondary Company</dt><dd>'+ whoswho.secondaryCo +'</dd>';
+		} else {
+			htmlSecondaryCo = '';
 		}
 
 		var htmlImage = '<div class="photo"><img src="assets/im/media/' + whoswho.img + '" height="100" width="83" alt="" /></div>',
+			htmlName = '<h2><span>'+ whoswho.first + ' ' + whoswho.middle + ' </span>' + whoswho.last +'</h2>',
+			htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>'+ whoswho.primaryCo +'</dd>',
 			person =
-				'<li>'+ htmlImage +
-				'<h2><span>'+ whoswho.first + ' ' + whoswho.middle + ' </span>' + whoswho.last +'</h2>'+
-				'<dl><dt>Primary Company</dt><dd>'+ whoswho.primaryCo +'</dd>'+
-				'<dt>Secondary Company</dt><dd>'+ whoswho.secondaryCo +'</dd>'+
+				'<li>'+ htmlImage + htmlPwr50 + htmlName + htmlPrimaryCo + htmlSecondaryCo +
 				'<dt>Industry</dt><dd>'+ whoswho.industry +'</dd>'+
 				'<dt>Undergraduate College</dt><dd>'+ whoswho.undergrad +'</dd>'+
 				'<dt>Graduate College</dt><dd>'+ whoswho.grad +'</dd>'+
@@ -426,16 +433,16 @@ var search = {
 							if ($.type(value) ==='string' && value.toLowerCase().indexOf(searchTerm) !== -1 && $.inArray(i, results) === -1) {
 								results.push(i);
 								var person = '<li><div class="photo"><img src="assets/im/media/' + wwdetails.img + '" height="100" width="83" alt="" /></div>'+
-										'<h2><span>'+ wwdetails.first + ' ' + wwdetails.middle + ' </span>' + wwdetails.last +'</h2>'+
-										'<dl><dt>Primary Company</dt><dd>'+ wwdetails.primaryCo +'</dd>'+
-										'<dt>Secondary Company</dt><dd>'+ wwdetails.secondaryCo +'</dd>'+
-										'<dt>Industry</dt><dd>'+ wwdetails.industry +'</dd>'+
-										'<dt>Undergraduate College</dt><dd>'+ wwdetails.undergrad +'</dd>'+
-										'<dt>Graduate College</dt><dd>'+ wwdetails.grad +'</dd>'+
-										'<dt>Home Town</dt><dd>'+ wwdetails.city +', '+ wwdetails.state +'</dd>'+
-										'<dt>Professional Associations</dt><dd>'+ formattedProfAssoc +'</dd>'+
-										'<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffil +'</dd>'+
-										'<dt>Biography</dt><dd><a href="'+ wwdetails.bio +'" target="_blank">Click here</a></dd></dl></li>';
+									'<h2><span>'+ wwdetails.first + ' ' + wwdetails.middle + ' </span>' + wwdetails.last +'</h2>'+
+									'<dl><dt>Primary Company</dt><dd>'+ wwdetails.primaryCo +'</dd>'+
+									'<dt>Secondary Company</dt><dd>'+ wwdetails.secondaryCo +'</dd>'+
+									'<dt>Industry</dt><dd>'+ wwdetails.industry +'</dd>'+
+									'<dt>Undergraduate College</dt><dd>'+ wwdetails.undergrad +'</dd>'+
+									'<dt>Graduate College</dt><dd>'+ wwdetails.grad +'</dd>'+
+									'<dt>Home Town</dt><dd>'+ wwdetails.city +', '+ wwdetails.state +'</dd>'+
+									'<dt>Professional Associations</dt><dd>'+ formattedProfAssoc +'</dd>'+
+									'<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffil +'</dd>'+
+									'<dt>Biography</dt><dd><a href="'+ wwdetails.bio +'" target="_blank">Click here</a></dd></dl></li>';
 
 								// populate Who's Who Details
 								$(container + ' h1 strong').text(searchTerm + ' (Results: ' + results.length + ')');

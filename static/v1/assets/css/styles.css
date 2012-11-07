@@ -188,11 +188,21 @@ Who's Who Grid
 	position: relative;
 }
 #whos-who li {
+	position: relative;
 	display: none;
 	float: left;
 	margin: 5px;
 	padding: 5px;
 	cursor: pointer;
+}
+li .pwr50 {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 22px;
+	width: 22px;
+	background: url(../im/icon-pwr50.png) no-repeat center center;
+	text-indent: -9999px;
 }
 #all-whos-who li {
 	display: block;
@@ -212,19 +222,23 @@ Who's Who Grid
 	width: 83px;
 	background: url(../im/media/icon-unknown.gif) no-repeat 0 0;
 }
-#whos-who dl {
-	display: none;
-}
 #whos-who li h2 {
+	width: 83px;
 	border-bottom: none;
 	margin-top: 5px;
 	background-color: transparent;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 #whos-who li h2 span {
 	display: none;
 }
 #filtered h1 strong {
 	text-transform: capitalize;
+}
+#whos-who dl {
+	display: none;
 }
 
 /*****************************************************************************
@@ -657,13 +671,35 @@ Overlay - Who's Who Details
 	width: 83px;
 	background: url(../im/media/icon-unknown.gif) no-repeat 0 0;
 }
+#overlay-whos-who-details .pwr50 {
+	position: absolute;
+	display: block;
+	left: 103px;
+	top: 60px;
+	height: 22px;
+	padding-left: 25px;
+	background: url(../im/icon-pwr50.png) no-repeat left center;
+	color: #666;
+	font-size: 0.75em;
+	line-height: 22px;
+}
 #overlay-whos-who-details h2 {
-	border-bottom: 1px solid #CCC;
+	position: absolute;
+	top: 20px;
+	left: 103px;
+	width: 235px;
+	border-bottom: 0;
 	padding: 10px 0 5px;
 	margin-bottom: 10px;
 	font-size: 1.5em;
 	font-weight: bold;
 	color: #A00 !important;
+	line-height: 1.15em;
+}
+#overlay-whos-who-details dl {
+	margin-top: 15px;
+	padding-top: 5px;
+	border-top: 1px solid #CCC;
 }
 #overlay-whos-who-details dt {
 	color: #666;
