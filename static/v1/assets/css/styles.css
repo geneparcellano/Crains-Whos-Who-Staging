@@ -316,6 +316,9 @@ Overlay - Survey
 	cursor: pointer;
 	overflow: hidden;
 }
+#overlay-survey header {
+	box-shadow: none;
+}
 #overlay-survey nav {
 	position: absolute;
 	width: 252px;

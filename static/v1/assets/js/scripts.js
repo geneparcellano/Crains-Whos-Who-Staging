@@ -37,8 +37,13 @@ function compilePersonInfo() {
 		formatData(whoswho.profAssoc, profAssoc, formattedProfAssoc);
 		formatData(whoswho.civicAffil, civicAffil, formattedCivicAffil);
 
-		var person =
-				'<li><div class="photo"><img src="assets/im/media/' + whoswho.img + '" height="100" width="83" alt="" /></div>'+
+		if (whoswho.pwr50) {
+			// console.log('yes');
+		}
+
+		var htmlImage = '<div class="photo"><img src="assets/im/media/' + whoswho.img + '" height="100" width="83" alt="" /></div>',
+			person =
+				'<li>'+ htmlImage +
 				'<h2><span>'+ whoswho.first + ' ' + whoswho.middle + ' </span>' + whoswho.last +'</h2>'+
 				'<dl><dt>Primary Company</dt><dd>'+ whoswho.primaryCo +'</dd>'+
 				'<dt>Secondary Company</dt><dd>'+ whoswho.secondaryCo +'</dd>'+
@@ -89,6 +94,7 @@ function initiateAutoComplete() {
 	$.each(obj.whoswho, function(i, whoswho) {
 		var first,
 			last,
+			companies,
 			profAssoc,
 			civicAffil,
 			undergraduate,
@@ -105,6 +111,12 @@ function initiateAutoComplete() {
 		// pushData(whoswho.graduate, graduate, allGrad);
 		// pushData(whoswho.city, city, allCity);
 		// pushData(whoswho.state, state, allState);
+
+		// build companies list
+		pushData(obj.companies, companies, allCompanies);
+		// $.each(obj.companies, function(i, companies) {
+		// 	allCompanies.push(companies);
+		// });	
 	});
 
 	/*****************************************************************************
@@ -143,6 +155,7 @@ function initiateAutoComplete() {
 	var allData = allProfAssoc.concat(
 			allFirst,
 			allLast,
+			allCompanies,
 			allCivicAffil,
 			allUndergrad,
 			allGrad,
@@ -170,11 +183,6 @@ function buildSelectOption() {
 		var html = '<option value="'+industries+'">'+industries+'</option>';
 		$('.industry-list').append(html);
 	});
-
-	// build companies list
-	$.each(obj.companies, function(i, companies) {
-		allCompanies.push(companies);
-	});	
 }
 
 /*****************************************************************************
@@ -296,6 +304,19 @@ var questionnaire = {
 				}
 			}
 		});
+	},
+	runFilter : function() {
+		$('#overlay-survey').on('focusout', 'input[type="text"], select', function() {
+			var $this = $(this),
+				searchTerm = $this.val(),
+				id = $this.attr('id');
+
+			if (id === 'survey-industry') {
+				console.log(id);
+				search.getResults(searchTerm, '#connections');
+			}
+
+		});
 	}
 }
 
@@ -387,67 +408,50 @@ var search = {
 			// Search through all values
 			$.each(obj.whoswho, function(i, wwdetails) {
 				$.each(wwdetails, function(property, value) {
-
 					switch (property) {
 					case "first":
 					case "last":
 					case "primaryCo":
+					case "industry" :
+					case "profAssoc":
+					case "civicAffil":
 						var	profAssoc,
 							civicAffil,
+							count = 0,
 							formattedProfAssoc = [],
 							formattedCivicAffil = [];
 
-						// Add space after comma's to fields with multiple entries.
-						function formatData(array, id, newArray) {
-							if (array[0] !== undefined && array[0].length > 1) {
-								$.each(array, function(i, id) {
-									newArray.push(' ' + id);
-								});
-							} else {
-								// do nothing
+						// Show Search Results
+						function showMatches(value) {						
+							if ($.type(value) ==='string' && value.toLowerCase().indexOf(searchTerm) !== -1 && $.inArray(i, results) === -1) {
+								results.push(i);
+								var person = '<li><div class="photo"><img src="assets/im/media/' + wwdetails.img + '" height="100" width="83" alt="" /></div>'+
+										'<h2><span>'+ wwdetails.first + ' ' + wwdetails.middle + ' </span>' + wwdetails.last +'</h2>'+
+										'<dl><dt>Primary Company</dt><dd>'+ wwdetails.primaryCo +'</dd>'+
+										'<dt>Secondary Company</dt><dd>'+ wwdetails.secondaryCo +'</dd>'+
+										'<dt>Industry</dt><dd>'+ wwdetails.industry +'</dd>'+
+										'<dt>Undergraduate College</dt><dd>'+ wwdetails.undergrad +'</dd>'+
+										'<dt>Graduate College</dt><dd>'+ wwdetails.grad +'</dd>'+
+										'<dt>Home Town</dt><dd>'+ wwdetails.city +', '+ wwdetails.state +'</dd>'+
+										'<dt>Professional Associations</dt><dd>'+ formattedProfAssoc +'</dd>'+
+										'<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffil +'</dd>'+
+										'<dt>Biography</dt><dd><a href="'+ wwdetails.bio +'" target="_blank">Click here</a></dd></dl></li>';
+
+								// populate Who's Who Details
+								$(container + ' h1 strong').text(searchTerm + ' (Results: ' + results.length + ')');
+								$(person).appendTo(container + ' ul');
 							}
 						}
 
-						formatData(wwdetails.profAssoc, profAssoc, formattedProfAssoc);
-						formatData(wwdetails.civicAffil, civicAffil, formattedCivicAffil);
-
-						// Search properties with multiple values
-						function searchNextLvl(value) {
-							if ($.type(value) ==='string' && value.toLowerCase().indexOf(searchTerm) !== -1) {
-								if ($.inArray(i, results) === -1) {
-									results.push(i);
-									var person = '<li><div class="photo"><img src="assets/im/media/' + wwdetails.img + '" height="100" width="83" alt="" /></div>'+
-											'<h2><span>'+ wwdetails.first + ' ' + wwdetails.middle + ' </span>' + wwdetails.last +'</h2>'+
-											'<dl><dt>Primary Company</dt><dd>'+ wwdetails.primaryCo +'</dd>'+
-											'<dt>Secondary Company</dt><dd>'+ wwdetails.secondaryCo +'</dd>'+
-											'<dt>Industry</dt><dd>'+ wwdetails.industry +'</dd>'+
-											'<dt>Undergraduate College</dt><dd>'+ wwdetails.undergrad +'</dd>'+
-											'<dt>Graduate College</dt><dd>'+ wwdetails.grad +'</dd>'+
-											'<dt>Home Town</dt><dd>'+ wwdetails.city +', '+ wwdetails.state +'</dd>'+
-											'<dt>Professional Associations</dt><dd>'+ formattedProfAssoc +'</dd>'+
-											'<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffil +'</dd>'+
-											'<dt>Biography</dt><dd><a href="'+ wwdetails.bio +'" target="_blank">Click here</a></dd></dl></li>';
-
-									// populate Who's Who Details
-									$(container + ' h1 strong').text(searchTerm + ' ' + i);
-									$(person).appendTo(container + ' ul');
-								} else {
-									//do nothing
-									// console.log("Already there")
-								}
-							} else {
-								$(container + ' h1 strong').text(searchTerm);
-							}
-						}
-
-						// Initiate 2nd level search
-						if (value[0] !== undefined && value[0].length > 1) {
+						// Search JSON
+						if (property === 'profAssoc' || property === 'civicAffil') {
 							$.each(value, function(i, value) {
-								searchNextLvl(value);
+								showMatches(value);
 							});
 						} else {
-							searchNextLvl(value);
+							showMatches(value);
 						}
+
 					default:
 						// Do nothing
 					}
@@ -562,6 +566,7 @@ overlay.hideItem();
 questionnaire.addEntry();
 questionnaire.removeEntry();
 questionnaire.nextQuestion();
+questionnaire.runFilter();
 
 navigation.getCurrent();
 navigation.nextPrev();
