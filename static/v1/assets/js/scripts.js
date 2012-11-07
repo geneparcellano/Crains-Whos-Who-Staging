@@ -53,7 +53,6 @@ function compilePersonInfo() {
 		// populate Who's Who Details
 		$('#all-whos-who ul').append(person);
 	});
-	// animateFadePerson('#all-whos-who');
 	$('#all-whos-who').fadeIn(1300);
 }
 
@@ -371,20 +370,19 @@ var search = {
 
 			if ( event.which === 13 ) {
 				$(".ui-autocomplete").hide();
-				search.getResults(searchTerm);
+				search.getResults(searchTerm, '#filtered');
 			}
 		});
 		searchBar.on('click', 'button[data-function="search"]', function() {
 			var searchTerm = $('.search input').val().toLowerCase();
-			search.getResults(searchTerm);
+			search.getResults(searchTerm, '#filtered');
 		});
 	},
-	getResults : function(searchTerm) {
+	getResults : function(searchTerm, container) {
 		var results = [];
 
 		if (searchTerm) {
-			$('#filtered ul').html('')
-				.parent('#filtered').show();
+			$(container + ' ul').html('').parent(container).show();
 
 			// Search through all values
 			$.each(obj.whoswho, function(i, wwdetails) {
@@ -431,14 +429,14 @@ var search = {
 											'<dt>Biography</dt><dd><a href="'+ wwdetails.bio +'" target="_blank">Click here</a></dd></dl></li>';
 
 									// populate Who's Who Details
-									$('#filtered h1 strong').text(searchTerm + ' ' + i);
-									$(person).appendTo('#filtered ul');
+									$(container + ' h1 strong').text(searchTerm + ' ' + i);
+									$(person).appendTo(container + ' ul');
 								} else {
 									//do nothing
 									// console.log("Already there")
 								}
 							} else {
-								$('#filtered h1 strong').text(searchTerm);
+								$(container + ' h1 strong').text(searchTerm);
 							}
 						}
 
@@ -455,9 +453,9 @@ var search = {
 					}
 				});
 			});
-			// animateDropPerson('#filtered');
+			animateDropPerson(container);
 		} else {
-			$('#filtered h1').hide().parent('#filtered').slideUp('fast').children('h1').show();
+			$(container + ' h1').hide().parent(container).slideUp('fast').children('h1').show();
 		}
 	}
 }
@@ -469,14 +467,6 @@ function animateDropPerson(id) {
 	if ($(id + ' li:hidden').length > 0) {
 		$(id + ' li:hidden').first().show('drop', {direction : 'right', easing : 'linear'}, 100, function() {
 			animateDropPerson(id);
-		});
-	}
-}
-
-function animateFadePerson(id) {
-	if ($(id + ' li:hidden').length > 0) {
-		$(id + ' li:hidden').first().fadeIn(function() {
-			animateFadePerson(id);
 		});
 	}
 }
@@ -526,7 +516,7 @@ var user = {
 	getFilter : function() {
 		$('#overlay-user-profile').on('click','li', function() {
 			var searchTerm = $(this).children('strong').text().toLowerCase();
-			search.getResults(searchTerm);
+			search.getResults(searchTerm, '#filtered');
 		});
 	},
 	updateProfile : function(surveyPrefix, surveyFirst, surveyLast, surveySuffix, surveyCompany, surveyIndustry, surveyUndergrad, surveyGrad, surveyCity, surveyState, surveyProfAssoc, surveyCivicAffil) {
