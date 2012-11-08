@@ -149,9 +149,9 @@ Show More on Scroll
 *****************************************************************************/
 function showOnScroll() {
 	$(window).scroll(function() {
-	   if($(window).scrollTop() + $(window).height() == $(document).height()) {
-	       compilePersonInfo();
-	   }
+		if($(window).scrollTop() + $(window).height() == $(document).height()) {
+			compilePersonInfo();
+		}
 	});
 }
 
@@ -399,18 +399,26 @@ var questionnaire = {
 		});
 	},
 	runFilter : function() {
-		$('#overlay-survey').on('focusout', 'input[type="text"], select', function() {
-			var $this = $(this),
-				value = $this.val(),
-				id = $this.attr('id');
+		$('#overlay-survey').on('keydown focusout', 'input[type="text"], select', function(event) {
 
-			switch (id) {
-				case 'survey-company':
-				case 'survey-industry':
-				case 'survey-undergrad':
-					search.getResults(value.toLowerCase(), '#connections');
-				default:
-					// Do nothing
+			if ( event.which === 13 || event.type === 'focusout') {
+				var $this = $(this),
+					value = $this.val(),
+					id = $this.attr('id');
+
+				switch (id) {
+					case 'survey-company':
+					case 'survey-industry':
+					case 'survey-undergrad':
+					case 'survey-grad':
+					case 'survey-hometown':
+					case 'survey-state':
+					case 'survey-civic-affil':
+					case 'survey-prof-assoc':
+						search.getResults(value.toLowerCase(), '#connections');
+					default:
+						// Do nothing
+				}
 			}
 		});
 	}
