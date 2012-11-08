@@ -136,14 +136,12 @@ function compilePersonInfo() {
 			max++;
 			return max < 45;
 		} else {
-			// populate Who's Who Details
-			// $('#all-whos-who ul').append(person);
+			// Do nothing
 		}
 
 
 	});
 	$('#all-whos-who').fadeIn(1300);
-	console.log(loadedProfile);
 }
 
 /*****************************************************************************
@@ -152,7 +150,6 @@ Show More on Scroll
 function showOnScroll() {
 	$(window).scroll(function() {
 	   if($(window).scrollTop() + $(window).height() == $(document).height()) {
-	       // console.log("bottom!");
 	       compilePersonInfo();
 	   }
 	});
@@ -394,7 +391,6 @@ var questionnaire = {
 			$(this).parent('label').next().length;
 			if ( event.which === 13 ) {
 				if ( $(this).parent('label').next().length === 0 ) {
-					// console.log('it works!');
 					// $('#questions button[data-function="next"]').focus();
 					navigation.showNext();
 					navigation.disableButton();
@@ -405,14 +401,17 @@ var questionnaire = {
 	runFilter : function() {
 		$('#overlay-survey').on('focusout', 'input[type="text"], select', function() {
 			var $this = $(this),
-				searchTerm = $this.val(),
+				value = $this.val(),
 				id = $this.attr('id');
 
-			if (id === 'survey-industry') {
-				console.log(id);
-				search.getResults(searchTerm, '#connections');
+			switch (id) {
+				case 'survey-company':
+				case 'survey-industry':
+				case 'survey-undergrad':
+					search.getResults(value.toLowerCase(), '#connections');
+				default:
+					// Do nothing
 			}
-
 		});
 	}
 }
@@ -500,7 +499,13 @@ var search = {
 		var results = [];
 
 		if (searchTerm) {
-			$(container + ' ul').html('').parent(container).show();
+
+			if (container === '#connections') {
+				$(container).show();
+			} else {
+				$(container + ' ul').html('').parent(container).show();
+			}
+
 
 			// Search through all values
 			$.each(obj.whoswho, function(i, wwwdetails) {
@@ -520,11 +525,13 @@ var search = {
 							formattedProfAssoc = [],
 							formattedCivicAffil = [];
 
+
+
 						// Show Search Results
-						function showMatches(value) {						
+						function showMatches(value) {	
+
 							if ($.type(value) ==='string' && value.toLowerCase().indexOf(searchTerm) !== -1 && $.inArray(i, results) === -1) {
 								results.push(i);
-
 
 								function formatData(array, id, newArray) {
 									if (array[0] !== undefined && array[0].length > 1) {
@@ -632,6 +639,8 @@ var search = {
 								// populate Who's Who Details
 								$(container + ' h1 strong').text(searchTerm + ' (Results: ' + results.length + ')');
 								$(person).appendTo(container + ' ul');
+							} else {
+								// Do nothing
 							}
 						}
 
@@ -752,7 +761,7 @@ $(document).ajaxComplete(function() {
 
 showOnScroll();
 
-// overlay.launchItem('overlay-intro'); // launch intro
+overlay.launchItem('overlay-intro'); // launch intro
 overlay.details();
 overlay.getName();
 overlay.hideItem();
