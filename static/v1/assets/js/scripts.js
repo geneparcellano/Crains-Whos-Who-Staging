@@ -15,9 +15,11 @@ var data = $.getJSON("assets/js/whoswho.json"),
 	allGrad = [],
 	allCity = [],
 	allState = [],
-	allData = [];
+	allData = [],
+	loadedProfile = [];
 
 function compilePersonInfo() {
+	var max = 0;
 	$.each(obj.whoswho, function(i, whoswho) {
 		var	profAssoc,
 			civicAffil,
@@ -127,10 +129,33 @@ function compilePersonInfo() {
 					htmlBio +
 				'</li>';
 
-		// populate Who's Who Details
-		$('#all-whos-who ul').append(person);
+		if ($.inArray(i, loadedProfile) === -1) {
+			// populate Who's Who Details
+			$('#all-whos-who ul').append(person);
+			loadedProfile.push(i);
+			max++;
+			return max < 45;
+		} else {
+			// populate Who's Who Details
+			// $('#all-whos-who ul').append(person);
+		}
+
+
 	});
 	$('#all-whos-who').fadeIn(1300);
+	console.log(loadedProfile);
+}
+
+/*****************************************************************************
+Show More on Scroll
+*****************************************************************************/
+function showOnScroll() {
+	$(window).scroll(function() {
+	   if($(window).scrollTop() + $(window).height() == $(document).height()) {
+	       // console.log("bottom!");
+	       compilePersonInfo();
+	   }
+	});
 }
 
 /*****************************************************************************
@@ -585,7 +610,7 @@ var search = {
 								} else {
 									htmlBio = '<dt>Biography</dt><dd>--</dd></dl>';
 								}
-								
+
 								var htmlImage = '<div class="photo"><img src="assets/im/media/' + wwwdetails.img + '" height="100" width="83" alt="" /></div>',
 									htmlName = '<h2><span>'+ wwwdetails.first + ' ' + wwwdetails.middle + ' </span>' + wwwdetails.last +'</h2>',
 									person =
@@ -724,6 +749,8 @@ $(document).ajaxComplete(function() {
 	initiateAutoComplete();
 	compilePersonInfo();
 });
+
+showOnScroll();
 
 // overlay.launchItem('overlay-intro'); // launch intro
 overlay.details();
