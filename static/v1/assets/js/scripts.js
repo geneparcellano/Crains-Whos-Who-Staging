@@ -6,17 +6,8 @@ Get JSON
 *****************************************************************************/
 var data = $.getJSON("assets/js/whoswho.json"),
 	obj,
-	allFirst = [],
-	allLast = [],
-	allCompanies = [],
-	allProfAssoc = [],
-	allCivicAffil = [],
-	allUndergrad = [],
-	allGrad = [],
-	allCity = [],
-	allState = [],
-	allData = [],
-	loadedProfile = [];
+	loadedProfile = [],
+	allConnections = [];
 
 function compilePersonInfo() {
 	var max = 0;
@@ -160,10 +151,22 @@ Auto Complete
 *****************************************************************************/
 function initiateAutoComplete() {
 
+	var allFirst = [],
+		allLast = [],
+		allCompanies = [],
+		allProfAssoc = [],
+		allCivicAffil = [],
+		allUndergrad = [],
+		allGrad = [],
+		allCity = [],
+		allState = [],
+		allData = [];
+
 	/*****************************************************************************
 	scrape all values and push into specified array
 	*****************************************************************************/
 	function pushData(array, id, newArray) {
+		// if (id === 'civicAffil' || id === 'profAssoc') {
 		if (array[0] !== undefined && array[0].length > 1) {
 			$.each(array, function(i, id) {
 				// check if value already exists
@@ -191,8 +194,8 @@ function initiateAutoComplete() {
 			companies,
 			profAssoc,
 			civicAffil,
-			undergraduate,
-			graduate,
+			undergrad,
+			grad,
 			degree,
 			city,
 			state;
@@ -200,17 +203,12 @@ function initiateAutoComplete() {
 		pushData(whoswho.first, first, allFirst);
 		pushData(whoswho.last, last, allLast);
 		pushData(whoswho.profAssoc, profAssoc, allProfAssoc);
-		// pushData(whoswho.civicAffil, civicAffil, allCivicAffil);
-		// pushData(whoswho.undergraduate, undergraduate, allUndergrad);
-		// pushData(whoswho.graduate, graduate, allGrad);
-		// pushData(whoswho.city, city, allCity);
-		// pushData(whoswho.state, state, allState);
-
-		// build companies list
-		// pushData(obj.companies, companies, allCompanies);
-		// $.each(obj.companies, function(i, companies) {
-		// 	allCompanies.push(companies);
-		// });	
+		pushData(whoswho.civicAffil, civicAffil, allCivicAffil);
+		pushData(whoswho.undergrad, undergrad, allUndergrad);
+		pushData(whoswho.grad, grad, allGrad);
+		pushData(whoswho.city, city, allCity);
+		pushData(whoswho.state, state, allState);
+		pushData(obj.companies, companies, allCompanies);
 	});
 
 	/*****************************************************************************
@@ -400,6 +398,7 @@ var questionnaire = {
 	},
 	runFilter : function() {
 		$('#overlay-survey').on('keydown focusout', 'input[type="text"], select', function(event) {
+		// $('#overlay-survey').on('focusout', 'input[type="text"], select', function(event) {
 
 			if ( event.which === 13 || event.type === 'focusout') {
 				var $this = $(this),
@@ -450,7 +449,7 @@ var current,
 				id = $this.attr('href');
 			navigation.getCurrent().hide().removeClass('selected').siblings(id).fadeIn('fast').addClass('selected');
 			navigation.syncHeader();
-			event.preventDefault();0
+			event.preventDefault();
 		});
 	},
 	syncHeader : function() {
@@ -463,11 +462,13 @@ var current,
 		navigation.getCurrent().prev().fadeIn('fast');
 		navigation.getCurrent().hide().removeClass('selected').prev().addClass('selected');
 		navigation.syncHeader();
+		navigation.getCurrent().find('label:first').children().focus();
 	},
 	showNext : function() {
 		navigation.getCurrent().next().fadeIn('fast');
 		navigation.getCurrent().hide().removeClass('selected').next().addClass('selected');
 		navigation.syncHeader();
+		navigation.getCurrent().find('label:first').children().focus();
 	},
 	disableButton : function() {
 		if (navigation.getCurrent().prev().length === 0) {
@@ -508,6 +509,7 @@ var search = {
 
 		if (searchTerm) {
 
+			// Empty container on search, except for "connections"
 			if (container === '#connections') {
 				$(container).show();
 			} else {
@@ -538,8 +540,13 @@ var search = {
 						// Show Search Results
 						function showMatches(value) {	
 
-							if ($.type(value) ==='string' && value.toLowerCase().indexOf(searchTerm) !== -1 && $.inArray(i, results) === -1) {
+							if ($.type(value) ==='string' && value.toLowerCase().indexOf(searchTerm) !== -1 && $.inArray(i, results) === -1 && $.inArray(i, allConnections) === -1) {
 								results.push(i);
+
+								// Prevent the same result for being populated in "connections"
+								if (container === '#connections') {
+									allConnections.push(i);
+								}
 
 								function formatData(array, id, newArray) {
 									if (array[0] !== undefined && array[0].length > 1) {
@@ -668,7 +675,7 @@ var search = {
 			});
 			animateDropPerson(container);
 		} else {
-			$(container + ' h1').hide().parent(container).slideUp('fast').children('h1').show();
+			$('#filtered h1').hide().parent('#filtered').slideUp('fast').children('h1').show();
 		}
 	}
 }

@@ -187,6 +187,9 @@ Who's Who Grid
 	display: none;
 	position: relative;
 }
+#whos-who h1 strong {
+	text-transform: capitalize;
+}
 #whos-who li {
 	position: relative;
 	display: none;
@@ -233,9 +236,6 @@ li .pwr50 {
 }
 #whos-who li h2 span {
 	display: none;
-}
-#filtered h1 strong {
-	text-transform: capitalize;
 }
 #whos-who dl {
 	display: none;
