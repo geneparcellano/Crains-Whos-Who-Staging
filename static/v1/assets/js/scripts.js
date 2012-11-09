@@ -513,7 +513,7 @@ var search = {
 
 			// Empty container on search, except for "connections"
 			if (container !== '#connections') {
-				catWrap.children('ul').html('').parent(container).show();
+				catWrap.children('ul').html('');
 			}
 
 			if (catWrap.children('ul').children('li').length > 0) {
@@ -770,6 +770,40 @@ var user = {
 		editProfile.find('#profile-edit-town').val(surveyCity);
 		editProfile.find('#profile-edit-state').val(surveyState);
 	}
+}
+
+/*****************************************************************************
+Update Score
+*****************************************************************************/
+function updateScore() {
+
+	function scoreMatches(pName, value, multiplier) {
+		// console.log(user[0][pName]);
+		if (user[0][pName] === value) {
+			totalScore += multiplier;
+			// console.log(value + ' ' + user[0].city)
+		}
+	}
+
+	// console.log(obj.whoswho[0]);
+	$.each(obj.whoswho, function(i, whoswho) {
+		$.each(whoswho, function(property, value) {
+		// console.log(property);
+			// var industry, undergrad, city;
+
+			switch (property) {
+				case "industry":
+					scoreMatches(property, value, 5);
+				case "undergrad":
+					scoreMatches(property, value, 2);
+				case "city":
+					scoreMatches(property, value, 2);
+			default:
+				// Do nothing
+			}
+		});
+	});
+	console.log(totalScore);
 }
 
 /*****************************************************************************
