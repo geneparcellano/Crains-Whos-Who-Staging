@@ -140,7 +140,7 @@ Show More on Scroll
 *****************************************************************************/
 function showOnScroll() {
 	$(window).scroll(function() {
-		if($(window).scrollTop() + $(window).height() == $(document).height() - 300) {
+		if($(window).scrollTop() + $(window).height() == $(document).height()) {
 			compilePersonInfo();
 		}
 	});
