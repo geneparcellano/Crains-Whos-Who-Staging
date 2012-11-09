@@ -140,7 +140,7 @@ Show More on Scroll
 *****************************************************************************/
 function showOnScroll() {
 	$(window).scroll(function() {
-		if($(window).scrollTop() + $(window).height() == $(document).height()) {
+		if($(window).scrollTop() + $(window).height() == $(document).height() - 300) {
 			compilePersonInfo();
 		}
 	});
@@ -818,8 +818,8 @@ function updateScore() {
 		});
 	});
 	totalScore = parseInt(totalScore) + parseInt(totalMatch);
-	console.log('total score: ' + totalScore);
-	console.log('total matches: ' + totalMatch);
+	// console.log('total score: ' + totalScore);
+	// console.log('total matches: ' + totalMatch);
 }
 
 /*****************************************************************************
