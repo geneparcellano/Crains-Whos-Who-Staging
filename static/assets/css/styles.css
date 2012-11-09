@@ -3,7 +3,7 @@ Typography
 *****************************************************************************/
 #whos-who-2012 {
 	margin-top: -5px;
-	font-size: 16px !important;
+	font-size: 14px !important;
 	line-height: 1.4545em;
 }
 /*****************************************************************************
@@ -84,7 +84,7 @@ Buttons
 	left: 0;
 	background: url(../im/icon-pencil.png) no-repeat center center;
 }
-.overlay .controls button[data-function="save"] {
+.overlay .controls .save {
 	left: 0;
 	background: url(../im/icon-disk.png) no-repeat center center;
 }
@@ -127,12 +127,19 @@ Who's Who Control Bar
 	border: 1px solid #777;
 	border-top-color: #666;
 	border-bottom-color: #999;
-	background: url(../im/icon-search.gif) no-repeat 190px center;
 	font-size: 1em;
 	font-weight: normal;
 }
-#control-bar .search button {
-	display: none;
+#control-bar .search button[data-function="search"] {
+	position: relative;
+	height: 16px;
+	width: 16px;
+	margin: -5px 0 0 -25px;
+	border: 0;
+	padding: 0;
+	background: url(../im/icon-search.gif) no-repeat 0 0;
+	text-indent: -9999px;
+	cursor: pointer;
 }
 #control-bar .user {
 	position: absolute;
@@ -175,14 +182,34 @@ Who's Who Control Bar
 Who's Who Grid
 *****************************************************************************/
 #connections,
+#filtered,
 #all-whos-who {
 	display: none;
+	position: relative;
+}
+#whos-who h1 strong {
+	text-transform: capitalize;
+	font-weight: normal;
 }
 #whos-who li {
+	position: relative;
+	display: none;
 	float: left;
 	margin: 5px;
 	padding: 5px;
 	cursor: pointer;
+}
+li .pwr50 {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 22px;
+	width: 22px;
+	background: url(../im/icon-pwr50.png) no-repeat center center;
+	text-indent: -9999px;
+}
+#all-whos-who li {
+	display: block;
 }
 #whos-who li:hover {
 	background-color: #A00;
@@ -194,15 +221,24 @@ Who's Who Grid
 #whos-who li:active {
 	background-color: #751117;
 }
-#whos-who dl {
-	display: none;
+#whos-who li .photo {
+	height: 100px;
+	width: 83px;
+	background: url(../im/media/icon-unknown.gif) no-repeat 0 0;
 }
 #whos-who li h2 {
+	width: 83px;
 	border-bottom: none;
 	margin-top: 5px;
 	background-color: transparent;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 #whos-who li h2 span {
+	display: none;
+}
+#whos-who dl {
 	display: none;
 }
 
@@ -294,6 +330,9 @@ Overlay - Survey
 	text-indent: -9999px;
 	cursor: pointer;
 	overflow: hidden;
+}
+#overlay-survey header {
+	box-shadow: none;
 }
 #overlay-survey nav {
 	position: absolute;
@@ -559,6 +598,9 @@ Overlay - User Profile
 #overlay-user-profile li:active {
 	background-color: #760A04;
 }
+#overlay-user-profile li strong {
+	display: none;
+}
 #overlay-user-profile li span {
 	display: block;
 	color: #666;
@@ -625,13 +667,40 @@ Overlay - Who's Who Details
 	position: relative;
 	padding: 10px;
 }
+#overlay-whos-who-details .photo {
+	height: 100px;
+	width: 83px;
+	background: url(../im/media/icon-unknown.gif) no-repeat 0 0;
+}
 #overlay-whos-who-details h2 {
-	border-bottom: 1px solid #CCC;
+	position: absolute;
+	top: 10px;
+	left: 103px;
+	width: 235px;
+	border-bottom: 0;
 	padding: 10px 0 5px;
 	margin-bottom: 10px;
 	font-size: 1.5em;
 	font-weight: bold;
 	color: #A00 !important;
+	line-height: 1.15em;
+}
+#overlay-whos-who-details .pwr50 {
+	position: absolute;
+	display: block;
+	left: 103px;
+	top: 50px;
+	height: 22px;
+	padding-left: 25px;
+	background: url(../im/icon-pwr50.png) no-repeat left center;
+	color: #666;
+	font-size: 0.75em;
+	line-height: 22px;
+}
+#overlay-whos-who-details dl {
+	margin-top: 15px;
+	padding-top: 5px;
+	border-top: 1px solid #CCC;
 }
 #overlay-whos-who-details dt {
 	color: #666;
@@ -639,7 +708,7 @@ Overlay - Who's Who Details
 	line-height: 1.3333em;
 }
 #overlay-whos-who-details dd {
-	margin: 0 0 15px;
+	margin: 0 0 10px;
 	font-weight: bold;
 }
 #overlay-whos-who-details strong {

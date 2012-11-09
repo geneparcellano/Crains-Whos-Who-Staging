@@ -596,7 +596,7 @@
 			"civicAffil": ["College of DuPage", "Chicago Community Trust", "Neighborhood Housing Services of Chicago", "Junior Achievement", "Chicago Central Area Committee"],
 			"industry": "Banking",
 			"bio": "http://www.linkedin.com/pub/marsha-cruzan/2/a69/137",
-			"undergrad": "University of Illinois Urbana-Champaign",
+			"undergrad": "University of Illinois, Urbana-Champaign",
 			"grad": "Thunderbird School of Global Management",
 			"city": "Champaign",
 			"state": "IL"
@@ -3797,7 +3797,7 @@
 			"industry": "Education",
 			"bio": "http://iit.edu/president/bio_short.shtml",
 			"undergrad": "University of Delaware",
-			"grad": "University of Illinois at Urbana_Champaign",
+			"grad": "University of Illinois, Urbana-Champaign",
 			"city": "Wilmington",
 			"state": "DE"
 		}, {
@@ -6146,7 +6146,7 @@
 			"civicAffil": ["Civic Committee of the Commercial Club", "University of Illinois", "Chicago Symphony Orchestra", "United Way of Metropolitan Chicago", "Lincoln Academy of Illinois"],
 			"industry": "Financial Services",
 			"bio": "http://www.idvl.org/thehistorymakers/Bio51.html",
-			"undergrad": "University of Illinois Champaign-Urbana",
+			"undergrad": "University of Illinois, Urbana-Champaign",
 			"grad": "IIT Chicago - Kent College of Law",
 			"city": "Chicago",
 			"state": "IL"
@@ -6198,7 +6198,7 @@
 			"bio": "http://leomelamed.com/biosketch.html",
 			"undergrad": "University of Illinois",
 			"grad": "John Marshall Law School",
-			"city": " Bialystok",
+			"city": "Bialystok",
 			"state": "Poland"
 		}, {
 			"first": "Samuel",
@@ -8646,9 +8646,9 @@
 			"civicAffil": ["Roosevelt University", "Leadership Greater Chicago", "Local Initiative Support Corporation"],
 			"industry": "Government",
 			"bio": "",
-			"undergrad": " Chicago State University",
+			"undergrad": "Chicago State University",
 			"grad": "Roosevelt University",
-			"city": " Chicago",
+			"city": "Chicago",
 			"state": "IL"
 		}, {
 			"first": "Toni",
@@ -9671,7 +9671,7 @@
 			"civicAffil": ["Silk Road Rising", "DePaul University"],
 			"industry": "Insurance",
 			"bio": "http://www.linkedin.com/pub/karen-atwood/4/205/6b6",
-			"undergrad": "University of Illinois, Champaign-Urbana",
+			"undergrad": "University of Illinois, Urbana-Champaign",
 			"grad": "DePaul University",
 			"city": "Naperville",
 			"state": "IL"
@@ -10021,8 +10021,8 @@
 			"civicAffil": ["Public Interest Law Initiative", "Business and Professional People for the Public Interest", "Anti-Defamation League"],
 			"industry": "Law",
 			"bio": "http://www.foley.com/myles-d-berman/",
-			"undergrad": "University of Illinois, Champaign-Urbana",
-			"grad": "University of Illinois, Champaign-Urbana; Northwestern University",
+			"undergrad": "University of Illinois, Urbana-Champaign",
+			"grad": "University of Illinois, Urbana-Champaign; Northwestern University",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -11047,7 +11047,7 @@
 			"industry": "Law",
 			"bio": "http://www.skadden.com/sites/default/files/professional_pdfs/723.pdf",
 			"undergrad": "United States Air Force Academy",
-			"grad": "Northwestern Univeristy",
+			"grad": "Northwestern University",
 			"city": "Hanover",
 			"state": "IL"
 		}, {
@@ -11722,7 +11722,7 @@
 			"industry": "Media/Marketing",
 			"bio": "http://www.conlonps.com/who_we_are/staff/conlon.htm",
 			"undergrad": "Illinois State",
-			"grad": "Loyola University of Chicago; University of Illinois, Champaign-Urbana",
+			"grad": "Loyola University of Chicago; University of Illinois, Urbana-Champaign",
 			"city": "Park Forest",
 			"state": "IL"
 		}, {
@@ -11901,7 +11901,7 @@
 			"city": "Pelham",
 			"state": "NY"
 		}, {
-			"first": " Eddy",
+			"first": "Eddy",
 			"middle": "",
 			"last": "Hartenstein",
 			"suffix": "",
@@ -14871,7 +14871,7 @@
 			"civicAffil": ["Friends Against AIDS, University of Chicago Comer Children's Hospital", "University of Chicago"],
 			"industry": "Real Estate",
 			"bio": "http://www.watertonassociates.com/Apartments/module/website_documents/website_document%5Bid%5D/13890",
-			"undergrad": "University of Illinois Urbana-Champaign",
+			"undergrad": "University of Illinois, Urbana-Champaign",
 			"grad": "University of Chicago",
 			"city": "Evanston",
 			"state": "IL"
@@ -14921,7 +14921,7 @@
 			"civicAffil": "",
 			"industry": "Real Estate",
 			"bio": "",
-			"undergrad": "University of Illinois, Champaign-Urbana",
+			"undergrad": "University of Illinois, Urbana-Champaign",
 			"grad": "",
 			"city": "",
 			"state": ""
@@ -15496,7 +15496,7 @@
 			"civicAffil": ["Commercial Club", "Civic Committee of the Chicago Club"],
 			"industry": "Technology",
 			"bio": "http://www.uscellular.com/about/leadership-team/mary-dillon.html",
-			"undergrad": " University of Illinois at Chicago",
+			"undergrad": "University of Illinois at Chicago",
 			"grad": "",
 			"city": "Chicago",
 			"state": "IL"

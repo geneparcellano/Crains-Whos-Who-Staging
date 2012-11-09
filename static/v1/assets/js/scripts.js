@@ -165,10 +165,9 @@ function initiateAutoComplete() {
 	/*****************************************************************************
 	scrape all values and push into specified array
 	*****************************************************************************/
-	function pushData(array, id, newArray) {
-		// if (id === 'civicAffil' || id === 'profAssoc') {
-		if (array[0] !== undefined && array[0].length > 1) {
-			$.each(array, function(i, id) {
+	function pushData(id, newArray) {
+		if (id[0] !== undefined && id[0].length > 1) {
+			$.each(id, function(i, id) {
 				// check if value already exists
 				if ($.inArray(id, newArray) === -1) {
 					newArray.push(id);
@@ -177,8 +176,8 @@ function initiateAutoComplete() {
 				}
 			});
 		} else {
-			if ($.inArray(array, newArray) === -1) {
-				newArray.push(array);
+			if ($.inArray(id, newArray) === -1) {
+				newArray.push(id);
 			} else {
 				//do nothing
 			}
@@ -189,26 +188,17 @@ function initiateAutoComplete() {
 	Push data into array, for Autocomplete feature // pushData(array, id, newArray)
 	*****************************************************************************/
 	$.each(obj.whoswho, function(i, whoswho) {
-		var first,
-			last,
-			companies,
-			profAssoc,
-			civicAffil,
-			undergrad,
-			grad,
-			degree,
-			city,
-			state;
-
-		pushData(whoswho.first, first, allFirst);
-		pushData(whoswho.last, last, allLast);
-		pushData(whoswho.profAssoc, profAssoc, allProfAssoc);
-		pushData(whoswho.civicAffil, civicAffil, allCivicAffil);
-		pushData(whoswho.undergrad, undergrad, allUndergrad);
-		pushData(whoswho.grad, grad, allGrad);
-		pushData(whoswho.city, city, allCity);
-		pushData(whoswho.state, state, allState);
-		pushData(obj.companies, companies, allCompanies);
+		pushData(whoswho.first, allFirst);
+		pushData(whoswho.last, allLast);
+		pushData(whoswho.profAssoc, allProfAssoc);
+		pushData(whoswho.civicAffil, allCivicAffil);
+		pushData(whoswho.undergrad, allUndergrad);
+		pushData(whoswho.grad, allGrad);
+		pushData(whoswho.city, allCity);
+		pushData(whoswho.state, allState);
+	});
+	$.each(obj.companies, function(i, companies) {
+		pushData(companies, allCompanies);
 	});
 
 	/*****************************************************************************
@@ -513,7 +503,7 @@ var search = {
 
 			// Empty container on search, except for "connections"
 			if (container !== '#connections') {
-				catWrap.children('ul').html('');
+				catWrap.children('ul').html('').parent(container).show();
 			}
 
 			if (catWrap.children('ul').children('li').length > 0) {
@@ -776,34 +766,60 @@ var user = {
 Update Score
 *****************************************************************************/
 function updateScore() {
+	var totalScore = 0,
+		totalMatch = 0;
+		user = [{
+			"first": "Carol",
+			"middle": "R.",
+			"last": "Barney",
+			"suffix": "",
+			"pwr50": "",
+			"primaryCo": "Ross Barney Architects Inc., Chicago",
+			"secondaryCo": "",
+			"profAssoc": ["American Institute of Architects", "Chicago Network", "Economic Club", "Lambda Alpha International", "Chicago Women in Architecture"],
+			"civicAffil": ["Illinois Institute of Technology Architectural Board of Overseers"],
+			"undergrad": "University of Illinois, Urbana-Champaign",
+			"grad": "University of Illinois, Urbana-Champaign"
+		}];
 
 	function scoreMatches(pName, value, multiplier) {
-		// console.log(user[0][pName]);
-		if (user[0][pName] === value) {
-			totalScore += multiplier;
-			// console.log(value + ' ' + user[0].city)
+		if (pName === 'profAssoc' || pName === 'civicAffil') {
+			if (user[0][pName][0] === value[0]) {
+				totalScore += multiplier;
+				totalMatch++;
+				// console.log('match!');
+			}
+		} else {
+			if (user[0][pName] === value) {
+				totalScore += multiplier;
+				totalMatch++;
+			}
 		}
 	}
 
 	// console.log(obj.whoswho[0]);
 	$.each(obj.whoswho, function(i, whoswho) {
 		$.each(whoswho, function(property, value) {
-		// console.log(property);
-			// var industry, undergrad, city;
 
 			switch (property) {
-				case "industry":
-					scoreMatches(property, value, 5);
-				case "undergrad":
+				case 'primaryCo' || 'secondaryCo':
+					scoreMatches(property, value, 4);
+				case 'profAssoc' || 'civicAffil':
+					scoreMatches(property, value, 3);
+				case 'undergrad' || 'grad':
 					scoreMatches(property, value, 2);
-				case "city":
-					scoreMatches(property, value, 2);
-			default:
-				// Do nothing
+				case 'pwr50':
+					if (value === true) { totalScore += 10 }
+				case 'last':
+					if (value === "Obama") { totalScore += 15 }
+				default:
+					// Do nothing
 			}
 		});
 	});
-	console.log(totalScore);
+	totalScore = parseInt(totalScore) + parseInt(totalMatch);
+	console.log('total score: ' + totalScore);
+	console.log('total matches: ' + totalMatch);
 }
 
 /*****************************************************************************
@@ -815,6 +831,7 @@ $(document).ajaxComplete(function() {
 	buildSelectOption();
 	initiateAutoComplete();
 	compilePersonInfo();
+	updateScore();
 });
 
 showOnScroll();

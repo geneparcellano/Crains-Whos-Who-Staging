@@ -200,8 +200,14 @@
 		<h1><strong>Who&rsquo;s Who</strong> 2012</h1>
 	</header>
 	<div id="whos-who">
+		<section id="filtered">
+			<h1>People Matching <strong></strong></h1>
+			<ul class="clearfix">
+				<!-- Filtered content -->
+			</ul>
+		</section>
 		<section id="connections">
-			<h1>Your Connections</h1>
+			<h1>Your Connections <strong></strong></h1>
 			<ul class="clearfix">
 				<!-- Connections content -->
 			</ul>
@@ -245,50 +251,50 @@
 					<section id="question-1" class="selected">
 						<label>
 							Prefix 
-							<select name="prefix">
+							<select id="survey-prefix" name="prefix">
 								<option value="mr">Mr.</option>
 								<option value="ms">Ms.</option>
 								<option value="mrs">Mrs.</option>
 								<option value="dr">Dr.</option>
 							</select>
 						</label>
-						<label>First Name <input type="text" maxlength="128" /></label>
-						<label>Last Name <input type="text" maxlength="128" /></label>
-						<label>Suffix <input type="text" maxlength="128" /></label>
+						<label>First Name <input id="survey-first" type="text" maxlength="128" /></label>
+						<label>Last Name <input id="survey-last" type="text" maxlength="128" /></label>
+						<label>Suffix <input id="survey-suffix" type="text" maxlength="128" /></label>
 					</section>
 					<section id="question-2">
-						<label>Where do you work? <input class="autocomplete-company" type="text" maxlength="128" /></label>
+						<label>Where do you work? <input id="survey-company" class="autocomplete-company" type="text" maxlength="128" /></label>
 					</section>
 					<section id="question-3">
 						<label>
 							Industry
-							<select class="industry-list" name="prefix">
-								<option selected="selected">Choose...</option>
+							<select id="survey-industry" class="industry-list" name="prefix">
+								<option selected="selected" value="">Choose...</option>
 							</select>
 						</label>
 					</section>
 					<section id="question-4">
-						<label>Undergraduate College <input class="autocomplete-undergraduate" type="text" maxlength="128" /></label>
+						<label>Undergraduate College <input id="survey-undergrad" class="autocomplete-undergraduate" type="text" maxlength="128" /></label>
 					</section>
 					<section id="question-5">
-						<label>Graduate College <input class="autocomplete-graduate" type="text" maxlength="128" /></label>
+						<label>Graduate College <input id="survey-grad" class="autocomplete-graduate" type="text" maxlength="128" /></label>
 					</section>
 					<section id="question-6">
-						<label>Hometown <input class="autocomplete-hometown" type="text" maxlength="128" /></label>
-						<label>State <input class="autocomplete-state" type="text" maxlength="128" /></label>
+						<label>Hometown <input id="survey-hometown" class="autocomplete-hometown" type="text" maxlength="128" /></label>
+						<label>State <input id="survey-state" class="autocomplete-state" type="text" maxlength="128" /></label>
 					</section>
 					<section id="question-7">
 						<div class="multi">
-							<label>Professional Associations <input class="autocomplete-prof-assoc" type="text" maxlength="128" placeholder="The Commercial Club" /></label>
+							<label>Professional Associations <input id="survey-prof-assoc" class="autocomplete-prof-assoc" type="text" maxlength="128" placeholder="The Commercial Club" /></label>
 							<button type="button" data-function="add">Add</button>
 						</div>
 					</section>
 					<section id="question-8">
 						<div class="multi">
-							<label>Civic Affiliations <input class="autocomplete-civic-affil" type="text" maxlength="128" placeholder="Manufacturer&rsquo;s association of America" /></label>
+							<label>Civic Affiliations <input id="survey-civic-affil" class="autocomplete-civic-affil" type="text" maxlength="128" placeholder="Manufacturer&rsquo;s association of America" /></label>
 							<button type="button" data-function="add">Add</button>
 						</div>
-						<button type="button" data-function="close">Done</button>
+						<button id="survey-done" type="button" data-function="close">Done</button>
 					</section>
 				</div>
 			</div>
@@ -307,7 +313,7 @@
 						<li class="score-bar-max">650</li>
 					</ul>
 					<p>You rank in the top 30%! Check out the Top 50s you are connected to.</p>
-					<button type="button">Share Your Score</button>
+					<button type="button" data-function="overlay-share-your-score">Share Your Score</button>
 					<button type="button" data-function="close">View Your Connections</button>
 				</div>
 			</div>
@@ -321,7 +327,7 @@
 						<li><a href="#">Linked In</a></li>
 						<li><a href="#">Facebook</a></li>
 						<li><a href="#">Twitter</a></li>
-						<li><a href="#">E-mail</a></li>
+						<li><a href="mailto:?subject=Crain's Who's Who 2012&body=Hi, I found out I'm connected to some of Chicago's most influential people. http://www.chicagobusiness.com/">E-mail</a></li>
 					</ul>
 				</div>
 			</div>
@@ -335,34 +341,42 @@
 					<div class="score">
 						Your connection score is: <strong>417</strong>
 					</div>
-					<h2 class="user-name">John Smith</h2>
+					<h2 id="profile-name" class="user-name">John Smith</h2>
 					<ul>
-						<li>
+						<li id="profile-company" data-function="close">
 							Company
+							<strong>Abbott Laboratories</strong>
 							<span>23 Connections</span>
 						</li>
-						<li>
+						<li id="profile-prof-assoc" data-function="close">
 							Professional Associations
+							<strong>Illinois Hospital Association</strong>
 							<span>23 Connections</span>
 						</li>
-						<li>
+						<li id="profile-civic-affil" data-function="close">
 							Civic Affiliations
+							<strong>Commercial Club</strong>
 							<span>23 Connections</span>
 						</li>
-						<li>
+						<li id="profile-industry" data-function="close">
 							Industry
+							<strong>Architecture</strong>
 							<span>23 Connections</span>
 						</li>
-						<li>
+						<li id="profile-undergrad" data-function="close">
 							Undergraduate College
+							<strong>Iowa State University</strong>
 							<span>23 Connections</span>
 						</li>
-						<li>
+						<li id="profile-grad" data-function="close">
 							Graduate College
+							<strong>Harvard University
+								<strong>Chicago</strong></strong>
 							<span>23 Connections</span>
 						</li>
-						<li>
+						<li id="profile-hometown" data-function="close">
 							Hometown
+							<strong>Chicago</strong>
 							<span>23 Connections</span>
 						</li>
 					</ul>
@@ -372,31 +386,31 @@
 				<div class="controls">
 					<strong>Edit Profile</strong>
 					<button type="button" data-function="close">Close</button>
-					<button type="button" data-function="save">Save</button>
+					<button type="button" class="save" data-function="overlay-user-profile">Save</button>
 				</div>
 				<div class="content">
 					<ul class="clearfix">
 						<li class="name clearfix">
-							<label class="name-first">First Name <input type="text" /></label>
-							<label class="name-last">Last Name <input type="text" /></label>
-							<label class="name-suffix">Suffix <input type="text" /></label>
+							<label class="name-first">First Name <input id="profile-edit-first" type="text" /></label>
+							<label class="name-last">Last Name <input id="profile-edit-last" type="text" /></label>
+							<label class="name-suffix">Suffix <input id="profile-edit-suffix" type="text" /></label>
 						</li>
-						<li><label>Where Do You Work? <input class="autocomplete-company" type="text" /></label></li>
-						<li><label>Professional Associations <input class="autocomplete-prof-assoc" type="text" /></label></li>
-						<li><label>Civic Affiliations <input class="autocomplete-civic-affil" type="text" /></label></li>
+						<li><label>Where Do You Work? <input id="profile-edit-company" class="autocomplete-company" type="text" /></label></li>
+						<li><label>Professional Associations <input id="profile-edit-prof-assoc" class="autocomplete-prof-assoc" type="text" /></label></li>
+						<li><label>Civic Affiliations <input id="profile-edit-civic-affil" class="autocomplete-civic-affil" type="text" /></label></li>
 						<li>
 							<label>
 								Industry
-								<select class="industry-list" name="prefix">
+								<select id="profile-edit-industry" class="industry-list" name="prefix">
 									<option selected="selected">Choose...</option>
 								</select>
 							</label>
 						</li>
-						<li><label>Undergraduate College <input class="autocomplete-undergraduate" type="text" /></label></li>
-						<li><label>Graduate College <input class="autocomplete-graduate" type="text" /></label></li>
+						<li><label>Undergraduate College <input  id="profile-edit-undergrad" class="autocomplete-undergraduate" type="text" /></label></li>
+						<li><label>Graduate College <input id="profile-edit-grad" class="autocomplete-graduate" type="text" /></label></li>
 						<li class="hometown clearfix">
-							<label class="hometown-town">Town <input class="autocomplete-hometown" type="text" /></label>
-							<label class="hometown-state">State <input class="autocomplete-state" type="text" /></label>
+							<label class="hometown-town">Town <input id="profile-edit-town" class="autocomplete-hometown" type="text" /></label>
+							<label class="hometown-state">State <input id="profile-edit-state" class="autocomplete-state" type="text" /></label>
 						</li>
 						<li class="linkedin-connect">LinkedIn Account <button type="button">Connect</button></li>
 					</ul>

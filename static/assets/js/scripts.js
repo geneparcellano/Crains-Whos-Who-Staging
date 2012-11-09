@@ -1,177 +1,271 @@
 (function() {
-	'use strict';
+	//'use strict';
 
 /*****************************************************************************
 Get JSON
 *****************************************************************************/
 var data = $.getJSON("assets/js/whoswho.json"),
 	obj,
-	allFirst = [],
-	allLast = [],
-	allCompanies = [],
-	allProfAssociations = [],
-	allCivicAffiliations = [],
-	allUndergraduate = [],
-	allGraduate = [],
-	allHometown = [],
-	allState = [],
-	allData = [];
+	loadedProfile = [],
+	allConnections = [];
 
-$(document).ajaxComplete(function() {
-	obj = $.parseJSON(data.responseText);
+function compilePersonInfo() {
+	var max = 0;
+	$.each(obj.whoswho, function(i, whoswho) {
+		var	profAssoc,
+			civicAffil,
+			formattedProfAssoc = [],
+			formattedCivicAffil = [];
+
+		function formatData(array, id, newArray) {
+			if (array[0] !== undefined && array[0].length > 1) {
+				$.each(array, function(i, id) {
+					newArray.push(' ' + id);
+				});
+			} else {
+				// do nothing
+			}
+		}
+
+		// Power 50
+		if (whoswho.pwr50) {
+			htmlPwr50 = '<div class="pwr50">Power 50</div>';
+		} else {
+			htmlPwr50 = '';
+		}
+
+		// Primary Company
+		if (whoswho.primaryCo) {
+			htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>'+ whoswho.primaryCo +'</dd>';
+		} else {
+			htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>--</dd>'
+		}
+
+		// Secondary Company
+		if (whoswho.secondaryCo) {
+			htmlSecondaryCo = '<dt>Secondary Company</dt><dd>'+ whoswho.secondaryCo +'</dd>';
+		} else {
+			htmlSecondaryCo = '<dt>Secondary Company</dt><dd>--</dd>';
+		}
+
+		// Hometown
+		if (whoswho.city && whoswho.state) {
+			htmlHometown = '<dt>Home Town</dt><dd>'+ whoswho.city +', '+ whoswho.state +'</dd>';
+		} else if (whoswho.city) {
+			htmlHometown = '<dt>Home Town</dt><dd>'+ whoswho.city +'</dd>';
+		} else if (whoswho.state) {
+			htmlHometown = '<dt>Home Town</dt><dd>'+ whoswho.state +'</dd>';
+		} else {
+			htmlHometown = '<dt>Home Town</dt><dd>--</dd>';
+		}
+
+		if (whoswho.industry) {
+			htmlIndustry = '<dt>Industry</dt><dd>'+ whoswho.industry +'</dd>';
+		} else {
+			htmlIndustry = '<dt>Industry</dt><dd>--</dd>';
+		}
+
+		// Undergraduate College
+		if (whoswho.undergrad) {
+			htmlUndergrad = '<dt>Undergraduate College</dt><dd>'+ whoswho.undergrad +'</dd>';
+		} else {
+			htmlUndergrad = '<dt>Undergraduate College</dt><dd>--</dd>';
+		}
+
+		// Graduate College
+		if (whoswho.grad) {
+			htmlGrad = '<dt>Graduate College</dt><dd>'+ whoswho.grad +'</dd>';
+		} else {
+			htmlGrad = '<dt>Graduate College</dt><dd>--</dd>';
+		}
+
+		// Professional Association
+		if (whoswho.profAssoc) {
+			formatData(whoswho.profAssoc, profAssoc, formattedProfAssoc);
+			htmlProfAssoc = '<dt>Professional Associations</dt><dd>'+ formattedProfAssoc +'</dd>';
+		} else {
+			htmlProfAssoc = '<dt>Professional Associations</dt><dd>--</dd>';
+		}
+
+		// Civic Affiliation
+		if (whoswho.civicAffil) {
+			formatData(whoswho.civicAffil, civicAffil, formattedCivicAffil);
+			htmlCivicAffil = '<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffil +'</dd>';
+		} else {
+			htmlCivicAffil = '<dt>Civic Affiliations</dt><dd>--</dd>';
+		}
+
+		// Biography Link
+		if (whoswho.bio) {
+			htmlBio = '<dt>Biography</dt><dd><a href="'+ whoswho.bio +'" target="_blank">Click here</a></dd></dl>';
+		} else {
+			htmlBio = '<dt>Biography</dt><dd>--</dd></dl>';
+		}
+
+		var htmlImage = '<div class="photo"><img src="assets/im/media/' + whoswho.img + '" height="100" width="83" alt="" /></div>',
+			htmlName = '<h2><span>'+ whoswho.first + ' ' + whoswho.middle + ' </span>' + whoswho.last +'</h2>',
+			person =
+				'<li data-whoswho-id="'+ i +'">'+
+					htmlImage +
+					htmlPwr50 +
+					htmlName +
+					htmlPrimaryCo +
+					htmlSecondaryCo +
+					htmlIndustry +
+					htmlUndergrad +
+					htmlGrad +
+					htmlHometown +
+					htmlProfAssoc +
+					htmlCivicAffil+
+					htmlBio +
+				'</li>';
+
+		if ($.inArray(i, loadedProfile) === -1) {
+			// populate Who's Who Details
+			$('#all-whos-who ul').append(person);
+			loadedProfile.push(i);
+			max++;
+			return max < 45;
+		} else {
+			// Do nothing
+		}
+
+
+	});
+	$('#all-whos-who').fadeIn(1300);
+}
+
+/*****************************************************************************
+Show More on Scroll
+*****************************************************************************/
+function showOnScroll() {
+	$(window).scroll(function() {
+		if($(window).scrollTop() + $(window).height() == $(document).height()) {
+			compilePersonInfo();
+		}
+	});
+}
+
+/*****************************************************************************
+Auto Complete
+*****************************************************************************/
+function initiateAutoComplete() {
+
+	var allFirst = [],
+		allLast = [],
+		allCompanies = [],
+		allProfAssoc = [],
+		allCivicAffil = [],
+		allUndergrad = [],
+		allGrad = [],
+		allCity = [],
+		allState = [],
+		allData = [];
 
 	/*****************************************************************************
 	scrape all values and push into specified array
 	*****************************************************************************/
-	function pushData(data, id, arrayName) {
-		if (data[0] !== undefined && data[0].length > 1) {
-			$.each(data, function(i, id) {
+	function pushData(id, newArray) {
+		if (id[0] !== undefined && id[0].length > 1) {
+			$.each(id, function(i, id) {
 				// check if value already exists
-				if ($.inArray(id, arrayName) === -1) {
-					arrayName.push(id);
+				if ($.inArray(id, newArray) === -1) {
+					newArray.push(id);
 				} else {
 					//do nothing
 				}
 			});
 		} else {
-			if ($.inArray(data, arrayName) === -1) {
-				arrayName.push(data);
+			if ($.inArray(id, newArray) === -1) {
+				newArray.push(id);
 			} else {
 				//do nothing
 			}
 		}
 	}
 
-
-	$.each(obj.whoswho, function(i, whoswho) {
-		var first,
-			last,
-			profAssociations,
-			civicAffiliations,
-			undergraduate,
-			graduate,
-			degree,
-			hometown,
-			state,
-			person = '<li><div class="photo"><img src="assets/im/media/' + whoswho.img + '" height="100" width="83" alt="id" /></div>'+
-					'<h2><span>'+ whoswho.first + ' ' + whoswho.middle + ' </span>' + whoswho.last +'</h2>'+
-					'<dl><dt>Primary Company</dt><dd>'+ whoswho.primaryCo +'</dd>'+
-					'<dt>Secondary Company</dt><dd>'+ whoswho.secondaryCo +'</dd>'+
-					'<dt>Industry</dt><dd>'+ whoswho.industry +'</dd>'+
-					'<dt>Undergraduate College</dt><dd>'+ whoswho.undergraduate +'</dd>'+
-					'<dt>Graduate College</dt><dd>'+ whoswho.graduate +'</dd>'+
-					'<dt>Home Town</dt><dd>'+ whoswho.hometown +', '+ whoswho.state +'</dd>'+
-					'<dt>Professional Associations</dt><dd>'+ whoswho.profAssociations +'</dd>'+
-					'<dt>Civic Affiliations</dt><dd>'+ whoswho.civicAffiliations +'</dd>'+
-					'<dt>Biography</dt><dd><a href="'+ whoswho.url +'" target="_blank">Click here</a></dd></dl></li>';
-
-		// populate Who's Who Details
-		$('#all-whos-who ul').append(person);
-
-		/*****************************************************************************
-		push data into array
-		*****************************************************************************/
-		pushData(whoswho.first, first, allFirst);
-		pushData(whoswho.last, last, allLast);
-		pushData(whoswho.profAssociations, profAssociations, allProfAssociations);
-		pushData(whoswho.civicAffiliations, civicAffiliations, allCivicAffiliations);
-		pushData(whoswho.undergraduate, undergraduate, allUndergraduate);
-		pushData(whoswho.graduate, graduate, allGraduate);
-		pushData(whoswho.hometown, hometown, allHometown);
-		pushData(whoswho.state, state, allState);
-	});
-
 	/*****************************************************************************
-	Build industry list (<select>)
+	Push data into array, for Autocomplete feature // pushData(array, id, newArray)
 	*****************************************************************************/
-	$.each(obj.industries, function(i, industries) {
-		var html = '<option value="'+industries+'">'+industries+'</option>';
-		$('.industry-list').append(html);
+	$.each(obj.whoswho, function(i, whoswho) {
+		pushData(whoswho.first, allFirst);
+		pushData(whoswho.last, allLast);
+		pushData(whoswho.profAssoc, allProfAssoc);
+		pushData(whoswho.civicAffil, allCivicAffil);
+		pushData(whoswho.undergrad, allUndergrad);
+		pushData(whoswho.grad, allGrad);
+		pushData(whoswho.city, allCity);
+		pushData(whoswho.state, allState);
 	});
-
-	// build companies list
 	$.each(obj.companies, function(i, companies) {
-		allCompanies.push(companies);
+		pushData(companies, allCompanies);
 	});
 
 	/*****************************************************************************
-	Apply array into auto-complete
+	Apply updated array into auto-complete fields
 	*****************************************************************************/
 	$( ".autocomplete-prof-assoc" ).autocomplete({
 		appendTo: '.overlay-main',
-		source: allProfAssociations
-	}).keyup(function (e) {
-		if(e.which === 13) {
-			$(".ui-autocomplete").hide();
-		}
+		source: allProfAssoc
 	});
 	$( ".autocomplete-civic-affil" ).autocomplete({
 		appendTo: '.overlay-main',
-		source: allCivicAffiliations
-	}).keyup(function (e) {
-		if(e.which === 13) {
-			$(".ui-autocomplete").hide();
-		}
+		source: allCivicAffil
 	});
 	$( ".autocomplete-undergraduate" ).autocomplete({
 		appendTo: '.overlay-main',
-		source: allUndergraduate
-	}).keyup(function (e) {
-		if(e.which === 13) {
-			$(".ui-autocomplete").hide();
-		}
+		source: allUndergrad
 	});
 	$( ".autocomplete-graduate" ).autocomplete({
 		appendTo: '.overlay-main',
-		source: allGraduate
-	}).keyup(function (e) {
-		if(e.which === 13) {
-			$(".ui-autocomplete").hide();
-		}
+		source: allGrad
 	});
 	$( ".autocomplete-hometown" ).autocomplete({
 		appendTo: '.overlay-main',
-		source: allHometown
-	}).keyup(function (e) {
-		if(e.which === 13) {
-			$(".ui-autocomplete").hide();
-		}
+		source: allCity
 	});
 	$( ".autocomplete-state" ).autocomplete({
 		appendTo: '.overlay-main',
 		source: allState
-	}).keyup(function (e) {
-		if(e.which === 13) {
-			$(".ui-autocomplete").hide();
-		}
 	});
 	$( ".autocomplete-company" ).autocomplete({
 		appendTo: '.overlay-main',
 		source: allCompanies
-	}).keyup(function (e) {
-		if(e.which === 13) {
-			$(".ui-autocomplete").hide();
-		}
 	});
 
-	var allData = allProfAssociations.concat(
-		allFirst,
-		allLast,
-		allCivicAffiliations,
-		allUndergraduate,
-		allGraduate,
-		allHometown,
-		allState);
+	// concat data into one array
+	var allData = allProfAssoc.concat(
+			allFirst,
+			allLast,
+			allCompanies,
+			allCivicAffil,
+			allUndergrad,
+			allGrad,
+			allCity,
+			allState
+		);
 
 	$( "#whos-who-search" ).autocomplete({
 		source: allData
-	}).keyup(function (e) {
+	});
+
+	// hide autocomplete when user enters custom term
+	$('#whos-who-2012').on('keyup', 'input[type="text"]', function (e) {
 		if(e.which === 13) {
 			$(".ui-autocomplete").hide();
 		}
 	});
-});
+}
 
+/*****************************************************************************
+Build industry list (<select>)
+****************************************************************************/
+function buildSelectOption() {
+	$.each(obj.industries, function(i, industries) {
+		var html = '<option value="'+industries+'">'+industries+'</option>';
+		$('.industry-list').append(html);
+	});
+}
 
 /*****************************************************************************
 Transition Grid In
@@ -198,7 +292,7 @@ var overlayWrap = $('.overlay'),
 		});
 	},
 	hideItem : function() {
-		overlayWrap.on('click', 'button[data-function="close"], .controls button[data-function="remove"]', function() {
+		overlayWrap.on('click', '[data-function="close"], .controls button[data-function="remove"]', function() {
 			var hideOverlay = overlayWrap.fadeOut('fast').parents('body').removeClass('no-scroll'),
 				dataFunc = $(this).attr('data-function');
 
@@ -285,11 +379,36 @@ var questionnaire = {
 			$(this).parent('label').next().length;
 			if ( event.which === 13 ) {
 				if ( $(this).parent('label').next().length === 0 ) {
-					// console.log('it works!');
 					// $('#questions button[data-function="next"]').focus();
 					navigation.showNext();
 					navigation.disableButton();
 				}
+			}
+		});
+	},
+	runFilter : function() {
+		$('#overlay-survey').on('keydown focusout', 'input[type="text"], select', function(event) {
+			
+			var $this = $(this),
+				value = $this.val(),
+				id = $this.attr('id');
+
+			if ( event.which === 13 || event.type === 'focusout' && value.length !== 0 ) {
+				switch (id) {
+					case 'survey-company':
+					case 'survey-industry':
+					case 'survey-undergrad':
+					case 'survey-grad':
+					case 'survey-hometown':
+					case 'survey-state':
+					case 'survey-civic-affil':
+					case 'survey-prof-assoc':
+						search.getResults(value.toLowerCase(), '#connections');
+					default:
+						// Do nothing
+				}
+			} else {
+				// Do nothing
 			}
 		});
 	}
@@ -321,7 +440,7 @@ var current,
 				id = $this.attr('href');
 			navigation.getCurrent().hide().removeClass('selected').siblings(id).fadeIn('fast').addClass('selected');
 			navigation.syncHeader();
-			event.preventDefault();0
+			event.preventDefault();
 		});
 	},
 	syncHeader : function() {
@@ -334,11 +453,13 @@ var current,
 		navigation.getCurrent().prev().fadeIn('fast');
 		navigation.getCurrent().hide().removeClass('selected').prev().addClass('selected');
 		navigation.syncHeader();
+		navigation.getCurrent().find('label:first').children().focus();
 	},
 	showNext : function() {
 		navigation.getCurrent().next().fadeIn('fast');
 		navigation.getCurrent().hide().removeClass('selected').next().addClass('selected');
 		navigation.syncHeader();
+		navigation.getCurrent().find('label:first').children().focus();
 	},
 	disableButton : function() {
 		if (navigation.getCurrent().prev().length === 0) {
@@ -355,66 +476,366 @@ var current,
 	}
 }
 
+/*****************************************************************************
+Search
+*****************************************************************************/
 var search = {
 	getValue : function() {
-		$('.search').on('keydown', 'input[type="text"]', function() {
-			var searchValue = $('.search input').val().toLowerCase();
+		var searchBar = $('.search');
+		searchBar.on('keydown', 'input[type="text"]', function() {
+			var searchTerm = $('.search input').val().toLowerCase();
 
 			if ( event.which === 13 ) {
 				$(".ui-autocomplete").hide();
-				search.getResults(searchValue);
+				search.getResults(searchTerm, '#filtered');
 			}
 		});
+		searchBar.on('click', 'button[data-function="search"]', function() {
+			var searchTerm = $('.search input').val().toLowerCase();
+			search.getResults(searchTerm, '#filtered');
+		});
 	},
-	getResults : function(searchValue) {
-		var results = [];
+	getResults : function(searchTerm, container) {
+		var results = [],
+			catWrap = $(container);
 
-		$('#all-whos-who ul').html('');
-		$.each(obj.whoswho, function(i, wwdetails) {
-		    $.each(wwdetails, function(property, value) {
+		if (searchTerm) {
 
-		    	function test(value) {		    		
-					if ($.type(value) ==='string' && value.toLowerCase().indexOf(searchValue) !== -1) {
-						if ($.inArray(i, results) === -1) {
-							results.push(i);
-							var person = '<li><div class="photo"><img src="assets/im/media/' + wwdetails.img + '" height="100" width="83" alt="id" /></div>'+
-									'<h2><span>'+ wwdetails.first + ' ' + wwdetails.middle + ' </span>' + wwdetails.last +'</h2>'+
-									'<dl><dt>Primary Company</dt><dd>'+ wwdetails.primaryCo +'</dd>'+
-									'<dt>Secondary Company</dt><dd>'+ wwdetails.secondaryCo +'</dd>'+
-									'<dt>Industry</dt><dd>'+ wwdetails.industry +'</dd>'+
-									'<dt>Undergraduate College</dt><dd>'+ wwdetails.undergraduate +'</dd>'+
-									'<dt>Graduate College</dt><dd>'+ wwdetails.graduate +'</dd>'+
-									'<dt>Home Town</dt><dd>'+ wwdetails.hometown +', '+ wwdetails.state +'</dd>'+
-									'<dt>Professional Associations</dt><dd>'+ wwdetails.profAssociations +'</dd>'+
-									'<dt>Civic Affiliations</dt><dd>'+ wwdetails.civicAffiliations +'</dd>'+
-									'<dt>Biography</dt><dd><a href="'+ wwdetails.url +'" target="_blank">Click here</a></dd></dl></li>';
+			// Empty container on search, except for "connections"
+			if (container !== '#connections') {
+				catWrap.children('ul').html('').parent(container).show();
+			}
 
-							// populate Who's Who Details
-							$('#all-whos-who ul').append(person);
-						} else {
-							//do nothing
+			if (catWrap.children('ul').children('li').length > 0) {
+				catWrap.show();
+			}
+
+			// Search through all values
+			$.each(obj.whoswho, function(i, wwwdetails) {
+				$.each(wwwdetails, function(property, value) {
+
+					switch (property) {
+					case "first":
+					case "last":
+					case "primaryCo":
+					case "industry" :
+					case "profAssoc":
+					case "civicAffil":
+					case "undergrad":
+					case "grad":
+						var	profAssoc,
+							civicAffil,
+							formattedProfAssoc = [],
+							formattedCivicAffil = [];
+
+
+
+						// Show Search Results
+						function showMatches(value) {	
+
+							if ($.type(value) ==='string' && value.toLowerCase().indexOf(searchTerm) !== -1 && $.inArray(i, results) === -1 && $.inArray(i, allConnections) === -1) {
+								results.push(i);
+
+								// Prevent the same result for being populated in "connections"
+								if (container === '#connections') {
+									allConnections.push(i);
+								}
+
+								function formatData(array, id, newArray) {
+									if (array[0] !== undefined && array[0].length > 1) {
+										$.each(array, function(i, id) {
+											newArray.push(' ' + id);
+										});
+									} else {
+										// do nothing
+									}
+								}
+
+								// Power 50
+								if (wwwdetails.pwr50) {
+									htmlPwr50 = '<div class="pwr50">Power 50</div>';
+								} else {
+									htmlPwr50 = '';
+								}
+
+								// Primary Company
+								if (wwwdetails.primaryCo) {
+									htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>'+ wwwdetails.primaryCo +'</dd>';
+								} else {
+									htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>--</dd>'
+								}
+
+								// Secondary Company
+								if (wwwdetails.secondaryCo) {
+									htmlSecondaryCo = '<dt>Secondary Company</dt><dd>'+ wwwdetails.secondaryCo +'</dd>';
+								} else {
+									htmlSecondaryCo = '<dt>Secondary Company</dt><dd>--</dd>';
+								}
+
+								// Hometown
+								if (wwwdetails.city && wwwdetails.state) {
+									htmlHometown = '<dt>Home Town</dt><dd>'+ wwwdetails.city +', '+ wwwdetails.state +'</dd>';
+								} else if (wwwdetails.city) {
+									htmlHometown = '<dt>Home Town</dt><dd>'+ wwwdetails.city +'</dd>';
+								} else if (wwwdetails.state) {
+									htmlHometown = '<dt>Home Town</dt><dd>'+ wwwdetails.state +'</dd>';
+								} else {
+									htmlHometown = '<dt>Home Town</dt><dd>--</dd>';
+								}
+
+								if (wwwdetails.industry) {
+									htmlIndustry = '<dt>Industry</dt><dd>'+ wwwdetails.industry +'</dd>';
+								} else {
+									htmlIndustry = '<dt>Industry</dt><dd>--</dd>';
+								}
+
+								// Undergraduate College
+								if (wwwdetails.undergrad) {
+									htmlUndergrad = '<dt>Undergraduate College</dt><dd>'+ wwwdetails.undergrad +'</dd>';
+								} else {
+									htmlUndergrad = '<dt>Undergraduate College</dt><dd>--</dd>';
+								}
+
+								// Graduate College
+								if (wwwdetails.grad) {
+									htmlGrad = '<dt>Graduate College</dt><dd>'+ wwwdetails.grad +'</dd>';
+								} else {
+									htmlGrad = '<dt>Graduate College</dt><dd>--</dd>';
+								}
+
+								// Professional Association
+								if (wwwdetails.profAssoc) {
+									formatData(wwwdetails.profAssoc, profAssoc, formattedProfAssoc);
+									htmlProfAssoc = '<dt>Professional Associations</dt><dd>'+ formattedProfAssoc +'</dd>';
+								} else {
+									htmlProfAssoc = '<dt>Professional Associations</dt><dd>--</dd>';
+								}
+
+								// Civic Affiliation
+								if (wwwdetails.civicAffil) {
+									formatData(wwwdetails.civicAffil, civicAffil, formattedCivicAffil);
+									htmlCivicAffil = '<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffil +'</dd>';
+								} else {
+									htmlCivicAffil = '<dt>Civic Affiliations</dt><dd>--</dd>';
+								}
+
+								// Biography Link
+								if (wwwdetails.bio) {
+									htmlBio = '<dt>Biography</dt><dd><a href="'+ wwwdetails.bio +'" target="_blank">Click here</a></dd></dl>';
+								} else {
+									htmlBio = '<dt>Biography</dt><dd>--</dd></dl>';
+								}
+
+								var htmlImage = '<div class="photo"><img src="assets/im/media/' + wwwdetails.img + '" height="100" width="83" alt="" /></div>',
+									htmlName = '<h2><span>'+ wwwdetails.first + ' ' + wwwdetails.middle + ' </span>' + wwwdetails.last +'</h2>',
+									person =
+										'<li data-whoswho-id="'+ i +'">'+
+											htmlImage +
+											htmlPwr50 +
+											htmlName +
+											htmlPrimaryCo +
+											htmlSecondaryCo +
+											htmlIndustry +
+											htmlUndergrad +
+											htmlGrad +
+											htmlHometown +
+											htmlProfAssoc +
+											htmlCivicAffil+
+											htmlBio +
+										'</li>';
+
+								// populate Who's Who Details
+								if (container === '#connections') {
+									catWrap.children('h1').children('strong').html('- [Total: ' + results.length + ']');
+								} else {
+									catWrap.children('h1').children('strong').html('- ' + searchTerm + ' [Total: ' + results.length + ']');
+								}
+								$(person).appendTo(container + ' ul');
+							} else {
+								// Do nothing
+							}
 						}
-					} else {
-						// console.log(searchValue + "-" + value);
+
+						// Search JSON
+						if (property === 'profAssoc' || property === 'civicAffil') {
+							$.each(value, function(i, value) {
+								showMatches(value);
+							});
+						} else {
+							showMatches(value);
+						}
+
+					default:
+						// Do nothing
 					}
-		    	}
-
-
-		    	if (value[0] !== undefined && value[0].length > 1) {
-		    		$.each(value, function(i, value) {
-		    			test(value);
-		    		});
-		    	} else {
-			    	test(value);
-		    	}
+				});
 			});
+			animateDropPerson(container);
+		} else {
+			$('#filtered h1').hide()
+				.parent('#filtered').slideUp('fast')
+				.children('h1').delay(300).show();
+		}
+	}
+}
+
+/*****************************************************************************
+Animate Grid
+*****************************************************************************/
+function animateDropPerson(id) {
+	if ($(id + ' li:hidden').length > 0) {
+		$(id + ' li:hidden').first().show('drop', {direction : 'right', easing : 'linear'}, 100, function() {
+			animateDropPerson(id);
 		});
 	}
 }
 
 /*****************************************************************************
+User Profile
+*****************************************************************************/
+var user = {
+	getInfo : function() {
+		$('#survey-done').on('click', function() {
+			var survey = $('#questions'),
+				surveyPrefix = survey.find('#survey-prefix').val(),
+				surveyFirst = survey.find('#survey-first').val(),
+				surveyLast = survey.find('#survey-last').val(),
+				surveySuffix = survey.find('#survey-suffix').val(),
+				surveyCompany  = survey.find('#survey-company').val(),
+				surveyIndustry = survey.find('#survey-industry').val(),
+				surveyUndergrad = survey.find('#survey-undergrad').val(),
+				surveyGrad = survey.find('#survey-grad').val(),
+				surveyCity = survey.find('#survey-hometown').val(),
+				surveyState = survey.find('#survey-state').val(),
+				surveyProfAssoc = survey.find('#survey-prof-assoc').val(),
+				surveyCivicAffil = survey.find('#survey-civic-affil').val();
+
+			localStorage.setItem('userPrefix', surveyPrefix);
+			localStorage.setItem('userName', surveyFirst);
+			localStorage.setItem('userLast', surveyLast);
+			localStorage.setItem('userSuffix', surveySuffix);
+			localStorage.setItem('userIndustry', surveyIndustry);
+
+			user.updateProfile(
+				surveyPrefix,
+				surveyFirst,
+				surveyLast,
+				surveySuffix,
+				surveyCompany,
+				surveyIndustry,
+				surveyUndergrad,
+				surveyGrad,
+				surveyCity,
+				surveyState
+				// surveyProfAssoc,
+				// surveyCivicAffil
+			);
+		});
+	},
+	getFilter : function() {
+		$('#overlay-user-profile').on('click','li', function() {
+			var searchTerm = $(this).children('strong').text().toLowerCase();
+			search.getResults(searchTerm, '#filtered');
+		});
+	},
+	updateProfile : function(surveyPrefix, surveyFirst, surveyLast, surveySuffix, surveyCompany, surveyIndustry, surveyUndergrad, surveyGrad, surveyCity, surveyState, surveyProfAssoc, surveyCivicAffil) {
+		var profile = $('#overlay-user-profile'),
+			editProfile = $('#overlay-user-profile-edit');
+
+		// User Profile
+		profile.find('#profile-name').text(surveyFirst + ' ' + surveyLast);
+		profile.find('#profile-company').children('strong').text(surveyCompany);
+		profile.find('#profile-prof-assoc').children('strong').text(surveyProfAssoc);
+		profile.find('#profile-civic-affil').children('strong').text(surveyCivicAffil);
+
+		// User Profile Edit
+		editProfile.find('#profile-edit-first').val(surveyFirst);
+		editProfile.find('#profile-edit-last').val(surveyLast);
+		editProfile.find('#profile-edit-suffix').val(surveySuffix);
+		editProfile.find('#profile-edit-company').val(surveyCompany);
+		editProfile.find('#profile-edit-prof-assoc').val(surveyProfAssoc);
+		editProfile.find('#profile-edit-civic-affil').val(surveyCivicAffil);
+		editProfile.find('#profile-edit-undergrad').val(surveyUndergrad);
+		editProfile.find('#profile-edit-grad').val(surveyGrad);
+		editProfile.find('#profile-edit-town').val(surveyCity);
+		editProfile.find('#profile-edit-state').val(surveyState);
+	}
+}
+
+/*****************************************************************************
+Update Score
+*****************************************************************************/
+function updateScore() {
+	var totalScore = 0,
+		totalMatch = 0;
+		user = [{
+			"first": "Carol",
+			"middle": "R.",
+			"last": "Barney",
+			"suffix": "",
+			"pwr50": "",
+			"primaryCo": "Ross Barney Architects Inc., Chicago",
+			"secondaryCo": "",
+			"profAssoc": ["American Institute of Architects", "Chicago Network", "Economic Club", "Lambda Alpha International", "Chicago Women in Architecture"],
+			"civicAffil": ["Illinois Institute of Technology Architectural Board of Overseers"],
+			"undergrad": "University of Illinois, Urbana-Champaign",
+			"grad": "University of Illinois, Urbana-Champaign"
+		}];
+
+	function scoreMatches(pName, value, multiplier) {
+		if (pName === 'profAssoc' || pName === 'civicAffil') {
+			if (user[0][pName][0] === value[0]) {
+				totalScore += multiplier;
+				totalMatch++;
+				// console.log('match!');
+			}
+		} else {
+			if (user[0][pName] === value) {
+				totalScore += multiplier;
+				totalMatch++;
+			}
+		}
+	}
+
+	// console.log(obj.whoswho[0]);
+	$.each(obj.whoswho, function(i, whoswho) {
+		$.each(whoswho, function(property, value) {
+
+			switch (property) {
+				case 'primaryCo' || 'secondaryCo':
+					scoreMatches(property, value, 4);
+				case 'profAssoc' || 'civicAffil':
+					scoreMatches(property, value, 3);
+				case 'undergrad' || 'grad':
+					scoreMatches(property, value, 2);
+				case 'pwr50':
+					if (value === true) { totalScore += 10 }
+				case 'last':
+					if (value === "Obama") { totalScore += 15 }
+				default:
+					// Do nothing
+			}
+		});
+	});
+	totalScore = parseInt(totalScore) + parseInt(totalMatch);
+	console.log('total score: ' + totalScore);
+	console.log('total matches: ' + totalMatch);
+}
+
+/*****************************************************************************
 Initialize
 *****************************************************************************/
+$(document).ajaxComplete(function() {
+	obj = $.parseJSON(data.responseText);
+
+	buildSelectOption();
+	initiateAutoComplete();
+	compilePersonInfo();
+	updateScore();
+});
+
+showOnScroll();
+
 overlay.launchItem('overlay-intro'); // launch intro
 overlay.details();
 overlay.getName();
@@ -423,10 +844,14 @@ overlay.hideItem();
 questionnaire.addEntry();
 questionnaire.removeEntry();
 questionnaire.nextQuestion();
+questionnaire.runFilter();
 
 navigation.getCurrent();
 navigation.nextPrev();
 navigation.disableButton();
 
 search.getValue();
+
+user.getInfo();
+user.getFilter();
 })();
