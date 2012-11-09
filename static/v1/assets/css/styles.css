@@ -189,6 +189,7 @@ Who's Who Grid
 }
 #whos-who h1 strong {
 	text-transform: capitalize;
+	font-weight: normal;
 }
 #whos-who li {
 	position: relative;

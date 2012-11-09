@@ -105,7 +105,7 @@ function compilePersonInfo() {
 		var htmlImage = '<div class="photo"><img src="assets/im/media/' + whoswho.img + '" height="100" width="83" alt="" /></div>',
 			htmlName = '<h2><span>'+ whoswho.first + ' ' + whoswho.middle + ' </span>' + whoswho.last +'</h2>',
 			person =
-				'<li>'+
+				'<li data-whoswho-id="'+ i +'">'+
 					htmlImage +
 					htmlPwr50 +
 					htmlName +
@@ -398,13 +398,12 @@ var questionnaire = {
 	},
 	runFilter : function() {
 		$('#overlay-survey').on('keydown focusout', 'input[type="text"], select', function(event) {
-		// $('#overlay-survey').on('focusout', 'input[type="text"], select', function(event) {
+			
+			var $this = $(this),
+				value = $this.val(),
+				id = $this.attr('id');
 
-			if ( event.which === 13 || event.type === 'focusout') {
-				var $this = $(this),
-					value = $this.val(),
-					id = $this.attr('id');
-
+			if ( event.which === 13 || event.type === 'focusout' && value.length !== 0 ) {
 				switch (id) {
 					case 'survey-company':
 					case 'survey-industry':
@@ -418,6 +417,8 @@ var questionnaire = {
 					default:
 						// Do nothing
 				}
+			} else {
+				// Do nothing
 			}
 		});
 	}
@@ -505,17 +506,19 @@ var search = {
 		});
 	},
 	getResults : function(searchTerm, container) {
-		var results = [];
+		var results = [],
+			catWrap = $(container);
 
 		if (searchTerm) {
 
 			// Empty container on search, except for "connections"
-			if (container === '#connections') {
-				$(container).show();
-			} else {
-				$(container + ' ul').html('').parent(container).show();
+			if (container !== '#connections') {
+				catWrap.children('ul').html('').parent(container).show();
 			}
 
+			if (catWrap.children('ul').children('li').length > 0) {
+				catWrap.show();
+			}
 
 			// Search through all values
 			$.each(obj.whoswho, function(i, wwwdetails) {
@@ -636,7 +639,7 @@ var search = {
 								var htmlImage = '<div class="photo"><img src="assets/im/media/' + wwwdetails.img + '" height="100" width="83" alt="" /></div>',
 									htmlName = '<h2><span>'+ wwwdetails.first + ' ' + wwwdetails.middle + ' </span>' + wwwdetails.last +'</h2>',
 									person =
-										'<li>'+
+										'<li data-whoswho-id="'+ i +'">'+
 											htmlImage +
 											htmlPwr50 +
 											htmlName +
@@ -652,7 +655,11 @@ var search = {
 										'</li>';
 
 								// populate Who's Who Details
-								$(container + ' h1 strong').text(searchTerm + ' (Results: ' + results.length + ')');
+								if (container === '#connections') {
+									catWrap.children('h1').children('strong').html('- [Total: ' + results.length + ']');
+								} else {
+									catWrap.children('h1').children('strong').html('- ' + searchTerm + ' [Total: ' + results.length + ']');
+								}
 								$(person).appendTo(container + ' ul');
 							} else {
 								// Do nothing
@@ -675,7 +682,9 @@ var search = {
 			});
 			animateDropPerson(container);
 		} else {
-			$('#filtered h1').hide().parent('#filtered').slideUp('fast').children('h1').show();
+			$('#filtered h1').hide()
+				.parent('#filtered').slideUp('fast')
+				.children('h1').delay(300).show();
 		}
 	}
 }
