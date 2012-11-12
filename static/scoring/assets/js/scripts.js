@@ -120,6 +120,15 @@ function initiateAutoComplete() {
 /*****************************************************************************
 Build User Profile
 *****************************************************************************/
+function runFilter() {
+	$('input[type="text"], select').blur(function() {
+		buildUserProfile();
+	});
+}
+
+/*****************************************************************************
+Build User Profile
+*****************************************************************************/
 function buildUserProfile() {
 	var a = ['first', 'last', 'suffix', 'primaryCo', 'industry', 'profAssoc', 'civicAffil', 'undergrad', 'grad'],
 		userProfAssoc = [],
@@ -160,6 +169,8 @@ function buildUserProfile() {
 
 	//Update Score
 	updateScore();
+
+	// console.log('hello');
 
 	return user;
 }
@@ -214,12 +225,15 @@ function updateScore() {
 		$.each(userConnections, function(i, number) {
 			var person = obj.whoswho[number];
 			if (person.pwr50 === true) {
+				// console.log('power 50');
 				totalScore += 10;
 			}
 
 			if (person.last === "Obama") {
+				// console.log('obama');
 				totalScore += 15;
 			}
+			// console.log(person);
 		});
 		var finalScore = parseInt(totalScore) + parseInt(totalMatch);
 
@@ -312,11 +326,13 @@ function addEntry() {
 
 	$('#questions .multi').on('click', 'button[data-function="add"]', function() {
 		applyEntry($(this));
+		buildUserProfile();
 	});
 
 	$('#questions .multi').on('keydown', 'input[type="text"]', function() {
 		if ( event.which == 13 ) {
 			applyEntry($(this));
+			buildUserProfile();
 		}
 	});
 }
@@ -352,5 +368,5 @@ $('body').on('click', '[data-function="done"]', function() {
 	buildUserProfile();
 });
 
-
+runFilter();
 })();

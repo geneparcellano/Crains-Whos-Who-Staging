@@ -1,6 +1,7 @@
 .user-results {
 	margin-top: 20px;
-	background-color: #EEE;
+	background-color: #DDD;
+	border: 1px solid #CCC;
 }
 #score,
 #matches {
