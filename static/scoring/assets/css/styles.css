@@ -1,0 +1,39 @@
+.user-results {
+	margin-top: 20px;
+	background-color: #EEE;
+}
+#score,
+#matches {
+	display: block;
+	padding: 10px;
+	font-weight: bold;
+}
+
+/*****************************************************************************
+Autocomplete
+*****************************************************************************/
+.ui-autocomplete {
+	position: absolute;
+	max-height: 250px;
+	width: 250px;
+	border: 1px solid #DDD;
+	border-bottom-color: #AAA;
+	border-right-color: #AAA;
+	padding: 5px;
+	background-color: #FFF;
+	box-shadow: 3px 3px 5px #333;
+	overflow: auto;
+	font: 0.75em/1.5em Helvetica, Arial, sans-serif !important;
+}
+.ui-autocomplete li a {
+	display: block;
+	padding: 5px;
+	line-height: 1.25em;
+}
+.ui-autocomplete li a:hover,
+.ui-autocomplete li a.ui-state-hover {
+	background-color: #CCC;
+}
+.ui-autocomplete li a:active {
+	background-color: #AAA;
+}

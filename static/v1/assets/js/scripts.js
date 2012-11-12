@@ -140,7 +140,7 @@ Show More on Scroll
 *****************************************************************************/
 function showOnScroll() {
 	$(window).scroll(function() {
-		if($(window).scrollTop() + $(window).height() == $(document).height()) {
+		if($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
 			compilePersonInfo();
 		}
 	});
@@ -250,8 +250,8 @@ function initiateAutoComplete() {
 	});
 
 	// hide autocomplete when user enters custom term
-	$('#whos-who-2012').on('keyup', 'input[type="text"]', function (e) {
-		if(e.which === 13) {
+	$('#whos-who-2012').on('keyup', 'input[type="text"]', function (event) {
+		if(event.which === 13) {
 			$(".ui-autocomplete").hide();
 		}
 	});
@@ -305,9 +305,9 @@ var overlayWrap = $('.overlay'),
 		});
 	},
 	getName : function() {
-		$('body').on('click', '[data-function^="overlay"]', function(e) {
+		$('body').on('click', '[data-function^="overlay"]', function(event) {
 			overlay.launchItem($(this).attr('data-function'));
-			e.preventDefault();
+			event.preventDefault();
 		});
 	},
 	launchItem : function(itemName) {

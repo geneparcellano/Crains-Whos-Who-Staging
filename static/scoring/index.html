@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CWW User Score</title>
+	<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<form id="questions" method="post">
+	<fieldset>
+		<legend>Name</legend>
+		<label>First <input type="text" id="survey-first" /></label>
+		<label>Last <input type="text" id="survey-last" /></label>
+		<label>Suffix <input type="text" id="survey-suffix" /></label>
+		<!-- <div><button type="button" data-function="prev" disabled="disabled">Prev</button><button type="button" data-function="next">Next</button></div> -->
+	</fieldset>
+	<fieldset>
+		<legend>Where do you work?</legend>
+		<label>Company <input type="text" id="survey-company" class="autocomplete-company" /></label>
+		<label>
+			Industry
+			<select id="survey-industry" class="industry-list">
+				<option value="" selected="selected">Choose...</option>
+			</select>
+		</label>
+		<!-- <div><button type="button" data-function="prev" disabled="disabled">Prev</button><button type="button" data-function="next">Next</button></div> -->
+	</fieldset>
+	<fieldset>
+		<legend>School</legend>
+		<label>Undergraduate College <input type="text" id="survey-undergrad" class="autocomplete-undergraduate" /></label>
+		<label>Graduate College <input type="text" id="survey-grad" class="autocomplete-graduate" /></label>
+		<!-- <div><button type="button" data-function="prev" disabled="disabled">Prev</button><button type="button" data-function="next">Next</button></div> -->
+	</fieldset>
+	<fieldset>
+		<legend>Hometown</legend>
+		<label>City <input type="text" id="survey-city" class="autocomplete-hometown" /></label>
+		<label>
+			State
+			<select>
+				<option value="" selected="selected">Choose...</option>
+				<option>Alabama</option>
+				<option>Alaska</option>
+				<option>Arizona</option>
+				<option>Arkansas</option>
+				<option>California</option>
+				<option>Colorado</option>
+				<option>Connecticut</option>
+				<option>Delaware</option>
+				<option>Florida</option>
+				<option>Georgia</option>
+				<option>Hawaii</option>
+				<option>Idaho</option>
+				<option>Illinois</option>
+				<option>Indiana</option>
+				<option>Iowa</option>
+				<option>Kansas</option>
+				<option>Kentucky</option>
+				<option>Louisiana</option>
+				<option>Maine</option>
+				<option>Maryland</option>
+				<option>Massachusetts</option>
+				<option>Michigan</option>
+				<option>Minnesota</option>
+				<option>Mississippi</option>
+				<option>Missouri</option>
+				<option>Montana</option>
+				<option>Nebraska</option>
+				<option>Nevada</option>
+				<option>New Hampshire</option>
+				<option>New Jersey</option>
+				<option>New Mexico</option>
+				<option>New York</option>
+				<option>North Carolina</option>
+				<option>North Dakota</option>
+				<option>Ohio</option>
+				<option>Oklahoma</option>
+				<option>Oregon</option>
+				<option>Pennsylvania</option>
+				<option>Rhode Island</option>
+				<option>South Carolina</option>
+				<option>South Dakota</option>
+				<option>Tennessee</option>
+				<option>Texas</option>
+				<option>Utah</option>
+				<option>Vermont</option>
+				<option>Virginia</option>
+				<option>Washington</option>
+				<option>West Virginia</option>
+				<option>Wisconsin</option>
+				<option>Wyoming</option>
+				<option>Washington DC</option>
+				<option>Puerto Rico</option>
+			</select>
+		</label>
+		<!-- <div><button type="button" data-function="prev" disabled="disabled">Prev</button><button type="button" data-function="next">Next</button></div> -->
+	</fieldset>
+	<fieldset>
+		<legend>Memberships</legend>
+		<div id="survey-civic-affil" class="multi">
+			<label>Civic Affiliation <input type="text" class="autocomplete-civic-affil" /></label>
+			<button type="button" data-function="add">Add</button>
+		</div>
+		<div id="survey-prof-assoc" class="multi">
+			<label>Professional Association <input type="text" class="autocomplete-prof-assoc" /></label>
+			<button type="button" data-function="add">Add</button>
+		</div>
+		<button type="button" data-function="done">Done</button>
+	</fieldset>
+</form>
+<div class="user-results">
+	<span id="score"></span>
+	<span id="matches"></span>
+</div>
+	<script src="assets/js/jquery-1.8.2.min.js"></script>
+	<script src="assets/js/jquery-ui-1.8.24.custom.min.js"></script>
+	<script src="assets/js/scripts.js"></script>
+</body>
+</html>
