@@ -4,7 +4,8 @@
 var obj,
 	data = $.getJSON("../v1/assets/js/whoswho.json"),
 	user = [],
-	userConnections = [];
+	userConnections = [],
+	allWhosWho = [];
 
 /*****************************************************************************
 Auto Complete
@@ -23,7 +24,7 @@ function initiateAutoComplete() {
 		allData = [];
 
 	/*****************************************************************************
-	Collects data for specific arrays
+	Array Builder
 	*****************************************************************************/
 	function pushData(id, newArray) {
 		if (id[0] !== undefined && id[0].length > 1) {
@@ -45,9 +46,17 @@ function initiateAutoComplete() {
 	}
 
 	/*****************************************************************************
-	Push data into array, for Autocomplete feature // pushData(array, id, newArray)
+	Build Arrays
 	*****************************************************************************/
 	$.each(obj.whoswho, function(i, whoswho) {
+		/*****************************************************************************
+		For All Whos Who
+		*****************************************************************************/
+		pushData(i, allWhosWho);
+
+		/*****************************************************************************
+		For Autocomplete feature // pushData(array, id, newArray)
+		*****************************************************************************/
 		pushData(whoswho.first, allFirst);
 		pushData(whoswho.last, allLast);
 		pushData(whoswho.profAssoc, allProfAssoc);
@@ -58,6 +67,9 @@ function initiateAutoComplete() {
 		pushData(whoswho.state, allState);
 	});
 	$.each(obj.companies, function(i, companies) {
+		/*****************************************************************************
+		For Companies
+		*****************************************************************************/
 		pushData(companies, allCompanies);
 	});
 
@@ -570,6 +582,8 @@ $(document).ajaxComplete(function() {
 	initiateAutoComplete();
 	multipleEntry();
 	removeEntry();
+	loadResults(allWhosWho, '#all-whos-who');
+	$('#all-whos-who').show().children().show();
 });
 
 $('body').on('click', '[data-function="done"]', function() {

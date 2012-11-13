@@ -130,7 +130,6 @@ function compilePersonInfo() {
 			// Do nothing
 		}
 
-
 	});
 	$('#all-whos-who').fadeIn(1300);
 }

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Crain&rsquo;s Who&rsquo;s Who 2012</title>
+	<link href="http://www.chicagobusiness.com/assets/favicon.ico" rel="Shortcut Icon" />
+	<link rel="stylesheet" href="http://www.chicagobusiness.com/css/blogs_demo.css?ver=20120713" type="text/css" media="screen" charset="utf-8">
+	<link rel="stylesheet" href="http://www.chicagobusiness.com/css/style.css?ver=20121005" type="text/css" />
+	<link rel="stylesheet" href="http://www.chicagobusiness.com/css/styles-2012.css?ver=20121017-1" type="text/css" />
+	<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<div id="whos-who-2012">
+	<header id="control-bar" class="clearfix">
+		<div class="user">
+			<div class="score"><span>Your Score:</span> <a class="your-score" href="#overlay-your-score" data-function="overlay-your-score">0</a></div>
+			<div class="profile">
+				<button type="button" data-function="overlay-user-profile">Your Profile</button>
+			</div>
+		</div>
+		<div class="search">
+			<label><span>Search</span> <input id="whos-who-search" type="text" placeholder="Search" /></label>
+			<button type="button" data-function="search">Search</button>
+		</div>
+		<h1><strong>Who&rsquo;s Who</strong> 2012</h1>
+	</header>
+	<div id="whos-who">
+		<section id="filtered">
+			<h1>People Matching<strong></strong></h1>
+			<ul class="clearfix">
+				<!-- Filtered content -->
+			</ul>
+		</section>
+		<section id="connections">
+			<h1>Your Connections<strong class="matches"></strong></h1>
+			<ul class="clearfix">
+				<!-- Connections content -->
+			</ul>
+		</section>
+		<section id="all-whos-who">
+			<h1>Who&rsquo;s Who 2012</h1>
+			<ul class="clearfix">
+				<!-- Who's who content -->
+			</ul>
+			<div class='ajax-loading'><img src="assets/im/icon-loader.gif" height="15" width="128" alt="loading..." /></div>
+		</section>
+	</div>
+
+	<div class="overlay">
+		<div class="overlay-bg"></div>
+		<div class="overlay-main">
+			<div id="overlay-intro" class="overlay-item">
+				<div class="logo"><img src="assets/im/logo-new.png" height="90" width="206" alt="logo" /></div>
+				<p>Who&rsquo;s Who is a list of the most influential people in Chicago.</p>
+				<p>Fill out the survey to see who of these heavy hitters you&rsquo;re connected to.</p>
+				<button type="button" data-function="overlay-survey">Get Started</button>
+			</div>
+			<div id="overlay-survey" class="overlay-item rail">
+				<header class="controls">
+					<strong>Question 1</strong>
+					<button type="button" data-function="close">Close</button>
+					<nav>
+						<ol>
+							<li class="selected"><a href="#question-1">Question 1</a></li>
+							<li><a href="#question-2">Question 2</a></li>
+							<li><a href="#question-3">Question 3</a></li>
+							<li><a href="#question-4">Question 4</a></li>
+							<li><a href="#question-5">Question 5</a></li>
+							<li><a href="#question-6">Question 6</a></li>
+							<li><a href="#question-7">Question 7</a></li>
+							<li><a href="#question-8">Question 8</a></li>
+						</ol>
+					</nav>
+				</header>
+				<form id="questions" method="post">
+					<fieldset>
+						<legend>Name</legend>
+						<label>First <input type="text" id="survey-first" /></label>
+						<label>Last <input type="text" id="survey-last" /></label>
+						<label>Suffix <input type="text" id="survey-suffix" /></label>
+						<!-- <div><button type="button" data-function="prev" disabled="disabled">Prev</button><button type="button" data-function="next">Next</button></div> -->
+					</fieldset>
+					<fieldset>
+						<legend>Where do you work?</legend>
+						<label>Company <input type="text" id="survey-company" class="autocomplete-company" /></label>
+						<label>
+							Industry
+							<select id="survey-industry" class="industry-list">
+								<option value="" selected="selected">Choose...</option>
+							</select>
+						</label>
+						<!-- <div><button type="button" data-function="prev" disabled="disabled">Prev</button><button type="button" data-function="next">Next</button></div> -->
+					</fieldset>
+					<fieldset>
+						<legend>School</legend>
+						<label>Undergraduate College <input type="text" id="survey-undergrad" class="autocomplete-undergraduate" /></label>
+						<label>Graduate College <input type="text" id="survey-grad" class="autocomplete-graduate" /></label>
+						<!-- <div><button type="button" data-function="prev" disabled="disabled">Prev</button><button type="button" data-function="next">Next</button></div> -->
+					</fieldset>
+					<fieldset>
+						<legend>Hometown</legend>
+						<label>City <input type="text" id="survey-city" class="autocomplete-hometown" /></label>
+						<label>
+							State
+							<select>
+								<option value="" selected="selected">Choose...</option>
+								<option>Alabama</option>
+								<option>Alaska</option>
+								<option>Arizona</option>
+								<option>Arkansas</option>
+								<option>California</option>
+								<option>Colorado</option>
+								<option>Connecticut</option>
+								<option>Delaware</option>
+								<option>Florida</option>
+								<option>Georgia</option>
+								<option>Hawaii</option>
+								<option>Idaho</option>
+								<option>Illinois</option>
+								<option>Indiana</option>
+								<option>Iowa</option>
+								<option>Kansas</option>
+								<option>Kentucky</option>
+								<option>Louisiana</option>
+								<option>Maine</option>
+								<option>Maryland</option>
+								<option>Massachusetts</option>
+								<option>Michigan</option>
+								<option>Minnesota</option>
+								<option>Mississippi</option>
+								<option>Missouri</option>
+								<option>Montana</option>
+								<option>Nebraska</option>
+								<option>Nevada</option>
+								<option>New Hampshire</option>
+								<option>New Jersey</option>
+								<option>New Mexico</option>
+								<option>New York</option>
+								<option>North Carolina</option>
+								<option>North Dakota</option>
+								<option>Ohio</option>
+								<option>Oklahoma</option>
+								<option>Oregon</option>
+								<option>Pennsylvania</option>
+								<option>Rhode Island</option>
+								<option>South Carolina</option>
+								<option>South Dakota</option>
+								<option>Tennessee</option>
+								<option>Texas</option>
+								<option>Utah</option>
+								<option>Vermont</option>
+								<option>Virginia</option>
+								<option>Washington</option>
+								<option>West Virginia</option>
+								<option>Wisconsin</option>
+								<option>Wyoming</option>
+								<option>Washington DC</option>
+								<option>Puerto Rico</option>
+							</select>
+						</label>
+						<!-- <div><button type="button" data-function="prev" disabled="disabled">Prev</button><button type="button" data-function="next">Next</button></div> -->
+					</fieldset>
+					<fieldset>
+						<legend>Memberships</legend>
+						<div id="survey-civic-affil" class="multi">
+							<label>Civic Affiliation <input type="text" class="autocomplete-civic-affil" /></label>
+							<button type="button" data-function="add">Add</button>
+						</div>
+						<div id="survey-prof-assoc" class="multi">
+							<label>Professional Association <input type="text" class="autocomplete-prof-assoc" /></label>
+							<button type="button" data-function="add">Add</button>
+						</div>
+						<button id="survey-done" type="button" data-function="overlay-your-score">Done</button>
+					</fieldset>
+				</form>
+			</div>
+			<div id="overlay-your-score" class="overlay-item">
+				<div class="controls">
+					<strong>Your Score</strong>
+					<button type="button" data-function="close">Close</button>
+				</div>
+				<div class="content">
+					<div class="score">
+						Your connection score is: <strong class="your-score">0</strong>
+					</div>
+					<ul class="score-bar clearfix">
+						<li class="score-bar-min">0</li>
+						<li class="score-bar-actual">417</li>
+						<li class="score-bar-max">650</li>
+					</ul>
+					<p>You rank in the top 30%! Check out the Top 50s you are connected to.</p>
+					<button type="button" data-function="overlay-share-your-score">Share Your Score</button>
+					<button type="button" data-function="close">View Your Connections</button>
+				</div>
+			</div>
+			<div id="overlay-share-your-score" class="overlay-item">
+				<div class="controls">
+					<strong>Share Your Score</strong>
+					<button type="button" data-function="close">Close</button>
+				</div>
+				<div class="content">
+					<ul>
+						<li><a href="#">Linked In</a></li>
+						<li><a href="#">Facebook</a></li>
+						<li><a href="#">Twitter</a></li>
+						<li><a href="mailto:?subject=Crain's Who's Who 2012&body=Hi, I found out I'm connected to some of Chicago's most influential people. http://www.chicagobusiness.com/">E-mail</a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="overlay-user-profile" class="overlay-item">
+				<div class="controls">
+					<strong>Your Profile</strong>
+					<button type="button" data-function="close">Close</button>
+					<button type="button" data-function="overlay-user-profile-edit">Edit</button>
+				</div>
+				<div class="content">
+					<div class="score">
+						Your connection score is: <strong class="your-score">0</strong>
+					</div>
+					<h2 id="profile-name" class="user-name">John Smith</h2>
+					<ul>
+						<li id="profile-company" data-function="close">
+							Company
+							<strong>Abbott Laboratories</strong>
+							<span>23 Connections</span>
+						</li>
+						<li id="profile-prof-assoc" data-function="close">
+							Professional Associations
+							<strong>Illinois Hospital Association</strong>
+							<span>23 Connections</span>
+						</li>
+						<li id="profile-civic-affil" data-function="close">
+							Civic Affiliations
+							<strong>Commercial Club</strong>
+							<span>23 Connections</span>
+						</li>
+						<li id="profile-industry" data-function="close">
+							Industry
+							<strong>Architecture</strong>
+							<span>23 Connections</span>
+						</li>
+						<li id="profile-undergrad" data-function="close">
+							Undergraduate College
+							<strong>Iowa State University</strong>
+							<span>23 Connections</span>
+						</li>
+						<li id="profile-grad" data-function="close">
+							Graduate College
+							<strong>Harvard University
+								<strong>Chicago</strong></strong>
+							<span>23 Connections</span>
+						</li>
+						<li id="profile-hometown" data-function="close">
+							Hometown
+							<strong>Chicago</strong>
+							<span>23 Connections</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="overlay-user-profile-edit" class="overlay-item">
+				<div class="controls">
+					<strong>Edit Profile</strong>
+					<button type="button" data-function="close">Close</button>
+					<button type="button" class="save" data-function="overlay-user-profile">Save</button>
+				</div>
+				<div class="content">
+					<ul class="clearfix">
+						<li class="name clearfix">
+							<label class="name-first">First Name <input id="profile-edit-first" type="text" /></label>
+							<label class="name-last">Last Name <input id="profile-edit-last" type="text" /></label>
+							<label class="name-suffix">Suffix <input id="profile-edit-suffix" type="text" /></label>
+						</li>
+						<li><label>Where Do You Work? <input id="profile-edit-company" class="autocomplete-company" type="text" /></label></li>
+						<li><label>Professional Associations <input id="profile-edit-prof-assoc" class="autocomplete-prof-assoc" type="text" /></label></li>
+						<li><label>Civic Affiliations <input id="profile-edit-civic-affil" class="autocomplete-civic-affil" type="text" /></label></li>
+						<li>
+							<label>
+								Industry
+								<select id="profile-edit-industry" class="industry-list" name="prefix">
+									<option selected="selected">Choose...</option>
+								</select>
+							</label>
+						</li>
+						<li><label>Undergraduate College <input  id="profile-edit-undergrad" class="autocomplete-undergraduate" type="text" /></label></li>
+						<li><label>Graduate College <input id="profile-edit-grad" class="autocomplete-graduate" type="text" /></label></li>
+						<li class="hometown clearfix">
+							<label class="hometown-town">Town <input id="profile-edit-town" class="autocomplete-hometown" type="text" /></label>
+							<label class="hometown-state">State <input id="profile-edit-state" class="autocomplete-state" type="text" /></label>
+						</li>
+						<li class="linkedin-connect">LinkedIn Account <button type="button">Connect</button></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+	<script src="assets/js/jquery-1.8.2.min.js"></script>
+	<script src="assets/js/jquery-ui-1.8.24.custom.min.js"></script>
+	<script src="assets/js/scripts.js"></script>
+</body>
+</html>
