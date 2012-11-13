@@ -297,7 +297,7 @@
 			"industry": "Architecture",
 			"bio": "",
 			"undergrad": "Vassar",
-			"grad": "Harvard",
+			"grad": "Harvard University",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -3471,7 +3471,7 @@
 			"civicAffil": ["University of Chicago", "WTTW-TV/Channel 11", "Commercial Club"],
 			"industry": "Cultural Institution",
 			"bio": "http://fieldmuseum.org/users/john-w-mccarter-jr",
-			"undergrad": "Princeton",
+			"undergrad": "Princeton University",
 			"grad": "Harvard University",
 			"city": "Chicago",
 			"state": "IL"
@@ -8572,7 +8572,7 @@
 			"industry": "Government",
 			"bio": "http://www.fnal.gov/directorate/profiles/pier_oddone.html",
 			"undergrad": "MIT",
-			"grad": "Princeton",
+			"grad": "Princeton University",
 			"city": "Arequipa",
 			"state": "Peru, South America"
 		}, {
@@ -13471,7 +13471,7 @@
 			"civicAffil": ["City Year", "Illinois State Commission on Community Service", "Jewish Council on Urban Affairs", "Metropolitan Planning Council"],
 			"industry": "Real Estate",
 			"bio": "http://www.linkedin.com/in/michaeljalter",
-			"undergrad": "Harvard Univeristy",
+			"undergrad": "Harvard University",
 			"grad": "University of Chicago",
 			"city": "Winnetka",
 			"state": "IL"

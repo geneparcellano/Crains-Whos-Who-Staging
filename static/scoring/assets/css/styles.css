@@ -38,3 +38,185 @@ Autocomplete
 .ui-autocomplete li a:active {
 	background-color: #AAA;
 }
+
+
+/*****************************************************************************
+Who's Who Grid
+*****************************************************************************/
+#connections,
+#filtered,
+#all-whos-who {
+	display: none;
+	position: relative;
+}
+#whos-who h1 strong {
+	text-transform: capitalize;
+	font-weight: normal;
+}
+#whos-who li {
+	position: relative;
+	display: none;
+	float: left;
+	margin: 5px;
+	padding: 5px;
+	cursor: pointer;
+}
+li .pwr50 {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 22px;
+	width: 22px;
+	background: url(../im/icon-pwr50.png) no-repeat center center;
+	text-indent: -9999px;
+}
+#all-whos-who li {
+	display: block;
+}
+#whos-who li:hover {
+	background-color: #A00;
+	color: #FFF;
+}
+#whos-who li:hover h2 {
+	color: #FFF !important;
+}
+#whos-who li:active {
+	background-color: #751117;
+}
+#whos-who li .photo {
+	height: 100px;
+	width: 83px;
+	background: url(../im/media/icon-unknown.gif) no-repeat 0 0;
+}
+#whos-who li h2 {
+	width: 83px;
+	border-bottom: none;
+	margin-top: 5px;
+	background-color: transparent;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+#whos-who li h2 span {
+	display: none;
+}
+#whos-who dl {
+	display: none;
+}
+
+/*****************************************************************************
+Overlay
+*****************************************************************************/
+.overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.overlay-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: #000;
+	opacity: 0.8;
+}
+.overlay-main {
+	position: relative;
+	height: 100%;
+	overflow: auto;
+}
+.overlay-item {
+	display: none;
+	width: 350px;
+	margin: 10% auto;
+	background-color: #FFF;
+	box-shadow: 3px 3px 5px #222;
+}
+.overlay-item.selected {
+	display: block;
+}
+.overlay .controls {
+	position: relative;
+	height: 50px;
+	border-bottom: 1px solid #BBB;
+	background-color: #EFEFEF;
+	box-shadow: 0 0 3px #AAA;
+	text-align: center;
+	font-weight: bold;
+}
+.overlay .controls strong {
+	background-color: transparent;
+	font-weight: bold;
+	font-size: 1.5em;
+	line-height: 50px;
+}
+
+/*****************************************************************************
+Overlay - Who's Who Details
+*****************************************************************************/
+#overlay-whos-who-details {
+	margin-top: 3%;
+}
+#overlay-whos-who-details .content {
+	position: relative;
+	padding: 10px;
+}
+#overlay-whos-who-details .photo {
+	height: 100px;
+	width: 83px;
+	background: url(../im/media/icon-unknown.gif) no-repeat 0 0;
+}
+#overlay-whos-who-details h2 {
+	position: absolute;
+	top: 10px;
+	left: 103px;
+	width: 235px;
+	border-bottom: 0;
+	padding: 10px 0 5px;
+	margin-bottom: 10px;
+	font-size: 1.5em;
+	font-weight: bold;
+	color: #A00 !important;
+	line-height: 1.15em;
+}
+#overlay-whos-who-details .pwr50 {
+	position: absolute;
+	display: block;
+	left: 103px;
+	top: 50px;
+	height: 22px;
+	padding-left: 25px;
+	background: url(../im/icon-pwr50.png) no-repeat left center;
+	color: #666;
+	font-size: 0.75em;
+	line-height: 22px;
+}
+#overlay-whos-who-details dl {
+	margin-top: 15px;
+	padding-top: 5px;
+	border-top: 1px solid #CCC;
+}
+#overlay-whos-who-details dt {
+	color: #666;
+	font-size: 0.75em;
+	line-height: 1.3333em;
+}
+#overlay-whos-who-details dd {
+	margin: 0 0 10px;
+	font-weight: bold;
+}
+#overlay-whos-who-details strong {
+	color: #000;
+	font-weight: bold;
+}
+#overlay-whos-who-details dd a {
+	color: #A00 !important;
+	text-decoration: none;
+}
+#overlay-whos-who-details dd a:hover {
+	text-decoration: underline;
+}
