@@ -77,31 +77,31 @@ function initiateAutoComplete() {
 	Apply updated array into auto-complete fields
 	*****************************************************************************/
 	$( ".autocomplete-prof-assoc" ).autocomplete({
-		// appendTo: '.overlay-main',
+		appendTo: '.overlay-main',
 		source: allProfAssoc
 	});
 	$( ".autocomplete-civic-affil" ).autocomplete({
-		// appendTo: '.overlay-main',
+		appendTo: '.overlay-main',
 		source: allCivicAffil
 	});
 	$( ".autocomplete-undergraduate" ).autocomplete({
-		// appendTo: '.overlay-main',
+		appendTo: '.overlay-main',
 		source: allUndergrad
 	});
 	$( ".autocomplete-graduate" ).autocomplete({
-		// appendTo: '.overlay-main',
+		appendTo: '.overlay-main',
 		source: allGrad
 	});
 	$( ".autocomplete-hometown" ).autocomplete({
-		// appendTo: '.overlay-main',
+		appendTo: '.overlay-main',
 		source: allCity
 	});
 	$( ".autocomplete-state" ).autocomplete({
-		// appendTo: '.overlay-main',
+		appendTo: '.overlay-main',
 		source: allState
 	});
 	$( ".autocomplete-company" ).autocomplete({
-		// appendTo: '.overlay-main',
+		appendTo: '.overlay-main',
 		source: allCompanies
 	});
 
@@ -587,6 +587,7 @@ var overlayWrap = $('.overlay'),
 		overlayWrap.find('#' + itemName).addClass('selected');
 	}
 }
+
 /*****************************************************************************
 Load All Whos Who 2012
 *****************************************************************************/
@@ -613,8 +614,6 @@ function loadWhosWho() {
 		container.children('li').show('fast', function() {
 			container.slideDown();
 		});	
-
-
 }
 
 /*****************************************************************************
@@ -711,6 +710,68 @@ function initSearch() {
 }
 
 /*****************************************************************************
+Questionnaire Navigation
+*****************************************************************************/
+var current,
+	navigation = {
+	getCurrent : function() {
+		return current = $('fieldset.selected');
+	},
+	nextPrev : function() {
+		$('button[data-function="prev"],button[data-function="next"]').on('click', function() {
+			var direction = $(this).attr('data-function');
+
+			if (direction === 'next') {
+				navigation.showNext();
+			} else {
+				navigation.showPrev();
+			}
+			navigation.disableButton();
+		});
+	},
+	dots : function() {
+		$('.controls ol').on('click', 'a', function(event) {
+			var $this = $(this),
+				id = $this.attr('href');
+			navigation.getCurrent().hide().removeClass('selected').siblings(id).fadeIn('fast').addClass('selected');
+			navigation.syncHeader();
+			event.preventDefault();
+		});
+	},
+	syncHeader : function() {
+		var selected = 'a[href="#'+ navigation.getCurrent().attr('id') +'"]',
+			newTitle = current.children('legend').text();
+		$('.controls ol li').removeClass('selected').children(selected).parent('li').addClass('selected');
+		$('#overlay-survey .controls strong').text(newTitle);
+	},
+	showPrev : function() {
+		navigation.getCurrent().prev().fadeIn('fast');
+		navigation.getCurrent().hide().removeClass('selected').prev().addClass('selected');
+		navigation.syncHeader();
+		navigation.getCurrent().find('label:first').children().focus();
+	},
+	showNext : function() {
+		navigation.getCurrent().next().fadeIn('fast');
+		navigation.getCurrent().hide().removeClass('selected').next().addClass('selected');
+		navigation.syncHeader();
+		navigation.getCurrent().find('label:first').children().focus();
+	},
+	disableButton : function() {
+		if (navigation.getCurrent().prev().length === 0) {
+			$('button[data-function="prev"]').attr('disabled','disabled');
+		} else {
+			$('button[data-function="prev"]').removeAttr('disabled');
+		}
+
+		if (navigation.getCurrent().next().length === 0) {
+			$('button[data-function="next"]').attr('disabled','disabled');
+		} else {
+			$('button[data-function="next"]').removeAttr('disabled');
+		}
+	}
+}
+
+/*****************************************************************************
 Initialize
 *****************************************************************************/
 $(document).ajaxComplete(function() {
@@ -730,6 +791,9 @@ $('form').on('click', '#survey-done', function() {
 overlay.launchItem('overlay-intro'); // launch intro
 initSearch();
 runFilter();
+navigation.getCurrent();
+navigation.nextPrev();
+navigation.disableButton();
 overlay.details();
 overlay.getName();
 overlay.hideItem();

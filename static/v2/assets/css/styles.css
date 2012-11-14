@@ -332,11 +332,14 @@ Overlay - Intro
 /*****************************************************************************
 Overlay - Survey
 *****************************************************************************/
-#overlay-survey .controls {
+#overlay-survey header.controls {
 	background-color: #A00;
 }
 #overlay-survey .controls strong {
+	padding-left: 20px;
 	color: #FFF;
+	text-align: left;
+	font-size: 1.4em;
 }
 #overlay-survey .controls button {
 	position: absolute;
@@ -385,15 +388,22 @@ Overlay - Survey
 #overlay-survey nav li.selected a {
 	background-color: #A00;
 }
-#overlay-survey button[data-function="prev"] {
-	left: 0;
-	text-indent: 0;
-	background-color: transparent;
+#overlay-survey .bottom-controls {
+	padding-right: 0;
+	margin-top: 20px;
+	background-color: #FF0;
 }
-#overlay-survey button[data-function="next"] {
-	right: 0;
+#overlay-survey button[data-function="prev"],
+#overlay-survey button[data-function="next"],
+button#survey-done {
+	float: right;
+	width: auto;
+	margin: 0 0 0 10px;
+	padding: 10px 30px;
 	text-indent: 0;
-	background-color: transparent;
+}
+#overlay-survey button[data-function="prev"] {
+	padding: 10px;
 }
 #overlay-survey .controls button:hover {
 	background-color: #760A04;
@@ -402,21 +412,21 @@ Overlay - Survey
 	background-color: #590100;
 	color: #FFF;
 }
-#overlay-survey .controls button[disabled="disabled"],
-#overlay-survey .controls button[disabled="disabled"]:hover,
-#overlay-survey .controls button[disabled="disabled"]:active {
-	opacity: 0.5;
+#overlay-survey .bottom-controls button[disabled="disabled"],
+#overlay-survey .bottom-controls button[disabled="disabled"]:hover,
+#overlay-survey .bottom-controls button[disabled="disabled"]:active {
+	opacity: 0;
 	background-color: transparent;
 }
 #questions {
 	margin-top: 40px;
 }
 #questions fieldset {
-	/*display: none;*/
+	display: none;
 	padding: 10px 20px;
 }
 #questions legend {
-	font-weight: bold;
+	display: none;
 }
 #questions fieldset.selected {
 	display: block;
@@ -424,6 +434,7 @@ Overlay - Survey
 #questions select {
 	width: 100%;
 	margin: 10px 0 20px;
+	padding: 10px;
 	font-size: 1em;
 }
 #questions .multi input[type="text"] {
@@ -442,7 +453,7 @@ Overlay - Survey
 }
 #questions .entries {
 	border-top: 1px solid #CCC;
-	margin-top: 10px;
+	margin: 10px 0 30px;
 }
 #questions .entries li {
 	position: relative;
