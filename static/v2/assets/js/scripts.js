@@ -4,23 +4,28 @@
 var obj,
 	data = $.getJSON("assets/js/whoswho.json"),
 	user = [],
+	connectionByCompany = [],
+	connectionByIndustry = [],
+	connectionByUndergrad = [],
+	connectionByGrad = [],
+	connectionByHometown = [],
+	connectionByProfAssoc = [],
+	connectionByCivicAffil = [],
 	userConnections = [],
-	allWhosWho = [];
+	allWhosWho = [],
+	loadedProfiles = [];
 
 /*****************************************************************************
 Auto Complete
 *****************************************************************************/
 function initiateAutoComplete() {
 
-	var allFirst = [],
-		allLast = [],
-		allCompanies = [],
+	var allCompanies = [],
 		allProfAssoc = [],
 		allCivicAffil = [],
 		allUndergrad = [],
 		allGrad = [],
 		allCity = [],
-		allState = [],
 		allData = [];
 
 	/*****************************************************************************
@@ -93,10 +98,6 @@ function initiateAutoComplete() {
 		appendTo: '.overlay-main',
 		source: allCity
 	});
-	$( ".autocomplete-state" ).autocomplete({
-		appendTo: '.overlay-main',
-		source: allState
-	});
 	$( ".autocomplete-company" ).autocomplete({
 		appendTo: '.overlay-main',
 		source: allCompanies
@@ -104,14 +105,11 @@ function initiateAutoComplete() {
 
 	// concat data into one array
 	var allData = allProfAssoc.concat(
-			// allFirst,
-			// allLast,
 			allCompanies,
 			allCivicAffil,
 			allUndergrad,
 			allGrad,
 			allCity
-			// allState
 		);
 
 	$( "#whos-who-search" ).autocomplete({
@@ -137,6 +135,7 @@ function buildUserProfile() {
 		obj = {},
 		survey = $('form'),
 		yourScore = $('#overlay-your-score'),
+		connectionDetails = $('#connection-details'),
 		userFirst = survey.find('#survey-first').val(),
 		userLast = survey.find('#survey-last').val(),
 		userCompany = survey.find('#survey-company').val(),
@@ -173,7 +172,16 @@ function buildUserProfile() {
 	yourScore.find('#profile-undergrad').children('strong').text(userUndergrad);
 	yourScore.find('#profile-grad').children('strong').text(userGrad);
 	yourScore.find('#profile-town').children('strong').text(userCity);
-	yourScore.find('#profile-state').children('strong').text(userState);
+	yourScore.find('#profile-state').children('strong').text (userState);
+
+	// Update "connection by type" count
+	connectionDetails.find('#profile-company').children('span').text(connectionByCompany.length + ' Connections');
+	connectionDetails.find('#profile-industry').children('span').text(connectionByIndustry.length + ' Connections');
+	connectionDetails.find('#profile-undergrad').children('span').text(connectionByUndergrad.length + ' Connections');
+	connectionDetails.find('#profile-grad').children('span').text(connectionByGrad.length + ' Connections');
+	connectionDetails.find('#profile-hometown').children('span').text(connectionByHometown.length + ' Connections');
+	connectionDetails.find('#profile-prof-assoc').children('span').text(connectionByProfAssoc.length + ' Connections');
+	connectionDetails.find('#profile-civic-affil').children('span').text(connectionByCivicAffil.length + ' Connections');
 
 	//Clear User Profile
 	user.length = 0;
@@ -197,11 +205,11 @@ function runFilter() {
 }
 
 /*****************************************************************************
-Index User's Connection
+Index Results
 *****************************************************************************/
-function indexConnection(i) {
-	if ($.inArray(i, userConnections) === -1) {
-		userConnections.push(i);
+function indexResults(arrayName, i) {
+	if ($.inArray(i, arrayName) === -1) {
+		arrayName.push(i);
 	} else {
 		//do nothing
 	}
@@ -216,6 +224,13 @@ function updateScore() {
 
 	// Clear previous results
 	userConnections.length = 0;
+	connectionByCompany.length = 0;
+	connectionByIndustry.length = 0;
+	connectionByUndergrad.length = 0;
+	connectionByGrad.length = 0;
+	connectionByHometown.length = 0;
+	connectionByProfAssoc.length = 0;
+	connectionByCivicAffil.length = 0;
 
 	/*****************************************************************************
 	Score matches
@@ -227,15 +242,52 @@ function updateScore() {
 				if (userValue === value) {
 					totalScore += multiplier;
 					totalMatch++;
-					indexConnection(i);
+
+					// Index Connections
+					indexResults(userConnections, i);
+
+					// Index connection type
+					switch(pName) {
+						case 'civicAffil':
+							indexResults(connectionByCivicAffil, i);
+							break;
+						case 'profAssoc':
+							indexResults(connectionByProfAssoc, i);
+							break;
+						default:
+							// Do nothing
+					}
 				}
 			});
 		} else {
 			if (user[0][pName] === value) {
 				totalScore += multiplier;
 				totalMatch++;
-				indexConnection(i);
-			} 
+
+				// Index Connections
+				indexResults(userConnections, i);
+
+				// Index connection type
+				switch(pName) {
+					case 'primaryCo':
+						indexResults(connectionByCompany, i);
+						break;
+					case 'industry':
+						indexResults(connectionByIndustry, i);
+						break;
+					case 'undergrad':
+						indexResults(connectionByUndergrad, i);
+						break;
+					case 'grad':
+						indexResults(connectionByGrad, i);
+						break;
+					case 'city':
+						indexResults(connectionByHometown, i);
+						break;
+					default:
+						// Do nothing
+				}
+			}
 		}
 	}
 
@@ -610,29 +662,28 @@ var overlayWrap = $('.overlay'),
 /*****************************************************************************
 Load All Whos Who 2012
 *****************************************************************************/
-var loadedProfiles = [];
 function loadWhosWho() {
-		var container = $('#all-whos-who').children('ul'),
-			max = 0;
+	var container = $('#all-whos-who').children('ul'),
+		max = 0;
 
-		// Index profiles that have been loaded
-		$.each(allWhosWho, function(i, id) {
-			if (i >= loadedProfiles.length) {
-				loadedProfiles.push(id);
-				max++;
-				return max < 45;
-			} else {
-				// do nothing
-			}
-		});
+	// Index profiles that have been loaded
+	$.each(allWhosWho, function(i, id) {
+		if (i >= loadedProfiles.length) {
+			loadedProfiles.push(id);
+			max++;
+			return max < 45;
+		} else {
+			// do nothing
+		}
+	});
 
-		// Get results
-		loadResults(loadedProfiles, '#all-whos-who');
+	// Get results
+	loadResults(loadedProfiles, '#all-whos-who');
 
-		// Show results
-		container.children('li').show('fast', function() {
-			container.slideDown();
-		});	
+	// Show results
+	container.children('li').show('fast', function() {
+		container.slideDown();
+	});	
 }
 
 /*****************************************************************************
@@ -702,7 +753,7 @@ function getResults(searchTerm, resultContainer) {
 		// Do nothing
 	}
 
-	// Index Results
+	// Load Results
 	loadResults(results, resultContainer);
 
 	// Show results
@@ -815,8 +866,8 @@ $('#control-bar').on('click','button[data-function="user-profile-edit"]', functi
 	$('#survey-done').appendTo(survey.children('form'));
 	overlay.launchItem('overlay-survey');
 });
+
 overlay.launchItem('overlay-intro'); // launch intro
-// overlay.launchItem('overlay-user-profile-edit');
 initSearch();
 runFilter();
 navigation.getCurrent();
