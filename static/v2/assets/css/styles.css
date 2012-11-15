@@ -506,6 +506,9 @@ button#survey-done {
 .ui-autocomplete li a:active {
 	background-color: #AAA;
 }
+.ui-autocomplete-loading {
+	background-color: #FF0 !important;
+}
 
 /*****************************************************************************
 Overlay - Your Score
@@ -525,9 +528,6 @@ Overlay - Your Score
 }
 #overlay-your-score .controls button[data-function="close"]:active {
 	background-color: #590100;
-}
-#overlay-your-score .content {
-	padding: 10px 20px;
 }
 #overlay-your-score .score {
 	margin-top: 10px;
@@ -600,28 +600,28 @@ Overlay - Share Your Score
 /*****************************************************************************
 Overlay - User Profile
 *****************************************************************************/
-#overlay-user-profile .score {
+#overlay-your-score .score {
 	margin-top: 10px;
 	text-align: center;
 }
-#overlay-user-profile .score strong {
+#overlay-your-score .score strong {
 	display: block;
 	color: #A00;
 	font-size: 6em;
 	line-height: 1em;
 	font-weight: bold;
 }
-#overlay-user-profile h2 {
+#overlay-your-score h2 {
 	border-bottom: none;
 	padding: 10px;
 	color: #A00 !important;
 	font-size: 1.5em;
 	font-weight: bold;
 }
-#overlay-user-profile ul {
+ul#connection-details {
 	border-top: 1px solid #CCC;
 }
-#overlay-user-profile li {
+#connection-details li {
 	padding: 10px;
 	border-bottom: 1px solid #CCC;
 	font-weight: bold;
@@ -629,17 +629,17 @@ Overlay - User Profile
 	background: url(../im/icon-arrow-right.png) no-repeat right center;
 	cursor: pointer;
 }
-#overlay-user-profile li:hover {
+#connection-details li:hover {
 	background: url(../im/icon-arrow-right-active.png) no-repeat right center #A00;
 	color: #FFF;
 }
-#overlay-user-profile li:active {
+#connection-details li:active {
 	background-color: #760A04;
 }
-#overlay-user-profile li strong {
+#connection-details li strong {
 	display: none;
 }
-#overlay-user-profile li span {
+#connection-details li span {
 	display: block;
 	color: #666;
 	font-size: 0.75em;

@@ -1,8 +1,11 @@
 /*****************************************************************************
 Typography
 *****************************************************************************/
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 100%;
+}
 #whos-who-2012 {
-	margin-top: -5px;
 	font-size: 14px !important;
 	line-height: 1.4545em;
 }
@@ -11,6 +14,12 @@ Layout
 *****************************************************************************/
 body.no-scroll {
 	overflow: hidden;
+}
+#whos-who-2012 {
+	width:935px;
+	margin: -5px auto 0;
+	padding:0 10px 10px;
+	background-color: #FFF;
 }
 #whos-who section > h1 {
 	padding: 5px 0 5px 20px;
@@ -174,9 +183,10 @@ Who's Who Control Bar
 	height: 47px;
 	width: 37px;
 	margin-top: -6px;
-	padding: 18px 0 0 4px;
+	padding-top: 18px;
 	background: url(../im/icon-ribbon.gif) no-repeat 0 0;
 	text-decoration: none;
+	text-align: center;
 	color: #FFF !important;
 }
 
@@ -242,6 +252,14 @@ li .pwr50 {
 }
 #whos-who dl {
 	display: none;
+}
+.ajax-loading {
+	display: block;
+	padding: 10px 0 8px;
+	margin: 0 10px;
+	border: 1px solid #DDD;
+	background-color: #E8E8E8;
+	text-align: center;
 }
 
 /*****************************************************************************
@@ -314,11 +332,14 @@ Overlay - Intro
 /*****************************************************************************
 Overlay - Survey
 *****************************************************************************/
-#overlay-survey .controls {
+#overlay-survey header.controls {
 	background-color: #A00;
 }
 #overlay-survey .controls strong {
+	padding-left: 20px;
 	color: #FFF;
+	text-align: left;
+	font-size: 1.4em;
 }
 #overlay-survey .controls button {
 	position: absolute;
@@ -332,6 +353,9 @@ Overlay - Survey
 	text-indent: -9999px;
 	cursor: pointer;
 	overflow: hidden;
+}
+#overlay-survey .controls button[data-function="close"] {
+	background: url(../im/icon-close-active.png) no-repeat center center ;
 }
 #overlay-survey header {
 	box-shadow: none;
@@ -364,15 +388,22 @@ Overlay - Survey
 #overlay-survey nav li.selected a {
 	background-color: #A00;
 }
-#overlay-survey button[data-function="prev"] {
-	left: 0;
-	text-indent: 0;
-	background-color: transparent;
+#overlay-survey .bottom-controls {
+	padding-right: 0;
+	margin-top: 20px;
+	background-color: #FF0;
 }
-#overlay-survey button[data-function="next"] {
-	right: 0;
+#overlay-survey button[data-function="prev"],
+#overlay-survey button[data-function="next"],
+button#survey-done {
+	float: right;
+	width: auto;
+	margin: 0 0 0 10px;
+	padding: 10px 30px;
 	text-indent: 0;
-	background-color: transparent;
+}
+#overlay-survey button[data-function="prev"] {
+	padding: 10px;
 }
 #overlay-survey .controls button:hover {
 	background-color: #760A04;
@@ -381,25 +412,29 @@ Overlay - Survey
 	background-color: #590100;
 	color: #FFF;
 }
-#overlay-survey .controls button[disabled="disabled"],
-#overlay-survey .controls button[disabled="disabled"]:hover,
-#overlay-survey .controls button[disabled="disabled"]:active {
-	opacity: 0.5;
+#overlay-survey .bottom-controls button[disabled="disabled"],
+#overlay-survey .bottom-controls button[disabled="disabled"]:hover,
+#overlay-survey .bottom-controls button[disabled="disabled"]:active {
+	opacity: 0;
 	background-color: transparent;
 }
 #questions {
 	margin-top: 40px;
 }
-#questions section {
+#questions fieldset {
 	display: none;
 	padding: 10px 20px;
 }
-#questions section.selected {
+#questions legend {
+	display: none;
+}
+#questions fieldset.selected {
 	display: block;
 }
 #questions select {
 	width: 100%;
 	margin: 10px 0 20px;
+	padding: 10px;
 	font-size: 1em;
 }
 #questions .multi input[type="text"] {
@@ -418,7 +453,7 @@ Overlay - Survey
 }
 #questions .entries {
 	border-top: 1px solid #CCC;
-	margin-top: 10px;
+	margin: 10px 0 30px;
 }
 #questions .entries li {
 	position: relative;
@@ -477,6 +512,7 @@ Overlay - Your Score
 *****************************************************************************/
 #overlay-your-score .controls {
 	background-color: #A00;
+	box-shadow: none;
 }
 #overlay-your-score .controls strong {
 	color: #FFF;

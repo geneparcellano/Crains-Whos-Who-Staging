@@ -133,7 +133,7 @@ function initiateAutoComplete() {
 Build User Profile
 *****************************************************************************/
 function buildUserProfile() {
-	var a = ['first', 'last', 'suffix', 'primaryCo', 'industry', 'profAssoc', 'civicAffil', 'undergrad', 'grad'],
+	var a = ['first', 'last', 'primaryCo', 'industry', 'profAssoc', 'civicAffil', 'undergrad', 'grad', 'city'],
 		userProfAssoc = [],
 		userCivicAffil = [],
 		i = 0,
@@ -141,11 +141,11 @@ function buildUserProfile() {
 		survey = $('form'),
 		userFirst = survey.find('#survey-first').val(),
 		userLast = survey.find('#survey-last').val(),
-		userSuffix = survey.find('#survey-suffix').val(),
 		userCompany = survey.find('#survey-company').val(),
 		userIndustry = survey.find('#survey-industry').val(),
 		userUndergrad = survey.find('#survey-undergrad').val(),
-		userGrad = survey.find('#survey-grad').val();
+		userGrad = survey.find('#survey-grad').val(),
+		userCity = survey.find('#survey-city').val();
 
 	$.each($('#survey-prof-assoc .entries li'), function(i) {
 		userProfAssoc.push($(this).text().slice(0, -6));
@@ -157,13 +157,13 @@ function buildUserProfile() {
 	//Set values
 	obj[a[0]] = userFirst;
 	obj[a[1]] = userLast;
-	obj[a[2]] = userSuffix;
-	obj[a[3]] = userCompany;
-	obj[a[4]] = '';
-	obj[a[5]] = userProfAssoc;
-	obj[a[6]] = userCivicAffil;
-	obj[a[7]] = userUndergrad;
-	obj[a[8]] = userGrad;
+	obj[a[2]] = userCompany;
+	obj[a[3]] = userIndustry;
+	obj[a[4]] = userProfAssoc;
+	obj[a[5]] = userCivicAffil;
+	obj[a[6]] = userUndergrad;
+	obj[a[7]] = userGrad;
+	obj[a[8]] = userCity;
 
 	//Clear User Profile
 	user.length = 0;
@@ -259,6 +259,9 @@ function updateScore() {
 
 			if (value.length !== 0) {
 				switch (property) {
+					case 'industry':
+						scoreMatches(property, value, 0, i);
+						break;
 					case 'primaryCo':
 						scoreMatches(property, value, 4, i);
 						break;
@@ -282,6 +285,9 @@ function updateScore() {
 						break;
 					case 'grad':
 						scoreMatches(property, value, 2, i);
+						break;
+					case 'city':
+						scoreMatches(property, value, 0, i);
 						break;
 					default:
 						// Do nothing
@@ -512,6 +518,7 @@ function loadResults(arrayName, resultContainer) {
 	if (arrayName.length) {	
 		$(resultContainer).slideDown('fast');
 	} else {
+		// container.append('<li>No results found</li>');
 		$(resultContainer).slideUp('fast');
 	}
 
@@ -571,12 +578,13 @@ var overlayWrap = $('.overlay'),
 		});
 	},
 	getName : function() {
-		$('body').on('click', '[data-function^="overlay"]', function(event) {
+		$('#whos-who-2012').on('click', '[data-function^="overlay"]', function(event) {
 			overlay.launchItem($(this).attr('data-function'));
 			event.preventDefault();
 		});
 	},
 	launchItem : function(itemName) {
+		// Prevents background from scrolling
 		if (overlayWrap.not(':visible')) {
 			overlayWrap.fadeIn('fast').parents('body').addClass('no-scroll');
 		} else {
@@ -623,7 +631,7 @@ function showOnScroll() {
 	$(window).scroll(function() {
 		// Show more profiles until all have been loaded
 		if (loadedProfiles.length < allWhosWho.length) {
-			if ($(window).scrollTop() + $(window).height() >= $(document).height() - 10) {
+			if ($(window).scrollTop() + $(window).height() >= $(document).height() - 280) {
 				loadWhosWho();
 			}
 		} else {

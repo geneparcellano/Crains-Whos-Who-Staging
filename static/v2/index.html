@@ -189,7 +189,7 @@
 		<div class="user">
 			<div class="score"><span>Your Score:</span> <a class="your-score" href="#overlay-your-score" data-function="overlay-your-score">0</a></div>
 			<div class="profile">
-				<button type="button" data-function="overlay-user-profile">Your Profile</button>
+				<button type="button" data-function="overlay-user-profile-edit">Your Profile</button>
 			</div>
 		</div>
 		<div class="search">
@@ -246,9 +246,8 @@
 				<form id="questions" method="post">
 					<fieldset id="question-name" class="selected">
 						<legend>Tell us about yourself</legend>
-						<label>First <input type="text" id="survey-first" /></label>
-						<label>Last <input type="text" id="survey-last" /></label>
-						<label>Suffix <input type="text" id="survey-suffix" /></label>
+						<label>First Name<input type="text" id="survey-first" /></label>
+						<label>Last Name<input type="text" id="survey-last" /></label>
 						<div class="bottom-controls">
 							<button type="button" data-function="next">Next</button>
 							<button type="button" data-function="prev" disabled="disabled">Prev</button>
@@ -369,42 +368,8 @@
 					<div class="score">
 						Your connection score is: <strong class="your-score">0</strong>
 					</div>
-					<ul class="score-bar clearfix">
-						<li class="score-bar-min">0</li>
-						<li class="score-bar-actual">417</li>
-						<li class="score-bar-max">650</li>
-					</ul>
-					<p>You rank in the top 30%! Check out the Top 50s you are connected to.</p>
-					<button type="button" data-function="overlay-share-your-score">Share Your Score</button>
-					<button type="button" data-function="close">View Your Connections</button>
-				</div>
-			</div>
-			<div id="overlay-share-your-score" class="overlay-item">
-				<div class="controls">
-					<strong>Share Your Score</strong>
-					<button type="button" data-function="close">Close</button>
-				</div>
-				<div class="content">
-					<ul>
-						<li><a href="#">Linked In</a></li>
-						<li><a href="#">Facebook</a></li>
-						<li><a href="#">Twitter</a></li>
-						<li><a href="mailto:?subject=Crain's Who's Who 2012&body=Hi, I found out I'm connected to some of Chicago's most influential people. http://www.chicagobusiness.com/">E-mail</a></li>
-					</ul>
-				</div>
-			</div>
-			<div id="overlay-user-profile" class="overlay-item">
-				<div class="controls">
-					<strong>Your Profile</strong>
-					<button type="button" data-function="close">Close</button>
-					<button type="button" data-function="overlay-user-profile-edit">Edit</button>
-				</div>
-				<div class="content">
-					<div class="score">
-						Your connection score is: <strong class="your-score">0</strong>
-					</div>
 					<h2 id="profile-name" class="user-name">John Smith</h2>
-					<ul>
+					<ul id="connection-details">
 						<li id="profile-company" data-function="close">
 							Company
 							<strong>Abbott Laboratories</strong>
@@ -442,20 +407,24 @@
 							<span>23 Connections</span>
 						</li>
 					</ul>
+					<ul class="share-score">
+						<li><a href="#">Linked In</a></li>
+						<li><a href="#">Facebook</a></li>
+						<li><a href="#">Twitter</a></li>
+						<li><a href="mailto:?subject=Crain's Who's Who 2012&body=Hi, I found out I'm connected to some of Chicago's most influential people. http://www.chicagobusiness.com/">E-mail</a></li>
+					</ul>
 				</div>
 			</div>
 			<div id="overlay-user-profile-edit" class="overlay-item">
 				<div class="controls">
 					<strong>Edit Profile</strong>
 					<button type="button" data-function="close">Close</button>
-					<button type="button" class="save" data-function="overlay-user-profile">Save</button>
 				</div>
 				<div class="content">
 					<ul class="clearfix">
 						<li class="name clearfix">
 							<label class="name-first">First Name <input id="profile-edit-first" type="text" /></label>
 							<label class="name-last">Last Name <input id="profile-edit-last" type="text" /></label>
-							<label class="name-suffix">Suffix <input id="profile-edit-suffix" type="text" /></label>
 						</li>
 						<li><label>Where Do You Work? <input id="profile-edit-company" class="autocomplete-company" type="text" /></label></li>
 						<li><label>Professional Associations <input id="profile-edit-prof-assoc" class="autocomplete-prof-assoc" type="text" /></label></li>
@@ -552,6 +521,7 @@
 <!-- End Chartbeat -->
 <script src="assets/js/jquery-1.8.2.min.js"></script> <!-- VOKAL:Gene -->
 <script src="assets/js/jquery-ui-1.8.24.custom.min.js"></script> <!-- VOKAL:Gene -->
+<script src="assets/js/jquery.cookie.js"></script> <!-- VOKAL:Gene -->
 <script src="assets/js/scripts.js"></script> <!-- VOKAL:Gene -->
 </body>
 </html>

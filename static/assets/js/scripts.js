@@ -1,150 +1,11 @@
 (function() {
-	//'use strict';
+	'use strict';
 
-/*****************************************************************************
-Get JSON
-*****************************************************************************/
-var data = $.getJSON("assets/js/whoswho.json"),
-	obj,
-	loadedProfile = [],
-	allConnections = [];
-
-function compilePersonInfo() {
-	var max = 0;
-	$.each(obj.whoswho, function(i, whoswho) {
-		var	profAssoc,
-			civicAffil,
-			formattedProfAssoc = [],
-			formattedCivicAffil = [];
-
-		function formatData(array, id, newArray) {
-			if (array[0] !== undefined && array[0].length > 1) {
-				$.each(array, function(i, id) {
-					newArray.push(' ' + id);
-				});
-			} else {
-				// do nothing
-			}
-		}
-
-		// Power 50
-		if (whoswho.pwr50) {
-			htmlPwr50 = '<div class="pwr50">Power 50</div>';
-		} else {
-			htmlPwr50 = '';
-		}
-
-		// Primary Company
-		if (whoswho.primaryCo) {
-			htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>'+ whoswho.primaryCo +'</dd>';
-		} else {
-			htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>--</dd>'
-		}
-
-		// Secondary Company
-		if (whoswho.secondaryCo) {
-			htmlSecondaryCo = '<dt>Secondary Company</dt><dd>'+ whoswho.secondaryCo +'</dd>';
-		} else {
-			htmlSecondaryCo = '<dt>Secondary Company</dt><dd>--</dd>';
-		}
-
-		// Hometown
-		if (whoswho.city && whoswho.state) {
-			htmlHometown = '<dt>Home Town</dt><dd>'+ whoswho.city +', '+ whoswho.state +'</dd>';
-		} else if (whoswho.city) {
-			htmlHometown = '<dt>Home Town</dt><dd>'+ whoswho.city +'</dd>';
-		} else if (whoswho.state) {
-			htmlHometown = '<dt>Home Town</dt><dd>'+ whoswho.state +'</dd>';
-		} else {
-			htmlHometown = '<dt>Home Town</dt><dd>--</dd>';
-		}
-
-		if (whoswho.industry) {
-			htmlIndustry = '<dt>Industry</dt><dd>'+ whoswho.industry +'</dd>';
-		} else {
-			htmlIndustry = '<dt>Industry</dt><dd>--</dd>';
-		}
-
-		// Undergraduate College
-		if (whoswho.undergrad) {
-			htmlUndergrad = '<dt>Undergraduate College</dt><dd>'+ whoswho.undergrad +'</dd>';
-		} else {
-			htmlUndergrad = '<dt>Undergraduate College</dt><dd>--</dd>';
-		}
-
-		// Graduate College
-		if (whoswho.grad) {
-			htmlGrad = '<dt>Graduate College</dt><dd>'+ whoswho.grad +'</dd>';
-		} else {
-			htmlGrad = '<dt>Graduate College</dt><dd>--</dd>';
-		}
-
-		// Professional Association
-		if (whoswho.profAssoc) {
-			formatData(whoswho.profAssoc, profAssoc, formattedProfAssoc);
-			htmlProfAssoc = '<dt>Professional Associations</dt><dd>'+ formattedProfAssoc +'</dd>';
-		} else {
-			htmlProfAssoc = '<dt>Professional Associations</dt><dd>--</dd>';
-		}
-
-		// Civic Affiliation
-		if (whoswho.civicAffil) {
-			formatData(whoswho.civicAffil, civicAffil, formattedCivicAffil);
-			htmlCivicAffil = '<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffil +'</dd>';
-		} else {
-			htmlCivicAffil = '<dt>Civic Affiliations</dt><dd>--</dd>';
-		}
-
-		// Biography Link
-		if (whoswho.bio) {
-			htmlBio = '<dt>Biography</dt><dd><a href="'+ whoswho.bio +'" target="_blank">Click here</a></dd></dl>';
-		} else {
-			htmlBio = '<dt>Biography</dt><dd>--</dd></dl>';
-		}
-
-		var htmlImage = '<div class="photo"><img src="assets/im/media/' + whoswho.img + '" height="100" width="83" alt="" /></div>',
-			htmlName = '<h2><span>'+ whoswho.first + ' ' + whoswho.middle + ' </span>' + whoswho.last +'</h2>',
-			person =
-				'<li data-whoswho-id="'+ i +'">'+
-					htmlImage +
-					htmlPwr50 +
-					htmlName +
-					htmlPrimaryCo +
-					htmlSecondaryCo +
-					htmlIndustry +
-					htmlUndergrad +
-					htmlGrad +
-					htmlHometown +
-					htmlProfAssoc +
-					htmlCivicAffil+
-					htmlBio +
-				'</li>';
-
-		if ($.inArray(i, loadedProfile) === -1) {
-			// populate Who's Who Details
-			$('#all-whos-who ul').append(person);
-			loadedProfile.push(i);
-			max++;
-			return max < 45;
-		} else {
-			// Do nothing
-		}
-
-
-	});
-	$('#all-whos-who').fadeIn(1300);
-}
-
-/*****************************************************************************
-Show More on Scroll
-*****************************************************************************/
-function showOnScroll() {
-	$(window).scroll(function() {
-		if($(window).scrollTop() + $(window).height() == $(document).height()) {
-			compilePersonInfo();
-		}
-	});
-}
+var obj,
+	data = $.getJSON("assets/js/whoswho.json"),
+	user = [],
+	userConnections = [],
+	allWhosWho = [];
 
 /*****************************************************************************
 Auto Complete
@@ -163,7 +24,7 @@ function initiateAutoComplete() {
 		allData = [];
 
 	/*****************************************************************************
-	scrape all values and push into specified array
+	Array Builder
 	*****************************************************************************/
 	function pushData(id, newArray) {
 		if (id[0] !== undefined && id[0].length > 1) {
@@ -185,19 +46,30 @@ function initiateAutoComplete() {
 	}
 
 	/*****************************************************************************
-	Push data into array, for Autocomplete feature // pushData(array, id, newArray)
+	Build Arrays
 	*****************************************************************************/
 	$.each(obj.whoswho, function(i, whoswho) {
-		pushData(whoswho.first, allFirst);
-		pushData(whoswho.last, allLast);
+		/*****************************************************************************
+		For All Whos Who
+		*****************************************************************************/
+		pushData(i, allWhosWho);
+
+		/*****************************************************************************
+		For Autocomplete feature // pushData(array, id, newArray)
+		*****************************************************************************/
+		// pushData(whoswho.first, allFirst);
+		// pushData(whoswho.last, allLast);
 		pushData(whoswho.profAssoc, allProfAssoc);
 		pushData(whoswho.civicAffil, allCivicAffil);
 		pushData(whoswho.undergrad, allUndergrad);
 		pushData(whoswho.grad, allGrad);
 		pushData(whoswho.city, allCity);
-		pushData(whoswho.state, allState);
+		// pushData(whoswho.state, allState);
 	});
 	$.each(obj.companies, function(i, companies) {
+		/*****************************************************************************
+		For Companies
+		*****************************************************************************/
 		pushData(companies, allCompanies);
 	});
 
@@ -235,14 +107,14 @@ function initiateAutoComplete() {
 
 	// concat data into one array
 	var allData = allProfAssoc.concat(
-			allFirst,
-			allLast,
+			// allFirst,
+			// allLast,
 			allCompanies,
 			allCivicAffil,
 			allUndergrad,
 			allGrad,
-			allCity,
-			allState
+			allCity
+			// allState
 		);
 
 	$( "#whos-who-search" ).autocomplete({
@@ -250,29 +122,423 @@ function initiateAutoComplete() {
 	});
 
 	// hide autocomplete when user enters custom term
-	$('#whos-who-2012').on('keyup', 'input[type="text"]', function (e) {
-		if(e.which === 13) {
+	$('#whos-who-2012').on('keydown', 'input[type="text"]', function (event) {
+		if(event.which === 13) {
 			$(".ui-autocomplete").hide();
 		}
 	});
 }
 
 /*****************************************************************************
-Build industry list (<select>)
-****************************************************************************/
+Build User Profile
+*****************************************************************************/
+function buildUserProfile() {
+	var a = ['first', 'last', 'suffix', 'primaryCo', 'industry', 'profAssoc', 'civicAffil', 'undergrad', 'grad'],
+		userProfAssoc = [],
+		userCivicAffil = [],
+		i = 0,
+		obj = {},
+		survey = $('form'),
+		userFirst = survey.find('#survey-first').val(),
+		userLast = survey.find('#survey-last').val(),
+		userSuffix = survey.find('#survey-suffix').val(),
+		userCompany = survey.find('#survey-company').val(),
+		userIndustry = survey.find('#survey-industry').val(),
+		userUndergrad = survey.find('#survey-undergrad').val(),
+		userGrad = survey.find('#survey-grad').val();
+
+	$.each($('#survey-prof-assoc .entries li'), function(i) {
+		userProfAssoc.push($(this).text().slice(0, -6));
+	});
+	$.each($('#survey-civic-affil .entries li'), function(i) {
+		userCivicAffil.push($(this).text().slice(0, -6));
+	});
+
+	//Set values
+	obj[a[0]] = userFirst;
+	obj[a[1]] = userLast;
+	obj[a[2]] = userSuffix;
+	obj[a[3]] = userCompany;
+	obj[a[4]] = '';
+	obj[a[5]] = userProfAssoc;
+	obj[a[6]] = userCivicAffil;
+	obj[a[7]] = userUndergrad;
+	obj[a[8]] = userGrad;
+
+	//Clear User Profile
+	user.length = 0;
+
+	//Update User Profile
+	user.push(obj);
+
+	//Update Score
+	updateScore();
+}
+
+/*****************************************************************************
+Show "Your Connections"
+*****************************************************************************/
+function runFilter() {
+	$('input[type="text"], select').blur(function() {
+		buildUserProfile();
+		loadResults(userConnections, '#connections');
+		animatePersonIn('#connections');
+	});
+}
+
+/*****************************************************************************
+Index User's Connection
+*****************************************************************************/
+function indexConnection(i) {
+	if ($.inArray(i, userConnections) === -1) {
+		userConnections.push(i);
+	} else {
+		//do nothing
+	}
+}
+
+/*****************************************************************************
+Update Score
+*****************************************************************************/
+function updateScore() {
+	var	totalScore = 0,
+		totalMatch = 0;
+
+	// Clear previous results
+	userConnections.length = 0;
+
+	/*****************************************************************************
+	Score matches
+	*****************************************************************************/
+	function scoreMatches(pName, value, multiplier, i, b) {
+		if (pName === 'profAssoc' || pName === 'civicAffil') {
+			// Compare value against all of user's entries 
+			$.each(user[0][pName], function(b, userValue) {
+				if (userValue === value) {
+					totalScore += multiplier;
+					totalMatch++;
+					indexConnection(i);
+				}
+			});
+		} else {
+			if (user[0][pName] === value) {
+				totalScore += multiplier;
+				totalMatch++;
+				indexConnection(i);
+			} 
+		}
+	}
+
+	/*****************************************************************************
+	Score special connections
+	*****************************************************************************/
+	function specialConnections() {
+		$.each(userConnections, function(i, number) {
+			var person = obj.whoswho[number];
+			if (person.pwr50 === true) {
+				totalScore += 10;
+			}
+
+			if (person.last === "Obama") {
+				totalScore += 15;
+			}
+		});
+		var finalScore = parseInt(totalScore) + parseInt(totalMatch);
+
+		$('.your-score').text(finalScore);
+		$('#connections .matches').text(': '+totalMatch);
+
+		totalScore = 0;
+	}
+
+	/*****************************************************************************
+	Values to be scored
+	*****************************************************************************/
+	$.each(obj.whoswho, function(i, whoswho) {
+		$.each(whoswho, function(property, value) {
+
+			if (value.length !== 0) {
+				switch (property) {
+					case 'primaryCo':
+						scoreMatches(property, value, 4, i);
+						break;
+					case 'secondaryCo':
+						scoreMatches(property, value, 4, i);
+						break;
+					case 'profAssoc':
+						// compare all of CWW's values again's the user's value
+						$.each(value, function(b, entries) {
+							scoreMatches(property, entries, 3, i, b);
+						});
+						break;
+					case 'civicAffil':
+						// compare all of CWW's values again's the user's value
+						$.each(value, function(b, entries) {
+							scoreMatches(property, entries, 3, i, b);
+						});
+						break;
+					case 'undergrad':
+						scoreMatches(property, value, 2, i);
+						break;
+					case 'grad':
+						scoreMatches(property, value, 2, i);
+						break;
+					default:
+						// Do nothing
+				}
+			}
+		});
+	});
+
+	// Score special connections (Power 50 & Obama's)
+	specialConnections();
+}
+
+/*****************************************************************************
+Build industry list
+*****************************************************************************/
 function buildSelectOption() {
 	$.each(obj.industries, function(i, industries) {
-		var html = '<option value="'+industries+'">'+industries+'</option>';
+		var html = '<option value="' + industries + '">' + industries + '</option>';
 		$('.industry-list').append(html);
 	});
 }
 
 /*****************************************************************************
-Transition Grid In
+Multiple Entry Fields
 *****************************************************************************/
-$('#all-whos-who').ajaxComplete(function() {
-	$(this).fadeIn(1000).slideDown(900);
-});
+function multipleEntry() {
+
+	/*****************************************************************************
+	Apply Entry
+	*****************************************************************************/
+	function applyEntry($this) {
+		var container = $this.parents('.multi'),
+			entry = container.find('input[type="text"]'),
+			newEntry = $(document.createElement('li')),
+			buttonRemove = $(document.createElement('button')).attr('type','button').attr('data-function','remove').text('remove');
+
+		if (entry.val()) {			
+			if (container.find('.entries').length === 0) {
+				$(document.createElement('ul')).appendTo(container).addClass('entries').insertAfter(container.children('.multi'));
+			} else {
+				//do nothing
+			}
+			$(newEntry).prependTo(container.find('.entries')).text(entry.val()).append(buttonRemove);
+			container.children('.notification').remove();
+			entry.val('');
+		} else {
+			var notification = $(document.createElement('div')).addClass('notification');
+			if (container.find('.notification').length === 0) {
+				container.children('.multi').after(notification.text('Please enter a value'));
+			} else {
+				//do nothing
+			}
+		}
+	}
+
+	/*****************************************************************************
+	Apply entry and update score
+	*****************************************************************************/
+	$('#questions .multi').on('click', 'button[data-function="add"]', function() {
+		applyEntry($(this));
+		buildUserProfile();
+	});
+
+	$('#questions .multi').on('keydown', 'input[type="text"]', function() {
+		if ( event.which == 13 ) {
+			applyEntry($(this));
+			buildUserProfile();
+		}
+	});
+}
+
+/*****************************************************************************
+Remove Entry
+*****************************************************************************/
+function removeEntry() {
+	$('#questions').on('click','button[data-function="remove"]',function() {
+		var $this = $(this),
+			entries = $this.parents('.entries');
+		$(this).parent('li').remove();
+		if (entries.children().length === 0) {
+			entries.remove();
+		} else {
+			//do nothing
+		}
+	})
+}
+
+/*****************************************************************************
+Load Results
+*****************************************************************************/
+function loadResults(arrayName, resultContainer) {
+	var container = $(resultContainer).children('ul');
+
+	// Mark obsolete matches
+	container.children('li').addClass('old');
+
+	$.each(arrayName, function(i, id) {
+		var	person = obj.whoswho[id],
+			htmlImage,
+			htmlPwr50,
+			htmlName,
+			htmlPrimaryCo,
+			htmlSecondaryCo,
+			htmlIndustry,
+			htmlUndergrad,
+			htmlGrad,
+			htmlHometown,
+			htmlProfAssoc,
+			htmlCivicAffil,
+			htmlBio,
+			profAssoc,
+			civicAffil,
+			formattedProfAssoc = [],
+			formattedCivicAffil = [];
+
+		function formatData(array, property, newArray) {
+			if (array[0] !== undefined && array[0].length > 1) {
+				$.each(array, function(i, property) {
+					newArray.push(' ' + property);
+				});
+			} else {
+				// do nothing
+			}
+		}
+
+		// Power 50
+		if (person.pwr50) {
+			htmlPwr50 = '<div class="pwr50">Power 50</div>';
+		} else {
+			htmlPwr50 = '';
+		}
+
+		// Primary Company
+		if (person.primaryCo) {
+			htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>'+ person.primaryCo +'</dd>';
+		} else {
+			htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>--</dd>'
+		}
+
+		// Secondary Company
+		if (person.secondaryCo) {
+			htmlSecondaryCo = '<dt>Secondary Company</dt><dd>'+ person.secondaryCo +'</dd>';
+		} else {
+			htmlSecondaryCo = '<dt>Secondary Company</dt><dd>--</dd>';
+		}
+
+		// Hometown
+		if (person.city && person.state) {
+			htmlHometown = '<dt>Home Town</dt><dd>'+ person.city +', '+ person.state +'</dd>';
+		} else if (person.city) {
+			htmlHometown = '<dt>Home Town</dt><dd>'+ person.city +'</dd>';
+		} else if (person.state) {
+			htmlHometown = '<dt>Home Town</dt><dd>'+ person.state +'</dd>';
+		} else {
+			htmlHometown = '<dt>Home Town</dt><dd>--</dd>';
+		}
+
+		// Industry
+		if (person.industry) {
+			htmlIndustry = '<dt>Industry</dt><dd>'+ person.industry +'</dd>';
+		} else {
+			htmlIndustry = '<dt>Industry</dt><dd>--</dd>';
+		}
+
+		// Undergraduate College
+		if (person.undergrad) {
+			htmlUndergrad = '<dt>Undergraduate College</dt><dd>'+ person.undergrad +'</dd>';
+		} else {
+			htmlUndergrad = '<dt>Undergraduate College</dt><dd>--</dd>';
+		}
+
+		// Graduate College
+		if (person.grad) {
+			htmlGrad = '<dt>Graduate College</dt><dd>'+ person.grad +'</dd>';
+		} else {
+			htmlGrad = '<dt>Graduate College</dt><dd>--</dd>';
+		}
+
+		// Professional Association
+		if (person.profAssoc) {
+			formatData(person.profAssoc, profAssoc, formattedProfAssoc);
+			htmlProfAssoc = '<dt>Professional Associations</dt><dd>'+ formattedProfAssoc +'</dd>';
+		} else {
+			htmlProfAssoc = '<dt>Professional Associations</dt><dd>--</dd>';
+		}
+
+		// Civic Affiliation
+		if (person.civicAffil) {
+			formatData(person.civicAffil, civicAffil, formattedCivicAffil);
+			htmlCivicAffil = '<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffil +'</dd>';
+		} else {
+			htmlCivicAffil = '<dt>Civic Affiliations</dt><dd>--</dd>';
+		}
+
+		// Biography Link
+		if (person.bio) {
+			htmlBio = '<dt>Biography</dt><dd><a href="'+ person.bio +'" target="_blank">Click here</a></dd></dl>';
+		} else {
+			htmlBio = '<dt>Biography</dt><dd>--</dd></dl>';
+		}
+
+		var htmlImage = '<div class="photo"><img src="assets/im/media/' + person.img + '" height="100" width="83" alt="" /></div>',
+			htmlName = '<h2><span>'+ person.first + ' ' + person.middle + ' </span>' + person.last +'</h2>',
+			personDetails =
+				'<li data-whoswho-id="'+ id +'">'+
+					htmlImage +
+					htmlPwr50 +
+					htmlName +
+					htmlPrimaryCo +
+					htmlSecondaryCo +
+					htmlIndustry +
+					htmlUndergrad +
+					htmlGrad +
+					htmlHometown +
+					htmlProfAssoc +
+					htmlCivicAffil +
+					htmlBio +
+				'</li>';
+
+		// If existing person is still a valid match, remove mark
+		if (container.find('[data-whoswho-id="'+ id +'"]').length) {
+			container.find('[data-whoswho-id="'+ id +'"]').removeClass('old');
+		} else {
+			container.append(personDetails);
+		}
+	});
+
+	if (arrayName.length) {	
+		$(resultContainer).slideDown('fast');
+	} else {
+		$(resultContainer).slideUp('fast');
+	}
+
+	// Hide obsolete matches
+	animatePersonOut(resultContainer);
+}
+
+/*****************************************************************************
+Animate Grid
+*****************************************************************************/
+function animatePersonIn(resultContainer) {
+	var content = $(resultContainer).children('ul').children('li:hidden');
+	if (content.length > 0) {
+		content.first().show('drop', {direction : 'right', easing : 'linear'}, 100, function() {
+			animatePersonIn(resultContainer);
+		});
+	}
+
+	// Hide autocomplete
+	$(".ui-autocomplete").hide();
+}
+function animatePersonOut(resultContainer) {
+	var container = $(resultContainer).children('ul');
+	container.children('.old').delay(100).hide('drop', {direction : 'left', easing : 'linear'}, function() {
+		container.children('.old').remove();
+	});
+}
 
 /*****************************************************************************
 Overlay
@@ -305,9 +571,9 @@ var overlayWrap = $('.overlay'),
 		});
 	},
 	getName : function() {
-		$('body').on('click', '[data-function^="overlay"]', function(e) {
+		$('body').on('click', '[data-function^="overlay"]', function(event) {
 			overlay.launchItem($(this).attr('data-function'));
-			e.preventDefault();
+			event.preventDefault();
 		});
 	},
 	launchItem : function(itemName) {
@@ -323,95 +589,124 @@ var overlayWrap = $('.overlay'),
 }
 
 /*****************************************************************************
-Questionnaire
+Load All Whos Who 2012
 *****************************************************************************/
-var questionnaire = {
-	addEntry : function() {
-		function applyEntry($this) {
-			var container = $this.parents('section'),
-				entry = container.find('input[type="text"]'),
-				newEntry = $(document.createElement('li')),
-				buttonRemove = $(document.createElement('button')).attr('type','button').attr('data-function','remove').text('remove');
+var loadedProfiles = [];
+function loadWhosWho() {
+		var container = $('#all-whos-who').children('ul'),
+			max = 0;
 
-			if (entry.val()) {			
-				if (container.find('.entries').length === 0) {
-					$(document.createElement('ul')).appendTo(container).addClass('entries').insertAfter(container.children('.multi'));
-				} else {
-					//do nothing
-				}
-				$(newEntry).prependTo(container.find('.entries')).text(entry.val()).append(buttonRemove);
-				container.children('.notification').remove();
-				entry.val('');
+		// Index profiles that have been loaded
+		$.each(allWhosWho, function(i, id) {
+			if (i >= loadedProfiles.length) {
+				loadedProfiles.push(id);
+				max++;
+				return max < 45;
 			} else {
-				var notification = $(document.createElement('div')).addClass('notification');
-				if (container.find('.notification').length === 0) {
-					container.children('.multi').after(notification.text('Please enter a value'));
-				} else {
-					//do nothing
-				}
+				// do nothing
 			}
+		});
+
+		// Get results
+		loadResults(loadedProfiles, '#all-whos-who');
+
+		// Show results
+		container.children('li').show('fast', function() {
+			container.slideDown();
+		});	
+}
+
+/*****************************************************************************
+Show More on Scroll
+*****************************************************************************/
+function showOnScroll() {
+	$(window).scroll(function() {
+		// Show more profiles until all have been loaded
+		if (loadedProfiles.length < allWhosWho.length) {
+			if ($(window).scrollTop() + $(window).height() >= $(document).height() - 280) {
+				loadWhosWho();
+			}
+		} else {
+			$('.ajax-loading').remove();
 		}
+	});
+}
 
-		$('#questions .multi').on('click', 'button[data-function="add"]', function() {
-			applyEntry($(this));
-		});
+/*****************************************************************************
+Search
+*****************************************************************************/
+var results = [];
+function getResults(searchTerm, resultContainer) {
 
-		$('#questions .multi').on('keydown', 'input[type="text"]', function() {
-			if ( event.which == 13 ) {
-				applyEntry($(this));
-			}
-		});
-	},
-	removeEntry : function() {
-		$('#questions').on('click','button[data-function="remove"]',function() {
-			var $this = $(this),
-				entries = $this.parents('.entries');
-			$(this).parent('li').remove();
-			if (entries.children().length === 0) {
-				entries.remove();
-			} else {
-				//do nothing
-			}
-		})
-	},
-	nextQuestion : function() {
-		$('#questions').on('keydown', 'input[type="text"], select', function() {
-			$(this).parent('label').next().length;
-			if ( event.which === 13 ) {
-				if ( $(this).parent('label').next().length === 0 ) {
-					// $('#questions button[data-function="next"]').focus();
-					navigation.showNext();
-					navigation.disableButton();
+	results.length = 0;
+
+	if (searchTerm) {
+
+		// Search through all values
+		$.each(obj.whoswho, function(i, profile) {
+			$.each(profile, function(property, value) {
+
+				// Index matched values
+				function matchTerm(value) {
+					if ( $.type(value) ==='string' && value.toLowerCase().indexOf(searchTerm) !== -1 && $.inArray(i, results) === -1 ) {
+						results.push(i);
+					}
 				}
-			}
-		});
-	},
-	runFilter : function() {
-		$('#overlay-survey').on('keydown focusout', 'input[type="text"], select', function(event) {
-			
-			var $this = $(this),
-				value = $this.val(),
-				id = $this.attr('id');
 
-			if ( event.which === 13 || event.type === 'focusout' && value.length !== 0 ) {
-				switch (id) {
-					case 'survey-company':
-					case 'survey-industry':
-					case 'survey-undergrad':
-					case 'survey-grad':
-					case 'survey-hometown':
-					case 'survey-state':
-					case 'survey-civic-affil':
-					case 'survey-prof-assoc':
-						search.getResults(value.toLowerCase(), '#connections');
-					default:
-						// Do nothing
+				switch (property) {
+				case "first":
+				case "last":
+				case "primaryCo":
+				case "industry" :
+				case "profAssoc":
+				case "civicAffil":
+				case "undergrad":
+				case "grad":
+
+					// Check if value has multiple entries
+					if (property === 'profAssoc' || property === 'civicAffil') {
+						$.each(value, function(i, value) {
+							// Index matched values
+							matchTerm(value);
+						});
+					} else {
+						// Index matched values
+						matchTerm(value);
+					}
+
+				default:
+					// Do nothing
 				}
-			} else {
-				// Do nothing
-			}
+			});
 		});
+	} else {
+		// Do nothing
 	}
+
+	// Index Results
+	loadResults(results, resultContainer);
+
+	// Show results
+	animatePersonIn(resultContainer);
+}
+function initSearch() {
+	var searchBar = $('#control-bar .search');
+
+	searchBar.on('keydown', '#whos-who-search', function(event) {
+		if ( event.which === 13 ) {
+			var searchTerm = $(this).val().toLowerCase();
+
+			getResults(searchTerm, '#filtered');
+			$('#filtered h1 strong').text(': ' + results.length);
+		}
+	});
+
+	searchBar.on('click', 'button[data-function="search"]', function() {
+		var searchTerm = $('.search input').val();
+
+		getResults(searchTerm, '#filtered');
+		$('#filtered h1 strong').text(': ' + results.length);
+	});
 }
 
 /*****************************************************************************
@@ -420,7 +715,7 @@ Questionnaire Navigation
 var current,
 	navigation = {
 	getCurrent : function() {
-		return current = $('section.selected');
+		return current = $('fieldset.selected');
 	},
 	nextPrev : function() {
 		$('button[data-function="prev"],button[data-function="next"]').on('click', function() {
@@ -445,7 +740,7 @@ var current,
 	},
 	syncHeader : function() {
 		var selected = 'a[href="#'+ navigation.getCurrent().attr('id') +'"]',
-			newTitle = $('a[href="#'+ navigation.getCurrent().attr('id') +'"]').text();
+			newTitle = current.children('legend').text();
 		$('.controls ol li').removeClass('selected').children(selected).parent('li').addClass('selected');
 		$('#overlay-survey .controls strong').text(newTitle);
 	},
@@ -477,381 +772,29 @@ var current,
 }
 
 /*****************************************************************************
-Search
-*****************************************************************************/
-var search = {
-	getValue : function() {
-		var searchBar = $('.search');
-		searchBar.on('keydown', 'input[type="text"]', function() {
-			var searchTerm = $('.search input').val().toLowerCase();
-
-			if ( event.which === 13 ) {
-				$(".ui-autocomplete").hide();
-				search.getResults(searchTerm, '#filtered');
-			}
-		});
-		searchBar.on('click', 'button[data-function="search"]', function() {
-			var searchTerm = $('.search input').val().toLowerCase();
-			search.getResults(searchTerm, '#filtered');
-		});
-	},
-	getResults : function(searchTerm, container) {
-		var results = [],
-			catWrap = $(container);
-
-		if (searchTerm) {
-
-			// Empty container on search, except for "connections"
-			if (container !== '#connections') {
-				catWrap.children('ul').html('').parent(container).show();
-			}
-
-			if (catWrap.children('ul').children('li').length > 0) {
-				catWrap.show();
-			}
-
-			// Search through all values
-			$.each(obj.whoswho, function(i, wwwdetails) {
-				$.each(wwwdetails, function(property, value) {
-
-					switch (property) {
-					case "first":
-					case "last":
-					case "primaryCo":
-					case "industry" :
-					case "profAssoc":
-					case "civicAffil":
-					case "undergrad":
-					case "grad":
-						var	profAssoc,
-							civicAffil,
-							formattedProfAssoc = [],
-							formattedCivicAffil = [];
-
-
-
-						// Show Search Results
-						function showMatches(value) {	
-
-							if ($.type(value) ==='string' && value.toLowerCase().indexOf(searchTerm) !== -1 && $.inArray(i, results) === -1 && $.inArray(i, allConnections) === -1) {
-								results.push(i);
-
-								// Prevent the same result for being populated in "connections"
-								if (container === '#connections') {
-									allConnections.push(i);
-								}
-
-								function formatData(array, id, newArray) {
-									if (array[0] !== undefined && array[0].length > 1) {
-										$.each(array, function(i, id) {
-											newArray.push(' ' + id);
-										});
-									} else {
-										// do nothing
-									}
-								}
-
-								// Power 50
-								if (wwwdetails.pwr50) {
-									htmlPwr50 = '<div class="pwr50">Power 50</div>';
-								} else {
-									htmlPwr50 = '';
-								}
-
-								// Primary Company
-								if (wwwdetails.primaryCo) {
-									htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>'+ wwwdetails.primaryCo +'</dd>';
-								} else {
-									htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>--</dd>'
-								}
-
-								// Secondary Company
-								if (wwwdetails.secondaryCo) {
-									htmlSecondaryCo = '<dt>Secondary Company</dt><dd>'+ wwwdetails.secondaryCo +'</dd>';
-								} else {
-									htmlSecondaryCo = '<dt>Secondary Company</dt><dd>--</dd>';
-								}
-
-								// Hometown
-								if (wwwdetails.city && wwwdetails.state) {
-									htmlHometown = '<dt>Home Town</dt><dd>'+ wwwdetails.city +', '+ wwwdetails.state +'</dd>';
-								} else if (wwwdetails.city) {
-									htmlHometown = '<dt>Home Town</dt><dd>'+ wwwdetails.city +'</dd>';
-								} else if (wwwdetails.state) {
-									htmlHometown = '<dt>Home Town</dt><dd>'+ wwwdetails.state +'</dd>';
-								} else {
-									htmlHometown = '<dt>Home Town</dt><dd>--</dd>';
-								}
-
-								if (wwwdetails.industry) {
-									htmlIndustry = '<dt>Industry</dt><dd>'+ wwwdetails.industry +'</dd>';
-								} else {
-									htmlIndustry = '<dt>Industry</dt><dd>--</dd>';
-								}
-
-								// Undergraduate College
-								if (wwwdetails.undergrad) {
-									htmlUndergrad = '<dt>Undergraduate College</dt><dd>'+ wwwdetails.undergrad +'</dd>';
-								} else {
-									htmlUndergrad = '<dt>Undergraduate College</dt><dd>--</dd>';
-								}
-
-								// Graduate College
-								if (wwwdetails.grad) {
-									htmlGrad = '<dt>Graduate College</dt><dd>'+ wwwdetails.grad +'</dd>';
-								} else {
-									htmlGrad = '<dt>Graduate College</dt><dd>--</dd>';
-								}
-
-								// Professional Association
-								if (wwwdetails.profAssoc) {
-									formatData(wwwdetails.profAssoc, profAssoc, formattedProfAssoc);
-									htmlProfAssoc = '<dt>Professional Associations</dt><dd>'+ formattedProfAssoc +'</dd>';
-								} else {
-									htmlProfAssoc = '<dt>Professional Associations</dt><dd>--</dd>';
-								}
-
-								// Civic Affiliation
-								if (wwwdetails.civicAffil) {
-									formatData(wwwdetails.civicAffil, civicAffil, formattedCivicAffil);
-									htmlCivicAffil = '<dt>Civic Affiliations</dt><dd>'+ formattedCivicAffil +'</dd>';
-								} else {
-									htmlCivicAffil = '<dt>Civic Affiliations</dt><dd>--</dd>';
-								}
-
-								// Biography Link
-								if (wwwdetails.bio) {
-									htmlBio = '<dt>Biography</dt><dd><a href="'+ wwwdetails.bio +'" target="_blank">Click here</a></dd></dl>';
-								} else {
-									htmlBio = '<dt>Biography</dt><dd>--</dd></dl>';
-								}
-
-								var htmlImage = '<div class="photo"><img src="assets/im/media/' + wwwdetails.img + '" height="100" width="83" alt="" /></div>',
-									htmlName = '<h2><span>'+ wwwdetails.first + ' ' + wwwdetails.middle + ' </span>' + wwwdetails.last +'</h2>',
-									person =
-										'<li data-whoswho-id="'+ i +'">'+
-											htmlImage +
-											htmlPwr50 +
-											htmlName +
-											htmlPrimaryCo +
-											htmlSecondaryCo +
-											htmlIndustry +
-											htmlUndergrad +
-											htmlGrad +
-											htmlHometown +
-											htmlProfAssoc +
-											htmlCivicAffil+
-											htmlBio +
-										'</li>';
-
-								// populate Who's Who Details
-								if (container === '#connections') {
-									catWrap.children('h1').children('strong').html('- [Total: ' + results.length + ']');
-								} else {
-									catWrap.children('h1').children('strong').html('- ' + searchTerm + ' [Total: ' + results.length + ']');
-								}
-								$(person).appendTo(container + ' ul');
-							} else {
-								// Do nothing
-							}
-						}
-
-						// Search JSON
-						if (property === 'profAssoc' || property === 'civicAffil') {
-							$.each(value, function(i, value) {
-								showMatches(value);
-							});
-						} else {
-							showMatches(value);
-						}
-
-					default:
-						// Do nothing
-					}
-				});
-			});
-			animateDropPerson(container);
-		} else {
-			$('#filtered h1').hide()
-				.parent('#filtered').slideUp('fast')
-				.children('h1').delay(300).show();
-		}
-	}
-}
-
-/*****************************************************************************
-Animate Grid
-*****************************************************************************/
-function animateDropPerson(id) {
-	if ($(id + ' li:hidden').length > 0) {
-		$(id + ' li:hidden').first().show('drop', {direction : 'right', easing : 'linear'}, 100, function() {
-			animateDropPerson(id);
-		});
-	}
-}
-
-/*****************************************************************************
-User Profile
-*****************************************************************************/
-var user = {
-	getInfo : function() {
-		$('#survey-done').on('click', function() {
-			var survey = $('#questions'),
-				surveyPrefix = survey.find('#survey-prefix').val(),
-				surveyFirst = survey.find('#survey-first').val(),
-				surveyLast = survey.find('#survey-last').val(),
-				surveySuffix = survey.find('#survey-suffix').val(),
-				surveyCompany  = survey.find('#survey-company').val(),
-				surveyIndustry = survey.find('#survey-industry').val(),
-				surveyUndergrad = survey.find('#survey-undergrad').val(),
-				surveyGrad = survey.find('#survey-grad').val(),
-				surveyCity = survey.find('#survey-hometown').val(),
-				surveyState = survey.find('#survey-state').val(),
-				surveyProfAssoc = survey.find('#survey-prof-assoc').val(),
-				surveyCivicAffil = survey.find('#survey-civic-affil').val();
-
-			localStorage.setItem('userPrefix', surveyPrefix);
-			localStorage.setItem('userName', surveyFirst);
-			localStorage.setItem('userLast', surveyLast);
-			localStorage.setItem('userSuffix', surveySuffix);
-			localStorage.setItem('userIndustry', surveyIndustry);
-
-			user.updateProfile(
-				surveyPrefix,
-				surveyFirst,
-				surveyLast,
-				surveySuffix,
-				surveyCompany,
-				surveyIndustry,
-				surveyUndergrad,
-				surveyGrad,
-				surveyCity,
-				surveyState
-				// surveyProfAssoc,
-				// surveyCivicAffil
-			);
-		});
-	},
-	getFilter : function() {
-		$('#overlay-user-profile').on('click','li', function() {
-			var searchTerm = $(this).children('strong').text().toLowerCase();
-			search.getResults(searchTerm, '#filtered');
-		});
-	},
-	updateProfile : function(surveyPrefix, surveyFirst, surveyLast, surveySuffix, surveyCompany, surveyIndustry, surveyUndergrad, surveyGrad, surveyCity, surveyState, surveyProfAssoc, surveyCivicAffil) {
-		var profile = $('#overlay-user-profile'),
-			editProfile = $('#overlay-user-profile-edit');
-
-		// User Profile
-		profile.find('#profile-name').text(surveyFirst + ' ' + surveyLast);
-		profile.find('#profile-company').children('strong').text(surveyCompany);
-		profile.find('#profile-prof-assoc').children('strong').text(surveyProfAssoc);
-		profile.find('#profile-civic-affil').children('strong').text(surveyCivicAffil);
-
-		// User Profile Edit
-		editProfile.find('#profile-edit-first').val(surveyFirst);
-		editProfile.find('#profile-edit-last').val(surveyLast);
-		editProfile.find('#profile-edit-suffix').val(surveySuffix);
-		editProfile.find('#profile-edit-company').val(surveyCompany);
-		editProfile.find('#profile-edit-prof-assoc').val(surveyProfAssoc);
-		editProfile.find('#profile-edit-civic-affil').val(surveyCivicAffil);
-		editProfile.find('#profile-edit-undergrad').val(surveyUndergrad);
-		editProfile.find('#profile-edit-grad').val(surveyGrad);
-		editProfile.find('#profile-edit-town').val(surveyCity);
-		editProfile.find('#profile-edit-state').val(surveyState);
-	}
-}
-
-/*****************************************************************************
-Update Score
-*****************************************************************************/
-function updateScore() {
-	var totalScore = 0,
-		totalMatch = 0;
-		user = [{
-			"first": "Carol",
-			"middle": "R.",
-			"last": "Barney",
-			"suffix": "",
-			"pwr50": "",
-			"primaryCo": "Ross Barney Architects Inc., Chicago",
-			"secondaryCo": "",
-			"profAssoc": ["American Institute of Architects", "Chicago Network", "Economic Club", "Lambda Alpha International", "Chicago Women in Architecture"],
-			"civicAffil": ["Illinois Institute of Technology Architectural Board of Overseers"],
-			"undergrad": "University of Illinois, Urbana-Champaign",
-			"grad": "University of Illinois, Urbana-Champaign"
-		}];
-
-	function scoreMatches(pName, value, multiplier) {
-		if (pName === 'profAssoc' || pName === 'civicAffil') {
-			if (user[0][pName][0] === value[0]) {
-				totalScore += multiplier;
-				totalMatch++;
-				// console.log('match!');
-			}
-		} else {
-			if (user[0][pName] === value) {
-				totalScore += multiplier;
-				totalMatch++;
-			}
-		}
-	}
-
-	// console.log(obj.whoswho[0]);
-	$.each(obj.whoswho, function(i, whoswho) {
-		$.each(whoswho, function(property, value) {
-
-			switch (property) {
-				case 'primaryCo' || 'secondaryCo':
-					scoreMatches(property, value, 4);
-				case 'profAssoc' || 'civicAffil':
-					scoreMatches(property, value, 3);
-				case 'undergrad' || 'grad':
-					scoreMatches(property, value, 2);
-				case 'pwr50':
-					if (value === true) { totalScore += 10 }
-				case 'last':
-					if (value === "Obama") { totalScore += 15 }
-				default:
-					// Do nothing
-			}
-		});
-	});
-	totalScore = parseInt(totalScore) + parseInt(totalMatch);
-	// console.log('total score: ' + totalScore);
-	// console.log('total matches: ' + totalMatch);
-}
-
-/*****************************************************************************
 Initialize
 *****************************************************************************/
 $(document).ajaxComplete(function() {
 	obj = $.parseJSON(data.responseText);
-
 	buildSelectOption();
 	initiateAutoComplete();
-	compilePersonInfo();
-	updateScore();
+	multipleEntry();
+	removeEntry();
+	loadWhosWho();
+	showOnScroll();
 });
 
-showOnScroll();
+$('form').on('click', '#survey-done', function() {
+	buildUserProfile();
+});
 
 overlay.launchItem('overlay-intro'); // launch intro
-overlay.details();
-overlay.getName();
-overlay.hideItem();
-
-questionnaire.addEntry();
-questionnaire.removeEntry();
-questionnaire.nextQuestion();
-questionnaire.runFilter();
-
+initSearch();
+runFilter();
 navigation.getCurrent();
 navigation.nextPrev();
 navigation.disableButton();
-
-search.getValue();
-
-user.getInfo();
-user.getFilter();
+overlay.details();
+overlay.getName();
+overlay.hideItem();
 })();
