@@ -57,14 +57,11 @@ function initiateAutoComplete() {
 		/*****************************************************************************
 		For Autocomplete feature // pushData(array, id, newArray)
 		*****************************************************************************/
-		// pushData(whoswho.first, allFirst);
-		// pushData(whoswho.last, allLast);
 		pushData(whoswho.profAssoc, allProfAssoc);
 		pushData(whoswho.civicAffil, allCivicAffil);
 		pushData(whoswho.undergrad, allUndergrad);
 		pushData(whoswho.grad, allGrad);
 		pushData(whoswho.city, allCity);
-		// pushData(whoswho.state, allState);
 	});
 	$.each(obj.companies, function(i, companies) {
 		/*****************************************************************************
@@ -133,19 +130,21 @@ function initiateAutoComplete() {
 Build User Profile
 *****************************************************************************/
 function buildUserProfile() {
-	var a = ['first', 'last', 'primaryCo', 'industry', 'profAssoc', 'civicAffil', 'undergrad', 'grad', 'city'],
+	var a = ['first', 'last', 'primaryCo', 'industry', 'profAssoc', 'civicAffil', 'undergrad', 'grad', 'city', 'state'],
 		userProfAssoc = [],
 		userCivicAffil = [],
 		i = 0,
 		obj = {},
 		survey = $('form'),
+		yourScore = $('#overlay-your-score'),
 		userFirst = survey.find('#survey-first').val(),
 		userLast = survey.find('#survey-last').val(),
 		userCompany = survey.find('#survey-company').val(),
 		userIndustry = survey.find('#survey-industry').val(),
 		userUndergrad = survey.find('#survey-undergrad').val(),
 		userGrad = survey.find('#survey-grad').val(),
-		userCity = survey.find('#survey-city').val();
+		userCity = survey.find('#survey-city').val(),
+		userState = survey.find('#survey-state').val();
 
 	$.each($('#survey-prof-assoc .entries li'), function(i) {
 		userProfAssoc.push($(this).text().slice(0, -6));
@@ -164,6 +163,17 @@ function buildUserProfile() {
 	obj[a[6]] = userUndergrad;
 	obj[a[7]] = userGrad;
 	obj[a[8]] = userCity;
+	obj[a[9]] = userState;
+
+	// Update "Your Score" overlay
+	yourScore.find('#profile-name').text(userFirst + ' ' + userLast);
+	yourScore.find('#profile-company').children('strong').text(userCompany);
+	yourScore.find('#profile-prof-assoc').children('strong').text(userProfAssoc);
+	yourScore.find('#profile-civic-affil').children('strong').text(userCivicAffil);
+	yourScore.find('#profile-undergrad').children('strong').text(userUndergrad);
+	yourScore.find('#profile-grad').children('strong').text(userGrad);
+	yourScore.find('#profile-town').children('strong').text(userCity);
+	yourScore.find('#profile-state').children('strong').text(userState);
 
 	//Clear User Profile
 	user.length = 0;
@@ -346,12 +356,13 @@ function multipleEntry() {
 	/*****************************************************************************
 	Apply entry and update score
 	*****************************************************************************/
-	$('#questions .multi').on('click', 'button[data-function="add"]', function() {
+	var multi = $('.multi');
+	multi.on('click', 'button[data-function="add"]', function() {
 		applyEntry($(this));
 		buildUserProfile();
 	});
 
-	$('#questions .multi').on('keydown', 'input[type="text"]', function() {
+	multi.on('keydown', 'input[type="text"]', function() {
 		if ( event.which == 13 ) {
 			applyEntry($(this));
 			buildUserProfile();
@@ -363,7 +374,7 @@ function multipleEntry() {
 Remove Entry
 *****************************************************************************/
 function removeEntry() {
-	$('#questions').on('click','button[data-function="remove"]',function() {
+	$('.multi').on('click','button[data-function="remove"]',function() {
 		var $this = $(this),
 			entries = $this.parents('.entries');
 		$(this).parent('li').remove();
@@ -723,7 +734,7 @@ Questionnaire Navigation
 var current,
 	navigation = {
 	getCurrent : function() {
-		return current = $('fieldset.selected');
+		return current = $('#questions fieldset.selected');
 	},
 	nextPrev : function() {
 		$('button[data-function="prev"],button[data-function="next"]').on('click', function() {
@@ -796,7 +807,16 @@ $('form').on('click', '#survey-done', function() {
 	buildUserProfile();
 });
 
+$('#control-bar').on('click','button[data-function="user-profile-edit"]', function() {
+	var survey = $('#overlay-survey');
+	survey.addClass('user-profile-edit')
+		.children('.controls').find('strong').text('Your Profile');
+	survey.find('fieldset').show();
+	$('#survey-done').appendTo(survey.children('form'));
+	overlay.launchItem('overlay-survey');
+});
 overlay.launchItem('overlay-intro'); // launch intro
+// overlay.launchItem('overlay-user-profile-edit');
 initSearch();
 runFilter();
 navigation.getCurrent();
