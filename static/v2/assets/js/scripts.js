@@ -310,6 +310,19 @@ function updateScore() {
 		$('.your-score').text(finalScore);
 
 		totalScore = 0;
+
+		// Updates "Your Score" window accordingly
+		if (finalScore === 0) {
+			$('#overlay-your-score [data-function="user-profile-edit"]').show();
+			$('#connection-details').hide();
+			$('#profile-name').hide();
+			$('.share-score').hide();
+		} else {
+			$('#overlay-your-score [data-function="user-profile-edit"]').hide();
+			$('#connection-details').show();
+			$('#profile-name').show();
+			$('.share-score').show();
+		}
 	}
 
 	/*****************************************************************************
@@ -581,16 +594,8 @@ function loadResults(arrayName, resultContainer) {
 	if (arrayName.length) {
 		section.children('p').remove();
 		section.slideDown('fast');
-		// $('#connection-details').show();
-		// $('#profile-name').show();
-		// $('.share-score').show();
-		// $('#overlay-your-score [data-function="user-profile-edit]').hide();
 	} else if (section.children('p').length <= 0 && resultContainer === '#connections') {
 		section.slideDown('fast').append('<p>No connections found. Try editing your <a href="#overlay-survey" data-function="user-profile-edit">profile</a>.</p>');
-		// $('#overlay-your-score [data-function="user-profile-edit]').show();
-		// $('#connection-details').hide();
-		// $('#profile-name').hide();
-		// $('.share-score').hide();
 	} else if (section.children('p').length <= 0) {
 		section.slideDown('fast').append('<p>No results found.</p>');
 	}
