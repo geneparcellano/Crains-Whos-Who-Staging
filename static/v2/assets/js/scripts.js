@@ -200,7 +200,6 @@ function runFilter() {
 	$('input[type="text"], select').blur(function() {
 		buildUserProfile();
 		loadResults(userConnections, '#connections');
-		animatePersonIn('#connections');
 	});
 }
 
@@ -308,7 +307,7 @@ function updateScore() {
 		var finalScore = parseInt(totalScore) + parseInt(totalMatch);
 
 		$('.your-score').text(finalScore);
-		$('#connections .matches').text(': '+totalMatch);
+		// $('#connections .matches').text(': ' + totalMatch);
 
 		totalScore = 0;
 	}
@@ -578,8 +577,10 @@ function loadResults(arrayName, resultContainer) {
 		}
 	});
 
-	if (arrayName.length) {	
+	if (arrayName.length) {
 		$(resultContainer).slideDown('fast');
+		$(resultContainer).children('h1').children('strong').text(': ' + arrayName.length);
+		animatePersonIn(resultContainer);
 	} else {
 		// container.append('<li>No results found</li>');
 		$(resultContainer).slideUp('fast');
@@ -705,6 +706,42 @@ function showOnScroll() {
 /*****************************************************************************
 Search
 *****************************************************************************/
+function filterConnection() {
+	$('#connection-details').on('click', 'li[id^="profile-"]', function() {
+		var property = $(this).attr('id'),
+			value = property.slice(8);
+		switch (value) {
+			case 'company':
+				loadResults(connectionByCompany, '#filtered');
+				break;
+			case 'industry':
+				loadResults(connectionByIndustry, '#filtered');
+				break;
+			case 'undergrad':
+				loadResults(connectionByUndergrad, '#filtered');
+				break;
+			case 'grad':
+				loadResults(connectionByGrad, '#filtered');
+				break;
+			case 'hometown':
+				loadResults(connectionByHometown, '#filtered');
+				break;
+			case 'prof-assoc':
+				loadResults(connectionByProfAssoc, '#filtered');
+				break;
+			case 'civic-affil':
+				loadResults(connectionByCivicAffil, '#filtered');
+				break;
+			default:
+				// Do nothing
+		}
+	});
+}
+
+
+/*****************************************************************************
+Search
+*****************************************************************************/
 var results = [];
 function getResults(searchTerm, resultContainer) {
 
@@ -755,19 +792,18 @@ function getResults(searchTerm, resultContainer) {
 
 	// Load Results
 	loadResults(results, resultContainer);
-
-	// Show results
-	animatePersonIn(resultContainer);
 }
+
 function initSearch() {
-	var searchBar = $('#control-bar .search');
+	var searchBar = $('#control-bar .search'),
+		resultCount = $('#filtered h1 strong');
 
 	searchBar.on('keydown', '#whos-who-search', function(event) {
 		if ( event.which === 13 ) {
 			var searchTerm = $(this).val().toLowerCase();
 
 			getResults(searchTerm, '#filtered');
-			$('#filtered h1 strong').text(': ' + results.length);
+			// resultCount.text(': ' + results.length);
 		}
 	});
 
@@ -775,7 +811,7 @@ function initSearch() {
 		var searchTerm = $('.search input').val();
 
 		getResults(searchTerm, '#filtered');
-		$('#filtered h1 strong').text(': ' + results.length);
+		// resultCount.text(': ' + results.length);
 	});
 }
 
@@ -852,9 +888,10 @@ $(document).ajaxComplete(function() {
 	removeEntry();
 	loadWhosWho();
 	showOnScroll();
+	filterConnection();
 });
 
-$('form').on('click', '#survey-done', function() {
+$('#overlay-survey').on('click', 'button[data-function="close"], #survey-done', function() {
 	buildUserProfile();
 });
 
