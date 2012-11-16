@@ -441,7 +441,8 @@ function removeEntry() {
 Load Results
 *****************************************************************************/
 function loadResults(arrayName, resultContainer) {
-	var container = $(resultContainer).children('ul');
+	var section = $(resultContainer),
+		container = section.children('ul');
 
 	// Mark obsolete matches
 	container.children('li').addClass('old');
@@ -578,19 +579,27 @@ function loadResults(arrayName, resultContainer) {
 	});
 
 	if (arrayName.length) {
-		$(resultContainer).children('p').remove();
-		$(resultContainer).slideDown('fast');
-	} else {
-		if ($(resultContainer).children('p').length <= 0) {
-			$(resultContainer).slideDown('fast').append('<p>No results found</p>');
-		} else {
-			// $(resultContainer).slideUp('fast');
-		}
+		section.children('p').remove();
+		section.slideDown('fast');
+		// $('#connection-details').show();
+		// $('#profile-name').show();
+		// $('.share-score').show();
+		// $('#overlay-your-score [data-function="user-profile-edit]').hide();
+	} else if (section.children('p').length <= 0 && resultContainer === '#connections') {
+		section.slideDown('fast').append('<p>No connections found. Try editing your <a href="#overlay-survey" data-function="user-profile-edit">profile</a>.</p>');
+		// $('#overlay-your-score [data-function="user-profile-edit]').show();
+		// $('#connection-details').hide();
+		// $('#profile-name').hide();
+		// $('.share-score').hide();
+	} else if (section.children('p').length <= 0) {
+		section.slideDown('fast').append('<p>No results found.</p>');
 	}
+
+	// Show matches
 	animatePersonIn(resultContainer);
 
 	// Update result count
-	$(resultContainer).children('h1').children('strong').text(': ' + arrayName.length);
+	section.children('h1').children('strong').text(': ' + arrayName.length);
 
 	// Hide deprecated matches
 	animatePersonOut(resultContainer);
@@ -686,11 +695,6 @@ function loadWhosWho() {
 
 	// Get results
 	loadResults(loadedProfiles, '#all-whos-who');
-
-	// Show results
-	// container.children('li').show('fast', function() {
-	// 	container.slideDown();
-	// });
 }
 
 /*****************************************************************************
@@ -901,7 +905,7 @@ $('#overlay-survey').on('click', 'button[data-function="close"], #survey-done', 
 	buildUserProfile();
 });
 
-$('#control-bar').on('click','button[data-function="user-profile-edit"]', function() {
+$('#whos-who-2012').on('click','[data-function="user-profile-edit"]', function() {
 	var survey = $('#overlay-survey');
 	survey.addClass('user-profile-edit')
 		.children('.controls').find('strong').text('Your Profile');
