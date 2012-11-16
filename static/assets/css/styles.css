@@ -534,10 +534,9 @@ Overlay - Your Score
 	font-weight: bold;
 }
 #overlay-your-score button[data-function="user-profile-edit"] {
-	display: none;
-	clear: both;
+	display: block;
 	width: 310px;
-	margin: 20px auto 0;
+	margin: 20px auto 10px;
 }
 #overlay-your-score h2 {
 	border-bottom: none;
