@@ -28,6 +28,17 @@ function initiateAutoComplete() {
 		allCity = [],
 		allData = [];
 
+	// Sort Who's Who by last name
+	obj.whoswho.sort(function (a,b) {
+		var pNameA = a.last,
+			pNameB = b.last;
+
+		if (pNameA < pNameB) return -1;
+		if (pNameA > pNameB) return 1;
+		return 0;
+	});
+
+
 	/*****************************************************************************
 	Array Builder
 	*****************************************************************************/
@@ -378,10 +389,11 @@ function updateScore() {
 Build industry list
 *****************************************************************************/
 function buildSelectOption() {
+	var html = '';
 	$.each(obj.industries, function(i, industries) {
-		var html = '<option value="' + industries + '">' + industries + '</option>';
-		$('.industry-list').append(html);
+		html += '<option value="' + industries + '">' + industries + '</option>';
 	});
+	$('.industry-list').append(html);
 }
 
 /*****************************************************************************
@@ -719,7 +731,7 @@ function showOnScroll() {
 }
 
 /*****************************************************************************
-Search
+Filter Connections By Type
 *****************************************************************************/
 function filterConnection() {
 	$('#connection-details').on('click', 'li[id^="profile-"]', function() {
