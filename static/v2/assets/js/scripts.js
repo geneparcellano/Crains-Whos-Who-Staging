@@ -209,7 +209,7 @@ function buildUserProfile() {
 Show "Your Connections"
 *****************************************************************************/
 function runFilter() {
-	$('input[type="text"], select').blur(function() {
+	$('fieldset:not(#question-name)').on('blur', 'input[type="text"], select', function() {
 		buildUserProfile();
 		loadResults(userConnections, '#connections');
 	});
@@ -231,7 +231,8 @@ Update Score
 *****************************************************************************/
 function updateScore() {
 	var	totalScore = 0,
-		totalMatch = 0;
+		totalMatch = 0,
+		personScore = 0;
 
 	// Clear previous results
 	userConnections.length = 0;
@@ -247,12 +248,14 @@ function updateScore() {
 	Score matches
 	*****************************************************************************/
 	function scoreMatches(pName, value, multiplier, i, b) {
+
 		if (pName === 'profAssoc' || pName === 'civicAffil') {
 			// Compare value against all of user's entries 
 			$.each(user[0][pName], function(b, userValue) {
 				if (userValue === value) {
 					totalScore += multiplier;
 					totalMatch++;
+					// personScore += multiplier;
 
 					// Index Connections
 					indexResults(userConnections, i);
@@ -273,6 +276,7 @@ function updateScore() {
 		} else {
 			if (user[0][pName] === value) {
 				totalScore += multiplier;
+				// personScore += multiplier;
 				totalMatch++;
 
 				// Index Connections
@@ -310,10 +314,12 @@ function updateScore() {
 			var person = obj.whoswho[number];
 			if (person.pwr50 === true) {
 				totalScore += 10;
+				// personScore += 10;
 			}
 
 			if (person.last === "Obama") {
 				totalScore += 15;
+				// personScore += 15;
 			}
 		});
 		var finalScore = parseInt(totalScore) + parseInt(totalMatch);
@@ -340,6 +346,7 @@ function updateScore() {
 	Values to be scored
 	*****************************************************************************/
 	$.each(obj.whoswho, function(i, whoswho) {
+		personScore = 0;
 		$.each(whoswho, function(property, value) {
 
 			if (value.length !== 0) {
@@ -379,6 +386,10 @@ function updateScore() {
 				}
 			}
 		});
+		// specialConnections();
+		// if (personScore > 0 ) {
+		// 	console.log(obj.whoswho[i].last + ': ' + personScore);
+		// }
 	});
 
 	// Score special connections (Power 50 & Obama's)
