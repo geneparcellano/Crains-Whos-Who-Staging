@@ -305,10 +305,6 @@ function updateScore() {
 			}
 		}
 
-		// if (personScore > 0 && obj.whoswho[i].pwr50 === true) {
-		// 	personScore += 10;
-		// 	return console.log(obj.whoswho[i].last + ': ' + personScore);
-		// }
 	}
 
 	/*****************************************************************************
@@ -391,10 +387,7 @@ function updateScore() {
 				}
 			}
 		});
-		// specialConnections();
-		// if (personScore > 0 ) {
-		// 	console.log(obj.whoswho[i].last + ': ' + personScore);
-		// }
+
 	});
 
 	// Score special connections (Power 50 & Obama's)
