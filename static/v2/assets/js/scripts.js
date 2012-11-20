@@ -255,7 +255,7 @@ function updateScore() {
 				if (userValue === value) {
 					totalScore += multiplier;
 					totalMatch++;
-					// personScore += multiplier;
+					personScore += multiplier;
 
 					// Index Connections
 					indexResults(userConnections, i);
@@ -276,7 +276,7 @@ function updateScore() {
 		} else {
 			if (user[0][pName] === value) {
 				totalScore += multiplier;
-				// personScore += multiplier;
+				personScore += multiplier;
 				totalMatch++;
 
 				// Index Connections
@@ -304,6 +304,11 @@ function updateScore() {
 				}
 			}
 		}
+
+		// if (personScore > 0 && obj.whoswho[i].pwr50 === true) {
+		// 	personScore += 10;
+		// 	return console.log(obj.whoswho[i].last + ': ' + personScore);
+		// }
 	}
 
 	/*****************************************************************************
@@ -346,7 +351,7 @@ function updateScore() {
 	Values to be scored
 	*****************************************************************************/
 	$.each(obj.whoswho, function(i, whoswho) {
-		personScore = 0;
+		// personScore = 0;
 		$.each(whoswho, function(property, value) {
 
 			if (value.length !== 0) {
@@ -361,13 +366,13 @@ function updateScore() {
 						scoreMatches(property, value, 4, i);
 						break;
 					case 'profAssoc':
-						// compare all of CWW's values again's the user's value
+						// compare all of CWW's values against the user's value
 						$.each(value, function(b, entries) {
 							scoreMatches(property, entries, 3, i, b);
 						});
 						break;
 					case 'civicAffil':
-						// compare all of CWW's values again's the user's value
+						// compare all of CWW's values against the user's value
 						$.each(value, function(b, entries) {
 							scoreMatches(property, entries, 3, i, b);
 						});
