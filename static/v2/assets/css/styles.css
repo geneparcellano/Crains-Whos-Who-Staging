@@ -583,6 +583,9 @@ ul#connection-details {
 	font-size: 0.75em;
 	font-weight: normal;
 }
+#connection-details li:hover span {
+	color: #FFF;
+}
 .share-score {
 	margin: 20px 10px;
 	padding-left: 10px;
