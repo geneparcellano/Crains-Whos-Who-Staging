@@ -1,8 +1,11 @@
 /*****************************************************************************
 Typography
 *****************************************************************************/
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 100%;
+}
 #whos-who-2012 {
-	margin-top: -5px;
 	font-size: 14px !important;
 	line-height: 1.4545em;
 }
@@ -11,6 +14,12 @@ Layout
 *****************************************************************************/
 body.no-scroll {
 	overflow: hidden;
+}
+#whos-who-2012 {
+	width:935px;
+	margin: -5px auto 0;
+	padding:0 10px 10px;
+	background-color: #FFF;
 }
 #whos-who section > h1 {
 	padding: 5px 0 5px 20px;
@@ -40,7 +49,7 @@ Buttons
 *****************************************************************************/
 .overlay button[type="button"] {
 	width: 100%;
-	margin: 50px 0 10px;
+	margin: 0 0 10px;
 	padding: 10px 0 15px;
 	border: 1px solid #4D4D4D;
 	border-radius: 5px;
@@ -136,7 +145,6 @@ Who's Who Control Bar
 	right: 16px;
 	height: 16px;
 	width: 16px;
-	/*margin: -5px 0 0 -25px;*/
 	border: 0;
 	padding: 0;
 	background: url(../im/icon-search.gif) no-repeat 0 0;
@@ -174,9 +182,10 @@ Who's Who Control Bar
 	height: 47px;
 	width: 37px;
 	margin-top: -6px;
-	padding: 18px 0 0 4px;
+	padding-top: 16px;
 	background: url(../im/icon-ribbon.gif) no-repeat 0 0;
 	text-decoration: none;
+	text-align: center;
 	color: #FFF !important;
 }
 
@@ -192,6 +201,14 @@ Who's Who Grid
 #whos-who h1 strong {
 	text-transform: capitalize;
 	font-weight: normal;
+}
+#whos-who section p {
+	padding: 20px 10px;
+	text-align: center;
+	font-size: 1em;
+}
+#whos-who section p a {
+	color: #A00 !important;
 }
 #whos-who li {
 	position: relative;
@@ -242,6 +259,14 @@ li .pwr50 {
 }
 #whos-who dl {
 	display: none;
+}
+.ajax-loading {
+	display: block;
+	padding: 10px 0 8px;
+	margin: 0 10px;
+	border: 1px solid #DDD;
+	background-color: #E8E8E8;
+	text-align: center;
 }
 
 /*****************************************************************************
@@ -310,15 +335,21 @@ Overlay - Intro
 	width: 206px;
 	margin: 10px auto 20px;
 }
+#overlay-intro button {
+	margin-top: 30px;
+}
 
 /*****************************************************************************
 Overlay - Survey
 *****************************************************************************/
-#overlay-survey .controls {
+#overlay-survey header.controls {
 	background-color: #A00;
 }
 #overlay-survey .controls strong {
+	padding-left: 20px;
 	color: #FFF;
+	text-align: left;
+	font-size: 1.4em;
 }
 #overlay-survey .controls button {
 	position: absolute;
@@ -332,6 +363,9 @@ Overlay - Survey
 	text-indent: -9999px;
 	cursor: pointer;
 	overflow: hidden;
+}
+#overlay-survey .controls button[data-function="close"] {
+	background: url(../im/icon-close-active.png) no-repeat center center ;
 }
 #overlay-survey header {
 	box-shadow: none;
@@ -364,15 +398,21 @@ Overlay - Survey
 #overlay-survey nav li.selected a {
 	background-color: #A00;
 }
-#overlay-survey button[data-function="prev"] {
-	left: 0;
-	text-indent: 0;
-	background-color: transparent;
+#overlay-survey .bottom-controls {
+	padding-right: 0;
+	margin-top: 20px;
 }
-#overlay-survey button[data-function="next"] {
-	right: 0;
+#overlay-survey button[data-function="prev"],
+#overlay-survey button[data-function="next"],
+button#survey-done {
+	float: right;
+	width: auto;
+	margin: 0 0 0 10px;
+	padding: 10px 30px;
 	text-indent: 0;
-	background-color: transparent;
+}
+#overlay-survey button[data-function="prev"] {
+	padding: 10px;
 }
 #overlay-survey .controls button:hover {
 	background-color: #760A04;
@@ -381,53 +421,57 @@ Overlay - Survey
 	background-color: #590100;
 	color: #FFF;
 }
-#overlay-survey .controls button[disabled="disabled"],
-#overlay-survey .controls button[disabled="disabled"]:hover,
-#overlay-survey .controls button[disabled="disabled"]:active {
-	opacity: 0.5;
+#overlay-survey .bottom-controls button[disabled="disabled"],
+#overlay-survey .bottom-controls button[disabled="disabled"]:hover,
+#overlay-survey .bottom-controls button[disabled="disabled"]:active {
+	opacity: 0;
 	background-color: transparent;
 }
 #questions {
 	margin-top: 40px;
 }
-#questions section {
+#questions fieldset {
 	display: none;
 	padding: 10px 20px;
 }
-#questions section.selected {
+#questions legend {
+	display: none;
+}
+#questions fieldset.selected {
 	display: block;
 }
-#questions select {
+fieldset select {
 	width: 100%;
 	margin: 10px 0 20px;
+	padding: 10px;
 	font-size: 1em;
 }
-#questions .multi input[type="text"] {
+fieldset .multi input[type="text"] {
 	width: 220px;
 }
-#questions button[data-function="add"] {
+.multi button[data-function="add"] {
 	display: inline;
 	width: auto;
 	margin: 0;
 	padding: 10px;
 }
-#questions .notification {
+fieldset .notification {
 	margin-bottom: 10px;
 	color: #F00;
 	font-size: 0.75em;
 }
-#questions .entries {
+fieldset .entries {
 	border-top: 1px solid #CCC;
-	margin-top: 10px;
+	margin: 10px 0 30px;
 }
-#questions .entries li {
+fieldset .entries li {
 	position: relative;
 	min-height: 20px;
 	padding: 5px 30px 5px 0;
 	border-bottom: 1px solid #DDD;
 	line-height: 1.25em;
 }
-#questions button[data-function="remove"] {
+.entries button[data-function="remove"] {
 	position: absolute;
 	top: 50%;
 	right: 0;
@@ -440,10 +484,10 @@ Overlay - Survey
 	background: url(../im/icon-close.png) no-repeat center center transparent;
 	text-indent: -9999px;
 }
-#questions button[data-function="remove"]:hover {
+.entries button[data-function="remove"]:hover {
 	background-color: #CCC;
 }
-#questions button[data-function="remove"]:active {
+.entries button[data-function="remove"]:active {
 	background-color: #AAA;
 }
 .ui-autocomplete {
@@ -475,56 +519,12 @@ Overlay - Survey
 /*****************************************************************************
 Overlay - Your Score
 *****************************************************************************/
-#overlay-your-score .controls {
-	background-color: #A00;
-}
-#overlay-your-score .controls strong {
-	color: #FFF;
-}
-#overlay-your-score .controls button[data-function="close"] {
-	background: url(../im/icon-close-active.png) no-repeat center center ;
-}
-#overlay-your-score .controls button[data-function="close"]:hover {
-	background-color: #760A04;
-}
-#overlay-your-score .controls button[data-function="close"]:active {
-	background-color: #590100;
-}
-#overlay-your-score .content {
-	padding: 10px 20px;
+#overlay-your-score {
+	padding-bottom: 10px;
 }
 #overlay-your-score .score {
 	margin-top: 10px;
 	text-align: center;
-}
-#overlay-your-score .score-bar {
-	position: relative;
-	height: 16px;
-	margin: 10px 0 30px;
-	background-color: #DDD;
-	border: 1px solid #999;
-	border-radius: 8px;
-}
-#overlay-your-score .score-bar-actual {
-	position: absolute;
-	height: 16px;
-	width: 30%;
-	border-radius: 8px;
-	top: 0;
-	left: 0;
-	background-color: #A00;
-	text-indent: -9999px;
-}
-#overlay-your-score .score-bar-min,
-#overlay-your-score .score-bar-max {
-	position: absolute;
-	top: 20px;
-}
-#overlay-your-score .score-bar-min {
-	left: 0;
-}
-#overlay-your-score .score-bar-max {
-	right: 0;
 }
 #overlay-your-score .score strong {
 	display: block;
@@ -533,59 +533,22 @@ Overlay - Your Score
 	line-height: 1em;
 	font-weight: bold;
 }
-#overlay-your-score .content button {
-	margin-top: 0;
-}
-#overlay-your-score p {
-	line-height: 1.4545em;
-	margin-bottom: 30px;
-}
-/*****************************************************************************
-Overlay - Share Your Score
-*****************************************************************************/
-#overlay-share-your-score li a {
+#overlay-your-score button[data-function="user-profile-edit"] {
 	display: block;
-	padding: 15px;
-	border-bottom: 1px solid #CCC;
-	font-weight: bold;
-	line-height: 1em;
-	cursor: pointer;
-	color: #000 !important;
-	text-decoration: none;
+	width: 310px;
+	margin: 20px auto 10px;
 }
-#overlay-share-your-score li a:hover {
-	background-color: #A00;
-	color: #FFF !important;
-}
-#overlay-share-your-score li a:active {
-	background-color: #760A04;
-}
-
-/*****************************************************************************
-Overlay - User Profile
-*****************************************************************************/
-#overlay-user-profile .score {
-	margin-top: 10px;
-	text-align: center;
-}
-#overlay-user-profile .score strong {
-	display: block;
-	color: #A00;
-	font-size: 6em;
-	line-height: 1em;
-	font-weight: bold;
-}
-#overlay-user-profile h2 {
+#overlay-your-score h2 {
 	border-bottom: none;
 	padding: 10px;
 	color: #A00 !important;
 	font-size: 1.5em;
 	font-weight: bold;
 }
-#overlay-user-profile ul {
+ul#connection-details {
 	border-top: 1px solid #CCC;
 }
-#overlay-user-profile li {
+#connection-details li {
 	padding: 10px;
 	border-bottom: 1px solid #CCC;
 	font-weight: bold;
@@ -593,70 +556,85 @@ Overlay - User Profile
 	background: url(../im/icon-arrow-right.png) no-repeat right center;
 	cursor: pointer;
 }
-#overlay-user-profile li:hover {
+#connection-details li:hover {
 	background: url(../im/icon-arrow-right-active.png) no-repeat right center #A00;
 	color: #FFF;
 }
-#overlay-user-profile li:active {
+#connection-details li:active {
 	background-color: #760A04;
 }
-#overlay-user-profile li strong {
+#connection-details li strong {
 	display: none;
 }
-#overlay-user-profile li span {
+#connection-details li span {
 	display: block;
+	margin-top: 3px;
 	color: #666;
 	font-size: 0.75em;
 	font-weight: normal;
+}
+.share-score {
+	margin: 20px 10px;
+	padding-left: 10px;
+	background-color: #E8E8E8;
+	border: 1px solid #CCC;
+}
+.share-score strong {
+	display: block;
+	margin: 10px 0 0;
+}
+.share-score ul {
+	padding: 0 0 20px;
+}
+.share-score li {
+	float: left;
+	height: 30px;
+	padding: 10px 30px 0 0;
 }
 
 /*****************************************************************************
 Overlay - User Profile Edit
 *****************************************************************************/
-#overlay-user-profile-edit {
+#overlay-survey.user-profile-edit {
 	margin-top: 3%;
 }
-#overlay-user-profile-edit .content {
-	padding: 20px 10px;
+#overlay-survey.user-profile-edit .controls {
+	border-bottom: 1px solid #BBB;
+	background-color: #EFEFEF;
+	box-shadow: 0 0 3px #AAA;
 }
-#overlay-user-profile-edit .content li {
-	margin-bottom: 15px;
+#overlay-survey.user-profile-edit .controls strong {
+	color: #000;
+	text-align: left;
 }
-#overlay-user-profile-edit .content strong {
+#overlay-survey.user-profile-edit .controls button {
+	background: url(../im/icon-close.png) no-repeat center center transparent;
+}
+#overlay-survey.user-profile-edit .controls button:hover {
+	background-color: #CCC;
+}
+#overlay-survey.user-profile-edit .controls button:active {
+	background-color: #AAA;
+}
+#overlay-survey.user-profile-edit .controls nav {
+	display: none;
+}
+#overlay-survey.user-profile-edit form {
+	margin-top: 0;
+}
+#overlay-survey.user-profile-edit fieldset {
 	display: block;
+	border-bottom: 1px solid #CCC;
 }
-#overlay-user-profile-edit input[type="text"] {
-	margin: 0;
+#overlay-survey.user-profile-edit .bottom-controls {
+	display: none;
 }
-#overlay-user-profile-edit .name label,
-#overlay-user-profile-edit .hometown label {
-	float: left;
-	width: 130px;
-	margin-right: 10px;
-}
-#overlay-user-profile-edit select {
-	width: 100%;
-	margin: 10px 0 20px;
-	font-size: 1em;
-}
-#overlay-user-profile-edit .name input[type="text"],
-#overlay-user-profile-edit .hometown input[type="text"] {
-	width: 108px;
-}
-#overlay-user-profile-edit .name .name-suffix,
-#overlay-user-profile-edit .name .hometown-state {
-	width: 40px;
-}
-#overlay-user-profile-edit .name-suffix input[type="text"],
-#overlay-user-profile-edit .hometown-state input[type="text"] {
-	display: block;
-	width: 18px;
-}
-#overlay-user-profile-edit .linkedin-connect button {
-	display: block;
-	width: 165px;
-	padding: 5px;
-	margin: 0;
+#overlay-survey.user-profile-edit form button[data-function="overlay-your-score"] {
+	float: right;
+	width: auto;
+	margin: 10px 20px 10px 10px;
+	padding: 10px 30px;
+	text-indent: 0;
 }
 
 /*****************************************************************************

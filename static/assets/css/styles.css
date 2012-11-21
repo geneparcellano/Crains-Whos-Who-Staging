@@ -257,6 +257,9 @@ li .pwr50 {
 #whos-who li h2 span {
 	display: none;
 }
+#whos-who .primary-title {
+	display: none;
+}
 #whos-who dl {
 	display: none;
 }
@@ -652,24 +655,23 @@ Overlay - Who's Who Details
 	width: 83px;
 	background: url(../im/media/icon-unknown.gif) no-repeat 0 0;
 }
-#overlay-whos-who-details h2 {
+#overlay-whos-who-details .credentials {
 	position: absolute;
 	top: 10px;
 	left: 103px;
 	width: 235px;
+}
+#overlay-whos-who-details h2 {
 	border-bottom: 0;
-	padding: 10px 0 5px;
-	margin-bottom: 10px;
+	/*padding: 10px 0 5px;*/
+	margin: 0;
 	font-size: 1.5em;
 	font-weight: bold;
 	color: #A00 !important;
 	line-height: 1.15em;
 }
 #overlay-whos-who-details .pwr50 {
-	position: absolute;
 	display: block;
-	left: 103px;
-	top: 50px;
 	height: 22px;
 	padding-left: 25px;
 	background: url(../im/icon-pwr50.png) no-repeat left center;

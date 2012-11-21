@@ -231,8 +231,7 @@ Update Score
 *****************************************************************************/
 function updateScore() {
 	var	totalScore = 0,
-		totalMatch = 0,
-		personScore = 0;
+		totalMatch = 0;
 
 	// Clear previous results
 	userConnections.length = 0;
@@ -255,7 +254,6 @@ function updateScore() {
 				if (userValue === value) {
 					totalScore += multiplier;
 					totalMatch++;
-					personScore += multiplier;
 
 					// Index Connections
 					indexResults(userConnections, i);
@@ -276,7 +274,6 @@ function updateScore() {
 		} else {
 			if (user[0][pName] === value) {
 				totalScore += multiplier;
-				personScore += multiplier;
 				totalMatch++;
 
 				// Index Connections
@@ -304,7 +301,6 @@ function updateScore() {
 				}
 			}
 		}
-
 	}
 
 	/*****************************************************************************
@@ -315,12 +311,10 @@ function updateScore() {
 			var person = obj.whoswho[number];
 			if (person.pwr50 === true) {
 				totalScore += 10;
-				// personScore += 10;
 			}
 
 			if (person.last === "Obama") {
 				totalScore += 15;
-				// personScore += 15;
 			}
 		});
 		var finalScore = parseInt(totalScore) + parseInt(totalMatch);
@@ -347,7 +341,6 @@ function updateScore() {
 	Values to be scored
 	*****************************************************************************/
 	$.each(obj.whoswho, function(i, whoswho) {
-		// personScore = 0;
 		$.each(whoswho, function(property, value) {
 
 			if (value.length !== 0) {
@@ -390,7 +383,6 @@ function updateScore() {
 
 	});
 
-	// Score special connections (Power 50 & Obama's)
 	specialConnections();
 }
 
@@ -484,8 +476,9 @@ function loadResults(arrayName, resultContainer) {
 	$.each(arrayName, function(i, id) {
 		var	person = obj.whoswho[id],
 			htmlImage,
-			htmlPwr50,
 			htmlName,
+			htmlPrimaryTitle,
+			htmlPwr50,
 			htmlPrimaryCo,
 			htmlSecondaryCo,
 			htmlIndustry,
@@ -510,6 +503,13 @@ function loadResults(arrayName, resultContainer) {
 			}
 		}
 
+		// Title
+		if (person.primaryTitle) {
+			htmlPrimaryTitle = '<div class="primary-title">'+ person.primaryTitle +'<br />'+ person.primaryCo +'</div>';
+		} else {
+			htmlPrimaryTitle = '';
+		}
+
 		// Power 50
 		if (person.pwr50) {
 			htmlPwr50 = '<div class="pwr50">Power 50</div>';
@@ -519,7 +519,7 @@ function loadResults(arrayName, resultContainer) {
 
 		// Primary Company
 		if (person.primaryCo) {
-			htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>'+ person.primaryCo +'</dd>';
+			htmlPrimaryCo = '<dt>Primary Company</dt><dd>'+ person.primaryCo +'</dd>';
 		} else {
 			htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>--</dd>'
 		}
@@ -583,7 +583,7 @@ function loadResults(arrayName, resultContainer) {
 		if (person.bio) {
 			htmlBio = '<dt>Biography</dt><dd><a href="'+ person.bio +'" target="_blank">Click here</a></dd></dl>';
 		} else {
-			htmlBio = '<dt>Biography</dt><dd>--</dd></dl>';
+			htmlBio = '<dt>Biography</dt><dd>--</dd>';
 		}
 
 		var htmlImage = '<div class="photo"><img src="assets/im/media/' + person.img + '" height="100" width="83" alt="" /></div>',
@@ -591,8 +591,11 @@ function loadResults(arrayName, resultContainer) {
 			personDetails =
 				'<li data-whoswho-id="'+ id +'">'+
 					htmlImage +
-					htmlPwr50 +
+					'<div class="credentials">'+
 					htmlName +
+					htmlPrimaryTitle +
+					htmlPwr50 +
+					'</div><dl>'+
 					htmlPrimaryCo +
 					htmlSecondaryCo +
 					htmlIndustry +
@@ -602,6 +605,7 @@ function loadResults(arrayName, resultContainer) {
 					htmlProfAssoc +
 					htmlCivicAffil +
 					htmlBio +
+					'</dl>'+
 				'</li>';
 
 		// If existing person is still a valid match, remove mark

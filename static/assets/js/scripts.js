@@ -28,6 +28,17 @@ function initiateAutoComplete() {
 		allCity = [],
 		allData = [];
 
+	// Sort Who's Who by last name
+	obj.whoswho.sort(function (a,b) {
+		var pNameA = a.last,
+			pNameB = b.last;
+
+		if (pNameA < pNameB) return -1;
+		if (pNameA > pNameB) return 1;
+		return 0;
+	});
+
+
 	/*****************************************************************************
 	Array Builder
 	*****************************************************************************/
@@ -198,7 +209,7 @@ function buildUserProfile() {
 Show "Your Connections"
 *****************************************************************************/
 function runFilter() {
-	$('input[type="text"], select').blur(function() {
+	$('fieldset:not(#question-name)').on('blur', 'input[type="text"], select', function() {
 		buildUserProfile();
 		loadResults(userConnections, '#connections');
 	});
@@ -236,6 +247,7 @@ function updateScore() {
 	Score matches
 	*****************************************************************************/
 	function scoreMatches(pName, value, multiplier, i, b) {
+
 		if (pName === 'profAssoc' || pName === 'civicAffil') {
 			// Compare value against all of user's entries 
 			$.each(user[0][pName], function(b, userValue) {
@@ -343,13 +355,13 @@ function updateScore() {
 						scoreMatches(property, value, 4, i);
 						break;
 					case 'profAssoc':
-						// compare all of CWW's values again's the user's value
+						// compare all of CWW's values against the user's value
 						$.each(value, function(b, entries) {
 							scoreMatches(property, entries, 3, i, b);
 						});
 						break;
 					case 'civicAffil':
-						// compare all of CWW's values again's the user's value
+						// compare all of CWW's values against the user's value
 						$.each(value, function(b, entries) {
 							scoreMatches(property, entries, 3, i, b);
 						});
@@ -368,9 +380,9 @@ function updateScore() {
 				}
 			}
 		});
+
 	});
 
-	// Score special connections (Power 50 & Obama's)
 	specialConnections();
 }
 
@@ -378,10 +390,11 @@ function updateScore() {
 Build industry list
 *****************************************************************************/
 function buildSelectOption() {
+	var html = '';
 	$.each(obj.industries, function(i, industries) {
-		var html = '<option value="' + industries + '">' + industries + '</option>';
-		$('.industry-list').append(html);
+		html += '<option value="' + industries + '">' + industries + '</option>';
 	});
+	$('.industry-list').append(html);
 }
 
 /*****************************************************************************
@@ -463,8 +476,9 @@ function loadResults(arrayName, resultContainer) {
 	$.each(arrayName, function(i, id) {
 		var	person = obj.whoswho[id],
 			htmlImage,
-			htmlPwr50,
 			htmlName,
+			htmlPrimaryTitle,
+			htmlPwr50,
 			htmlPrimaryCo,
 			htmlSecondaryCo,
 			htmlIndustry,
@@ -489,6 +503,13 @@ function loadResults(arrayName, resultContainer) {
 			}
 		}
 
+		// Title
+		if (person.primaryTitle) {
+			htmlPrimaryTitle = '<div class="primary-title">'+ person.primaryTitle +'<br />'+ person.primaryCo +'</div>';
+		} else {
+			htmlPrimaryTitle = '';
+		}
+
 		// Power 50
 		if (person.pwr50) {
 			htmlPwr50 = '<div class="pwr50">Power 50</div>';
@@ -498,7 +519,7 @@ function loadResults(arrayName, resultContainer) {
 
 		// Primary Company
 		if (person.primaryCo) {
-			htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>'+ person.primaryCo +'</dd>';
+			htmlPrimaryCo = '<dt>Primary Company</dt><dd>'+ person.primaryCo +'</dd>';
 		} else {
 			htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>--</dd>'
 		}
@@ -562,7 +583,7 @@ function loadResults(arrayName, resultContainer) {
 		if (person.bio) {
 			htmlBio = '<dt>Biography</dt><dd><a href="'+ person.bio +'" target="_blank">Click here</a></dd></dl>';
 		} else {
-			htmlBio = '<dt>Biography</dt><dd>--</dd></dl>';
+			htmlBio = '<dt>Biography</dt><dd>--</dd>';
 		}
 
 		var htmlImage = '<div class="photo"><img src="assets/im/media/' + person.img + '" height="100" width="83" alt="" /></div>',
@@ -570,8 +591,11 @@ function loadResults(arrayName, resultContainer) {
 			personDetails =
 				'<li data-whoswho-id="'+ id +'">'+
 					htmlImage +
-					htmlPwr50 +
+					'<div class="credentials">'+
 					htmlName +
+					htmlPrimaryTitle +
+					htmlPwr50 +
+					'</div><dl>'+
 					htmlPrimaryCo +
 					htmlSecondaryCo +
 					htmlIndustry +
@@ -581,6 +605,7 @@ function loadResults(arrayName, resultContainer) {
 					htmlProfAssoc +
 					htmlCivicAffil +
 					htmlBio +
+					'</dl>'+
 				'</li>';
 
 		// If existing person is still a valid match, remove mark
@@ -719,7 +744,7 @@ function showOnScroll() {
 }
 
 /*****************************************************************************
-Search
+Filter Connections By Type
 *****************************************************************************/
 function filterConnection() {
 	$('#connection-details').on('click', 'li[id^="profile-"]', function() {

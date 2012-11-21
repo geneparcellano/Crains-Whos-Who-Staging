@@ -212,8 +212,10 @@ Show "Your Connections"
 *****************************************************************************/
 function runFilter() {
 	$('fieldset:not(#question-name)').on('blur', 'input[type="text"], select', function() {
-		buildUserProfile();
-		loadResults(newUserConnections, '#connections');
+		if ($(this).val()) {		
+			buildUserProfile();
+			loadResults(newUserConnections, '#connections');
+		}
 	});
 }
 
@@ -305,10 +307,6 @@ function updateScore() {
 			}
 		}
 
-		// if (personScore > 0 && obj.whoswho[i].pwr50 === true) {
-		// 	personScore += 10;
-		// 	return console.log(obj.whoswho[i].last + ': ' + personScore);
-		// }
 	}
 
 	/*****************************************************************************
@@ -357,15 +355,10 @@ function updateScore() {
 			cww[pName[2]] = obj.whoswho[number].first;
 			cww[pName[3]] = obj.whoswho[number].last;
 
-			// console.log(personScore + ': ' + obj.whoswho[number].last);
-			// console.log(allPersonScore[0]);
-
 			allPersonScore.push(cww);
-			// allPersonScore[i]['score'] = personScore;
-			// personScore = 0;
 		});
 		
-		// Sort Who's Who by last name
+		// Sort connections by connection strength
 		allPersonScore.sort(function (a,b) {
 			var scoreA = a.score,
 				scoreB = b.score;
@@ -376,7 +369,6 @@ function updateScore() {
 		});
 
 		$.each(allPersonScore, function(i, person) {
-			// console.log(allPersonScore);
 			newUserConnections.push(person.cwwId);
 			console.log(newUserConnections);
 		});
@@ -559,7 +551,8 @@ function loadResults(arrayName, resultContainer) {
 		container = section.children('ul');
 
 	// Mark obsolete matches
-	container.children('li').addClass('old');
+	// container.children('li').addClass('old');
+	container.children('li').remove();
 
 	$.each(arrayName, function(i, id) {
 		var	person = obj.whoswho[id],
@@ -685,11 +678,11 @@ function loadResults(arrayName, resultContainer) {
 				'</li>';
 
 		// If existing person is still a valid match, remove mark
-		if (container.find('[data-whoswho-id="'+ id +'"]').length) {
-			container.find('[data-whoswho-id="'+ id +'"]').removeClass('old');
-		} else {
+		// if (container.find('[data-whoswho-id="'+ id +'"]').length) {
+		// 	container.find('[data-whoswho-id="'+ id +'"]').removeClass('old');
+		// } else {
 			container.append(personDetails);
-		}
+		// }
 	});
 
 	if (arrayName.length) {
