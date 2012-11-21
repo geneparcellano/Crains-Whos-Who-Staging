@@ -21,15 +21,22 @@ body.no-scroll {
 	padding:0 10px 10px;
 	background-color: #FFF;
 }
-#whos-who section > h1 {
-	padding: 5px 0 5px 20px;
-	margin: 0 -12px 10px -10px;
-	background-color: #A00;
-	color: #FFF !important;
-}
 #whos-who section {
 	padding-bottom: 20px;
 }
+#whos-who section > h1 {
+	padding: 5px 0 5px 20px;
+	margin: 0 -11px 10px -11px;
+	background-color: #A00;
+	color: #FFF !important;
+}
+#whos-who section > h1 .whos-who-date {
+	float: right;
+	padding-right: 20px;
+	font-size: 0.75em;
+	font-weight: normal;
+}
+
 /*****************************************************************************
 Text Fields
 *****************************************************************************/
