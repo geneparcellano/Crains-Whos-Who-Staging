@@ -242,7 +242,7 @@
 			"secondaryCo": "",
 			"secondaryTitle": "",
 			"age": 65,
-			"profAssoc": ["American Institute of Architects", "IIT"],
+			"profAssoc": ["American Institute of Architects", "Illinois Institute of Technology"],
 			"civicAffil": ["Art Institute", "Mies van der Rohe Society"],
 			"industry": "Architecture",
 			"bio": "http://www.ksarch.com/studio/profiles/krueck.pdf",
@@ -268,7 +268,7 @@
 			"secondaryTitle": "",
 			"age": 74,
 			"profAssoc": ["Economic Club", "Executives' Club", "American Institute of Architects", "Metropolitan Planning Council"],
-			"civicAffil": ["SOS Children's Villages USA", "IIT", "Chicago Central Area Committee", "Adler Planetarium"],
+			"civicAffil": ["SOS Children's Villages USA", "Illinois Institute of Technology", "Chicago Central Area Committee", "Adler Planetarium"],
 			"industry": "Architecture",
 			"bio": "http://dirklohan.com/dirk/index.html",
 			"undergrad": "Illinois Institute of Technology, College of Architecture",
@@ -317,7 +317,7 @@
 			"secondaryCo": "",
 			"secondaryTitle": "",
 			"age": 49,
-			"profAssoc": ["IIT", "Economic Club"],
+			"profAssoc": ["Illinois Institute of Technology", "Economic Club"],
 			"civicAffil": ["Art Institute"],
 			"industry": "Architecture",
 			"bio": "",
@@ -368,10 +368,10 @@
 			"secondaryTitle": "",
 			"age": 56,
 			"profAssoc": ["American Institute of Architects", "U.S. Green Building Council"],
-			"civicAffil": ["Glessner House Museum", "IIT"],
+			"civicAffil": ["Glessner House Museum", "Illinois Institute of Technology"],
 			"industry": "Architecture",
 			"bio": "http://www.linkedin.com/pub/mark-p-sexton/a/743/505",
-			"undergrad": "IIT",
+			"undergrad": "Illinois Institute of Technology",
 			"grad": "",
 			"city": "Riverside",
 			"state": "IL"
@@ -396,7 +396,7 @@
 			"civicAffil": ["School of the Art Institute", "Chicago Central Area Committee", "Urban Land Institute Foundation"],
 			"industry": "Architecture",
 			"bio": "http://smithgill.com/team/partner/adrian_smith/",
-			"undergrad": "University of Illinois",
+			"undergrad": "University of Illinois, Urbana-Champaign",
 			"grad": "",
 			"city": "Chicago",
 			"state": "IL"
@@ -418,7 +418,7 @@
 			"secondaryTitle": "",
 			"age": 62,
 			"profAssoc": ["American Institute of Architects", "Economic Club", "Urban Land Institute"],
-			"civicAffil": ["Family Focus", "IIT", "University of Illinois at Chicago School of Architecture", "Chicago Architecture Foundation", "Graham Foundation"],
+			"civicAffil": ["Family Focus", "Illinois Institute of Technology", "University of Illinois at Chicago School of Architecture", "Chicago Architecture Foundation", "Graham Foundation"],
 			"industry": "Architecture",
 			"bio": "http://www.cannondesign.com/practice/culture/people/directory/john-syvertsen/",
 			"undergrad": "Georgetown University",
@@ -472,7 +472,7 @@
 			"industry": "Architecture",
 			"bio": "http://www.linkedin.com/pub/joseph-valerio/29/2b8/131",
 			"undergrad": "University of Michigan",
-			"grad": "University of California Los Angeles",
+			"grad": "University of California, Los Angeles",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -968,7 +968,7 @@
 			"secondaryTitle": "President",
 			"age": 66,
 			"profAssoc": ["United Continental Holdings Inc.", "ISO New England", "Wheels Inc.", "Ariel Investments LLC", "Alion Science and Technology", "DNP Select Income Fund"],
-			"civicAffil": ["Art Institute", "IIT", "Booth School of Business", "Leadership Greater Chicago", "Museum of Science and Industry", "YMCA of Metropolitan Chicago"],
+			"civicAffil": ["Art Institute", "Illinois Institute of Technology", "Booth School of Business", "Leadership Greater Chicago", "Museum of Science and Industry", "YMCA of Metropolitan Chicago"],
 			"industry": "Banking",
 			"bio": "http://www.cps.edu/About_CPS/The_Board_of_Education/BoardBios/Pages/DavidJVitale.aspx",
 			"undergrad": "Harvard University",
@@ -1106,7 +1106,7 @@
 			"last": "Bayer",
 			"suffix": "",
 			"full": "Henry Bayer",
-			"img": "Bayer_Henry_2012.jpg",
+			"img": "icon-unknown.gif",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -1172,7 +1172,7 @@
 			"industry": "Business Organizations",
 			"bio": "http://www.linkedin.com/in/katebensen",
 			"undergrad": "University of Chicago",
-			"grad": "Loyola University of Chicago",
+			"grad": "Loyola University Chicago",
 			"city": "White Plains",
 			"state": "NY"
 		}, {
@@ -1196,7 +1196,7 @@
 			"civicAffil": "",
 			"industry": "Business Organizations",
 			"bio": "http://www.linkedin.com/pub/larry-boress/1/96/413",
-			"undergrad": "Northern Illinois Univ.",
+			"undergrad": "Northern Illinois University",
 			"grad": "Roosevelt University",
 			"city": "Chicago",
 			"state": "IL"
@@ -1218,7 +1218,7 @@
 			"secondaryTitle": "",
 			"age": 70,
 			"profAssoc": ["Economic Club", "University of Pennsylvania", "University of Chicago", "International Institute for Strategic Studies"],
-			"civicAffil": ["Chicago Sister Cities International", "IIT", "Academy for Urban School Leadership"],
+			"civicAffil": ["Chicago Sister Cities International", "Illinois Institute of Technology", "Academy for Urban School Leadership"],
 			"industry": "Business Organizations",
 			"bio": "http://www.thechicagocouncil.org/Files/About_Us/Staff_Bios/Marshall_M._Bouton.aspx",
 			"undergrad": "Harvard College",
@@ -1231,7 +1231,7 @@
 			"last": "Carrigan",
 			"suffix": "",
 			"full": "Michael T. Carrigan",
-			"img": "Carrigan_Michael_2012.jpg",
+			"img": "icon-unknown.gif",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -1271,7 +1271,7 @@
 			"civicAffil": ["Field Foundation", "Mexican American Legal Defense and Educational Fund", "Joint Committee on City-County Collaboration", "Metropolitan Planning Council"],
 			"industry": "Business Organizations",
 			"bio": "http://www.chicago-united.org/president-bio.htm",
-			"undergrad": "University CA at Santa Barbara",
+			"undergrad": "University of California, Santa Barbara",
 			"grad": "",
 			"city": "Chicago",
 			"state": "IL"
@@ -1572,7 +1572,7 @@
 			"industry": "Business Organizations",
 			"bio": "http://www.chicagolabor.org/about/bios",
 			"undergrad": "University of Texas at El Paso",
-			"grad": "Chicago-Kent College of Law",
+			"grad": "IIT Chicago-Kent College of Law",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -1672,7 +1672,7 @@
 			"industry": "Business Organizations",
 			"bio": "http://ilchamber.org/about/executive-team/",
 			"undergrad": "Southern Illinois University",
-			"grad": "Western Illinois University (Honorary)",
+			"grad": "",
 			"city": "Atwood",
 			"state": "IL"
 		}, {
@@ -2047,7 +2047,7 @@
 			"industry": "Business Services",
 			"bio": "http://www.linkedin.com/pub/louis-kacyn/17/965/706",
 			"undergrad": "University of Illinois, Urbana-Champaign",
-			"grad": "MIT (2x MS); Northwestern University",
+			"grad": "Massachusetts Institute of Technology; Northwestern University",
 			"city": "",
 			"state": ""
 		}, {
@@ -2056,7 +2056,7 @@
 			"last": "Kelly",
 			"suffix": "",
 			"full": "L. Kevin Kelly",
-			"img": "Kelly_L_2012.jpg",
+			"img": "Kelly_Kevin_2012.jpg",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -2193,7 +2193,7 @@
 			"secondaryTitle": "",
 			"age": 50,
 			"profAssoc": ["Executives' Club", "Human Resources Management Association of Chicago"],
-			"civicAffil": ["Boys and Girls Club", "National Eagle Scout Association"],
+			"civicAffil": ["Boys and Girls Clubs", "National Eagle Scout Association"],
 			"industry": "Business Services",
 			"bio": "http://www.kornferry.com/bios/MarkPierce",
 			"undergrad": "University of Wisconsin",
@@ -2492,11 +2492,11 @@
 			"secondaryCo": "",
 			"secondaryTitle": "",
 			"age": 56,
-			"profAssoc": ["IIT Civil and Architectural Engineering", "Greater North Michigan Avenue Association"],
-			"civicAffil": ["Alexian Brothers Health System Foundation", "IIT Stuart School of Business", "IIT Alumni Association"],
+			"profAssoc": ["Illinois Institute of Technology Civil and Architectural Engineering", "Greater North Michigan Avenue Association"],
+			"civicAffil": ["Alexian Brothers Health System Foundation", "Illinois Institute of Technology Stuart School of Business", "Illinois Institute of Technology Alumni Association"],
 			"industry": "Construction Services",
 			"bio": "http://www.linkedin.com/pub/jeff-karp/11/52/24a",
-			"undergrad": "IIT",
+			"undergrad": "Illinois Institute of Technology",
 			"grad": "Roosevelt University",
 			"city": "Chicago",
 			"state": "IL"
@@ -2556,7 +2556,7 @@
 			"last": "McHugh",
 			"suffix": "",
 			"full": "James P. McHugh",
-			"img": "McHugh_James_2012.jpg",
+			"img": "icon-unknown.gif",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -2606,7 +2606,7 @@
 			"last": "Pridmore",
 			"suffix": "",
 			"full": "John D. Pridmore",
-			"img": "Pridmore_John_2012.jpg",
+			"img": "icon-unknown.gif",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -2631,7 +2631,7 @@
 			"last": "Riccardi",
 			"suffix": "Sr.",
 			"full": "Anthony Riccardi Sr.",
-			"img": "Riccardi_Anthony_2012.jpg",
+			"img": "icon-unknown.gif",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -2722,7 +2722,7 @@
 			"industry": "Construction Services",
 			"bio": "",
 			"undergrad": "John Carroll University",
-			"grad": "Loyola University of Chicago",
+			"grad": "Loyola University Chicago",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -2747,7 +2747,7 @@
 			"industry": "Construction Services",
 			"bio": "",
 			"undergrad": "University of Notre Dame",
-			"grad": "Loyola University of Chicago",
+			"grad": "Loyola University Chicago",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -2797,7 +2797,7 @@
 			"industry": "Consumer Services",
 			"bio": "",
 			"undergrad": "Indiana University",
-			"grad": "Lincoln College (Honorary)",
+			"grad": "",
 			"city": "Hinsdale",
 			"state": "IL"
 		}, {
@@ -2946,7 +2946,7 @@
 			"civicAffil": "",
 			"industry": "Consumer Services",
 			"bio": "http://www.standardparking.com/jwilhelm.shtml",
-			"undergrad": "Northeastern Illinois",
+			"undergrad": "Northeastern Illinois University",
 			"grad": "",
 			"city": "Chicago",
 			"state": "IL"
@@ -3122,7 +3122,7 @@
 			"industry": "Cultural Institution",
 			"bio": "",
 			"undergrad": "McGill University",
-			"grad": "University of Toronto (MA); Yale University (M. Philosophy and PhD)",
+			"grad": "University of Toronto; Yale University",
 			"city": "Montreal",
 			"state": "Quebec, Canada"
 		}, {
@@ -3318,7 +3318,7 @@
 			"secondaryTitle": "",
 			"age": 62,
 			"profAssoc": ["Chicago LawyersÍ Committee for Civil Rights Under Law", "WFMT-FM/98.7", "Museums in the Park"],
-			"civicAffil": ["After School Matters", "Commercial Club", "Latin School", "IIT"],
+			"civicAffil": ["After School Matters", "Commercial Club", "Latin School", "Illinois Institute of Technology"],
 			"industry": "Cultural Institution",
 			"bio": "http://www.chicagohs.org/aboutus/from-the-president",
 			"undergrad": "Yale",
@@ -3493,7 +3493,7 @@
 			"secondaryTitle": "",
 			"age": 66,
 			"profAssoc": ["Economic Club", "Chicagoland Chamber of Commerce", "Choose Chicago", "Metropolis Strategies"],
-			"civicAffil": ["Commercial Club", "After School Matters", "IIT"],
+			"civicAffil": ["Commercial Club", "After School Matters", "Illinois Institute of Technology"],
 			"industry": "Cultural Institution",
 			"bio": "",
 			"undergrad": "University of Tennessee",
@@ -3568,7 +3568,7 @@
 			"secondaryTitle": "Former chairman, CEO",
 			"age": 67,
 			"profAssoc": ["Northern Trust Corp.", "Sunoco Inc.", "University of Chicago Argonne LLC", "Allstate Corp.", "SunCoke Energy Inc."],
-			"civicAffil": ["IIT", "Illinois Holocaust Museum and Education Center", "Wisconsin Alumni Research Foundation", "Morgridge Institute for Research", "Pritzker Military Library"],
+			"civicAffil": ["Illinois Institute of Technology", "Illinois Holocaust Museum and Education Center", "Wisconsin Alumni Research Foundation", "Morgridge Institute for Research", "Pritzker Military Library"],
 			"industry": "Cultural Institution",
 			"bio": "",
 			"undergrad": "University of Wisconsin",
@@ -3621,8 +3621,8 @@
 			"civicAffil": ["Chicago Loop Alliance"],
 			"industry": "Cultural Institution",
 			"bio": "http://www.goodmantheatre.org/About/People-at-Goodman/Executive-Director/",
-			"undergrad": "Notre Dame",
-			"grad": "North Central College (honorary)",
+			"undergrad": "University of Notre Dame",
+			"grad": "",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -3646,8 +3646,8 @@
 			"civicAffil": ["Arts Club", "Commercial Club"],
 			"industry": "Cultural Institution",
 			"bio": "http://www.chicagobotanic.org/info/senior_staff/siskel.php",
-			"undergrad": "Wellesley College- B.A. in art history and economics",
-			"grad": "Sophia holds an M.B.A. in finance and accounting from Northwestern University, and an M.A. in art history from the University of Chicago.",
+			"undergrad": "Wellesley College",
+			"grad": "Northwestern University, University of Chicago.",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -3931,7 +3931,7 @@
 			"last": "Culp",
 			"suffix": "",
 			"full": "E. Ronald Culp",
-			"img": "Culp_E_Ronald_2012.jpg",
+			"img": "Culp_Ron_2012.jpg",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -3997,7 +3997,7 @@
 			"industry": "Education",
 			"bio": "http://luc.edu/president/biography.shtml",
 			"undergrad": "Saint Louis University",
-			"grad": "New York University (MA); Weston School of Theology (MDiv); Jesuit School of Theology-Berkeley (STM); Graduate Theological Union University of California, Berkeley (PhD)",
+			"grad": "New York University (MA); Weston School of Theology (MDiv); Jesuit School of Theology-Berkeley (STM); Graduate Theological Union University of California, Berkeley",
 			"city": "St. Louis",
 			"state": "MO"
 		}, {
@@ -4097,7 +4097,7 @@
 			"industry": "Education",
 			"bio": "http://www.ctschicago.edu/index.php/mnuacademicprograms/faculty/84-alice-hunt",
 			"undergrad": "University of Montevallo",
-			"grad": "Vanderbilt University Divinity School (M.T.S.); Vanderbilt University (MA, PhD)",
+			"grad": "Vanderbilt University Divinity School; Vanderbilt University",
 			"city": "",
 			"state": "Taiwan"
 		}, {
@@ -4156,7 +4156,7 @@
 			"last": "Lesnik",
 			"suffix": "",
 			"full": "Steven H. Lesnik",
-			"img": "Lesnik_Steven_2012.jpg",
+			"img": "icon-unknown.gif",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -4168,7 +4168,7 @@
 			"secondaryTitle": "Chairman",
 			"age": 72,
 			"profAssoc": ["Public Relations Society of America"],
-			"civicAffil": ["First Tee", "Boys and Girls Club"],
+			"civicAffil": ["First Tee", "Boys and Girls Clubs"],
 			"industry": "Education",
 			"bio": "http://www.careered.com/About-CEC/Management",
 			"undergrad": "Brown University",
@@ -4197,7 +4197,7 @@
 			"industry": "Education",
 			"bio": "",
 			"undergrad": "Dartmouth",
-			"grad": "Northeastern Illinois University (MA); Columbia College Chicago (MFA)",
+			"grad": "Northeastern Illinois University; Columbia College Chicago",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -4297,7 +4297,7 @@
 			"industry": "Education",
 			"bio": "http://www.roosevelt.edu/President.aspx",
 			"undergrad": "Florida State University",
-			"grad": "Duke University (MA and PhD)",
+			"grad": "Duke University",
 			"city": "Miami",
 			"state": "FL"
 		}, {
@@ -4447,7 +4447,7 @@
 			"industry": "Education",
 			"bio": "http://www.csu.edu/president/presidentbio.htm",
 			"undergrad": "Northwestern University",
-			"grad": "Northwestern University (MAT and PhD)",
+			"grad": "Northwestern University",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -4472,7 +4472,7 @@
 			"industry": "Education",
 			"bio": "http://www.depaul.edu/about/administration/Pages/whittington.aspx",
 			"undergrad": "Sam Houston State University",
-			"grad": "Texas Tech University (Master's); University of Houston (PhD)",
+			"grad": "Texas Tech University; University of Houston",
 			"city": "Houston",
 			"state": "TX"
 		}, {
@@ -4698,7 +4698,7 @@
 			"bio": "http://blackhawks.nhl.com/club/page.htm?id=47384",
 			"undergrad": "St. Mary's University",
 			"grad": "",
-			"city": "Chicago/Edison Park",
+			"city": "Chicago",
 			"state": "IL"
 		}, {
 			"first": "Jerry",
@@ -4806,7 +4806,7 @@
 			"last": "Ricketts",
 			"suffix": "",
 			"full": "Thomas Ricketts",
-			"img": "Ricketts_Thomas_2012.jpg",
+			"img": "Ricketts_Tom_2012.jpg",
 			"pwr50": true,
 			"connection": "",
 			"family": "",
@@ -5043,7 +5043,7 @@
 			"secondaryTitle": "",
 			"age": 72,
 			"profAssoc": ["Investment Analysts Society of Chicago", "Economic Club", "Executives' Club"],
-			"civicAffil": ["National Hellenic Museum", "IIT", "Choose DuPage"],
+			"civicAffil": ["National Hellenic Museum", "Illinois Institute of Technology", "Choose DuPage"],
 			"industry": "Financial Services",
 			"bio": "http://www.calamos.com/fundinvestor/about/investmentteam/JPC/",
 			"undergrad": "Illinois Institute of Technology",
@@ -5218,7 +5218,7 @@
 			"secondaryTitle": "",
 			"age": 60,
 			"profAssoc": ["ComEd", "Economic Club", "Executivesí‰ŒÍ Club", "Farmers Investment Co.", "Aspen Skiing Co."],
-			"civicAffil": ["Art Institute", "IIT", "NorthShore University HealthSystem", "Northwestern University", "YMCA of Metropolitan Chicago"],
+			"civicAffil": ["Art Institute", "Illinois Institute of Technology", "NorthShore University HealthSystem", "Northwestern University", "YMCA of Metropolitan Chicago"],
 			"industry": "Financial Services",
 			"bio": "",
 			"undergrad": "Claremont McKenna College",
@@ -5306,7 +5306,7 @@
 			"last": "DeHaas",
 			"suffix": "",
 			"full": "Deborah L. DeHaas",
-			"img": "DeHaas_Deborah_2012.jpg",
+			"img": "DeHaas_Deb_2012.jpg",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -5968,11 +5968,11 @@
 			"secondaryTitle": "",
 			"age": 53,
 			"profAssoc": ["Turnaround Management Association", "Commercial Finance Association", "Association for Corporate Growth", "Executives' Club"],
-			"civicAffil": ["Allendale School", "Indiana University Kelley School of Business", "Chicago-Kent School of Law"],
+			"civicAffil": ["Allendale School", "Indiana University Kelley School of Business", "IIT Chicago-Kent College of Law"],
 			"industry": "Financial Services",
 			"bio": "",
 			"undergrad": "Indiana University",
-			"grad": "Chicago-Kent School of Law",
+			"grad": "IIT Chicago-Kent College of Law",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -6147,7 +6147,7 @@
 			"industry": "Financial Services",
 			"bio": "http://www.idvl.org/thehistorymakers/Bio51.html",
 			"undergrad": "University of Illinois, Urbana-Champaign",
-			"grad": "IIT Chicago - Kent College of Law",
+			"grad": "IIT Chicago-Kent College of Law",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -7131,7 +7131,7 @@
 			"last": "Don",
 			"suffix": "",
 			"full": "Steven R. Don",
-			"img": "Don_Steven_2012.jpg",
+			"img": "Don_Steve_2012.jpg",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -7146,7 +7146,7 @@
 			"civicAffil": ["Kellogg School of Management", "Adam Don Foundation"],
 			"industry": "Food",
 			"bio": "http://www.linkedin.com/pub/steve-don/12/840/a53",
-			"undergrad": "Univ. of Pennslyvania",
+			"undergrad": "University of Pennslyvania",
 			"grad": "Northwestern University",
 			"city": "Chicago",
 			"state": "IL"
@@ -7171,8 +7171,8 @@
 			"civicAffil": ["Chinese American Service League", "DePaul University", "Field Museum", "Chicago Botanic Garden", "Rush University Medical Center", "Foundation for National Archives", "William G. McGowan Charitable Fund"],
 			"industry": "Food",
 			"bio": "",
-			"undergrad": "DePaul University-(Honorary)",
-			"grad": "Aurora University (Honorary)",
+			"undergrad": "",
+			"grad": "",
 			"city": "Aurora",
 			"state": "IL"
 		}, {
@@ -7297,7 +7297,7 @@
 			"industry": "Food",
 			"bio": "",
 			"undergrad": "University of Michigan",
-			"grad": "Loyola University of Chicago",
+			"grad": "Loyola University Chicago",
 			"city": "Highland Park",
 			"state": "IL"
 		}, {
@@ -7456,7 +7456,7 @@
 			"last": "Perlman",
 			"suffix": "",
 			"full": "Theodore F. Perlman",
-			"img": "Perlman_Theodore_2012.jpg",
+			"img": "icon-unknown.gif",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -7471,7 +7471,7 @@
 			"civicAffil": ["Ronald McDonald House Charities", "Jewish United Fund"],
 			"industry": "Food",
 			"bio": "",
-			"undergrad": "University of Michigan-Ann Arbor",
+			"undergrad": "University of Michigan",
 			"grad": "",
 			"city": "Chicago",
 			"state": "IL"
@@ -7506,7 +7506,7 @@
 			"last": "Reed",
 			"suffix": "",
 			"full": "Sam K. Reed",
-			"img": "Reed_Sam_2012.jpg",
+			"img": "icon-unknown.gif",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -7846,7 +7846,7 @@
 			"civicAffil": ["Museum of Science and Industry", "Big Shoulders Fund", "Commercial Club", "University of Notre Dame"],
 			"industry": "Food",
 			"bio": "",
-			"undergrad": "Notre Dame",
+			"undergrad": "University of Notre Dame",
 			"grad": "University of Chicago",
 			"city": "Chicago",
 			"state": "IL"
@@ -8331,7 +8331,7 @@
 			"last": "LaHood",
 			"suffix": "",
 			"full": "Ray LaHood",
-			"img": "LaHood_Ray_2012.jpg",
+			"img": "Lahood_Ray_2012.jpg",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -8422,7 +8422,7 @@
 			"industry": "Government",
 			"bio": "http://illinoisattorneygeneral.gov/about/bio.html",
 			"undergrad": "Georgetown University",
-			"grad": "Loyola University of Chicago",
+			"grad": "Loyola University Chicago",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -8447,7 +8447,7 @@
 			"industry": "Government",
 			"bio": "http://www.housedem.state.il.us/members/madiganm/",
 			"undergrad": "University of Notre Dame",
-			"grad": "Loyola University of Chicago",
+			"grad": "Loyola University Chicago",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -8522,7 +8522,7 @@
 			"industry": "Government",
 			"bio": "",
 			"undergrad": "Columbia University",
-			"grad": "Harvard University",
+			"grad": "Harvard",
 			"city": "Honolulu",
 			"state": "HI"
 		}, {
@@ -8622,7 +8622,7 @@
 			"industry": "Government",
 			"bio": "http://www.cookcountytreasurer.com/aboutus.aspx?ntopicid=73",
 			"undergrad": "West Liberty College",
-			"grad": "West Virginia University (MA); Loyola University of Chicago (PhD); IIT (JD)",
+			"grad": "West Virginia University; Loyola University Chicago; Illinois Institute of Technology",
 			"city": "Wheeling",
 			"state": "West VA"
 		}, {
@@ -8718,7 +8718,7 @@
 			"secondaryTitle": "",
 			"age": 67,
 			"profAssoc": "",
-			"civicAffil": ["NPI Inc.", "Choose Chicago", "Mercy Hospital", "IIT"],
+			"civicAffil": ["NPI Inc.", "Choose Chicago", "Mercy Hospital", "Illinois Institute of Technology"],
 			"industry": "Government",
 			"bio": "",
 			"undergrad": "Illinois College",
@@ -8993,7 +8993,7 @@
 			"secondaryTitle": "CEO",
 			"age": 60,
 			"profAssoc": ["YPO-WPO", "Economic Club", "Committee of 200", "Chicago Network", "Executives' Club"],
-			"civicAffil": ["Friends of Prentice", "Tulane University", "Kellogg School of Management", "Boys and Girls Club"],
+			"civicAffil": ["Friends of Prentice", "Tulane University", "Kellogg School of Management", "Boys and Girls Clubs"],
 			"industry": "Health Care",
 			"bio": "",
 			"undergrad": "Tulane University",
@@ -9131,7 +9131,7 @@
 			"last": "Goodman",
 			"suffix": "",
 			"full": "Larry J. Goodman",
-			"img": "Goodman_Larry_2012.jpg",
+			"img": "Goodman_John_2012.jpg",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -9322,7 +9322,7 @@
 			"industry": "Health Care",
 			"bio": "http://news.uchicago.edu/article/2011/01/25/sharon-o-keefe-become-president-university-chicago-medical-center",
 			"undergrad": "Northern Illinois University",
-			"grad": "Loyola University",
+			"grad": "Loyola University Chicago",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -9543,7 +9543,7 @@
 			"secondaryTitle": "",
 			"age": 52,
 			"profAssoc": "",
-			"civicAffil": ["Booth School of Business", "Loyola University", "Lyric Opera"],
+			"civicAffil": ["Booth School of Business", "Loyola University Chicago", "Lyric Opera"],
 			"industry": "Health Care",
 			"bio": "http://www.accretivehealth.com/AboutAccretiveHealth/ExecutiveTeam/tabid/86/Default.aspx",
 			"undergrad": "Loyola University Chicago",
@@ -9997,7 +9997,7 @@
 			"industry": "Law",
 			"bio": "http://bellowslaw.com/laurel_bellows.shtml",
 			"undergrad": "University of Pennsylvania",
-			"grad": "Loyola University of Chicago",
+			"grad": "Loyola University Chicago",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -10047,7 +10047,7 @@
 			"industry": "Law",
 			"bio": "http://www.bwmklaw.com/attorneys/kevin-g-burke/",
 			"undergrad": "Marquette University",
-			"grad": "Chicago - Kent College of Law",
+			"grad": "IIT Chicago-Kent College of Law",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -10097,7 +10097,7 @@
 			"industry": "Law",
 			"bio": "http://www.chiconunes.com/gery-chico/",
 			"undergrad": "University of Illinois",
-			"grad": "Loyola University of Chicago",
+			"grad": "Loyola University Chicago",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -10122,7 +10122,7 @@
 			"industry": "Law",
 			"bio": "http://www.robinsoncurley.com/site/epage/50198_661.htm",
 			"undergrad": "New College of Florida",
-			"grad": "IIT Chicago - Kent College of Law",
+			"grad": "IIT Chicago-Kent College of Law",
 			"city": "Monroe Township",
 			"state": "NJ"
 		}, {
@@ -10243,12 +10243,12 @@
 			"secondaryTitle": "",
 			"age": 64,
 			"profAssoc": ["American College of Trial Lawyers", "International Academy of Trial Lawyers", "Chicago Bar Association", "Illinois Trial Lawyers Association", "Lawyers Club of Chicago"],
-			"civicAffil": ["Elder and Disability Law Center", "Big Shoulders Fund", "IIT", "U.S. Supreme Court Historical Society", "Kellogg School of Management"],
+			"civicAffil": ["Elder and Disability Law Center", "Big Shoulders Fund", "Illinois Institute of Technology", "U.S. Supreme Court Historical Society", "Kellogg School of Management"],
 			"industry": "Law",
 			"bio": "http://www.corboydemetrio.com/attorneys-7.html",
 			"undergrad": "University of Notre Dame",
-			"grad": "IIT Chicago - Kent College of Law",
-			"city": "Evanston/Chicago",
+			"grad": "IIT Chicago-Kent College of Law",
+			"city": "Evanston",
 			"state": "IL"
 		}, {
 			"first": "Charles",
@@ -10356,7 +10356,7 @@
 			"last": "Genson",
 			"suffix": "",
 			"full": "Edward M. Genson",
-			"img": "Genson_Edward_2012.jpg",
+			"img": "icon-unknown.gif",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -10423,7 +10423,7 @@
 			"bio": "http://www.shefskylaw.com/?t=3&A=512&format=xml",
 			"undergrad": "Northwestern University",
 			"grad": "Yale University",
-			"city": "Cologne, Germany/Chicago",
+			"city": "Chicago",
 			"state": "IL"
 		}, {
 			"first": "Jeffrey",
@@ -11022,7 +11022,7 @@
 			"industry": "Law",
 			"bio": "http://www.winston.com/index.cfm?contentID=24&itemID=10594",
 			"undergrad": "Western Illinois University",
-			"grad": "Loyola University of Chicago",
+			"grad": "Loyola University Chicago",
 			"city": "Bushnell",
 			"state": "IL"
 		}, {
@@ -11081,7 +11081,7 @@
 			"last": "Crown",
 			"suffix": "",
 			"full": "William H. Crown",
-			"img": "Crown_William_2012.jpg",
+			"img": "icon-unknown.gif",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -11143,7 +11143,7 @@
 			"secondaryTitle": "",
 			"age": 67,
 			"profAssoc": ["Churchill Downs Inc.", "Executives' Club", "Chief Executives Organization", "World Presidents' Organization"],
-			"civicAffil": ["Civic Committee of the Commercial Club", "Culver Educational Foundation", "IIT", "University of Chicago", "Chicago Council on Global Affairs", "World Business Chicago"],
+			"civicAffil": ["Civic Committee of the Commercial Club", "Culver Educational Foundation", "Illinois Institute of Technology", "University of Chicago", "Chicago Council on Global Affairs", "World Business Chicago"],
 			"industry": "Manufacturing",
 			"bio": "http://duch.com/whoweare/key_executives",
 			"undergrad": "Southern Methodist University",
@@ -11722,7 +11722,7 @@
 			"industry": "Media/Marketing",
 			"bio": "http://www.conlonps.com/who_we_are/staff/conlon.htm",
 			"undergrad": "Illinois State",
-			"grad": "Loyola University of Chicago; University of Illinois, Urbana-Champaign",
+			"grad": "Loyola University Chicago; University of Illinois, Urbana-Champaign",
 			"city": "Park Forest",
 			"state": "IL"
 		}, {
@@ -11831,7 +11831,7 @@
 			"last": "Eychaner",
 			"suffix": "",
 			"full": "Fred Eychaner",
-			"img": "Eychaner_Fred_2012.jpg",
+			"img": "icon-unknown.gif",
 			"pwr50": true,
 			"connection": true,
 			"family": "",
@@ -12356,7 +12356,7 @@
 			"last": "LaPietra",
 			"suffix": "",
 			"full": "Donna M. LaPietra",
-			"img": "LaPietra_Donna_2012.jpg",
+			"img": "Lapietra_Donna_2012.jpg",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -12381,7 +12381,7 @@
 			"last": "McCabe",
 			"suffix": "",
 			"full": "Bill McCabe",
-			"img": "McCabe_Bill_2012.jpg",
+			"img": "Mccabe_Bill_2012.jpg",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -12456,7 +12456,7 @@
 			"last": "Renda",
 			"suffix": "",
 			"full": "Mike Renda",
-			"img": "Renda_Mike_2012.jpg",
+			"img": "icon-unknown.gif",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -12672,7 +12672,7 @@
 			"industry": "Media/Marketing",
 			"bio": "http://jtpr.com/bio/jim-terman",
 			"undergrad": "University of Denver",
-			"grad": "IIT Chicago - Kent College of Law",
+			"grad": "IIT Chicago-Kent College of Law",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -12981,7 +12981,7 @@
 			"last": "Hiller",
 			"suffix": "",
 			"full": "David D. Hiller",
-			"img": "Hiller_David_2012.jpg",
+			"img": "hiller_david_2012.jpg",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -13222,7 +13222,7 @@
 			"industry": "Non-Profit",
 			"bio": "http://www.civicfed.org/civic-federation/staff/laurence-msall",
 			"undergrad": "Knox College",
-			"grad": "Loyola University",
+			"grad": "Loyola University Chicago",
 			"city": "Chicago",
 			"state": "IL"
 		}, {
@@ -13281,7 +13281,7 @@
 			"last": "Pritzker",
 			"suffix": "",
 			"full": "Nicholas J. Pritzker",
-			"img": "Pritzker_Nicholas_2012.jpg",
+			"img": "icon-unknown.gif",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -13581,7 +13581,7 @@
 			"last": "Bluhm",
 			"suffix": "",
 			"full": "Neil G. Bluhm",
-			"img": "Bluhm_Neil_2012.jpg",
+			"img": "bluhm_neil_2012.jpg",
 			"pwr50": true,
 			"connection": true,
 			"family": "",
@@ -14006,7 +14006,7 @@
 			"last": "Galvin",
 			"suffix": "",
 			"full": "Christopher B. Galvin",
-			"img": "Galvin_Christopher_2012.jpg",
+			"img": "icon-unknown.gif",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -14171,7 +14171,7 @@
 			"civicAffil": ["Fenwick High School", "Roosevelt University"],
 			"industry": "Real Estate",
 			"bio": "http://hiffman.com/default.aspx?tabid=1382&agentid=NAN_00001635",
-			"undergrad": "Loyola University",
+			"undergrad": "Loyola University Chicago",
 			"grad": "",
 			"city": "Chicago",
 			"state": "IL"
@@ -14193,7 +14193,7 @@
 			"secondaryTitle": "",
 			"age": 70,
 			"profAssoc": "",
-			"civicAffil": ["After School Matters", "IIT"],
+			"civicAffil": ["After School Matters", "Illinois Institute of Technology"],
 			"industry": "Real Estate",
 			"bio": "http://www.thehistorymakers.com/biography/elzie-higginbottom-1",
 			"undergrad": "University of Wisconsin",
@@ -14221,7 +14221,7 @@
 			"civicAffil": ["Commercial Club", "Rush University Medical Center", "Old St. PatrickÍs Church", "Catholic Charities of the Archdiocese of Chicago"],
 			"industry": "Real Estate",
 			"bio": "",
-			"undergrad": "Loyola University",
+			"undergrad": "Loyola University Chicago",
 			"grad": "",
 			"city": "Chicago",
 			"state": "IL"
@@ -14231,7 +14231,7 @@
 			"last": "Huzenis",
 			"suffix": "",
 			"full": "Charles Huzenis",
-			"img": "Huzenis_Charles_2012.jpg",
+			"img": "icon-unknown.gif",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -14256,7 +14256,7 @@
 			"last": "Huzenis",
 			"suffix": "",
 			"full": "Harry Huzenis",
-			"img": "Huzenis_Harry_2012.jpg",
+			"img": "icon-unknown.gif",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -14381,7 +14381,7 @@
 			"last": "Lerner",
 			"suffix": "",
 			"full": "Michael J. Lerner",
-			"img": "Lerner_Michael_2012.jpg",
+			"img": "icon-unknown.gif",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -14431,7 +14431,7 @@
 			"last": "Livaditis",
 			"suffix": "",
 			"full": "Stephen J. Livaditis",
-			"img": "Livaditis_Stephen_2012.jpg",
+			"img": "icon-unknown.gif",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -14942,7 +14942,7 @@
 			"secondaryCo": "",
 			"secondaryTitle": "",
 			"age": 56,
-			"profAssoc": ["YPO-WPO", "National Association of Industrial and Office Parks", "International Council of Shopping Centers", "ITT College of Architecture"],
+			"profAssoc": ["YPO-WPO", "National Association of Industrial and Office Parks", "International Council of Shopping Centers", "Illinois Institute of Technology, College of Architecture"],
 			"civicAffil": ["Chicago Commons", "Village of Kenilworth", "Kenilworth Plan Commission", "University of Illinois"],
 			"industry": "Real Estate",
 			"bio": "http://www.hsacommercial.com/about_hsa_commercial_real_estate.html#robert",
@@ -15131,7 +15131,7 @@
 			"last": "D'Ambrosio",
 			"suffix": "",
 			"full": "Louis J. D'Ambrosio",
-			"img": "D'Ambrosio_Louis_2012.jpg",
+			"img": "Dambrosio_Louis_2012.jpg",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -15567,7 +15567,7 @@
 			"secondaryCo": "",
 			"secondaryTitle": "",
 			"age": 48,
-			"profAssoc": ["Mayor's Council of Technology Advisors", "IIT"],
+			"profAssoc": ["Mayor's Council of Technology Advisors", "Illinois Institute of Technology"],
 			"civicAffil": ["SmartBet Charities Inc.", "Chicago Area Orienteering Association", "Museum of Broadcast Communications"],
 			"industry": "Technology",
 			"bio": "http://www.linkedin.com/profile/view?id=1056958&trk=tab_pro",
@@ -15856,7 +15856,7 @@
 			"last": "Frank",
 			"suffix": "",
 			"full": "James S. Frank",
-			"img": "Frank_James_2012.jpg",
+			"img": "icon-unknown.gif",
 			"pwr50": "",
 			"connection": "",
 			"family": "",
@@ -15947,7 +15947,7 @@
 			"industry": "Transportation",
 			"bio": "http://www.coyote.com/team/",
 			"undergrad": "University of Michigan",
-			"grad": "University of Michigan MBA, Massachusetts Institute of Technology, Masters of Engineering in Logistics",
+			"grad": "University of Michigan, Massachusetts Institute of Technology",
 			"city": "Clayton",
 			"state": "MO"
 		}, {
@@ -16147,7 +16147,7 @@
 			"industry": "Utilities",
 			"bio": "http://www.chicagobooth.edu/entrepreneurship/about/michaelpolsky.aspx",
 			"undergrad": "",
-			"grad": "University of Chicago (MBA); Kiev Polytechnic Institute (MME)",
+			"grad": "University of Chicago; Kiev Polytechnic Institute",
 			"city": "",
 			"state": "Ukraine"
 		}, {
