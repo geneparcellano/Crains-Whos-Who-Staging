@@ -209,7 +209,11 @@ function buildUserProfile() {
 Show "Your Connections"
 *****************************************************************************/
 function runFilter() {
-	$('fieldset:not(#question-name)').on('blur', 'input[type="text"], select', function() {
+	$('fieldset:not(#question-name)').on('blur', 'input[type="text"], select, .multi button', function() {
+		buildUserProfile();
+		loadResults(userConnections, '#connections');
+	});
+	$('#overlay-survey').on('click', '[data-function="close"], #survey-done', function() {
 		buildUserProfile();
 		loadResults(userConnections, '#connections');
 	});
@@ -244,199 +248,269 @@ function updateScore() {
 	connectionByCivicAffil.length = 0;
 
 	/*****************************************************************************
+	Compare user data to who's who
+	*****************************************************************************/
+	$.each(user[0], function(property, value) {
+		if (value.length !== 0) {
+			switch (property) {
+				case 'industry':
+					scoreMatches(property, value, 0, i);
+					break;
+				case 'primaryCo':
+					scoreMatches(property, value, 4, i);
+					break;
+				case 'secondaryCo':
+					scoreMatches(property, value, 4, i);
+					break;
+				case 'profAssoc':
+					// compare all of CWW's values against the user's value
+					$.each(value, function(b, entries) {
+						scoreMatches(property, entries, 3, i, b);
+					});
+					break;
+				case 'civicAffil':
+					// compare all of CWW's values against the user's value
+					$.each(value, function(b, entries) {
+						scoreMatches(property, entries, 3, i, b);
+					});
+					break;
+				case 'undergrad':
+					scoreMatches(property, value, 2, i);
+					break;
+				case 'grad':
+					scoreMatches(property, value, 2, i);
+					break;
+				case 'city':
+					scoreMatches(property, value, 0, i);
+					break;
+				default:
+					// Do nothing
+			}
+		} else {
+			console.log('empty: '+property);
+		}
+		// switch (property) {
+		// 	case '':
+
+		// }
+	});
+
+	/*****************************************************************************
 	Score matches
 	*****************************************************************************/
-	function scoreMatches(pName, value, multiplier, i, b) {
+	// function scoreMatches(pName, value, multiplier, i, b) {
 
-		if (pName === 'profAssoc' || pName === 'civicAffil') {
-			// Compare value against all of user's entries 
-			$.each(user[0][pName], function(b, userValue) {
-				if ( $.type(value) ==='string' && value.toLowerCase().indexOf(userValue) !== -1) {
-					totalScore += multiplier;
-					totalMatch++;
+	// 	switch(pName) {
+	// 		case 'profAssoc':
+	// 		case 'civicAffil':
+	// 			// Compare value against all of user's entries 
+	// 			$.each(user[0][pName], function(b, userValue) {
+	// 				if ( $.type(value) ==='string' && value.toLowerCase().indexOf(userValue) !== -1) {
+	// 					totalScore += multiplier;
+	// 					totalMatch++;
 
-					// Index Connections
-					indexResults(userConnections, i);
+	// 					// Index Connections
+	// 					indexResults(userConnections, i);
 
-					// Index connection type
-					switch(pName) {
-						case 'civicAffil':
-							indexResults(connectionByCivicAffil, i);
-							break;
-						case 'profAssoc':
-							indexResults(connectionByProfAssoc, i);
-							break;
-						default:
-							// Do nothing
-					}
-				} else {
-					// console.log('no match');
-				}
-				// if (userValue === value) {
-				// 	totalScore += multiplier;
-				// 	totalMatch++;
+	// 					// Index connection type
+	// 					switch(pName) {
+	// 						case 'civicAffil':
+	// 							indexResults(connectionByCivicAffil, i);
+	// 							break;
+	// 						case 'profAssoc':
+	// 							indexResults(connectionByProfAssoc, i);
+	// 							break;
+	// 						default:
+	// 							// Do nothing
+	// 					}
+	// 				} else {
+	// 					// console.log('no match');
+	// 				}
+	// 			});
+	// 			break;
+	// 		case 'primaryCo':
+	// 			if (value.toLowerCase().indexOf(user[0].primaryCo) !== -1) {
+	// 				console.log(obj.whoswho[i].last);
+	// 				// totalScore += multiplier;
+	// 				// totalMatch++;
 
-				// 	// Index Connections
-				// 	indexResults(userConnections, i);
+	// 				// // Index Connections
+	// 				// indexResults(userConnections, i);
 
-				// 	// Index connection type
-				// 	switch(pName) {
-				// 		case 'civicAffil':
-				// 			indexResults(connectionByCivicAffil, i);
-				// 			break;
-				// 		case 'profAssoc':
-				// 			indexResults(connectionByProfAssoc, i);
-				// 			break;
-				// 		default:
-				// 			// Do nothing
-				// 	}
-				// }
-			});
-		} else {
-			var userValue = user[0][pName];
-			if ( userValue.length > 0 && $.type(userValue) ==='string' && value.toLowerCase().indexOf(userValue) !== -1) {
-				console.log(value + ' - ' + userValue);
-				totalScore += multiplier;
-				totalMatch++;
+	// 				// // Index connection type
+	// 				// indexResults(connectionByCompany, i);
+	// 			}
+	// 			break;
+	// 		case 'industry':
+	// 			if (value.toLowerCase().indexOf(user[0].industry) !== -1) {
+	// 				console.log('industry');
+	// 				// totalScore += multiplier;
+	// 				// totalMatch++;
 
-				// Index Connections
-				indexResults(userConnections, i);
+	// 				// // Index Connections
+	// 				// indexResults(userConnections, i);
 
-				// Index connection type
-				switch(pName) {
-					case 'primaryCo':
-						indexResults(connectionByCompany, i);
-						break;
-					case 'industry':
-						indexResults(connectionByIndustry, i);
-						break;
-					case 'undergrad':
-						indexResults(connectionByUndergrad, i);
-						break;
-					case 'grad':
-						indexResults(connectionByGrad, i);
-						break;
-					case 'city':
-						indexResults(connectionByHometown, i);
-						break;
-					default:
-						// Do nothing
-				}
-			} else {
-				console.log('no match ***');
-			}
-			// if (user[0][pName] === value) {
-			// 	totalScore += multiplier;
-			// 	totalMatch++;
+	// 				// // Index connection type
+	// 				// indexResults(connectionByIndustry, i);
+	// 			}
+	// 			break;
+	// 	}
+	// 	// } else if (pName === 'primaryCo' && value.toLowerCase().indexOf(user[0][pName]) !== -1) {
 
-			// 	// Index Connections
-			// 	indexResults(userConnections, i);
+	// 		// if ( userValue.length > 0 && $.type(userValue) ==='string' && value.toLowerCase().indexOf(userValue) !== -1) {
+	// 		// 	console.log(value + ' - ' + userValue);
+	// 		// 	totalScore += multiplier;
+	// 		// 	totalMatch++;
 
-			// 	// Index connection type
-			// 	switch(pName) {
-			// 		case 'primaryCo':
-			// 			indexResults(connectionByCompany, i);
-			// 			break;
-			// 		case 'industry':
-			// 			indexResults(connectionByIndustry, i);
-			// 			break;
-			// 		case 'undergrad':
-			// 			indexResults(connectionByUndergrad, i);
-			// 			break;
-			// 		case 'grad':
-			// 			indexResults(connectionByGrad, i);
-			// 			break;
-			// 		case 'city':
-			// 			indexResults(connectionByHometown, i);
-			// 			break;
-			// 		default:
-			// 			// Do nothing
-			// 	}
-			// }
-		}
-	}
+	// 		// 	// Index Connections
+	// 		// 	indexResults(userConnections, i);
+
+	// 		// 	// Index connection type
+	// 		// 	switch(pName) {
+	// 		// 		case 'primaryCo':
+	// 		// 			indexResults(connectionByCompany, i);
+	// 		// 			break;
+	// 		// 		case 'industry':
+	// 		// 			indexResults(connectionByIndustry, i);
+	// 		// 			break;
+	// 		// 		case 'undergrad':
+	// 		// 			indexResults(connectionByUndergrad, i);
+	// 		// 			break;
+	// 		// 		case 'grad':
+	// 		// 			indexResults(connectionByGrad, i);
+	// 		// 			break;
+	// 		// 		case 'city':
+	// 		// 			indexResults(connectionByHometown, i);
+	// 		// 			break;
+	// 		// 		default:
+	// 		// 			// Do nothing
+	// 		// 	}
+	// 		// } else {
+	// 		// 	console.log('no match ***');
+	// 		// }
+	// 		// if (value.toLowerCase().indexOf(userValue) !== -1) {
+	// 			// console.log(userValue+' : '+value+' : '+pName);
+	// 			// totalScore += multiplier;
+	// 			// totalMatch++;
+
+	// 			// // Index Connections
+	// 			// indexResults(userConnections, i);
+
+	// 			// // Index connection type
+	// 			// indexResults(connectionByCompany, i);
+	// 		// }
+
+	// 		// if (user[0][pName] === value) {
+	// 		// 	totalScore += multiplier;
+	// 		// 	totalMatch++;
+
+	// 		// 	// Index Connections
+	// 		// 	indexResults(userConnections, i);
+
+	// 		// 	// Index connection type
+	// 		// 	switch(pName) {
+	// 		// 		case 'primaryCo':
+	// 		// 			indexResults(connectionByCompany, i);
+	// 		// 			break;
+	// 		// 		case 'industry':
+	// 		// 			indexResults(connectionByIndustry, i);
+	// 		// 			break;
+	// 		// 		case 'undergrad':
+	// 		// 			indexResults(connectionByUndergrad, i);
+	// 		// 			break;
+	// 		// 		case 'grad':
+	// 		// 			indexResults(connectionByGrad, i);
+	// 		// 			break;
+	// 		// 		case 'city':
+	// 		// 			indexResults(connectionByHometown, i);
+	// 		// 			break;
+	// 		// 		default:
+	// 		// 			// Do nothing
+	// 		// 	}
+	// 		// }
+	// 	// }
+	// }
 
 	/*****************************************************************************
 	Score special connections
 	*****************************************************************************/
-	function specialConnections() {
-		$.each(userConnections, function(i, number) {
-			var person = obj.whoswho[number];
-			if (person.pwr50 === true) {
-				totalScore += 10;
-			}
+	// function specialConnections() {
+	// 	$.each(userConnections, function(i, number) {
+	// 		var person = obj.whoswho[number];
+	// 		if (person.pwr50 === true) {
+	// 			totalScore += 10;
+	// 		}
 
-			if (person.last === "Obama") {
-				totalScore += 15;
-			}
-		});
-		var finalScore = parseInt(totalScore) + parseInt(totalMatch);
+	// 		if (person.last === "Obama") {
+	// 			totalScore += 15;
+	// 		}
+	// 	});
+	// 	var finalScore = parseInt(totalScore) + parseInt(totalMatch);
 
-		$('.your-score').text(finalScore);
+	// 	$('.your-score').text(finalScore);
 
-		totalScore = 0;
+	// 	totalScore = 0;
 
-		// Updates "Your Score" window accordingly
-		if (finalScore === 0) {
-			$('#overlay-your-score [data-function="user-profile-edit"]').show();
-			$('#connection-details').hide();
-			$('#profile-name').hide();
-			$('.share-score').hide();
-		} else {
-			$('#overlay-your-score [data-function="user-profile-edit"]').hide();
-			$('#connection-details').show();
-			$('#profile-name').show();
-			$('.share-score').show();
-		}
-	}
+	// 	// Updates "Your Score" window accordingly
+	// 	if (finalScore === 0) {
+	// 		$('#overlay-your-score [data-function="user-profile-edit"]').show();
+	// 		$('#connection-details').hide();
+	// 		$('#profile-name').hide();
+	// 		$('.share-score').hide();
+	// 	} else {
+	// 		$('#overlay-your-score [data-function="user-profile-edit"]').hide();
+	// 		$('#connection-details').show();
+	// 		$('#profile-name').show();
+	// 		$('.share-score').show();
+	// 	}
+	// }
 
 	/*****************************************************************************
 	Values to be scored
 	*****************************************************************************/
-	$.each(obj.whoswho, function(i, whoswho) {
-		$.each(whoswho, function(property, value) {
+	// $.each(obj.whoswho, function(i, whoswho) {
+	// 	$.each(whoswho, function(property, value) {
 
-			if (value.length !== 0) {
-				switch (property) {
-					case 'industry':
-						scoreMatches(property, value, 0, i);
-						break;
-					case 'primaryCo':
-						scoreMatches(property, value, 4, i);
-						break;
-					case 'secondaryCo':
-						scoreMatches(property, value, 4, i);
-						break;
-					case 'profAssoc':
-						// compare all of CWW's values against the user's value
-						$.each(value, function(b, entries) {
-							scoreMatches(property, entries, 3, i, b);
-						});
-						break;
-					case 'civicAffil':
-						// compare all of CWW's values against the user's value
-						$.each(value, function(b, entries) {
-							scoreMatches(property, entries, 3, i, b);
-						});
-						break;
-					case 'undergrad':
-						scoreMatches(property, value, 2, i);
-						break;
-					case 'grad':
-						scoreMatches(property, value, 2, i);
-						break;
-					case 'city':
-						scoreMatches(property, value, 0, i);
-						break;
-					default:
-						// Do nothing
-				}
-			}
-		});
+	// 		if (value.length !== 0) {
+	// 			switch (property) {
+	// 				case 'industry':
+	// 					scoreMatches(property, value, 0, i);
+	// 					break;
+	// 				case 'primaryCo':
+	// 					scoreMatches(property, value, 4, i);
+	// 					break;
+	// 				case 'secondaryCo':
+	// 					scoreMatches(property, value, 4, i);
+	// 					break;
+	// 				case 'profAssoc':
+	// 					// compare all of CWW's values against the user's value
+	// 					$.each(value, function(b, entries) {
+	// 						scoreMatches(property, entries, 3, i, b);
+	// 					});
+	// 					break;
+	// 				case 'civicAffil':
+	// 					// compare all of CWW's values against the user's value
+	// 					$.each(value, function(b, entries) {
+	// 						scoreMatches(property, entries, 3, i, b);
+	// 					});
+	// 					break;
+	// 				case 'undergrad':
+	// 					scoreMatches(property, value, 2, i);
+	// 					break;
+	// 				case 'grad':
+	// 					scoreMatches(property, value, 2, i);
+	// 					break;
+	// 				case 'city':
+	// 					scoreMatches(property, value, 0, i);
+	// 					break;
+	// 				default:
+	// 					// Do nothing
+	// 			}
+	// 		}
+	// 	});
+	// });
 
-	});
-
-	specialConnections();
+	// specialConnections();
 }
 
 /*****************************************************************************
@@ -982,10 +1056,6 @@ $(document).ajaxComplete(function() {
 	loadWhosWho();
 	showOnScroll();
 	filterConnection();
-});
-
-$('#overlay-survey').on('click', 'button[data-function="close"], #survey-done', function() {
-	buildUserProfile();
 });
 
 $('#whos-who-2012').on('click','[data-function="user-profile-edit"]', function() {

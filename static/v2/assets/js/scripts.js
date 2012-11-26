@@ -209,7 +209,11 @@ function buildUserProfile() {
 Show "Your Connections"
 *****************************************************************************/
 function runFilter() {
-	$('fieldset:not(#question-name)').on('blur', 'input[type="text"], select', function() {
+	$('fieldset:not(#question-name)').on('blur', 'input[type="text"], select, .multi button', function() {
+		buildUserProfile();
+		loadResults(userConnections, '#connections');
+	});
+	$('#overlay-survey .controls').on('click', '[data-function="close"]', function() {
 		buildUserProfile();
 		loadResults(userConnections, '#connections');
 	});
@@ -326,13 +330,11 @@ function updateScore() {
 		// Updates "Your Score" window accordingly
 		if (finalScore === 0) {
 			$('#overlay-your-score [data-function="user-profile-edit"]').show();
-			$('#connection-details').hide();
-			$('#profile-name').hide();
+			$('.view-connections').hide();
 			$('.share-score').hide();
 		} else {
 			$('#overlay-your-score [data-function="user-profile-edit"]').hide();
-			$('#connection-details').show();
-			$('#profile-name').show();
+			$('.view-connections').show();
 			$('.share-score').show();
 		}
 	}

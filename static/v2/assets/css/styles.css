@@ -547,7 +547,8 @@ Overlay - Your Score
 	line-height: 1em;
 	font-weight: bold;
 }
-#overlay-your-score button[data-function="user-profile-edit"] {
+#overlay-your-score button[data-function="user-profile-edit"],
+#overlay-your-score .view-connections {
 	display: block;
 	width: 310px;
 	margin: 20px auto 10px;
