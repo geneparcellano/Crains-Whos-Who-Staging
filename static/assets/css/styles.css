@@ -519,11 +519,15 @@ fieldset .entries li {
 	line-height: 1.25em;
 }
 .ui-autocomplete li a:hover,
-.ui-autocomplete li a.ui-state-hover {
+.ui-autocomplete li a.ui-state-hover,
+.ui-autocomplete li a.ui-state-focus {
 	background-color: #CCC;
 }
 .ui-autocomplete li a:active {
 	background-color: #AAA;
+}
+.ui-helper-hidden-accessible {
+	display: none;
 }
 
 /*****************************************************************************
