@@ -215,7 +215,7 @@ function runFilter() {
 			loadResults(userConnections, '#connections');
 		}
 	});
-	$('#overlay-survey .controls').on('click', '[data-function="close"]', function() {
+	$('#overlay-survey').on('click', '[data-function="close"], #survey-done', function() {
 		buildUserProfile();
 		loadResults(userConnections, '#connections');
 	});
