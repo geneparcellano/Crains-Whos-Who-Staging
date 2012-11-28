@@ -257,6 +257,7 @@ function updateScore() {
 			case 'civicAffil':
 				// Compare value against all of user's entries 
 				$.each(user[0][pName], function(b, userValue) {
+					var userValue = userValue.toLowerCase();
 					if (value.toLowerCase().indexOf(userValue) !== -1 || value === userValue) {
 						totalScore += multiplier;
 						totalMatch++;
