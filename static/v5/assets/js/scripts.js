@@ -13,9 +13,7 @@ var obj,
 	connectionByCivicAffil = [],
 	userConnections = [],
 	allWhosWho = [],
-	loadedProfiles = [],
-	allPersonScore = [],
-	newUserConnections = [];
+	loadedProfiles = [];
 
 /*****************************************************************************
 Auto Complete
@@ -211,14 +209,15 @@ function buildUserProfile() {
 Show "Your Connections"
 *****************************************************************************/
 function runFilter() {
-	$('fieldset:not(#question-name)').on('blur', 'input[type="text"], select', function() {
-		if ($(this).val().length !== 0) {		
+	$('fieldset:not(#question-name)').on('blur', 'input[type="text"], select, .multi button', function() {
+		if ($(this).val().length !== 0) {
 			buildUserProfile();
-			loadResults(newUserConnections, '#connections');
+			loadResults(userConnections, '#connections');
 		}
 	});
-	$('#overlay-survey').on('click', 'button[data-function="close"], #survey-done', function() {
+	$('#overlay-survey').on('click', '[data-function="close"], #survey-done', function() {
 		buildUserProfile();
+		loadResults(userConnections, '#connections');
 	});
 }
 
@@ -239,7 +238,8 @@ Update Score
 function updateScore() {
 	var	totalScore = 0,
 		totalMatch = 0,
-		personScore = 0;
+		personScore = 0,
+		connectionScore = [];
 
 	// Clear previous results
 	userConnections.length = 0;
@@ -252,14 +252,62 @@ function updateScore() {
 	connectionByCivicAffil.length = 0;
 
 	/*****************************************************************************
+	Score Connections
+	*****************************************************************************/
+	function scoreConnection(id, first, last) {
+		if (connectionScore[id]) {
+			connectionScore[id]++;
+		} else {
+			connectionScore[id] = 1;
+		}
+	}
+
+	/*****************************************************************************
 	Score matches
 	*****************************************************************************/
 	function scoreMatches(pName, value, multiplier, i, b) {
 
-		if (pName === 'profAssoc' || pName === 'civicAffil') {
-			// Compare value against all of user's entries 
-			$.each(user[0][pName], function(b, userValue) {
-				if (userValue === value) {
+		switch(pName) {
+			case 'profAssoc':
+			case 'civicAffil':
+				// Compare value against all of user's entries 
+				$.each(user[0][pName], function(b, userValue) {
+					var userValue = userValue.toLowerCase();
+					if (value.toLowerCase().indexOf(userValue) !== -1 || value === userValue) {
+						totalScore += multiplier;
+						totalMatch++;
+
+						// Index Connections
+						indexResults(userConnections, i);
+
+						// Index connection type
+						switch(pName) {
+							case 'civicAffil':
+								indexResults(connectionByCivicAffil, i);
+								scoreConnection(i, obj.whoswho[i].first, obj.whoswho[i].last);
+								break;
+							case 'profAssoc':
+								indexResults(connectionByProfAssoc, i);
+								scoreConnection(i, obj.whoswho[i].first, obj.whoswho[i].last);
+								break;
+							default:
+								// Do nothing
+						}
+					} else {
+						// Do nothing
+					}
+				});
+				break;
+			case 'primaryCo':
+			case 'industry':
+			case 'undergrad':
+			case 'grad':
+			case 'city':
+				var userValue = user[0][pName].toLowerCase();
+				if (userValue.length === 0) {
+					return false;
+				}
+				if (value.toLowerCase().indexOf(userValue) !== -1 || value === userValue) {
 					totalScore += multiplier;
 					totalMatch++;
 
@@ -268,115 +316,32 @@ function updateScore() {
 
 					// Index connection type
 					switch(pName) {
-						case 'civicAffil':
-							indexResults(connectionByCivicAffil, i);
+						case 'primaryCo':
+							indexResults(connectionByCompany, i);
+							scoreConnection(i, obj.whoswho[i].first, obj.whoswho[i].last);
 							break;
-						case 'profAssoc':
-							indexResults(connectionByProfAssoc, i);
+						case 'industry':
+							indexResults(connectionByIndustry, i);
+							scoreConnection(i, obj.whoswho[i].first, obj.whoswho[i].last);
+							break;
+						case 'undergrad':
+							indexResults(connectionByUndergrad, i);
+							scoreConnection(i, obj.whoswho[i].first, obj.whoswho[i].last);
+							break;
+						case 'grad':
+							indexResults(connectionByGrad, i);
+							scoreConnection(i, obj.whoswho[i].first, obj.whoswho[i].last);
+							break;
+						case 'city':
+							indexResults(connectionByHometown, i);
+							scoreConnection(i, obj.whoswho[i].first, obj.whoswho[i].last);
 							break;
 						default:
 							// Do nothing
 					}
 				}
-			});
-		} else {
-			if (user[0][pName] === value) {
-				totalScore += multiplier;
-				totalMatch++;
-
-				// Index Connections
-				indexResults(userConnections, i);
-
-				// Index connection type
-				switch(pName) {
-					case 'primaryCo':
-						indexResults(connectionByCompany, i);
-						break;
-					case 'industry':
-						indexResults(connectionByIndustry, i);
-						break;
-					case 'undergrad':
-						indexResults(connectionByUndergrad, i);
-						break;
-					case 'grad':
-						indexResults(connectionByGrad, i);
-						break;
-					case 'city':
-						indexResults(connectionByHometown, i);
-						break;
-					default:
-						// Do nothing
-				}
-			}
+				break;
 		}
-
-	}
-
-	/*****************************************************************************
-	Sort Connections
-	*****************************************************************************/
-	function sortConnections() {
-
-		allPersonScore.length = 0;
-		newUserConnections.length = 0;
-
-		$.each(userConnections, function(i, number) {
-			var score,
-				person = obj.whoswho[number],
-				personScore = 1;
-
-			var pName = ['cwwId', 'score', 'first', 'last'],
-				cww = {};
-
-			// if (person.pwr50) {
-			// 	personScore +=10;
-			// }
-
-			// if (person.last === "Obama") {
-			// 	personScore +=15;
-			// }
-
-			// if (person.primaryCo === user[0].primaryCo || person.secondaryCo === user[0].primaryCo) {
-			// 	personScore +=4;
-			// }
-			// if (person.profAssoc === user[0].profAssoc) {
-			// 	personScore +=2;
-			// }
-			// if (person.civicAffil === user[0].civicAffil) {
-			// 	personScore +=2;
-			// }
-			if (person.undergrad === user[0].undergrad) {
-				console.log(person.undergrad +' : '+user[0].undergrad);
-				personScore +=2;
-			}
-			if (person.grad === user[0].grad) {
-				console.log(person.grad +' : '+ user[0].grad);
-				personScore +=2;
-			}
-
-			//Set values
-			cww[pName[0]] = number;
-			cww[pName[1]] = personScore;
-			cww[pName[2]] = obj.whoswho[number].first;
-			cww[pName[3]] = obj.whoswho[number].last;
-
-			allPersonScore.push(cww);
-		});
-		
-		// Sort connections by connection strength
-		allPersonScore.sort(function (a,b) {
-			var scoreA = a.score,
-				scoreB = b.score;
-
-			if (scoreA > scoreB) return -1;
-			if (scoreA < scoreB) return 1;
-			return 0;
-		});
-
-		console.log(allPersonScore);
-		$.each(allPersonScore, function(i, person) {
-			newUserConnections.push(person.cwwId);
-		});
 	}
 
 	/*****************************************************************************
@@ -387,12 +352,10 @@ function updateScore() {
 			var person = obj.whoswho[number];
 			if (person.pwr50 === true) {
 				totalScore += 10;
-				// personScore += 10;
 			}
 
 			if (person.last === "Obama") {
 				totalScore += 15;
-				// personScore += 15;
 			}
 		});
 		var finalScore = parseInt(totalScore) + parseInt(totalMatch);
@@ -404,13 +367,11 @@ function updateScore() {
 		// Updates "Your Score" window accordingly
 		if (finalScore === 0) {
 			$('#overlay-your-score [data-function="user-profile-edit"]').show();
-			$('#connection-details').hide();
-			$('#profile-name').hide();
+			$('.view-connections').hide();
 			$('.share-score').hide();
 		} else {
 			$('#overlay-your-score [data-function="user-profile-edit"]').hide();
-			$('#connection-details').show();
-			$('#profile-name').show();
+			$('.view-connections').show();
 			$('.share-score').show();
 		}
 	}
@@ -419,7 +380,6 @@ function updateScore() {
 	Values to be scored
 	*****************************************************************************/
 	$.each(obj.whoswho, function(i, whoswho) {
-		// personScore = 0;
 		$.each(whoswho, function(property, value) {
 
 			if (value.length !== 0) {
@@ -459,16 +419,24 @@ function updateScore() {
 				}
 			}
 		});
-		// specialConnections();
-		// if (personScore > 0 ) {
-		// 	console.log(obj.whoswho[i].last + ': ' + personScore);
-		// }
+
 	});
 
-	// Score special connections (Power 50 & Obama's)
 	specialConnections();
 
-	sortConnections();
+	// Sort connections by connection strength
+	connectionScore.sort(function (a,b) {
+		var A = [a],
+			B = [b];
+
+		if (A < B) return -1;
+		if (A > B) return 1;
+		return 0;
+	});
+
+	$.each(connectionScore, function(a, b) {
+		console.log(a+' : '+b);
+	});
 }
 
 /*****************************************************************************
@@ -556,14 +524,14 @@ function loadResults(arrayName, resultContainer) {
 		container = section.children('ul');
 
 	// Mark obsolete matches
-	// container.children('li').addClass('old');
-	container.children('li').remove();
+	container.children('li').addClass('old');
 
 	$.each(arrayName, function(i, id) {
 		var	person = obj.whoswho[id],
 			htmlImage,
-			htmlPwr50,
 			htmlName,
+			htmlPrimaryTitle,
+			htmlPwr50,
 			htmlPrimaryCo,
 			htmlSecondaryCo,
 			htmlIndustry,
@@ -588,6 +556,13 @@ function loadResults(arrayName, resultContainer) {
 			}
 		}
 
+		// Title
+		if (person.primaryTitle) {
+			htmlPrimaryTitle = '<div class="primary-title">'+ person.primaryTitle +'<br />'+ person.primaryCo +'</div>';
+		} else {
+			htmlPrimaryTitle = '';
+		}
+
 		// Power 50
 		if (person.pwr50) {
 			htmlPwr50 = '<div class="pwr50">Power 50</div>';
@@ -597,7 +572,7 @@ function loadResults(arrayName, resultContainer) {
 
 		// Primary Company
 		if (person.primaryCo) {
-			htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>'+ person.primaryCo +'</dd>';
+			htmlPrimaryCo = '<dt>Primary Company</dt><dd>'+ person.primaryCo +'</dd>';
 		} else {
 			htmlPrimaryCo = '<dl><dt>Primary Company</dt><dd>--</dd>'
 		}
@@ -661,7 +636,7 @@ function loadResults(arrayName, resultContainer) {
 		if (person.bio) {
 			htmlBio = '<dt>Biography</dt><dd><a href="'+ person.bio +'" target="_blank">Click here</a></dd></dl>';
 		} else {
-			htmlBio = '<dt>Biography</dt><dd>--</dd></dl>';
+			htmlBio = '<dt>Biography</dt><dd>--</dd>';
 		}
 
 		var htmlImage = '<div class="photo"><img src="assets/im/media/' + person.img + '" height="100" width="83" alt="" /></div>',
@@ -669,8 +644,11 @@ function loadResults(arrayName, resultContainer) {
 			personDetails =
 				'<li data-whoswho-id="'+ id +'">'+
 					htmlImage +
-					htmlPwr50 +
+					'<div class="credentials">'+
 					htmlName +
+					htmlPrimaryTitle +
+					htmlPwr50 +
+					'</div><dl>'+
 					htmlPrimaryCo +
 					htmlSecondaryCo +
 					htmlIndustry +
@@ -680,14 +658,15 @@ function loadResults(arrayName, resultContainer) {
 					htmlProfAssoc +
 					htmlCivicAffil +
 					htmlBio +
+					'</dl>'+
 				'</li>';
 
 		// If existing person is still a valid match, remove mark
-		// if (container.find('[data-whoswho-id="'+ id +'"]').length) {
-		// 	container.find('[data-whoswho-id="'+ id +'"]').removeClass('old');
-		// } else {
+		if (container.find('[data-whoswho-id="'+ id +'"]').length) {
+			container.find('[data-whoswho-id="'+ id +'"]').removeClass('old');
+		} else {
 			container.append(personDetails);
-		// }
+		}
 	});
 
 	if (arrayName.length) {
@@ -1003,6 +982,10 @@ $(document).ajaxComplete(function() {
 	loadWhosWho();
 	showOnScroll();
 	filterConnection();
+});
+
+$('#overlay-survey').on('click', 'button[data-function="close"], #survey-done', function() {
+	buildUserProfile();
 });
 
 $('#whos-who-2012').on('click','[data-function="user-profile-edit"]', function() {
