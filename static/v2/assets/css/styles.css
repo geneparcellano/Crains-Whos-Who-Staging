@@ -581,6 +581,10 @@ Overlay - Your Score
 	height: 30px;
 	padding: 10px 30px 0 0;
 }
+.share-email {
+	padding-left: 30px;
+	background: url('../im/icon-message.png') no-repeat 0 0;
+}
 
 /*****************************************************************************
 User Profile

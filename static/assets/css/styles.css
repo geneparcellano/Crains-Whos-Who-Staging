@@ -324,10 +324,13 @@ Overlay
 	font-weight: bold;
 }
 .overlay .controls strong {
+	display: block;
+	padding-left: 20px;
 	background-color: transparent;
 	font-weight: bold;
 	font-size: 1.5em;
 	line-height: 50px;
+	text-align: left;
 }
 
 /*****************************************************************************
@@ -547,7 +550,8 @@ Overlay - Your Score
 	line-height: 1em;
 	font-weight: bold;
 }
-#overlay-your-score button[data-function="user-profile-edit"] {
+#overlay-your-score button[data-function="user-profile-edit"],
+#overlay-your-score .view-connections {
 	display: block;
 	width: 310px;
 	margin: 20px auto 10px;
@@ -559,11 +563,41 @@ Overlay - Your Score
 	font-size: 1.5em;
 	font-weight: bold;
 }
+.share-score {
+	margin: 20px;
+	padding-left: 10px;
+	background-color: #E8E8E8;
+	border: 1px solid #CCC;
+}
+.share-score strong {
+	display: block;
+	margin: 10px 0 0;
+}
+.share-score ul {
+	padding: 0 0 20px;
+}
+.share-score li {
+	float: left;
+	height: 30px;
+	padding: 10px 30px 0 0;
+}
+.share-email {
+	padding-left: 30px;
+	background: url('../im/icon-message.png') no-repeat 0 0;
+}
+
+/*****************************************************************************
+User Profile
+*****************************************************************************/
+#overlay-your-profile {
+	padding-bottom: 10px;
+}
 ul#connection-details {
 	border-top: 1px solid #CCC;
+	margin-bottom: 30px;
 }
 #connection-details li {
-	padding: 10px;
+	padding: 10px 20px;
 	border-bottom: 1px solid #CCC;
 	font-weight: bold;
 	line-height: 1em;
@@ -590,23 +624,10 @@ ul#connection-details {
 #connection-details li:hover span {
 	color: #FFF;
 }
-.share-score {
-	margin: 20px 10px;
-	padding-left: 10px;
-	background-color: #E8E8E8;
-	border: 1px solid #CCC;
-}
-.share-score strong {
+#overlay-your-profile button[data-function="user-profile-edit"] {
 	display: block;
-	margin: 10px 0 0;
-}
-.share-score ul {
-	padding: 0 0 20px;
-}
-.share-score li {
-	float: left;
-	height: 30px;
-	padding: 10px 30px 0 0;
+	width: 310px;
+	margin: 20px auto 10px;
 }
 
 /*****************************************************************************

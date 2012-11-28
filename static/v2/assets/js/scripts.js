@@ -210,8 +210,10 @@ Show "Your Connections"
 *****************************************************************************/
 function runFilter() {
 	$('fieldset:not(#question-name)').on('blur', 'input[type="text"], select, .multi button', function() {
-		buildUserProfile();
-		loadResults(userConnections, '#connections');
+		if ($(this).val().length !== 0) {
+			buildUserProfile();
+			loadResults(userConnections, '#connections');
+		}
 	});
 	$('#overlay-survey .controls').on('click', '[data-function="close"]', function() {
 		buildUserProfile();

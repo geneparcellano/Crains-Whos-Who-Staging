@@ -212,10 +212,13 @@ Show "Your Connections"
 *****************************************************************************/
 function runFilter() {
 	$('fieldset:not(#question-name)').on('blur', 'input[type="text"], select', function() {
-		if ($(this).val()) {		
+		if ($(this).val().length !== 0) {		
 			buildUserProfile();
 			loadResults(newUserConnections, '#connections');
 		}
+	});
+	$('#overlay-survey').on('click', 'button[data-function="close"], #survey-done', function() {
+		buildUserProfile();
 	});
 }
 
@@ -998,10 +1001,6 @@ $(document).ajaxComplete(function() {
 	loadWhosWho();
 	showOnScroll();
 	filterConnection();
-});
-
-$('#overlay-survey').on('click', 'button[data-function="close"], #survey-done', function() {
-	buildUserProfile();
 });
 
 $('#whos-who-2012').on('click','[data-function="user-profile-edit"]', function() {
