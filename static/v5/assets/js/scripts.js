@@ -254,7 +254,7 @@ function updateScore() {
 	/*****************************************************************************
 	Score Connections
 	*****************************************************************************/
-	function scoreConnection(id, first, last) {
+	function scoreConnection(id) {
 		if (connectionScore[id]) {
 			connectionScore[id]++;
 		} else {
@@ -429,8 +429,8 @@ function updateScore() {
 		var A = [a],
 			B = [b];
 
-		if (A < B) return -1;
-		if (A > B) return 1;
+		if (A > B) return -1;
+		if (A < B) return 1;
 		return 0;
 	});
 
