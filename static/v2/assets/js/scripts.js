@@ -252,10 +252,44 @@ function updateScore() {
 	*****************************************************************************/
 	function scoreMatches(pName, value, multiplier, i, b) {
 
-		if (pName === 'profAssoc' || pName === 'civicAffil') {
-			// Compare value against all of user's entries 
-			$.each(user[0][pName], function(b, userValue) {
-				if (userValue === value) {
+		switch(pName) {
+			case 'profAssoc':
+			case 'civicAffil':
+				// Compare value against all of user's entries 
+				$.each(user[0][pName], function(b, userValue) {
+					if (value.toLowerCase().indexOf(userValue) !== -1 || value === userValue) {
+						totalScore += multiplier;
+						totalMatch++;
+
+						// Index Connections
+						indexResults(userConnections, i);
+
+						// Index connection type
+						switch(pName) {
+							case 'civicAffil':
+								indexResults(connectionByCivicAffil, i);
+								break;
+							case 'profAssoc':
+								indexResults(connectionByProfAssoc, i);
+								break;
+							default:
+								// Do nothing
+						}
+					} else {
+						// Do nothing
+					}
+				});
+				break;
+			case 'primaryCo':
+			case 'industry':
+			case 'undergrad':
+			case 'grad':
+			case 'city':
+				var userValue = user[0][pName].toLowerCase();
+				if (userValue.length === 0) {
+					return false;
+				}
+				if (value.toLowerCase().indexOf(userValue) !== -1 || value === userValue) {
 					totalScore += multiplier;
 					totalMatch++;
 
@@ -264,46 +298,26 @@ function updateScore() {
 
 					// Index connection type
 					switch(pName) {
-						case 'civicAffil':
-							indexResults(connectionByCivicAffil, i);
+						case 'primaryCo':
+							indexResults(connectionByCompany, i);
 							break;
-						case 'profAssoc':
-							indexResults(connectionByProfAssoc, i);
+						case 'industry':
+							indexResults(connectionByIndustry, i);
+							break;
+						case 'undergrad':
+							indexResults(connectionByUndergrad, i);
+							break;
+						case 'grad':
+							indexResults(connectionByGrad, i);
+							break;
+						case 'city':
+							indexResults(connectionByHometown, i);
 							break;
 						default:
 							// Do nothing
 					}
 				}
-			});
-		} else {
-			if (user[0][pName] === value) {
-				totalScore += multiplier;
-				totalMatch++;
-
-				// Index Connections
-				indexResults(userConnections, i);
-
-				// Index connection type
-				switch(pName) {
-					case 'primaryCo':
-						indexResults(connectionByCompany, i);
-						break;
-					case 'industry':
-						indexResults(connectionByIndustry, i);
-						break;
-					case 'undergrad':
-						indexResults(connectionByUndergrad, i);
-						break;
-					case 'grad':
-						indexResults(connectionByGrad, i);
-						break;
-					case 'city':
-						indexResults(connectionByHometown, i);
-						break;
-					default:
-						// Do nothing
-				}
-			}
+				break;
 		}
 	}
 
