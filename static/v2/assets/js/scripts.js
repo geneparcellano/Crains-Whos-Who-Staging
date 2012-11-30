@@ -341,6 +341,8 @@ function updateScore() {
 		var finalScore = parseInt(totalScore) + parseInt(totalMatch);
 
 		$('.your-score').text(finalScore);
+		// $('.twitter-share-button').attr('data-text', 'I scored '+finalScore+' on @CrainsChicago Clout Calculator. Get your score: chicagobusiness.com/whoswho');
+		$('#share-score-email').attr('href', "mailto:?subject=Crain's Who's Who 2012&body= I scored "+finalScore+" on @CrainsChicago Clout Calculator. I'm connected to "+totalMatch+" of the most important business leaders. Get your score: chicagobusiness.com/whoswho");
 
 		totalScore = 0;
 
@@ -496,6 +498,7 @@ function loadResults(arrayName, resultContainer) {
 		var	person = obj.whoswho[id],
 			htmlImage,
 			htmlName,
+			htmlSuffix,
 			htmlPrimaryTitle,
 			htmlPwr50,
 			htmlPrimaryCo,
@@ -522,6 +525,13 @@ function loadResults(arrayName, resultContainer) {
 			}
 		}
 
+		// Suffix
+		if (person.suffix) {
+			htmlSuffix = ', '+person.suffix;
+		} else {
+			htmlSuffix = '';
+		}
+
 		// Title
 		if (person.primaryTitle) {
 			htmlPrimaryTitle = '<div class="primary-title">'+ person.primaryTitle +'<br />'+ person.primaryCo +'</div>';
@@ -531,7 +541,7 @@ function loadResults(arrayName, resultContainer) {
 
 		// Power 50
 		if (person.pwr50) {
-			htmlPwr50 = '<div class="pwr50">Power 50</div>';
+			htmlPwr50 = '<div class="badges"><span class="pwr50">Power 50</span></div>';
 		} else {
 			htmlPwr50 = '';
 		}
@@ -606,7 +616,7 @@ function loadResults(arrayName, resultContainer) {
 		}
 
 		var htmlImage = '<div class="photo"><img src="assets/im/media/' + person.img + '" height="100" width="83" alt="" /></div>',
-			htmlName = '<h2><span>'+ person.first + ' ' + person.middle + ' </span>' + person.last +'</h2>',
+			htmlName = '<h2><span>'+ person.first + ' ' + person.middle + ' </span>' + person.last + htmlSuffix +'</h2>',
 			personDetails =
 				'<li data-whoswho-id="'+ id +'">'+
 					htmlImage +

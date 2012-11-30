@@ -225,14 +225,21 @@ Who's Who Grid
 	padding: 5px;
 	cursor: pointer;
 }
-li .pwr50 {
+li .badges {
 	position: absolute;
-	top: 0;
-	right: 0;
+	top: -5px;
+	right: -5px;
+}
+li .pwr50,
+li .linkedin {
+	display: block;
 	height: 22px;
 	width: 22px;
 	background: url(../im/icon-pwr50.png) no-repeat center center;
 	text-indent: -9999px;
+}
+li .linkedin {
+	background: url(../im/icon-linkedin.png) no-repeat center center;
 }
 #all-whos-who li {
 	display: block;
@@ -729,6 +736,7 @@ Overlay - Who's Who Details
 	font-weight: bold;
 }
 #overlay-whos-who-details strong {
+	padding-left: 10px;
 	color: #000;
 	font-weight: bold;
 }
