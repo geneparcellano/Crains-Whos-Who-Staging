@@ -13,7 +13,9 @@ var obj,
 	connectionByCivicAffil = [],
 	userConnections = [],
 	allWhosWho = [],
-	loadedProfiles = [];
+	loadedProfiles = [],
+	connectionScore = [],
+	connectionRank = [];
 
 /*****************************************************************************
 Auto Complete
@@ -238,8 +240,7 @@ Update Score
 function updateScore() {
 	var	totalScore = 0,
 		totalMatch = 0,
-		personScore = 0,
-		connectionScore = [];
+		personScore = 0;
 
 	// Clear previous results
 	userConnections.length = 0;
@@ -250,16 +251,67 @@ function updateScore() {
 	connectionByHometown.length = 0;
 	connectionByProfAssoc.length = 0;
 	connectionByCivicAffil.length = 0;
+	connectionRank.length = 0;
 
 	/*****************************************************************************
 	Score Connections
 	*****************************************************************************/
+	// function scoreConnection(id) {
+	// 	var person = {};
+
+	// 	person['id']=id;
+	// 	person['score']=1;
+
+	// 	if (connectionScore.length) {
+	// 		$.each(connectionScore, function(a, b) {
+	// 			if(b[id] === id) {
+	// 				b.score++;
+	// 			} else {
+	// 				connectionScore.push(person);
+	// 			}
+	// 		});
+	// 	} else {
+	// 		connectionScore.push(person);
+	// 	}
+	// 	// console.log(a+' : '+b.score);
+	// }
+
 	function scoreConnection(id) {
 		if (connectionScore[id]) {
 			connectionScore[id]++;
 		} else {
 			connectionScore[id] = 1;
 		}
+	}
+
+	function rankConnections() {
+
+		$.each(connectionScore, function(a, b) {
+			var person = {};
+			if (typeof b === 'number') {
+				person['id'] = a;
+				person['score'] = b;
+				person['name'] = obj.whoswho[a].last;
+				connectionRank.push(person);
+				// console.log(a+' : '+b);
+			}
+		});
+
+		// Sort connections by connection strength
+		connectionRank.sort(function (a,b) {
+			var A = a.score,
+				B = b.score;
+
+			if (A > B) return -1;
+			if (A < B) return 1;
+			return 0;
+		});
+
+		$.each(connectionRank, function(a, b) {
+			indexResults(userConnections, b['id']);
+		});
+
+		console.log(connectionRank);	
 	}
 
 	/*****************************************************************************
@@ -419,24 +471,10 @@ function updateScore() {
 				}
 			}
 		});
-
 	});
 
 	specialConnections();
-
-	// Sort connections by connection strength
-	connectionScore.sort(function (a,b) {
-		var A = [a],
-			B = [b];
-
-		if (A > B) return -1;
-		if (A < B) return 1;
-		return 0;
-	});
-
-	$.each(connectionScore, function(a, b) {
-		console.log(a+' : '+b);
-	});
+	rankConnections();
 }
 
 /*****************************************************************************
