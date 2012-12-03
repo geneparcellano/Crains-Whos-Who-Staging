@@ -341,6 +341,8 @@ function updateScore() {
 		var finalScore = parseInt(totalScore) + parseInt(totalMatch);
 
 		$('.your-score').text(finalScore);
+		// $('.twitter-share-button').attr('data-text', 'I scored '+finalScore+' on @CrainsChicago Clout Calculator. Get your score: chicagobusiness.com/whoswho');
+		$('#share-score-email').attr('href', "mailto:?subject=Crain's Who's Who 2012&body= I scored "+finalScore+" on @CrainsChicago Clout Calculator. I'm connected to "+totalMatch+" of the most important business leaders. Get your score: chicagobusiness.com/whoswho");
 
 		totalScore = 0;
 
