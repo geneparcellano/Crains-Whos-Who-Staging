@@ -11,9 +11,14 @@ Get LinkedIn Data
 function loadData() {
 
 	IN.API.Profile("me")
-		.fields(["firstName","headline","positions:(company)"])
+		.fields(["firstName","lastName","headline","positions:(company)"])
 		.result(function(result) {
+			console.log(result);
 			linkedInMyCompany = result.values[0].positions['values'][0].company['name'];
+			var questions = $('#questions');
+			questions.find('#survey-first').val(result.values[0].firstName);
+			questions.find('#survey-last').val(result.values[0].lastName);
+			questions.find('#survey-company').val(linkedInMyCompany);
 		});
 
 	IN.API.Connections("me")

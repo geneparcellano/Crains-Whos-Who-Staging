@@ -195,6 +195,11 @@
 #bd { background: none; }
 </style>
 <div id="whos-who-2012">
+	<script type="text/javascript" src="http://platform.linkedin.com/in.js">
+		api_key: uikex2riroaw
+		scope: r_network
+		authorize: true
+	</script> <!-- VOKAL:Gene -->
 	<header id="control-bar" class="clearfix">
 		<div class="user">
 			<div class="score"><span>Your Score:</span> <a class="your-score" href="#overlay-your-score" data-function="overlay-your-score">0</a></div>
@@ -239,11 +244,6 @@
 				<p>Who&rsquo;s Who is a list of the most influential people in Chicago.</p>
 				<p>Fill out the survey to see who of these heavy hitters you&rsquo;re connected to.</p>
 				<button type="button" data-function="overlay-survey">Get Started</button>
-				<script type="text/javascript" src="http://platform.linkedin.com/in.js">
-					api_key: uikex2riroaw
-					scope: r_network
-					authorize: true
-				</script> <!-- VOKAL:Gene -->
 			</div>
 			<div id="overlay-survey" class="overlay-item rail">
 				<header class="controls">
@@ -265,8 +265,8 @@
 						<label>First Name<input type="text" id="survey-first" /></label>
 						<label>Last Name<input type="text" id="survey-last" /></label>
 						<div class="bottom-controls">
+							<script type="IN/Login" data-onAuth="loadData"></script> <!-- VOKAL:Gene -->
 							<button type="button" data-function="next">Next</button>
-							<button type="button" data-function="prev" disabled="disabled">Prev</button>
 						</div>
 					</fieldset>
 					<fieldset id="question-work">
@@ -557,6 +557,5 @@
 
 <script src="assets/js/scripts.js"></script> <!-- VOKAL:Gene -->
 <script src="assets/js/linkedin.js"></script> <!-- VOKAL:Gene -->
-<script type="IN/Login" data-onAuth="loadData"></script> <!-- VOKAL:Gene -->
 </body>
 </html>
