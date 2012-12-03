@@ -350,7 +350,7 @@ function updateScore() {
 		    .addClass('twitter-share-button')
 		    .attr('href', 'http://twitter.com/share')
 		    .attr('data-url', '')
-		    .attr('data-text', 'I scored '+finalScore+' on @CrainsChicago Clout Calculator. Get your score: chicagobusiness.com/whoswho');
+		    .attr('data-text', 'I scored '+finalScore+' on @CrainsChicago Clout Calculator. Get your score:');
 		$('#tweet-button').append(tweetBtn);
 		twttr.widgets.load();
 
