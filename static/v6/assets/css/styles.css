@@ -239,6 +239,7 @@ li .linkedin {
 	text-indent: -9999px;
 }
 li .linkedin {
+	display: none;
 	background: url(../im/icon-linkedin.png) no-repeat center center;
 }
 #all-whos-who li {
@@ -712,7 +713,8 @@ Overlay - Who's Who Details
 	color: #A00 !important;
 	line-height: 1.15em;
 }
-#overlay-whos-who-details .pwr50 {
+#overlay-whos-who-details .pwr50,
+#overlay-whos-who-details .linkedin {
 	display: block;
 	height: 22px;
 	padding-left: 25px;
@@ -720,6 +722,10 @@ Overlay - Who's Who Details
 	color: #666;
 	font-size: 0.75em;
 	line-height: 22px;
+}
+#overlay-whos-who-details .linkedin {
+	display: none;
+	background: url(../im/icon-linkedin.png) no-repeat left center;
 }
 #overlay-whos-who-details dl {
 	margin-top: 15px;

@@ -543,7 +543,7 @@ function loadResults(arrayName, resultContainer) {
 		if (person.pwr50) {
 			htmlPwr50 = '<div class="badges"><span class="pwr50">Power 50</span></div>';
 		} else {
-			htmlPwr50 = '';
+			htmlPwr50 = '<div class="badges"></div>';
 		}
 
 		// Primary Company

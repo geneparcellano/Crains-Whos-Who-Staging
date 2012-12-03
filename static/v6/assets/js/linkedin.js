@@ -1,6 +1,9 @@
 
-var linkedInMyCompany,
-	linkedInConnections = [];
+var obj,
+	data = $.getJSON("assets/js/whoswho.json"),
+	linkedInMyCompany,
+	linkedInConnections = [],
+	parent = $('#whos-who');
 
 /*****************************************************************************
 Get LinkedIn Data
@@ -50,7 +53,7 @@ function linkedInApplyData() {
 			person['last'] = info.last;
 
 			workConnections.push(person);
-			console.log(info.first + ' ' +info.last);
+			// console.log(info.first + ' ' +info.last);
 		}
 	});
 
@@ -63,11 +66,15 @@ function linkedInApplyData() {
 Match LinkedIn Data with Who's Who
 *****************************************************************************/
 function linkedInMatchData() {
+	$(document.createElement('style')).appendTo('head').attr('id','linkedInStyles');
+	var linkedInStyles = $('style#linkedInStyles');
+
 	function compareData(company, first, last) {
 		$.each(obj.whoswho, function(a, b) {
 			if (b.primaryCo === company && b.last === last && b.first === first) {
-				console.log(b.first+' '+b.last+' - '+b.primaryCo);
-				$('body').append('<div>'+b.first+' '+b.last+' - '+b.primaryCo+'</div>');
+				// console.log(b.first+' '+b.last+' - '+b.primaryCo);
+				// console.log(b.first+b.last);
+				linkedInStyles.append('[data-name="'+b.first+b.last+'"] .linkedin, #overlay-whos-who-details [data-name="'+b.first+b.last+'"] .linkedin {display:block;}');
 			}
 		});
 	}
@@ -78,4 +85,7 @@ function linkedInMatchData() {
 	});
 }
 
-loadData();
+$(document).ajaxComplete(function() {
+	obj = $.parseJSON(data.responseText);
+	loadData();
+});
