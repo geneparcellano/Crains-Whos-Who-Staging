@@ -195,6 +195,11 @@
 #bd { background: none; }
 </style>
 <div id="whos-who-2012">
+	<script type="text/javascript" src="http://platform.linkedin.com/in.js">
+		api_key: uikex2riroaw
+		scope: r_network
+		authorize: true
+	</script> <!-- VOKAL:Gene -->
 	<header id="control-bar" class="clearfix">
 		<div class="user">
 			<div class="score"><span>Your Score:</span> <a class="your-score" href="#overlay-your-score" data-function="overlay-your-score">0</a></div>
@@ -260,8 +265,8 @@
 						<label>First Name<input type="text" id="survey-first" /></label>
 						<label>Last Name<input type="text" id="survey-last" /></label>
 						<div class="bottom-controls">
+							<script type="IN/Login" data-onAuth="loadData"></script> <!-- VOKAL:Gene -->
 							<button type="button" data-function="next">Next</button>
-							<button type="button" data-function="prev" disabled="disabled">Prev</button>
 						</div>
 					</fieldset>
 					<fieldset id="question-work">
@@ -548,8 +553,9 @@
 
 <!-- End Chartbeat -->
 <script src="assets/js/jquery-1.8.2.min.js"></script> <!-- VOKAL:Gene -->
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script> <!-- VOKAL:Gene -->
-<script src="assets/js/jquery.cookie.js"></script> <!-- VOKAL:Gene -->
+<script src="assets/js/jquery-ui-1.9.1.min.js"></script> <!-- VOKAL:Gene -->
+
 <script src="assets/js/scripts.js"></script> <!-- VOKAL:Gene -->
+<script src="assets/js/linkedin.js"></script> <!-- VOKAL:Gene -->
 </body>
 </html>

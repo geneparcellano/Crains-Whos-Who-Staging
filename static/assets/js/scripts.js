@@ -541,9 +541,9 @@ function loadResults(arrayName, resultContainer) {
 
 		// Power 50
 		if (person.pwr50) {
-			htmlPwr50 = '<div class="badges"><span class="pwr50">Power 50</span></div>';
+			htmlPwr50 = '<div class="badges"><span class="pwr50">Power 50</span><span class="linkedin">LinkedIn</span></div>';
 		} else {
-			htmlPwr50 = '';
+			htmlPwr50 = '<div class="badges"><span class="linkedin">LinkedIn</span></div>';
 		}
 
 		// Primary Company
@@ -620,7 +620,7 @@ function loadResults(arrayName, resultContainer) {
 			personDetails =
 				'<li data-whoswho-id="'+ id +'">'+
 					htmlImage +
-					'<div class="credentials">'+
+					'<div class="credentials" data-name="'+ person.first + person.last +'">'+
 					htmlName +
 					htmlPrimaryTitle +
 					htmlPwr50 +
