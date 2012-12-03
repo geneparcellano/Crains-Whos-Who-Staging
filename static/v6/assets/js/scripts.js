@@ -341,6 +341,19 @@ function updateScore() {
 		var finalScore = parseInt(totalScore) + parseInt(totalMatch);
 
 		$('.your-score').text(finalScore);
+
+		// Update Share Text
+		$('#tweet-button iframe').remove();
+
+		// Generate new markup
+		var tweetBtn = $('<a></a>')
+		    .addClass('twitter-share-button')
+		    .attr('href', 'http://twitter.com/share')
+		    .attr('data-url', '')
+		    .attr('data-text', 'I scored '+finalScore+' on @CrainsChicago Clout Calculator. Get your score: chicagobusiness.com/whoswho');
+		$('#tweet-button').append(tweetBtn);
+		twttr.widgets.load();
+
 		// $('.twitter-share-button').attr('data-text', 'I scored '+finalScore+' on @CrainsChicago Clout Calculator. Get your score: chicagobusiness.com/whoswho');
 		$('#share-score-email').attr('href', "mailto:?subject=Crain's Who's Who 2012&body= I scored "+finalScore+" on @CrainsChicago Clout Calculator. I'm connected to "+totalMatch+" of the most important business leaders. Get your score: chicagobusiness.com/whoswho");
 
