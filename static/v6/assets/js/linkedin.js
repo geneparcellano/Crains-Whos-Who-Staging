@@ -93,4 +93,5 @@ function linkedInMatchData() {
 $(document).ajaxComplete(function() {
 	obj = $.parseJSON(data.responseText);
 	loadData();
+	console.log(IN.User.isAuthorized());
 });

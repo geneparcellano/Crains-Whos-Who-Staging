@@ -503,7 +503,7 @@ fieldset select {
 	font-size: 1em;
 }
 fieldset .multi input[type="text"] {
-	width: 220px;
+	width: 210px;
 }
 .multi button[data-function="add"] {
 	display: inline;
@@ -636,7 +636,6 @@ User Profile
 	padding-bottom: 10px;
 }
 ul#connection-details {
-	border-top: 1px solid #CCC;
 	margin-bottom: 30px;
 }
 #connection-details li {
@@ -717,9 +716,16 @@ Overlay - User Profile Edit
 #overlay-survey.user-profile-edit form button[data-function="overlay-your-score"] {
 	float: right;
 	width: auto;
-	margin: 10px 20px 10px 10px;
+	margin: 10px 20px 0 10px;
 	padding: 10px 30px;
 	text-indent: 0;
+}
+#overlay-survey #question-linkedin {
+	padding-bottom: 20px;
+}
+#overlay-survey #question-linkedin label {
+	display: block;
+	margin-bottom: 10px;
 }
 
 /*****************************************************************************

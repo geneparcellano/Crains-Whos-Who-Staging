@@ -993,15 +993,28 @@ $(document).ajaxComplete(function() {
 });
 
 $('#whos-who-2012').on('click','[data-function="user-profile-edit"]', function() {
-	var survey = $('#overlay-survey');
+	var survey = $('#overlay-survey'),
+		linkedIn = '<fieldset id="question-linkedin">'+
+						'<legend>LinkedIn</legend>'+
+						'<label>LinkedIn</label>'+
+					'</fieldset>';
+
+	// update survey layout
 	survey.addClass('user-profile-edit')
 		.children('.controls').find('strong').text('Your Profile');
 	survey.find('fieldset').show();
+
+	if (survey.find('#question-linkedin').length === 0 ) {
+		survey.find('#question-name').after(linkedIn);
+		$('#question-name .IN-widget').appendTo('#question-linkedin');
+	}
+
+	// move done button to end of form
 	$('#survey-done').appendTo(survey.children('form'));
 	overlay.launchItem('overlay-survey');
 });
 
-overlay.launchItem('overlay-intro'); // launch intro
+// overlay.launchItem('overlay-intro'); // launch intro
 searchBar();
 runFilter();
 navigation.getCurrent();
