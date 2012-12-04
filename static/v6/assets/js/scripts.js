@@ -1001,7 +1001,7 @@ $('#whos-who-2012').on('click','[data-function="user-profile-edit"]', function()
 	overlay.launchItem('overlay-survey');
 });
 
-// overlay.launchItem('overlay-intro'); // launch intro
+overlay.launchItem('overlay-intro'); // launch intro
 searchBar();
 runFilter();
 navigation.getCurrent();
