@@ -576,22 +576,22 @@ var overlayWrap = $('.overlay'),
 /*****************************************************************************
 Initialize
 *****************************************************************************/
-$(document).ajaxComplete(function() {
-	obj = $.parseJSON(data.responseText);
-	buildSelectOption();
-	initiateAutoComplete();
-	multipleEntry();
-	removeEntry();
-	loadResults(allWhosWho, '#all-whos-who');
-	$('#all-whos-who').show().children().show();
-});
+// $(document).ajaxComplete(function() {
+// 	obj = $.parseJSON(data.responseText);
+// 	buildSelectOption();
+// 	initiateAutoComplete();
+// 	multipleEntry();
+// 	removeEntry();
+// 	loadResults(allWhosWho, '#all-whos-who');
+// 	$('#all-whos-who').show().children().show();
+// });
 
-$('body').on('click', '[data-function="done"]', function() {
-	buildUserProfile();
-});
+// $('body').on('click', '[data-function="done"]', function() {
+// 	buildUserProfile();
+// });
 
-runFilter();
-overlay.details();
-overlay.getName();
-overlay.hideItem();
+// runFilter();
+// overlay.details();
+// overlay.getName();
+// overlay.hideItem();
 })();
