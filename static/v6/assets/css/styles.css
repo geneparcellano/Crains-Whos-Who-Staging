@@ -128,9 +128,7 @@ Who's Who Control Bar
 	left: 0;
 }
 #control-bar .search label {
-	width: 300px;
 	text-indent: -9999px;
-	overflow: hidden;
 }
 #control-bar .score span,
 #control-bar .search label span {
@@ -148,15 +146,32 @@ Who's Who Control Bar
 }
 #control-bar .search button[data-function="search"] {
 	position: absolute;
-	top: 16px;
-	right: 16px;
-	height: 16px;
-	width: 16px;
+	top: 15px;
+	left: 226px;
+	height: 20px;
+	width: 20px;
 	border: 0;
 	padding: 0;
-	background: url(../im/icon-search.gif) no-repeat 0 0;
+	background: url(../im/icon-search.gif) no-repeat center 2px;
 	text-indent: -9999px;
 	cursor: pointer;
+}
+#control-bar .search button[data-function="reset"] {
+	position: absolute;
+	top: 15px;
+	left: 198px;
+	height: 20px;
+	width: 20px;
+	border: 0;
+	background: url(../im/icon-reset.png) no-repeat center center;
+	text-indent: -9999px;
+	cursor: pointer;
+}
+#control-bar .search button:hover {
+	background-color: #CCC;
+}
+#control-bar .search button:active {
+	background-color: #AAA;
 }
 #control-bar .user {
 	position: absolute;
@@ -204,6 +219,26 @@ Who's Who Grid
 #all-whos-who {
 	display: none;
 	position: relative;
+}
+#filtered h1 {
+	position: relative;
+}
+#filtered h1 button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 30px;
+	width: 30px;
+	border: 0;
+	padding: 0;
+	background: url(../im/icon-close-active.png) no-repeat center center;
+	cursor: pointer;
+}
+#filtered h1 button:hover {
+	background-color: #760A04;
+}
+#filtered h1 button:active {
+	background-color: #590100;
 }
 #whos-who h1 strong {
 	text-transform: capitalize;
@@ -642,7 +677,11 @@ ul#connection-details {
 Overlay - User Profile Edit
 *****************************************************************************/
 #overlay-survey.user-profile-edit {
-	margin-top: 3%;
+	margin-top: 10%;
+}
+#overlay-survey.user-profile-edit form {
+	height: 450px;
+	overflow: auto;
 }
 #overlay-survey.user-profile-edit .controls {
 	border-bottom: 1px solid #BBB;
@@ -687,7 +726,7 @@ Overlay - User Profile Edit
 Overlay - Who's Who Details
 *****************************************************************************/
 #overlay-whos-who-details {
-	margin-top: 3%;
+	margin-top: 10%;
 }
 #overlay-whos-who-details .content {
 	position: relative;
@@ -728,9 +767,11 @@ Overlay - Who's Who Details
 	background: url(../im/icon-linkedin.png) no-repeat left center;
 }
 #overlay-whos-who-details dl {
-	margin-top: 15px;
-	padding-top: 5px;
+	height: 350px;
+	margin: 15px -10px 0;
+	padding: 5px 10px 0;
 	border-top: 1px solid #CCC;
+	overflow-y: auto;
 }
 #overlay-whos-who-details dt {
 	color: #666;

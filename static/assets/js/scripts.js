@@ -880,7 +880,8 @@ function getResults(searchTerm, resultContainer) {
 Search Bar
 *****************************************************************************/
 function searchBar() {
-	var searchBar = $('#control-bar .search');
+	var searchBar = $('#control-bar .search'),
+		results = $('#filtered');
 
 	searchBar.on('keydown', '#whos-who-search', function(event) {
 		if ( event.which === 13 ) {
@@ -894,6 +895,24 @@ function searchBar() {
 		var searchTerm = $('.search input').val();
 
 		getResults(searchTerm, '#filtered');
+	});
+
+	// clear results
+	function clearResults() {
+		results.slideUp('fast');
+		// remove previous results from DOM
+		results.children('ul').children('li').remove();
+		searchBar.find('#whos-who-search').val('');
+	}
+
+	// clear results
+	results.on('click', '[data-function="close"]', function() {
+		clearResults();
+	});
+
+	// clear results
+	searchBar.on('click', 'button[data-function="reset"]', function() {
+		clearResults();
 	});
 }
 
@@ -973,10 +992,6 @@ $(document).ajaxComplete(function() {
 	filterConnection();
 });
 
-$('#overlay-survey').on('click', 'button[data-function="close"], #survey-done', function() {
-	buildUserProfile();
-});
-
 $('#whos-who-2012').on('click','[data-function="user-profile-edit"]', function() {
 	var survey = $('#overlay-survey');
 	survey.addClass('user-profile-edit')
@@ -986,7 +1001,7 @@ $('#whos-who-2012').on('click','[data-function="user-profile-edit"]', function()
 	overlay.launchItem('overlay-survey');
 });
 
-overlay.launchItem('overlay-intro'); // launch intro
+// overlay.launchItem('overlay-intro'); // launch intro
 searchBar();
 runFilter();
 navigation.getCurrent();
