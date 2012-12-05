@@ -357,7 +357,6 @@ function updateScore() {
 		$('#tweet-button').append(tweetBtn);
 		twttr.widgets.load();
 
-		// $('.twitter-share-button').attr('data-text', 'I scored '+finalScore+' on @CrainsChicago Clout Calculator. Get your score: chicagobusiness.com/whoswho');
 		$('#share-score-email').attr('href', "mailto:?subject=Crain's Who's Who 2012&body= I scored "+finalScore+" on @CrainsChicago Clout Calculator. I'm connected to "+totalMatch+" of the most important business leaders. Get your score: chicagobusiness.com/whoswho");
 
 		totalScore = 0;
@@ -1071,6 +1070,47 @@ function linkedInMatchData() {
 		compareData(b.company, b.first, b.last);
 	});
 }
+
+/*****************************************************************************
+Get Cookie Info
+*****************************************************************************/
+function readCookie(name) {
+	var nameEQ = name + "=";
+
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') {c = c.substring(1,c.length);}
+		if (c.indexOf(nameEQ) == 0) {
+			return c.substring(nameEQ.length,c.length);
+		}
+	}
+	return null;
+}
+
+// Update user info when cookie is present
+if (readCookie('CSDemos')) {
+	var data = readCookie('CSDemos'),
+		cred = data.split('|'),
+		user = [];
+
+	$.each(cred, function(a, b){
+		var key = b.split(':')[0].replace('"',''),
+			val = b.split(':')[1].replace('"','');
+
+		switch (key) {
+			case 'nameFirst' :
+				$('#questions').find('#survey-first').val(val);
+				break;
+			case 'nameLast' :
+				$('#questions').find('#survey-last').val(val);
+				break;
+		}
+	});
+} else {
+	// Do nothing
+}
+
 
 /*****************************************************************************
 Initialize

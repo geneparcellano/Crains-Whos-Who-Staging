@@ -623,6 +623,7 @@ Overlay - Your Score
 .share-score li {
 	float: left;
 	height: 30px;
+	width: 80px;
 	padding: 10px 30px 0 0;
 }
 .share-email {
