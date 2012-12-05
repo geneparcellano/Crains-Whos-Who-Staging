@@ -1124,7 +1124,7 @@ $('#whos-who-2012').on('click','[data-function="user-profile-edit"]', function()
 
 	// update survey layout
 	survey.addClass('user-profile-edit')
-		.children('.controls').find('strong').text('Your Profile');
+		.children('.controls').find('strong').text('Edit Your Profile');
 	survey.find('fieldset').show();
 
 	if (survey.find('#question-linkedin').length === 0 ) {
