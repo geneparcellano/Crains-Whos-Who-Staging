@@ -485,6 +485,7 @@ button#survey-done {
 	background-color: transparent;
 }
 #questions {
+	position: relative;
 	margin-top: 40px;
 }
 #questions fieldset {

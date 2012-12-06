@@ -114,7 +114,8 @@ function initiateAutoComplete() {
 		source: allCity
 	});
 	$( ".autocomplete-company" ).autocomplete({
-		appendTo: '.overlay-main',
+		// appendTo: '.overlay-main',
+		appendTo: '#questions',
 		source: allCompanies
 	});
 
