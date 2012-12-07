@@ -1,0 +1,835 @@
+/*****************************************************************************
+Typography
+*****************************************************************************/
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 100%;
+}
+#whos-who-2012 {
+	font-size: 14px !important;
+	line-height: 1.4545em;
+}
+/*****************************************************************************
+Layout
+*****************************************************************************/
+body.no-scroll {
+	overflow: hidden;
+}
+#whos-who-2012 {
+	width:935px;
+	margin: -5px auto 0;
+	padding:0 10px 10px;
+	background-color: #FFF;
+}
+#whos-who section {
+	padding-bottom: 20px;
+}
+#whos-who section > h1 {
+	padding: 5px 0 5px 20px;
+	margin: 0 -11px 10px -11px;
+	background-color: #A00;
+	color: #FFF !important;
+}
+#whos-who section > h1 .whos-who-date {
+	float: right;
+	padding-right: 20px;
+	font-size: 0.75em;
+	font-weight: normal;
+}
+
+/*****************************************************************************
+Text Fields
+*****************************************************************************/
+input[type="text"] {
+	width: 93%;
+	background-color: #FFF;
+	border: 1px solid #888;
+	padding: 10px;
+	margin: 10px 0;
+	font-size: 1em;
+}
+input[type="text"]:focus {
+	background-color: #E5E5E5;
+}
+/*****************************************************************************
+Buttons
+*****************************************************************************/
+.overlay button[type="button"] {
+	width: 100%;
+	margin: 0 0 10px;
+	padding: 10px 0 15px;
+	border: 1px solid #4D4D4D;
+	border-radius: 5px;
+	background-color: #666;
+	cursor: pointer;
+	color: #FFF;
+	font-weight: bold;
+	font-size: 16px;
+}
+.overlay button[type="button"]:hover {
+	background-color: #555355;
+}
+.overlay button[type="button"]:active {
+	background-color: #414042;
+	color: #FFF;
+}
+.overlay .controls button[type="button"] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 50px;
+	width: 50px;
+	border: 0;
+	border-radius: 0;
+	margin: 0;
+	padding: 0;
+	text-indent: -9999px;
+	cursor: pointer;
+}
+.overlay .controls button[type="button"]:hover {
+	background-color: #CCC;
+}
+.overlay .controls button[type="button"]:active {
+	background-color: #AAA;
+}
+.overlay .controls button[data-function="close"],
+.overlay .controls button[data-function="remove"] {
+	background: url(../im/icon-close.png) no-repeat center center;
+}
+.overlay .controls button[data-function$="edit"] {
+	left: 0;
+	background: url(../im/icon-pencil.png) no-repeat center center;
+}
+.overlay .controls .save {
+	left: 0;
+	background: url(../im/icon-disk.png) no-repeat center center;
+}
+
+/*****************************************************************************
+Who's Who Control Bar
+*****************************************************************************/
+#control-bar {
+	position: relative;
+	margin-bottom: 10px;
+}
+#control-bar h1 {
+	padding-top: 12px;
+	font-size: 1.5em;
+	color: #A00 !important;
+	text-align: center;
+	text-transform: uppercase;
+}
+#control-bar h1 strong {
+	font-weight: bold;
+}
+#control-bar .search {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+#control-bar .search label {
+	text-indent: -9999px;
+}
+#control-bar .score span,
+#control-bar .search label span {
+	display: none;
+}
+#control-bar .search input[type="text"] {
+	height: 23px;
+	width: 180px;
+	padding: 2px 25px 2px 5px;
+	border: 1px solid #777;
+	border-top-color: #666;
+	border-bottom-color: #999;
+	font-size: 1em;
+	font-weight: normal;
+}
+#control-bar .search button[data-function="search"] {
+	position: absolute;
+	top: 15px;
+	left: 226px;
+	height: 20px;
+	width: 20px;
+	border: 0;
+	padding: 0;
+	background: url(../im/icon-search.gif) no-repeat center 2px;
+	text-indent: -9999px;
+	cursor: pointer;
+}
+#control-bar .search button[data-function="reset"] {
+	display: none;
+	position: absolute;
+	top: 15px;
+	left: 198px;
+	height: 20px;
+	width: 20px;
+	border: 0;
+	background: url(../im/icon-reset.png) no-repeat center center;
+	text-indent: -9999px;
+	cursor: pointer;
+}
+#control-bar .search button:hover {
+	background-color: #CCC;
+}
+#control-bar .search button:active {
+	background-color: #AAA;
+}
+#control-bar .user {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 300px;
+}
+#control-bar .user .profile {
+	float: right;
+	margin: 7px 10px 0 0;
+}
+#control-bar .user .profile button {
+	display: block;
+	height: 32px;
+	width: 32px;
+	border: none;
+	margin: 0;
+	background: url(../im/icon-user.png) no-repeat 0 0;
+	text-indent: -9999px;
+	cursor: pointer;
+}
+#control-bar .user .profile button:hover {
+	background-color: #CCC;
+}
+#control-bar .user .profile button:active {
+	background-color: #AAA;
+}
+#control-bar .user .score a {
+	float: right;
+	height: 47px;
+	width: 37px;
+	margin-top: -6px;
+	padding-top: 16px;
+	background: url(../im/icon-ribbon.gif) no-repeat 0 0;
+	text-decoration: none;
+	text-align: center;
+	color: #FFF !important;
+}
+
+/*****************************************************************************
+Who's Who Grid
+*****************************************************************************/
+#connections,
+#filtered,
+#all-whos-who {
+	display: none;
+	position: relative;
+}
+#filtered h1 {
+	position: relative;
+}
+#filtered h1 button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 30px;
+	width: 30px;
+	border: 0;
+	padding: 0;
+	background: url(../im/icon-close-active.png) no-repeat center center;
+	cursor: pointer;
+}
+#filtered h1 button:hover {
+	background-color: #760A04;
+}
+#filtered h1 button:active {
+	background-color: #590100;
+}
+#whos-who h1 strong {
+	text-transform: capitalize;
+	font-weight: normal;
+}
+#whos-who section p {
+	padding: 20px 10px;
+	text-align: center;
+	font-size: 1em;
+}
+#whos-who section p a {
+	color: #A00 !important;
+}
+#whos-who li {
+	position: relative;
+	display: none;
+	float: left;
+	margin: 5px;
+	padding: 5px;
+	cursor: pointer;
+}
+li .badges {
+	position: absolute;
+	top: -5px;
+	right: -5px;
+}
+li .pwr50,
+li .linkedin {
+	display: block;
+	height: 22px;
+	width: 22px;
+	background: url(../im/icon-pwr50.png) no-repeat center center;
+	text-indent: -9999px;
+}
+li .linkedin {
+	display: none;
+	background: url(../im/icon-linkedin.png) no-repeat center center;
+}
+#all-whos-who li {
+	display: block;
+}
+#whos-who li:hover {
+	background-color: #A00;
+	color: #FFF;
+}
+#whos-who li:hover h2 {
+	color: #FFF !important;
+}
+#whos-who li:active {
+	background-color: #751117;
+}
+#whos-who li .photo {
+	height: 100px;
+	width: 83px;
+	background: url(../im/media/icon-unknown.gif) no-repeat 0 0;
+}
+#whos-who li h2 {
+	width: 83px;
+	border-bottom: none;
+	margin-top: 5px;
+	background-color: transparent;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+#whos-who li h2 span {
+	display: none;
+}
+#whos-who .primary-title {
+	display: none;
+}
+#whos-who dl {
+	display: none;
+}
+.ajax-loading {
+	display: block;
+	padding: 10px 0 8px;
+	margin: 0 10px;
+	border: 1px solid #DDD;
+	background-color: #E8E8E8;
+	text-align: center;
+}
+
+/*****************************************************************************
+Overlay
+*****************************************************************************/
+.overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.overlay-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: #000;
+	opacity: 0.8;
+}
+.overlay-main {
+	position: relative;
+	height: 100%;
+	overflow: auto;
+}
+.overlay-item {
+	display: none;
+	width: 350px;
+	margin: 10% auto;
+	background-color: #FFF;
+	box-shadow: 3px 3px 5px #222;
+}
+.overlay-item.selected {
+	display: block;
+}
+.overlay .controls {
+	position: relative;
+	height: 50px;
+	border-bottom: 1px solid #BBB;
+	background-color: #EFEFEF;
+	box-shadow: 0 0 3px #AAA;
+	text-align: center;
+	font-weight: bold;
+}
+.overlay .controls strong {
+	display: block;
+	padding-left: 20px;
+	background-color: transparent;
+	font-weight: bold;
+	font-size: 1.5em;
+	line-height: 50px;
+	text-align: left;
+}
+
+/*****************************************************************************
+Overlay - Intro
+*****************************************************************************/
+#overlay-intro {
+	padding: 10px 20px;
+}
+#overlay-intro p {
+	margin-bottom: 10px;
+	font-size: 1em !important;
+	line-height: 1.4em !important;
+}
+#overlay-intro .logo {
+	width: 206px;
+	margin: 10px auto 20px;
+}
+#overlay-intro button {
+	margin-top: 30px;
+}
+
+/*****************************************************************************
+Overlay - Survey
+*****************************************************************************/
+#overlay-survey header.controls {
+	background-color: #A00;
+}
+#overlay-survey .controls strong {
+	padding-left: 20px;
+	color: #FFF;
+	text-align: left;
+	font-size: 1.4em;
+}
+#overlay-survey .controls button {
+	position: absolute;
+	top: 0;
+	height: 50px;
+	width: 50px;
+	border: 0;
+	border-radius: 0;
+	margin: 0;
+	padding: 10px 5px;
+	text-indent: -9999px;
+	cursor: pointer;
+	overflow: hidden;
+}
+#overlay-survey .controls button[data-function="close"] {
+	background: url(../im/icon-close-active.png) no-repeat center center ;
+}
+#overlay-survey header {
+	box-shadow: none;
+}
+#overlay-survey nav {
+	position: absolute;
+	width: 252px;
+	left: -126px;
+	margin-left: 50%;
+	padding: 0;
+	bottom: -25px;
+}
+#overlay-survey nav li {
+	display: inline;
+	padding: 0 5px;
+}
+#overlay-survey nav li a {
+	display: inline-block;
+	height: 9px;
+	width: 9px;
+	border: 1px solid #666;
+	border-radius: 5px;
+	background-color: #FFF;
+	text-indent: -9999px;
+	overflow: hidden;
+}
+#overlay-survey nav li a:hover {
+	background-color: #A00;
+}
+#overlay-survey nav li.selected a {
+	background-color: #A00;
+}
+#overlay-survey .bottom-controls {
+	padding-right: 0;
+	margin-top: 20px;
+}
+#overlay-survey button[data-function="prev"],
+#overlay-survey button[data-function="next"],
+button#survey-done {
+	float: right;
+	width: auto;
+	margin: 0 0 0 10px;
+	padding: 10px 30px;
+	text-indent: 0;
+}
+#overlay-survey button[data-function="prev"] {
+	padding: 10px;
+}
+#overlay-survey .controls button:hover {
+	background-color: #760A04;
+}
+#overlay-survey .controls button:active {
+	background-color: #590100;
+	color: #FFF;
+}
+#overlay-survey .bottom-controls button[disabled="disabled"],
+#overlay-survey .bottom-controls button[disabled="disabled"]:hover,
+#overlay-survey .bottom-controls button[disabled="disabled"]:active {
+	opacity: 0;
+	background-color: transparent;
+}
+#questions {
+	position: relative;
+	margin-top: 40px;
+}
+#questions fieldset {
+	display: none;
+	padding: 10px 20px;
+}
+#questions legend {
+	display: none;
+}
+#questions fieldset.selected {
+	display: block;
+}
+fieldset select {
+	width: 100%;
+	margin: 10px 0 20px;
+	padding: 10px;
+	font-size: 1em;
+}
+fieldset .multi input[type="text"] {
+	width: 210px;
+}
+.multi button[data-function="add"] {
+	display: inline;
+	width: auto;
+	margin: 0;
+	padding: 10px;
+}
+fieldset .notification {
+	margin-bottom: 10px;
+	color: #F00;
+	font-size: 0.75em;
+}
+fieldset .entries {
+	border-top: 1px solid #CCC;
+	margin: 10px 0 30px;
+}
+fieldset .entries li {
+	position: relative;
+	min-height: 20px;
+	padding: 5px 30px 5px 0;
+	border-bottom: 1px solid #DDD;
+	line-height: 1.25em;
+}
+.entries button[data-function="remove"] {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	height: 30px;
+	width: 30px;
+	margin: -15px 0 0;
+	padding: 0;
+	border: none;
+	border-radius: 0;
+	background: url(../im/icon-close.png) no-repeat center center transparent;
+	text-indent: -9999px;
+}
+.entries button[data-function="remove"]:hover {
+	background-color: #CCC;
+}
+.entries button[data-function="remove"]:active {
+	background-color: #AAA;
+}
+.ui-autocomplete {
+	position: absolute;
+	max-height: 250px;
+	width: 250px;
+	border: 1px solid #DDD;
+	border-bottom-color: #AAA;
+	border-right-color: #AAA;
+	padding: 5px;
+	background-color: #FFF;
+	box-shadow: 3px 3px 5px #333;
+	overflow: auto;
+	font: 0.75em/1.5em Helvetica, Arial, sans-serif !important;
+}
+.ui-autocomplete li a {
+	display: block;
+	padding: 5px;
+	line-height: 1.25em;
+}
+.ui-autocomplete li a:hover,
+.ui-autocomplete li a.ui-state-hover,
+.ui-autocomplete li a.ui-state-focus {
+	background-color: #CCC;
+}
+.ui-autocomplete li a:active {
+	background-color: #AAA;
+}
+.ui-helper-hidden-accessible {
+	display: none;
+}
+
+/*****************************************************************************
+Overlay - Your Score
+*****************************************************************************/
+#overlay-your-score {
+	padding-bottom: 10px;
+}
+#overlay-your-score .score {
+	margin-top: 10px;
+	text-align: center;
+}
+#overlay-your-score .score strong {
+	display: block;
+	color: #A00;
+	font-size: 6em;
+	line-height: 1em;
+	font-weight: bold;
+}
+#overlay-your-score button[data-function="user-profile-edit"],
+#overlay-your-score .view-connections {
+	display: block;
+	width: 310px;
+	margin: 20px auto 10px;
+}
+#overlay-your-score h2 {
+	border-bottom: none;
+	padding: 10px;
+	color: #A00 !important;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+.share-score {
+	margin: 20px;
+	padding-left: 10px;
+	background-color: #E8E8E8;
+	border: 1px solid #CCC;
+}
+.share-score strong {
+	display: block;
+	margin: 10px 0 0;
+}
+.share-score ul {
+	padding: 0 0 20px;
+}
+.share-score li {
+	float: left;
+	height: 30px;
+	width: 80px;
+	padding: 10px 30px 0 0;
+}
+.share-email {
+	padding-left: 30px;
+	background: url('../im/icon-message.png') no-repeat 0 0;
+}
+
+/*****************************************************************************
+User Profile
+*****************************************************************************/
+#overlay-your-profile {
+	padding-bottom: 10px;
+}
+ul#connection-details {
+	margin-bottom: 30px;
+}
+#connection-details li {
+	padding: 10px 20px;
+	border-bottom: 1px solid #CCC;
+	font-weight: bold;
+	line-height: 1em;
+	background: url(../im/icon-arrow-right.png) no-repeat right center;
+	cursor: pointer;
+}
+#connection-details li:hover {
+	background: url(../im/icon-arrow-right-active.png) no-repeat right center #A00;
+	color: #FFF;
+}
+#connection-details li:active {
+	background-color: #760A04;
+}
+#connection-details li strong {
+	display: none;
+}
+#connection-details li span {
+	display: block;
+	margin-top: 3px;
+	color: #666;
+	font-size: 0.75em;
+	font-weight: normal;
+}
+#connection-details li:hover span {
+	color: #FFF;
+}
+#overlay-your-profile button[data-function="user-profile-edit"] {
+	display: block;
+	width: 310px;
+	margin: 20px auto 10px;
+}
+
+/*****************************************************************************
+Overlay - User Profile Edit
+*****************************************************************************/
+#overlay-survey.user-profile-edit {
+	margin-top: 10%;
+}
+#overlay-survey.user-profile-edit form {
+	height: 450px;
+	overflow: auto;
+}
+#overlay-survey.user-profile-edit .controls {
+	border-bottom: 1px solid #BBB;
+	background-color: #EFEFEF;
+	box-shadow: 0 0 3px #AAA;
+}
+#overlay-survey.user-profile-edit .controls strong {
+	color: #000;
+	text-align: left;
+}
+#overlay-survey.user-profile-edit .controls button {
+	background: url(../im/icon-close.png) no-repeat center center transparent;
+}
+#overlay-survey.user-profile-edit .controls button:hover {
+	background-color: #CCC;
+}
+#overlay-survey.user-profile-edit .controls button:active {
+	background-color: #AAA;
+}
+#overlay-survey.user-profile-edit .controls nav {
+	display: none;
+}
+#overlay-survey.user-profile-edit form {
+	margin-top: 0;
+}
+#overlay-survey.user-profile-edit fieldset {
+	display: block;
+	border-bottom: 1px solid #CCC;
+}
+#overlay-survey.user-profile-edit .bottom-controls {
+	display: none;
+}
+#overlay-survey.user-profile-edit form button[data-function="overlay-your-score"] {
+	float: right;
+	width: auto;
+	margin: 10px 20px 0 10px;
+	padding: 10px 30px;
+	text-indent: 0;
+}
+#overlay-survey #question-linkedin {
+	padding-bottom: 20px;
+}
+#overlay-survey #question-linkedin label {
+	display: block;
+	margin-bottom: 10px;
+}
+#linkedin-sign-out {
+	position: relative;
+	display: block;
+	width: 50px;
+	padding: 0 4px 0 30px;
+	border: 1px solid #000;
+	border-radius: 2px;
+	border-top-color: #E2E2E2;
+	border-right-color: #BFBFBF;
+	border-bottom-color: #B9B9B9;
+	border-left-color: #E2E2E2;
+	background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%);
+	color: #333;
+	font-size: 11px !important;
+	font-weight: bold;
+	line-height: 20px !important;
+	cursor: pointer;
+}
+#linkedin-sign-out:hover {
+	border-color: #B9B9B9;
+}
+#linkedin-sign-out .logo-linkedin {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	height: 20px;
+	width: 20px;
+	background: url(../im/icon-linkedin-auth.png) no-repeat 0 0;
+}
+
+/*****************************************************************************
+Overlay - Who's Who Details
+*****************************************************************************/
+#overlay-whos-who-details {
+	margin-top: 10%;
+}
+#overlay-whos-who-details .content {
+	position: relative;
+	padding: 10px;
+}
+#overlay-whos-who-details .photo {
+	height: 100px;
+	width: 83px;
+	background: url(../im/media/icon-unknown.gif) no-repeat 0 0;
+}
+#overlay-whos-who-details .credentials {
+	position: absolute;
+	top: 10px;
+	left: 103px;
+	width: 235px;
+}
+#overlay-whos-who-details h2 {
+	border-bottom: 0;
+	/*padding: 10px 0 5px;*/
+	margin: 0;
+	font-size: 1.5em;
+	font-weight: bold;
+	color: #A00 !important;
+	line-height: 1.15em;
+}
+#overlay-whos-who-details .pwr50,
+#overlay-whos-who-details .linkedin {
+	display: block;
+	height: 22px;
+	padding-left: 25px;
+	background: url(../im/icon-pwr50.png) no-repeat left center;
+	color: #666;
+	font-size: 0.75em;
+	line-height: 22px;
+}
+#overlay-whos-who-details .linkedin {
+	display: none;
+	background: url(../im/icon-linkedin.png) no-repeat left center;
+}
+#overlay-whos-who-details dl {
+	height: 350px;
+	margin: 15px -10px 0;
+	padding: 5px 10px 0;
+	border-top: 1px solid #CCC;
+	overflow-y: auto;
+}
+#overlay-whos-who-details dt {
+	color: #666;
+	font-size: 0.75em;
+	line-height: 1.3333em;
+}
+#overlay-whos-who-details dd {
+	margin: 0 0 10px;
+	font-weight: bold;
+}
+#overlay-whos-who-details strong {
+	padding-left: 10px;
+	color: #000;
+	font-weight: bold;
+}
+#overlay-whos-who-details dd a {
+	color: #A00 !important;
+	text-decoration: none;
+}
+#overlay-whos-who-details dd a:hover {
+	text-decoration: underline;
+}
