@@ -586,6 +586,7 @@ Overlay - Your Score
 }
 #overlay-your-score .score {
 	margin-top: 10px;
+	padding: 0 20px;
 	text-align: center;
 }
 #overlay-your-score .score strong {
