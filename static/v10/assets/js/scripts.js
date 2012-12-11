@@ -910,7 +910,7 @@ function searchBar() {
 	});
 
 	searchBar.on('click', 'button[data-function="search"]', function() {
-		var searchTerm = $('.search input').val();
+		var searchTerm = $('.search input').val().toLowerCase();
 
 		getResults(searchTerm, '#filtered');
 	});
